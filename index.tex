@@ -1,0 +1,203 @@
+\documentclass[msc]{ntnuthesis}
+
+%% Fill following information
+\newcommand{\StudentName}{Håvard Hernes Leonsen}
+\newcommand{\thesisTitle}{Parametric Hydraulic Design of Guide Vanes for a Rim-Driven Thruster in Pumped-Storage Hydropower}
+\newcommand{\thesisSubTitle}{}   % Leave empty {} if you do not have subtitle
+\newcommand{\studyProg}{Mechanical Engineering}
+\newcommand{\supNme}{Chirag Trivedi}
+\newcommand{\licenseType}{CC BY-NC-SA} % Default license type is 'CC BY-NC-SA'. If your work is confidential, write 'Confidential' replacing 'CC BY-NC-SA'.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[dvipsnames]{xcolor} % flere farger tilgjengelig
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{acronym}
+
+\lstdefinelanguage{Matlab}{
+  morekeywords={%
+    break,case,catch,continue,else,elseif,end,for,function,global,if,otherwise, ...
+    persistent,return,switch,try,while, ...
+    clear,clc,close,disp,zeros,ones,linspace,plot,hold,axis,title,xlabel,ylabel,legend%
+  },
+  sensitive=true,
+  morecomment=[l]\%,    % kommentarer starter med %
+  morestring=[m]'      % strenger i ' '
+}
+
+\lstset{
+  language=Matlab,
+  basicstyle=\ttfamily\small,                 % svart kode (monospace)
+  keywordstyle=\color{MidnightBlue}\bfseries,    % blå keywords / funksjoner
+  commentstyle=\color{ForestGreen}\itshape,   % grønne kommentarer
+  stringstyle=\color{Magenta},                % lilla strenger
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  stepnumber=1,
+  numbersep=5pt,
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+  tabsize=4,
+  columns=fullflexible
+  % backgroundcolor=\color{gray!5}            % slå på hvis du vil ha lys bakgrunn
+}
+\lstdefinelanguage{CSharp}{
+  morekeywords={%
+    abstract,event,new,struct,as,explicit,null,switch,base,extern,object,this,
+    bool,false,operator,throw,break,finally,out,true,byte,fixed,override,try,
+    case,float,params,typeof,catch,for,private,uint,char,foreach,protected,
+    ulong,checked,goto,public,unchecked,class,if,readonly,unsafe,const,
+    implicit,ref,ushort,continue,in,return,using,decimal,int,sbyte,virtual,
+    default,interface,sealed,volatile,delegate,internal,short,void,do,is,
+    sizeof,while,double,lock,stackalloc,else,long,static,enum,namespace,string%
+  },
+  sensitive=true,
+  morecomment=[l]{//},      % // kommentar
+  morecomment=[s]{/*}{*/},  % /* ... */ kommentar
+  morestring=[b]"           % strenger i "
+}
+
+\lstdefinestyle{csharpStyle}{
+  language=CSharp,
+  basicstyle=\ttfamily\small,                 % svart kode
+  keywordstyle=\color{RoyalBlue}\bfseries,    % blå keywords (som i VS)
+  commentstyle=\color{ForestGreen}\itshape,   % grønne kommentarer
+  stringstyle=\color{BrickRed},               % røde strenger
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  stepnumber=1,
+  numbersep=5pt,
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+  tabsize=4,
+  columns=fullflexible
+}
+
+% Sett MATLAB som default stil (kan overstyres per listing)
+\lstset{style=matlabStyle}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\begin{acronym}
+     \acro{RDT}{rim-driven thruster}
+     \acro{GV}{guide vane}
+     \acro{RPT}{reversible pump-turbine}
+     \acro{CFD}{computational fluid dynamics}
+     \acro{CFX}{ANSYS~CFX}
+     \acro{BPF}{blade passing frequency}
+     \acro{VPF}{vane passing frequency}
+     \acro{RSI}{rotor--stator interaction}
+     \acro{FFT}{fast Fourier transform}
+     \acro{DFT}{discrete Fourier transform}
+     \acro{TRS}{transient rotor--stator}
+\end{acronym}
+\pagestyle{hfstyle-front}                           % Set header footer style for front.
+\pagenumbering{roman}                               % Set Roman page number style for front.
+\setcounter{page}{1}                                % Reset page number.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Front matters
+\frontPage                                          % ntnu style cover page. Disable (comment) this if you want front
+                                                    % page from NTNU Grafisk Senter.
+
+\let\cleardoublepage\clearpage                      % This will skip blank page (even number) before new chapter.
+                                                    % You can disable (comment) this, if you plan to print the thesis 
+                                                    % hence new chapter will always start at right side (odd page number)
+                                                    % in hard copy, printed document.
+%\phantomsection\include{front/01-preface}           % Preface is optional.                             
+\phantomsection\include{front/02-abstract}          % Abstract is mandatory.
+\phantomsection\include{front/03-sammendrag}        % Abstract (Bokmål) is mandatory..
+\phantomsection\include{front/04-acknowledgments}   % Acknowledgment is optional.
+\phantomsection\include{front/04a-disclaimer}       % Disclaimer is mandatory.
+
+\tableofcontents                                    % Table of contents, mandatory.
+
+\phantomsection
+\renewcommand{\listtablename}{List of tables}
+\listoftables
+\addcontentsline{toc}{chapter}{List of tables}      % List of tables, mandatory.
+
+\phantomsection
+\renewcommand{\listfigurename}{List of figures}
+\listoffigures
+\addcontentsline{toc}{chapter}{List of figures}     % List of figures, mandatory.
+
+\phantomsection
+\include{front/05-nomenclature}                     % Nomenclature, mandatory.
+\addcontentsline{toc}{chapter}{Nomenclature}
+\printnomenclature
+
+%\listoftodos                                        % Disable (comment) once you have completed all ToDo; or
+                                                    % add 'final' in the documents class option, e.g., [msc,final]{ntnuthesis}
+                                                    % Read Appendix - A for help on ToDo list
+                                                    
+%%--------------------------List all chapters here-----------------------------%
+\mainmatter
+\pagestyle{hfstyle-chapter}                         % Set header-footer style for chapters.
+\pagenumbering{gobble}                              % Page number settings.
+\pagenumbering{arabic}                              % Use Arabic page numbering for chapters.
+\setcounter{page}{1}                                % Reset page numbers for chapters.
+
+\include{chapters/1.Introduction}                   % Introduction, mandatory.
+\include{chapters/2.Literature-review}              % Literature review, mandatory.
+\include{chapters/3.Theory}             % Theory and methods, mandatory.
+\include{chapters/4.Methodology}        % Results and discussions, mandatory.
+\include{chapters/5.Results-and-discussions}                   
+\include{chapters/6.Conclusions}                    
+\include{chapters/7.Future-work}     
+%--------------------------List bibliography here------------------------------%
+\pagestyle{hfstyle-appendix}                        % Set different header and footer.
+\phantomsection
+\addcontentsline{toc}{chapter}{References}          % Include references, ASME style, mandatory.
+\renewcommand{\bibname}{References}
+\bibliographystyle{reference/asmejour}
+\bibliography{reference/bibliography.bib}           % Keep your references (*.bib file) clean and structured as given.
+\clearpage        
+
+%%--------------------------List appendix here------------------------------%
+\phantomsection
+\begin{appendices}
+    \titleformat                                    % Redefines header for letter chapter in the appendix.
+    	{name=\chapter} 							% command
+    	[display] 									% shape
+    	{\Large} 							        % format
+    	{\thickhrulefill\,Appendices \thickhrulefill} % label
+    	{1pt} 										% Separation between label and name
+    	{\Large\bfseries\center} 		            % Name preamble
+    	{}											% Name postamble
+    \input{appendix/Appendix-A}                     % Appendix, optional.
+    \input{appendix/Appendix-B}
+    \input{appendix/Appendix-C}
+    \input{appendix/Appendix-D}
+    \input{appendix/Appendix-E}
+    \input{appendix/Appendix-F}
+\end{appendices}
+
+\backPage                                       % ntnu style cover page
+
+\end{document}
+
+%%-------------------------------History---------------------------------------%
+% Date 01.01.2019	Version 0.0.1	Bjørn       % The original document created.
+% Date 01.09.2020	Version 0.1.1	Chirag      % Guideline updated.
+% Date 01.12.2020	Version 0.2.0	Chirag      % Guideline updated.
+% Date 01.01.2021	Version 1.0.0	Chirag      % Substantial changes in the document are made.
+% Date 22.04.2021	Version 2.0.0	Chirag      % New version is created.
+% Date 22.04.2021	Version 2.1.0	Chirag      % New version is finalized and updated to Wiki
+% Date 07.07.2022	Version 2.1.1	Chirag      % Minor corrections, commented \maketitle, and preface.
+% Date 05.02.2024	Version 2.1.2	Chirag      % Minor corrections, own language conclusion section added
+% Date 05.06.2024	Version 3.0.0	Chirag      % Larger corrections are made in the formating b5 to a4 and cleaning up
+% Date 17.06.2024	Version 3.1.0	Chirag      % NTNU style cover page created. A special thanks to Bjørn for automating
+                                                % the cover pages in ntnuclass declare option.
+% Date 23.06.24     Version 3.2.0   Chirag      % Chapter cleaning carried out, use Wiki for chapters guideline
+% Date 20.05.25     Version 2025.1.0   Chirag      % NTNU logo on front and back page is revised, new version control.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%             ,-"-.
+%           ,'  .----.   _________
+%           `.     ,' ) (@)__))___)
+%            |`-.-'| #       \\
+%             `---'           ^
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

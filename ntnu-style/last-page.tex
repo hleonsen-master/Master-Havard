@@ -1,0 +1,20 @@
+\pagestyle{empty}
+
+\afterpage{
+\newgeometry{left=0cm, right=0cm, bottom=1cm}
+\hspace{4.52cm}
+    \begin{tikzpicture}[remember picture]
+        \fill[mscBox] (0,0) rectangle (15.89,7);
+        \draw[mscCirc,very thick, overlay] (6.5,0) circle (3.5cm);
+        \draw[mscCirc,very thick, overlay] (6.5,-3.5) -- (6.5,-10);
+        \draw[mscCirc,very thick, overlay] (6.5,-10) -- (15.89,-10);
+    \end{tikzpicture}
+
+\begin{figure}[b]
+    \centering
+    \includegraphics[width=5cm]{logo/ntnu_bredde_eng.pdf}
+\end{figure}
+
+\clearpage
+\restoregeometry
+}

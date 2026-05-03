@@ -1,0 +1,70 @@
+\pagestyle{empty}
+
+\afterpage{
+\newgeometry{left=0cm, right=0cm, bottom=1cm}
+
+\begin{adjustwidth}{}{}          % {left} side and {right} side margin adjustment for the box and text
+    \begin{tikzpicture}[remember picture]
+        \fill[mscBox] (0,0) rectangle (3.25,7);
+        \node[text width=7cm, rotate=90, font=\bfseries,scale=1.6, overlay] at (2.5,6) {Master's thesis};
+        \node[text width=10cm, rotate=90, left, font=\bfseries, overlay] at (1.65,8.81) {NTNU};
+        \node[text width=10cm, rotate=90, left, overlay] at (2.16,1.79) {Norwegian University of Science and Technology};
+        \node[text width=10cm, rotate=90, left, overlay] at (2.64,6.16) {Faculty of Engineering};
+        \node[text width=10cm, rotate=90, left, overlay] at (3.12,1.94) {Department of Energy and Process Engineering};
+        \draw[mscCirc,very thick,-{Stealth}, overlay] (0,-10) -- (5,-10);
+    \end{tikzpicture}
+\end{adjustwidth}
+
+\vspace{-7.3cm}
+
+\hspace{4cm}                            % This will adjust the left side spacing of the contents
+\begin{minipage}[t]{14cm}
+\raggedright
+    {\scalefont{1.5}
+    \noindent {\StudentName}
+    \vskip12pt
+    }
+    
+    \begin{spacing}{1.8}
+        {\scalefont{2}
+        \noindent
+        \textbf{\thesisTitle}
+        }
+        \begin{adjustwidth}{1cm}{}
+            {\scalefont{1.5}
+            \noindent
+            \textcolor{gray}{\thesisSubTitle}
+            }
+        \end{adjustwidth}
+    \end{spacing}
+    
+    \begin{spacing}{1.25}
+        \vskip12pt
+        {\scalefont{1.25}
+        \noindent Master’s thesis in \studyProg \newline
+        \noindent Supervisor: \supNme \newline
+        \noindent Trondheim, \Month\ \Year
+        }
+    \end{spacing}
+\end{minipage}
+
+\begin{figure}[b]
+    \centering
+    \includegraphics[width=8cm]{logo/ntnu_bredde_eng.pdf}
+\end{figure}
+
+\clearpage
+
+% Copyright page (back side of the fron page)
+\newpage
+\begin{center}
+    \vspace*{\fill}
+        Copyright {\textcopyright} {\Year} {\StudentName}
+
+        \licenseType
+    \vspace*{\fill}
+\end{center}
+
+\clearpage
+\restoregeometry
+}
