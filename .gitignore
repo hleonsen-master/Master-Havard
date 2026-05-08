@@ -1,0 +1,22 @@
+# Secrets
+.env
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.run.xml
+*.pdf
+
+# Editor
+.DS_Store
+Thumbs.db
