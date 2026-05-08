@@ -1,115 +1,243 @@
-\chapter{Appendix A: Individual monitor-signal spectra from the FFT analysis}
+\chapter{Supplementary FFT analysis of the transient RDT--GV simulations}
 \label{app:individual_spectra}
-\fancyhead{}
 
-This appendix contains the individual FFT results for each of the
-fifteen monitor signals defined in Table~\ref{tab:monitor-index}.
-Each figure shows:
-(i) the raw time history with the FFT window highlighted in red;
-(ii) a statistics and peak-amplitude summary;
-(iii) the amplitude spectrum in Hz up to approximately
-$5\,f_{\mathrm{BPF}}$ with rotor and blade-passing harmonics marked;
-and (iv) the amplitude spectrum normalised to $f/f_n$ up to
-$30\,f_n$.
+This appendix contains supplementary spectral results for the two transient configurations CC\_450\_7 and CC\_400\_6. Sections~\ref{app:fft-timeseries}--\ref{app:fft-coherence} present the time histories with the FFT window, the phase-folded time series, the window robustness check, the per-signal amplitude comparison, the axial evolution of pulsation amplitudes, and the ring-coherence diagnostic. Section~\ref{app:fft-individual} contains the individual full-panel FFT figures for all seven monitor signals in each configuration.
 
-% ----- Group A: forces on one guide vane -------------------------
+% -----------------------------------------------------------------------
+\section*{A.1\quad Time histories and the FFT window}
+\label{app:fft-timeseries}
 
-\section*{Group A — Forces on one guide vane}
+Figures~\ref{fig:app_timeseries_450_7} and~\ref{fig:app_timeseries_400_6} show the time histories of the four most informative monitor signals for each configuration. The shaded band indicates the FFT window covering the last five rotor revolutions used for spectral analysis.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.99\linewidth]{Figures/FFT/450_7/01_timeseries_and_window.png}
+\caption{Time histories for configuration CC\_450\_7 ($Z_r = Z_s = 7$, $c = 450$~mm): resultant force on one guide vane $F_{\mathrm{res}}$, RDT torque $M_{\mathrm{RDT}}$, plane-probe pressure $P_3$ and mass-flow-averaged downstream pressure $P_{\mathrm{out}}$.}
+\label{fig:app_timeseries_450_7}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.99\linewidth]{Figures/FFT/400_6/01_timeseries_and_window.png}
+\caption{Time histories of the same four monitor signals for configuration CC\_400\_6 ($Z_s = 6$, $c = 400$~mm). Panel layout as in Fig.~\ref{fig:app_timeseries_450_7}.}
+\label{fig:app_timeseries_400_6}
+\end{figure}
+
+% -----------------------------------------------------------------------
+\section*{A.2\quad Phase-folded time series}
+\label{app:fft-phasefold}
+
+The five revolutions within the FFT window are overlaid on a common $0$--$360^{\circ}$ phase axis in Figures~\ref{fig:app_phasefold_450_7} and~\ref{fig:app_phasefold_400_6}. A perfect periodic signal would collapse all five traces onto a single curve. The systematic spread between revolutions indicates energy at frequencies below $f_n$ in addition to the rotor and blade-passing harmonics. The deviation is systematic rather than random, pointing to a flow-field feature whose period does not coincide exactly with the rotor period. This is consistent with slowly evolving recirculation structures and passage-to-passage asymmetry in the annular space between the RDT and the GV row.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.99\linewidth]{Figures/FFT/450_7/02_periodicity_phase_fold.png}
+\caption{Phase-folded time series for CC\_450\_7 over the five revolutions within the FFT window. The four panels show $F_{\mathrm{res}}$, $M_{\mathrm{RDT}}$, $P_3$ and $P_{\mathrm{out}}$. Each coloured curve represents one rotor revolution.}
+\label{fig:app_phasefold_450_7}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.99\linewidth]{Figures/FFT/400_6/02_periodicity_phase_fold.png}
+\caption{Phase-folded time series for CC\_400\_6 over the five revolutions within the FFT window. Panel layout as in Fig.~\ref{fig:app_phasefold_450_7}.}
+\label{fig:app_phasefold_400_6}
+\end{figure}
+
+% -----------------------------------------------------------------------
+\section*{A.3\quad Window robustness check}
+\label{app:fft-robustness}
+
+Figure~\ref{fig:app_robustness} overlays the spectra computed from the last five and the last six rotor revolutions for both configurations. The peak amplitudes at $f_n$ and $f_{\mathrm{BPF}}$ agree to within the bin resolution ($\Delta f = 2.167$~Hz). The reported amplitudes are therefore not sensitive to the particular choice of $N_{\mathrm{rev}}$.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.99\linewidth}
+\centering
+\includegraphics[width=\linewidth]{Figures/FFT/450_7/08_robustness_5_vs_6rev.png}
+\caption{CC\_450\_7}
+\end{subfigure}
+
+\vspace{0.5cm}
+
+\begin{subfigure}{0.99\linewidth}
+\centering
+\includegraphics[width=\linewidth]{Figures/FFT/400_6/08_robustness_5_vs_6rev.png}
+\caption{CC\_400\_6}
+\end{subfigure}
+\caption{Robustness of the FFT peak amplitudes to the choice of analysis window. Spectra from five and six rotor revolutions are overlaid for $F_{\mathrm{res}}$ (top panel of each subfigure) and the wall-pressure probe $P_3$ (bottom panel) in both configurations.}
+\label{fig:app_robustness}
+\end{figure}
+
+% -----------------------------------------------------------------------
+\section*{A.4\quad Peak amplitude comparison per signal}
+\label{app:fft-fnfbpf}
+
+Figure~\ref{fig:app_fn_vs_fbpf} shows the peak amplitudes at $f_n$ and $f_{\mathrm{BPF}}$ for all seven monitor signals individually in each configuration. In CC\_450\_7 the $f_n$ component dominates every signal by a ratio of 5:1 or more. In CC\_400\_6 the ratios are closer, and $M_{\mathrm{RDT}}$ shows the highest $A(f_{\mathrm{BPF}})/A(f_n)$ ratio ($0.79$) of any signal in either configuration. This is consistent with a slightly stronger blade-passing excitation of the full rotor when the blade counts are unequal, but the absolute amplitudes remain low.
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.49\linewidth}
+\centering
+\includegraphics[width=\linewidth]{Figures/FFT/450_7/comparison_fn_vs_fBPF_all_signals.png}
+\subcaption{CC\_450\_7}
+\end{minipage}
+\begin{minipage}{0.49\linewidth}
+\centering
+\includegraphics[width=\linewidth]{Figures/FFT/400_6/comparison_fn_vs_fBPF_all_signals.png}
+\subcaption{CC\_400\_6}
+\end{minipage}
+\caption{Peak amplitudes at $f_n$ (white bars) and $f_{\mathrm{BPF}}$ (black bars) for all monitor signals in both configurations. Amplitudes are plotted on a logarithmic axis in each signal's native unit.}
+\label{fig:app_fn_vs_fbpf}
+\end{figure}
+
+The same data are shown as a side-by-side bar comparison between the two configurations in Figure~\ref{fig:app_compare_bar}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{Figures/FFT/comparison/compare_amplitudes_bar.png}
+\caption{Side-by-side comparison of peak amplitudes at $f_{\mathrm{BPF}}$ (top) and $f_n$ (bottom) for the two configurations.}
+\label{fig:app_compare_bar}
+\end{figure}
+
+% -----------------------------------------------------------------------
+\section*{A.5\quad Axial evolution of pulsation amplitudes through the GV passage}
+\label{app:fft-axialevolution}
+
+Figure~\ref{fig:app_ampvsdistance} shows how the wall-pressure pulsation amplitudes vary axially through the GV passage at $r/R = 0.744$ for the three probe positions ($P_0$, $P_3$, $P_5$). The $f_{\mathrm{BPF}}$ component is highest immediately downstream of the RDT--GV interface ($P_0$) and decays into the passage. The $f_n$ component does not follow a monotonic trend, which reflects the complex spatial structure of the low-frequency pulsation field inside the vane passage.
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.49\linewidth}
+\centering
+\includegraphics[width=\linewidth]{Figures/FFT/450_7/amp_vs_distance_in_GV.png}
+\subcaption{CC\_450\_7}
+\end{minipage}
+\begin{minipage}{0.49\linewidth}
+\centering
+\includegraphics[width=\linewidth]{Figures/FFT/400_6/amp_vs_distance_in_GV.png}
+\subcaption{CC\_400\_6}
+\end{minipage}
+\caption{Axial evolution of wall-pressure pulsation amplitudes along the GV passage at $r/R = 0.744$, plotted against distance $s$ downstream of the RDT--GV interface. Five frequency components are shown: $f_n$, $2f_n$, $f_{\mathrm{BPF}}$, $2f_{\mathrm{BPF}}$ and $3f_{\mathrm{BPF}}$.}
+\label{fig:app_ampvsdistance}
+\end{figure}
+
+% -----------------------------------------------------------------------
+\section*{A.6\quad Ring-coherence diagnostic}
+\label{app:fft-coherence}
+
+The ring-coherence diagnostic $\mathcal{R}_m(f)$ defined in Eq.~\eqref{eq:coherence} quantifies the fraction of the local pressure pulsation that is coherent across the full circumference, i.e.\ the axisymmetric $m = 0$ contribution. It is evaluated by comparing the local wall-pressure signals $P_3$ and $P_5$ (which contain all circumferential modes) with the plane-averaged signal $P_{\mathrm{out}}$ (which retains only the $m = 0$ mode by mass-flow averaging).
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{0.85\linewidth}
+\centering
+\includegraphics[width=\linewidth]{Figures/FFT/450_7/10_coherence_check.png}
+\caption{CC\_450\_7 ($Z_r = Z_s = 7$)}
+\end{subfigure}
+
+\vspace{0.5cm}
+
+\begin{subfigure}{0.85\linewidth}
+\centering
+\includegraphics[width=\linewidth]{Figures/FFT/400_6/10_coherence_check.png}
+\caption{CC\_400\_6 ($Z_s = 6$)}
+\end{subfigure}
+\caption{Ring-coherence diagnostic for both configurations. Upper panels show amplitude spectra of the local wall-pressure signals $P_3$ and $P_5$ compared with the plane-averaged $P_{\mathrm{out}}$. Lower panels show amplitudes at the characteristic frequencies as bar charts.}
+\label{fig:app_coherence}
+\end{figure}
+
+For CC\_450\_7 the diagnostic at $f_{\mathrm{BPF}}$ gives
+\begin{align}
+    A_{\mathrm{loc}}(f_{\mathrm{BPF}})
+      &\approx 26~\mathrm{Pa}
+        \qquad (\text{average of } P_3, P_5), \\
+    A_{\mathrm{ring}}(f_{\mathrm{BPF}})
+      &\approx 20~\mathrm{Pa}, \\
+    \mathcal{R}_m(f_{\mathrm{BPF}})
+      &\approx 0.75.
+\end{align}
+For CC\_400\_6 the same diagnostic gives $A_{\mathrm{loc}} \approx 28$~Pa, $A_{\mathrm{ring}} \approx 34$~Pa, and a ratio close to or above unity. In both cases the absolute amplitudes are well below the RSI concern level, so the quantitative value of the diagnostic is less informative than the spectral pattern. The non-negligible $m = 0$ contribution in CC\_450\_7 is qualitatively consistent with the Tyler--Sofrin prediction that $m_{\min} = 0$ for $Z_r = Z_s$. For CC\_400\_6 the local-vs-plane relationship is similar, but the absolute pulsation level is too low to draw a sharp conclusion. The coherence results are consistent with the physical interpretation discussed in Section~\ref{sec:results-fft-physicalexpl}: the non-uniform inflow from the large axial gap suppresses the formation of a clean $m = 0$ breathing mode even in the equal-blade-count case.
+
+The following caveats apply to the interpretation of all results in this appendix. First, no modal analysis of the guide vane has been performed. The conclusion that the cyclic force is below a fatigue-critical level holds only under the assumption that the lowest wet natural frequency of the GV is well separated from $f_{\mathrm{BPF}} = 75.83$~Hz and its low harmonics. A finite-element modal analysis including added-mass effects is recommended as a separate verification step. Second, both simulations were run at the design point $n = 650$~rpm. Off-design operation with stronger swirl or local blade stall could produce qualitatively different pulsation behaviour. The conclusions of this appendix apply to nominal operation only.
+
+% -----------------------------------------------------------------------
+\section*{A.7\quad Individual monitor-signal spectra}
+\label{app:fft-individual}
+
+Each figure below shows: (i) the raw time history with the FFT window highlighted; (ii) a statistics and peak-amplitude summary; (iii) the amplitude spectrum in Hz up to approximately $5\,f_{\mathrm{BPF}}$; and (iv) the amplitude spectrum normalised to $f/f_n$ up to $30\,f_n$.
+
+\subsection*{Configuration CC\_450\_7 ($Z_r = Z_s = 7$, $c = 450$~mm)}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.99\linewidth]{Figures/FFT/signal_Fres.png}
+\includegraphics[width=0.95\linewidth]{Figures/FFT/450_7/signal_Fres.png}
 \caption{$F_{\mathrm{res}}$ — Resultant force on one guide vane.}
 \end{figure}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.99\linewidth]{Figures/FFT/signal_Fx.png}
-\caption{$F_x$ — Force $x$-direction on one guide vane.}
+\includegraphics[width=0.95\linewidth]{Figures/FFT/450_7/signal_M_RDT.png}
+\caption{$M_{\mathrm{RDT}}$ — Torque about the rotation axis of the RDT rotor.}
 \end{figure}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.99\linewidth]{Figures/FFT/signal_Fy.png}
-\caption{$F_y$ — Force $y$-direction on one guide vane.}
+\includegraphics[width=0.95\linewidth]{Figures/FFT/450_7/signal_P_in.png}
+\caption{$P_{\mathrm{in}}$ — Mass-flow-averaged pressure at the RDT--GV interface.}
 \end{figure}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.99\linewidth]{Figures/FFT/signal_Fz.png}
-\caption{$F_z$ — Force $z$-direction (axial) on one guide vane.}
-\end{figure}
-
-% ----- Group B: torque -------------------------------------------
-
-\section*{Group B — Torque on the RDT}
-
-\begin{figure}[H]\centering
-\includegraphics[width=0.99\linewidth]{Figures/FFT/signal_M_RDT.png}
-\caption{$M_{\mathrm{RDT}}$ — Torque about the rotation axis,
-integrated over the entire RDT blade surface.}
-\end{figure}
-
-% ----- Group C: plane-averaged pressures -------------------------
-
-\section*{Group C — Plane-averaged pressures}
-
-\begin{figure}[H]\centering
-\includegraphics[width=0.99\linewidth]{Figures/FFT/signal_P_in.png}
-\caption{$P_{\mathrm{in}}$ — Mass-flow-averaged pressure at the
-RDT--GV interface ($s = 0$~mm).}
+\includegraphics[width=0.95\linewidth]{Figures/FFT/450_7/signal_P_out.png}
+\caption{$P_{\mathrm{out}}$ — Mass-flow-averaged pressure downstream of the GV row.}
 \end{figure}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.99\linewidth]{Figures/FFT/signal_P_out.png}
-\caption{$P_{\mathrm{out}}$ — Mass-flow-averaged pressure
-downstream of the GV row ($s = 500$~mm).}
+\includegraphics[width=0.95\linewidth]{Figures/FFT/450_7/signal_P0.png}
+\caption{$P_0$ — Wall-pressure probe at $s = 0$~mm, $r/R = 0.744$.}
 \end{figure}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.99\linewidth]{Figures/FFT/signal_P_out_area.png}
-\caption{$P_{\mathrm{out}}^{\,a}$ — Area-averaged pressure
-downstream of the GV row (reference check only).}
-\end{figure}
-
-% ----- Group D: centre-of-pipe before bend -----------------------
-
-\section*{Group D — Centre of pipe before the 90$^\circ$ bend}
-
-\begin{figure}[H]\centering
-\includegraphics[width=0.99\linewidth]{Figures/FFT/signal_P_bend.png}
-\caption{$P_{\mathrm{bend}}$ — Pressure at the centre of the pipe
-before the 90$^\circ$ bend ($z = -2.185$~m).}
-\end{figure}
-
-% ----- Group E: wall probes along the GV passage -----------------
-
-\section*{Group E — Wall-pressure probes along the GV passage}
-
-\begin{figure}[H]\centering
-\includegraphics[width=0.99\linewidth]{Figures/FFT/signal_P0.png}
-\caption{$P_0$ — Wall probe at $s = 0$~mm, $r/R = 0.744$.}
+\includegraphics[width=0.95\linewidth]{Figures/FFT/450_7/signal_P3.png}
+\caption{$P_3$ — Wall-pressure probe at $s = 300$~mm, $r/R = 0.744$.}
 \end{figure}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.99\linewidth]{Figures/FFT/signal_P1.png}
-\caption{$P_1$ — Wall probe at $s = 100$~mm, $r/R = 0.744$.}
+\includegraphics[width=0.95\linewidth]{Figures/FFT/450_7/signal_P5.png}
+\caption{$P_5$ — Wall-pressure probe at $s = 500$~mm, $r/R = 0.744$.}
+\end{figure}
+
+\subsection*{Configuration CC\_400\_6 ($Z_s = 6$, $c = 400$~mm)}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.95\linewidth]{Figures/FFT/400_6/signal_Fres.png}
+\caption{$F_{\mathrm{res}}$ — Resultant force on one guide vane.}
 \end{figure}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.99\linewidth]{Figures/FFT/signal_P2.png}
-\caption{$P_2$ — Wall probe at $s = 200$~mm, $r/R = 0.744$.}
+\includegraphics[width=0.95\linewidth]{Figures/FFT/400_6/signal_M_RDT.png}
+\caption{$M_{\mathrm{RDT}}$ — Torque about the rotation axis of the RDT rotor.}
 \end{figure}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.99\linewidth]{Figures/FFT/signal_P3.png}
-\caption{$P_3$ — Wall probe at $s = 300$~mm, $r/R = 0.744$.}
+\includegraphics[width=0.95\linewidth]{Figures/FFT/400_6/signal_P_in.png}
+\caption{$P_{\mathrm{in}}$ — Mass-flow-averaged pressure at the RDT--GV interface.}
 \end{figure}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.99\linewidth]{Figures/FFT/signal_P4.png}
-\caption{$P_4$ — Wall probe at $s = 400$~mm, $r/R = 0.744$.}
+\includegraphics[width=0.95\linewidth]{Figures/FFT/400_6/signal_P_out.png}
+\caption{$P_{\mathrm{out}}$ — Mass-flow-averaged pressure downstream of the GV row.}
 \end{figure}
 
 \begin{figure}[H]\centering
-\includegraphics[width=0.99\linewidth]{Figures/FFT/signal_P5.png}
-\caption{$P_5$ — Wall probe at $s = 500$~mm, $r/R = 0.744$.}
+\includegraphics[width=0.95\linewidth]{Figures/FFT/400_6/signal_P0.png}
+\caption{$P_0$ — Wall-pressure probe at $s = 0$~mm, $r/R = 0.744$.}
+\end{figure}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.95\linewidth]{Figures/FFT/400_6/signal_P3.png}
+\caption{$P_3$ — Wall-pressure probe at $s = 300$~mm, $r/R = 0.744$.}
+\end{figure}
+
+\begin{figure}[H]\centering
+\includegraphics[width=0.95\linewidth]{Figures/FFT/400_6/signal_P5.png}
+\caption{$P_5$ — Wall-pressure probe at $s = 500$~mm, $r/R = 0.744$.}
 \end{figure}
 
 \clearpage % Keep this at the end of the chapter

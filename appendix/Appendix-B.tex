@@ -1,6 +1,163 @@
-\chapter{Appendix B: Creating a table}
-\label{app:appB}
+% \chapter{Appendix B: Creating a table}
+% \label{app:appB}
+% \fancyhead{}
+\chapter{Three-dimensional guide-vane geometries}
+\label{app:gv_3d_geometries}
 \fancyhead{}
+
+This appendix collects the three-dimensional renderings of all 18 active guide-vane configurations of the screening matrix (Table~\ref{tab:design_matrix}). The renderings are produced by the parametric MATLAB tool \texttt{vanedesign\_loft\_export}~\cite{Leonsen2025} after the spanwise inputs $\{r,\,C_m(r),\,C_u(r)\}$ from the RDT wake have been used to set the metal angles, the camber and the wrap. All renderings use the same axial-view orientation; the rotor is to the left and the duct flow proceeds to the right. The plotted vane height matches the design span $r \in [0.12,\,0.25]$~m. The matched pair \texttt{CC\_400\_8}/\texttt{CS\_400\_8} discussed in Section~\ref{sec:theory_const_chord_const_sol} is included here for completeness, in addition to the 16 remaining cases.
+
+The figures are grouped by design family. The constant-chord (CC) family is presented first, followed by the constant-solidity (CS) family. Within each family, the cases are ordered by ascending shroud chord and then by ascending vane count.
+
+\section*{Constant-chord (CC) family}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/GV_Design/3D/CC_250_9_Helices_Vane_axial_X_.png}
+    \caption{\texttt{CC\_250\_9}: $c = 250$~mm, $Z_s = 9$, $\sigma_{\mathrm{shroud}} = 1.43$.}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/GV_Design/3D/CC_300_9_Helices_Vane_axial_X_.png}
+    \caption{\texttt{CC\_300\_9}: $c = 300$~mm, $Z_s = 9$, $\sigma_{\mathrm{shroud}} = 1.71$.}
+  \end{subfigure}
+
+  \vspace{0.6em}
+
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/GV_Design/3D/CC_350_8_Helices_Vane_axial_X_.png}
+    \caption{\texttt{CC\_350\_8}: $c = 350$~mm, $Z_s = 8$, $\sigma_{\mathrm{shroud}} = 1.78$.}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/GV_Design/3D/CC_400_6_Helices_Vane_axial_X_.png}
+    \caption{\texttt{CC\_400\_6}: $c = 400$~mm, $Z_s = 6$, $\sigma_{\mathrm{shroud}} = 1.52$.}
+  \end{subfigure}
+
+  \vspace{0.6em}
+
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/GV_Design/3D/CC_400_8_Helices_Vane_axial_X_.png}
+    \caption{\texttt{CC\_400\_8}: $c = 400$~mm, $Z_s = 8$, $\sigma_{\mathrm{shroud}} = 2.03$.}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/GV_Design/3D/CC_450_6_Helices_Vane_axial_X_.png}
+    \caption{\texttt{CC\_450\_6}: $c = 450$~mm, $Z_s = 6$, $\sigma_{\mathrm{shroud}} = 1.71$.}
+  \end{subfigure}
+
+  \caption[CC family, part 1 of 2]{Constant-chord (CC) family, configurations \texttt{CC\_250\_9} through \texttt{CC\_450\_6}. The chord is identical at every radius; the vane is therefore wider near the shroud than near the hub when measured against the local pitch.}
+  \label{fig:cc_family_1}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/GV_Design/3D/CC_450_8_Helices_Vane_axial_X_.png}
+    \caption{\texttt{CC\_450\_8}: $c = 450$~mm, $Z_s = 8$, $\sigma_{\mathrm{shroud}} = 2.28$.}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/GV_Design/3D/CC_500_6_Helices_Vane_axial_X_.png}
+    \caption{\texttt{CC\_500\_6}: $c = 500$~mm, $Z_s = 6$, $\sigma_{\mathrm{shroud}} = 1.90$.}
+  \end{subfigure}
+
+  \vspace{0.6em}
+
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/GV_Design/3D/CC_500_8_Helices_Vane_axial_X_.png}
+    \caption{\texttt{CC\_500\_8}: $c = 500$~mm, $Z_s = 8$, $\sigma_{\mathrm{shroud}} = 2.54$.}
+  \end{subfigure}
+
+  \caption[CC family, part 2 of 2]{Constant-chord (CC) family, configurations \texttt{CC\_450\_8} through \texttt{CC\_500\_8}. \texttt{CC\_500\_8} is the most heavily loaded configuration in the screening matrix, with $\sigma_{\mathrm{hub}} = 5.31$.}
+  \label{fig:cc_family_2}
+\end{figure}
+
+\section*{Constant-solidity (CS) family}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/GV_Design/3D/CS_250_9_Helices_Vane_axial_X_.png}
+    \caption{\texttt{CS\_250\_9}: $c_{\mathrm{shroud}} = 250$~mm, $Z_s = 9$, $\sigma = 1.43$ uniform.}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/GV_Design/3D/CS_300_9_Helices_Vane_axial_X_.png}
+    \caption{\texttt{CS\_300\_9}: $c_{\mathrm{shroud}} = 300$~mm, $Z_s = 9$, $\sigma = 1.71$ uniform.}
+  \end{subfigure}
+
+  \vspace{0.6em}
+
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/GV_Design/3D/CS_350_8_Helices_Vane_axial_X_.png}
+    \caption{\texttt{CS\_350\_8}: $c_{\mathrm{shroud}} = 350$~mm, $Z_s = 8$, $\sigma = 1.78$ uniform.}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/GV_Design/3D/CS_400_6_Helices_Vane_axial_X_.png}
+    \caption{\texttt{CS\_400\_6}: $c_{\mathrm{shroud}} = 400$~mm, $Z_s = 6$, $\sigma = 1.52$ uniform.}
+  \end{subfigure}
+
+  \vspace{0.6em}
+
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/GV_Design/3D/CS_400_8_Helices_Vane_axial_X_.png}
+    \caption{\texttt{CS\_400\_8}: $c_{\mathrm{shroud}} = 400$~mm, $Z_s = 8$, $\sigma = 2.03$ uniform.}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/GV_Design/3D/CS_450_6_Helices_Vane_axial_X_.png}
+    \caption{\texttt{CS\_450\_6}: $c_{\mathrm{shroud}} = 450$~mm, $Z_s = 6$, $\sigma = 1.71$ uniform.}
+  \end{subfigure}
+
+  \caption[CS family, part 1 of 2]{Constant-solidity (CS) family, configurations \texttt{CS\_250\_9} through \texttt{CS\_450\_6}. The chord scales linearly with $r$ so the local solidity is uniform across the design span.}
+  \label{fig:cs_family_1}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/GV_Design/3D/CS_450_8_Helices_Vane_axial_X_.png}
+    \caption{\texttt{CS\_450\_8}: $c_{\mathrm{shroud}} = 450$~mm, $Z_s = 8$, $\sigma = 2.28$ uniform.}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/GV_Design/3D/CS_500_6_Helices_Vane_axial_X_.png}
+    \caption{\texttt{CS\_500\_6}: $c_{\mathrm{shroud}} = 500$~mm, $Z_s = 6$, $\sigma = 1.90$ uniform.}
+  \end{subfigure}
+
+  \vspace{0.6em}
+
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/GV_Design/3D/CS_500_8_Helices_Vane_axial_X_.png}
+    \caption{\texttt{CS\_500\_8}: $c_{\mathrm{shroud}} = 500$~mm, $Z_s = 8$, $\sigma = 2.54$ uniform.}
+  \end{subfigure}
+
+  \caption[CS family, part 2 of 2]{Constant-solidity (CS) family, configurations \texttt{CS\_450\_8} through \texttt{CS\_500\_8}.}
+  \label{fig:cs_family_2}
+\end{figure}
+
+\clearpage % Keep this at the end of the chapter
 
 
 \clearpage % Keep this at the end of the chapter

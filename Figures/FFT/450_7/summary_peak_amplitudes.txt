@@ -1,0 +1,12 @@
+FFT analysis summary - 450_7
+  RPM = 650,  fn = 10.833 Hz,  fBPF = 75.833 Hz
+========================================================================================================================
+Label      Description                                        Unit           Mean          Std        A(fn)      A(fBPF)
+------------------------------------------------------------------------------------------------------------------------
+Fres       Force resultant on one guide vane                  N         7.876e+02    4.838e+01    5.211e+00    5.576e-01
+M_RDT      Torque about rotation axis, full RDT rotor         N m       2.888e+02    1.625e+00    4.321e-01    6.386e-02
+P_in       Average pressure, RDT-GV interface                 Pa        1.263e+05    5.134e+02    7.129e+01    2.190e+01
+P_out      Average pressure, downstream of GV                 Pa        1.355e+05    3.639e+02    1.376e+02    1.960e+01
+P0         Cross-section plane at s = 0 mm,   r/R = 0.744     Pa        1.239e+05    2.391e+03    6.251e+02    8.056e+01
+P3         Cross-section plane at s = 300 mm, r/R = 0.744     Pa        1.317e+05    1.559e+03    6.076e+02    3.282e+01
+P5         Cross-section plane at s = 500 mm, r/R = 0.744     Pa        1.349e+05    6.205e+02    4.305e+02    1.998e+01
