@@ -806,24 +806,54 @@ Each of the 18 guide-vane configurations in Table~\ref{tab:design_matrix} is mes
   \item minimum determinant $\geq 0.4$;
   \item element count per blade passage in the range $5\times 10^5$ -- $1.5\times 10^6$, depending on chord.
 \end{itemize}
-TurboGrid reports these metrics directly for every generated mesh. Figure~\ref{fig:turbogrid_mesh} shows representative views of the GV TurboGrid mesh for one configuration in the screening matrix. The full vane row shows the structured O-grid wrapping each blade in the cylindrical reference frame. The single-blade close-up shows the boundary-layer cells on the suction surface with the targeted $y^+ \approx 1$ resolution.
+TurboGrid reports these metrics directly for every generated mesh. Figure~\ref{fig:turbogrid_mesh} shows the TurboGrid mesh for one representative CC configuration and one representative CS configuration. The structured hexahedral O-grid wraps each blade in the cylindrical reference frame, and the boundary-layer cells on the suction surface reach the targeted $y^+ \approx 1$ resolution.
 
 \begin{figure}[h!]
   \centering
-  \begin{subfigure}[t]{0.55\textwidth}
+  \begin{subfigure}[t]{0.32\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{Figures/Mesh/TurboGrid_GV_row.png}
-    \caption{Full GV row.}
-    \label{fig:turbogrid_gv_row}
+    \includegraphics[width=\textwidth]{Figures/Mesh/Turbogrid_mesh1_CC.png}
+    \caption{CC, view 1.}
+    \label{fig:turbogrid_cc_1}
   \end{subfigure}
   \hfill
-  \begin{subfigure}[t]{0.40\textwidth}
+  \begin{subfigure}[t]{0.32\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{Figures/Mesh/TurboGrid_GV_blade.png}
-    \caption{Single-blade close-up.}
-    \label{fig:turbogrid_gv_blade}
+    \includegraphics[width=\textwidth]{Figures/Mesh/Turbogrid_mesh2_CC.png}
+    \caption{CC, view 2.}
+    \label{fig:turbogrid_cc_2}
   \end{subfigure}
-  \caption[GV TurboGrid mesh]{Representative TurboGrid mesh of a guide-vane configuration. The structured O-grid topology is preserved across all 18 GV configurations and the RDT rotor mesh.}
+  \hfill
+  \begin{subfigure}[t]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Mesh/Turbogrid_mesh3_CC.png}
+    \caption{CC, view 3.}
+    \label{fig:turbogrid_cc_3}
+  \end{subfigure}
+
+  \vspace{0.6em}
+
+  \begin{subfigure}[t]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Mesh/Turbogrid_mesh1_CS.png}
+    \caption{CS, view 1.}
+    \label{fig:turbogrid_cs_1}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Mesh/Turbogrid_mesh2_CS.png}
+    \caption{CS, view 2.}
+    \label{fig:turbogrid_cs_2}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[t]{0.32\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Mesh/Turbogrid_mesh3_CS.png}
+    \caption{CS, view 3.}
+    \label{fig:turbogrid_cs_3}
+  \end{subfigure}
+  \caption[GV TurboGrid mesh, CC and CS]{Representative TurboGrid mesh for one CC configuration (top row) and one CS configuration (bottom row). The structured O-grid topology is preserved across all 18 GV configurations and the RDT rotor mesh.}
   \label{fig:turbogrid_mesh}
 \end{figure}
 
