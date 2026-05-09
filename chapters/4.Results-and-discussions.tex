@@ -10,8 +10,7 @@
 \section{FFT analysis of the transient RDT--GV simulations}
 \label{sec:results-fft}
  
-Two transient RDT--GV simulations were run at the nominal operating point ($n = 650$~rpm) to test the Tyler--Sofrin prediction directly: \texttt{CC\_450\_7} ($Z_r=Z_s=7$, $m_{\min}=0$) as the breathing-mode reference, and \texttt{CC\_400\_6} ($Z_s=6$, $m_{\min}=1$) as the spinning-mode comparator. The case selection is motivated in Section~\ref{sec:rsi-thesis}. Both runs were initialised from the same baseline restart at $t = 2.447$~s and continued for 15 rotor revolutions to $t = 3.831$~s.
-
+Two transient RDT--GV simulations were run at the nominal operating point ($n = 650$~rpm) to test the Tyler--Sofrin prediction directly. The cases were selected as diagnostic blade-count configurations, not as final hydraulic candidates. Configuration \texttt{CC\_450\_7} ($Z_r=Z_s=7$, $m_{\min}=0$) is used as the breathing-mode reference, while \texttt{CC\_400\_6} ($Z_s=6$, $m_{\min}=1$) is used as the spinning-mode comparator. The case selection is motivated in Section~\ref{sec:rsi-thesis}. Both runs were initialised from the same baseline restart at $t = 2.447$~s and continued for 15 rotor revolutions to $t = 3.831$~s.
 \subsection{Peak amplitudes at the characteristic frequencies}
 \label{sec:results-peaks}
  
@@ -80,12 +79,12 @@ The normalised pulsation at the RDT--GV interface is
 more than one order of magnitude below the $1\,\%$ threshold of~\cite{Brekke2015,Brekke2010} for significant rotor--stator interaction.
 
 \paragraph{Observation 3: the equal blade-count case does not show the expected breathing mode.}
-\texttt{CC\_400\_6} ($m_{\min} = 1$) does not show systematically lower pulsation levels than \texttt{CC\_450\_7} ($m_{\min} = 0$). The amplitudes are of the same order of magnitude across all signals.
+\texttt{CC\_400\_6} ($m_{\min} = 1$) does not show systematically lower pulsation levels than \texttt{CC\_450\_7} ($m_{\min} = 0$). The amplitudes are of the same order of magnitude across all signals. A likely explanation is discussed in Section~\ref{sec:results-fft-physicalexpl}.
 
 \subsection{Physical interpretation: large axial gap and non-uniform inflow}
 \label{sec:results-fft-physicalexpl}
 
-The absent breathing-mode signature is consistent with the large axial gap documented in Section~\ref{sec:methods_axial_spacing}, where $a/\bar{L} \approx 1.13$ places the geometry well outside the compact-stage window in which the Tyler--Sofrin argument is sharpest. The wake mixes and redistributes before reaching the vanes, weakening the coherent $m = 0$ build-up.
+The absent breathing-mode signature is consistent with the large axial spacing documented in Section~\ref{sec:methods_axial_spacing}. The relevant compact-stage parameter is the rotor--stator spacing normalised by the RDT rotor chord, $a/L$, not by the duct diameter. Using the span-averaged RDT chord in the GV-overlap region, $\bar{L}=169.8$~mm, gives $a/\bar{L}=0.192/0.170=1.13$. This is about 7.5 times larger than the upper limit of the compact axial-pump guideline $a/L=0.05$--$0.15$. The potential-interaction component of the rotor--stator pulsation is therefore expected to be strongly attenuated before the flow reaches the guide-vane row. The wake can therefore mix and redistribute before reaching the vanes, weakening the coherent $m = 0$ build-up predicted for a compact rotor--stator stage.
 
 The velocity contour in Figure~\ref{fig:vel_contour_400_6} supports this interpretation. The flow is non-uniform between adjacent vane passages and shows regions of reduced velocity, consistent with recirculation in the annular space between the rim and the duct wall. The guide vanes are therefore exposed to a mixed and asymmetric RDT wake rather than a clean $Z_r$-periodic rotor wake. A non-periodic inflow is likely to reduce the coherent build-up of the $m = 0$ component predicted by the Tyler--Sofrin framework, even when $Z_r = Z_s$.
 
