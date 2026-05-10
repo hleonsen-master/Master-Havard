@@ -10,13 +10,13 @@
 \section{FFT analysis of the transient RDT--GV simulations}
 \label{sec:results-fft}
  
-Two transient RDT--GV simulations were run at the nominal operating point ($n = 650$~rpm) to test the Tyler--Sofrin prediction directly. The cases were selected as diagnostic blade-count configurations, not as final hydraulic candidates. Configuration \texttt{CC\_450\_7} ($Z_r=Z_s=7$, $m_{\min}=0$) is used as the breathing-mode reference, while \texttt{CC\_400\_6} ($Z_s=6$, $m_{\min}=1$) is used as the spinning-mode comparator. The case selection is motivated in Section~\ref{sec:rsi-thesis}. Both runs were initialised from the same baseline restart at $t = 2.447$~s and continued for 15 rotor revolutions to $t = 3.831$~s.
+Two transient RDT--GV simulations were run at $n = 650$~rpm to test the Tyler--Sofrin prediction in the present geometry. The two cases are diagnostic blade-count configurations; the final hydraulic candidate is selected separately from the steady screening matrix. \texttt{CC\_450\_7} is the project-work baseline ($Z_r = Z_s = 7$, $m_{\min} = 0$); the Tyler--Sofrin analysis predicts a synchronous breathing mode at $f_{\mathrm{BPF}}$. \texttt{CC\_400\_6} is the spinning-mode comparator ($Z_s = 6$, $m_{\min} = 1$) drawn from the screening matrix. Both runs were initialised from the same baseline restart at $t = 2.447$~s and continued for 15 rotor revolutions to $t = 3.831$~s.
 \subsection{Peak amplitudes at the characteristic frequencies}
 \label{sec:results-peaks}
  
 The FFT uses the last $N_{\mathrm{rev}} = 5$ rotor revolutions ($N = 1800$, $\Delta f = 2.167$~Hz) with a Hanning window, following the methodology in Section~\ref{sec:spec}. Time histories, the phase-folded comparison and the window-robustness check are in Appendix~\ref{app:individual_spectra} (Sections A.1--A.2).
  
-Peak amplitudes at $f_n$ and $f_{\mathrm{BPF}}$ for all monitor signals are listed in Tables~\ref{tab:peak_amplitudes_450_7} and~\ref{tab:peak_amplitudes_400_6}; the ratio $A(f_{\mathrm{BPF}})/A(f_n)$ indicates the dominant forcing mechanism.
+Peak amplitudes at $f_n$ and $f_{\mathrm{BPF}}$ are listed in Tables~\ref{tab:peak_amplitudes_450_7} and~\ref{tab:peak_amplitudes_400_6}. The ratio $A(f_{\mathrm{BPF}})/A(f_n)$ indicates whether each signal is dominated by blade-passing content or by rotor-frequency content.
 
 \begin{table}[H]
 \centering
@@ -66,7 +66,7 @@ A spectral comparison of the two configurations for the four most informative si
 The bar-chart amplitude comparison and the per-signal $f_n$-vs-$f_{\mathrm{BPF}}$ plots are in Appendix~\ref{app:individual_spectra} (Section A.3). Three observations stand out.
 
 \paragraph{Observation 1: blade-passing forcing is weak.}
-The cyclic force amplitude at $f_{\mathrm{BPF}}$ is $0.56$~N for \texttt{CC\_450\_7} and $1.71$~N for \texttt{CC\_400\_6}, corresponding to $0.07\,\%$ and $0.27\,\%$ of the mean vane loads. Both values are below the $0.5\,\%$ diagnostic threshold of~\cite{Egusquiza2006}. The unsteady vane loading is dominated by low-frequency content rather than deterministic blade-passing forcing.
+The cyclic force amplitude at $f_{\mathrm{BPF}}$ is $0.56$~N for \texttt{CC\_450\_7} and $1.71$~N for \texttt{CC\_400\_6}, corresponding to $0.07\,\%$ and $0.27\,\%$ of the mean vane loads. Both values are below the $0.5\,\%$ diagnostic threshold of~\cite{Egusquiza2006}. Low-frequency content dominates the unsteady vane loading; deterministic blade-passing forcing is below the diagnostic threshold.
 
 \paragraph{Observation 2: pressure pulsations are well below the RSI threshold.}
 The normalised pulsation at the RDT--GV interface is
@@ -78,8 +78,8 @@ The normalised pulsation at the RDT--GV interface is
 \end{equation}
 more than one order of magnitude below the $1\,\%$ threshold of~\cite{Brekke2015,Brekke2010} for significant rotor--stator interaction.
 
-\paragraph{Observation 3: the equal blade-count case does not show the expected breathing mode.}
-\texttt{CC\_400\_6} ($m_{\min} = 1$) does not show systematically lower pulsation levels than \texttt{CC\_450\_7} ($m_{\min} = 0$). The amplitudes are of the same order of magnitude across all signals. A likely explanation is discussed in Section~\ref{sec:results-fft-physicalexpl}.
+\paragraph{Observation 3: the equal blade-count case does not show a stronger breathing-mode signature.}
+\texttt{CC\_400\_6} ($m_{\min} = 1$) shows higher relative blade-passing content than \texttt{CC\_450\_7} ($m_{\min} = 0$): the ratio $A(f_{\mathrm{BPF}})/A(f_n)$ for $F_{\mathrm{res}}$ is $0.58$ in \texttt{CC\_400\_6} and $0.11$ in \texttt{CC\_450\_7}. This is not the behaviour expected from the compact-stage Tyler--Sofrin argument, where the equal blade-count case is the main concern. The absolute amplitudes remain low in both cases, and the expected coherent breathing-mode signature is weak in the present geometry. A physical interpretation is given in Section~\ref{sec:results-fft-physicalexpl}.
 
 \subsection{Physical interpretation: large axial gap and non-uniform inflow}
 \label{sec:results-fft-physicalexpl}
@@ -97,11 +97,13 @@ The velocity contour in Figure~\ref{fig:vel_contour_400_6} supports this interpr
 
 This interpretation is also consistent with the dominant sub-rotor-frequency content in the monitor signals. Low-frequency fluctuations are the signature of slowly evolving recirculation, not deterministic blade-passing interaction.
 
+The same mechanism helps explain the higher relative blade-passing content in the single-vane force signal of \texttt{CC\_400\_6}. With non-uniform inflow, the synchronous $m=0$ build-up predicted by Tyler--Sofrin for $Z_r = Z_s = 7$ does not form coherently in \texttt{CC\_450\_7}; the vanes are loaded by an asymmetric wake field. In \texttt{CC\_400\_6}, the wake--vane mismatch ($Z_r = 7$, $Z_s = 6$) can produce stronger local wake--vane interaction on a single vane while the ring-integrated coherent mode remains weak. The plane-averaged pressure signals support this interpretation: the $m=0$ component is of the same order in the two cases ($21.9$~Pa versus $28.1$~Pa at the inlet plane). The higher single-vane $f_{\mathrm{BPF}}$ content in \texttt{CC\_400\_6} reflects local wake--vane interaction, not a stronger coherent ring mode.
+
 \subsection{Implications for blade-count selection}
 \label{sec:results-fft-implications}
 
 The transient analysis establishes two results. The unsteady loading produced by the RDT--GV setup is below industrial concern thresholds for both configurations at the nominal operating point. No clear resonance signature is present in either case. The low coherent ring loading is interpreted as a consequence of the large axial gap and the asymmetric inflow rather than as proof that the equal blade-count configuration is generally safe.
 
-The final guide-vane design is taken from the design matrix subset with $Z_s \neq Z_r$. The choice rests on the conservative reading of the classical guideline~\cite{Brekke2015,Brekke2010,Tanaka2011,Nduwayezu2021}, not on a measurable pulsation difference. The choice between the available options $Z_s \in \{6, 8, 9\}$ is made on the basis of the hydraulic metrics presented in the next section. No modal analysis of the guide vane has been performed. The conclusion that the cyclic force is below a fatigue-critical level holds only if the lowest wet natural frequency is well separated from $f_{\mathrm{BPF}} = 75.83$~Hz. A finite-element modal analysis including added-mass effects is recommended in Chapter~\ref{chap:future_work}.
+The final guide-vane design is selected from the screening subset with $Z_s \neq Z_r$. The choice is conservative. The classical guideline~\cite{Brekke2015,Brekke2010,Tanaka2011,Nduwayezu2021} recommends avoiding equal rotor and stator counts when possible, especially when acoustic or structural resonance may interact with the spatial mode order. The transient runs do not indicate critical pulsation levels, but a full structural or acoustic assessment is still needed. The choice between the available options $Z_s \in \{6, 8, 9\}$ is therefore made on the basis of the hydraulic metrics presented in the next section. No modal analysis of the guide vane has been performed in this thesis. The fatigue-margin conclusion holds only if the lowest wet natural frequency is well separated from $f_{\mathrm{BPF}} = 75.83$~Hz. A finite-element modal analysis including added-mass effects is therefore recommended in Chapter~\ref{chap:future_work}.
 
 \clearpage % Keep this at the end of the chapter
