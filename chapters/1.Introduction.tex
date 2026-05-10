@@ -3,7 +3,7 @@
 
 \begin{center} % Abstract overview
 \singlespacing\parbox{12cm}{\textit{
-This chapter motivates the present thesis. Pumped-storage hydropower with reversible pump-turbines (RPTs) is needed in power systems with high renewable shares. Cavitation in pump mode limits retrofits at high-head sites, and the Store2Hydro booster-pump concept developed at NTNU is the response. The hubless rim-driven thruster (RDT) is the candidate booster. Its outflow is swirling and radially non-uniform, which is the reason a downstream guide-vane (GV) row is needed. The thesis is then placed relative to the preceding project work~\cite{Leonsen2025}, and the scope is defined as a systematic CFD screening of guide-vane designs in the RDT--GV--draft-tube layout.
+This chapter motivates the present thesis. Pumped-storage hydropower with reversible pump-turbines (RPTs) is needed in power systems with high renewable shares. Cavitation in pump mode limits retrofits at high-head sites, and the Store2Hydro booster-pump concept developed at NTNU is the response. The hubless rim-driven thruster (RDT) is the candidate booster. Its outflow is swirling and radially non-uniform, which is the reason a downstream guide-vane (GV) row is needed. The thesis is then placed relative to the preceding project work~\cite{Leonsen2025}, and the scope is defined as a systematic CFD screening of guide-vane designs in the RDT-GV-draft-tube layout.
 }}
 \end{center}
 
@@ -20,14 +20,20 @@ Cavitation is therefore the main hydraulic limitation for RPT retrofits at high-
 
 The booster has tight constraints. It must fit inside a draft tube of about $0.5$~m diameter, allow free passage when not in use, and not block reverse rotation in turbine mode. A conventional shaft-driven axial booster cannot meet these requirements because the shaft and hub block the centre of the duct. The hubless rim-driven thruster (RDT) places the electric motor in the duct rim and drives the blades through a rotating ring~\cite{Cao2012}. The hubless geometry leaves the centre of the duct open, which fits a draft-tube installation. Within Store2Hydro, the RDT has been adopted as the booster concept, and a sequence of project and master theses has developed its blade-element and 2D optimisation methodologies~\cite{Fjuk2025, Ambjornsson2025}.
 
-%%%SETT INN BILDE AV RDT MOTOREN, BILDE FRA JOHANNES.
+%%% TODO: update \includegraphics path when figure file from Johannes is in place.
+\begin{figure}[h!]
+  \centering
+  \fbox{\includegraphics[width=0.65\textwidth]{Figures/Litterature_review/RDT_motor_Johannes.png}}
+  \caption[The hubless rim-driven thruster motor]{The hubless rim-driven thruster (RDT). The electric motor is integrated in the duct rim and drives the blades through a rotating ring. The absence of a central hub leaves the duct centre open, which permits free passage in turbine-mode operation and accommodates the booster installation in the existing draft-tube layout. Figure adapted from~\cite{DjupeslandTrivedi2025}.}
+  \label{fig:rdt_motor}
+\end{figure}
 
 The RDT introduces a new problem. Without a stator, the rotor leaves a swirling and radially non-uniform wake at its outlet. Marine RDT studies show that the wake is dominated by helical tip and secondary vortices that persist many duct diameters downstream~\cite{Gaggero2023}. Without a downstream stator, a substantial part of the developed head is left in the flow as residual swirl~\cite{Andersen2014}. Axial pre-rotation at the RPT inlet affects both head and cavitation in pump mode. Positive pre-rotation reduces head and aggravates cavitation. Negative pre-rotation preserves head better but still reduces efficiency relative to swirl-free inflow~\cite{Jenssen2020, Larsen2019}. The standard solution is a row of stationary swirl-recovery guide vanes (GVs) downstream of the RDT. The GVs reduce residual swirl and convert tangential kinetic energy into static pressure before the flow reaches the RPT runner.
 
 \begin{figure}[h!]
   \centering
   \fbox{\includegraphics[width=0.75\textwidth]{Figures/Litterature_review/Sketch_RDT_GV.png}}
-  \caption[Concept sketch of the RDT--GV booster system]{Concept sketch of the RDT booster with a downstream GV row in the draft tube of a reversible pump-turbine retrofit.}
+  \caption[Concept sketch of the RDT-GV booster system]{Concept sketch of the RDT booster with a downstream GV row in the draft tube of a reversible pump-turbine retrofit.}
   \label{fig:concept_intro}
 \end{figure}
 
@@ -38,7 +44,7 @@ The present thesis is a direct continuation of the project work \emph{Parametric
 
 Three gaps remain. First, only two 3D geometries were assessed with CFD. Two data points indicate a trade-off, but they do not map the design space. The project work explicitly lists this limited screening as a gap to close in further work~\cite{Leonsen2025}. Second, the project-work CFD domain was a straight pipe. It did not include the conical contraction, the $90^\circ$ bend, and the final inlet section present in the actual Store2Hydro layout. Third, the parallel RPT pump-mode simulations by Dokset~\cite{Dokset2025} used inlet profiles extracted \emph{downstream} of the GVs, so the reported RPT performance numbers exclude the GV passage drag. The design with the best RPT inflow may therefore not be the design with the best full-system behaviour.
 
-The present thesis addresses the first two gaps directly. The slip-correction methodology from~\cite{Leonsen2025} is reused with a fixed value $\delta_{\mathrm{TE}} = 6^\circ$, following G\"ulich~\cite{Gulich2010}. A built-in TE angle of $4^\circ$--$6^\circ$ compensates for cascade deviation; a larger correction promotes suction-side separation. The screening then simulates 18 GV configurations in the full RDT--GV--draft-tube domain. The matrix combines two chord-control strategies (constant chord and constant solidity at the shroud), six shroud-chord levels and three vane counts. A nineteenth simulation, denoted \texttt{NoGV}, replaces the GV region with an empty pipe and provides the reference for the swirl-reduction and head-loss metrics. The third gap (coupling with the RPT) is left as future work. Dokset~\cite{Dokset2025} carries the parallel responsibility for the RPT side, and a coupled RDT--GV--RPT campaign exceeds the available computational budget.
+The present thesis addresses the first two gaps directly. The slip-correction methodology from~\cite{Leonsen2025} is reused with a fixed value $\delta_{\mathrm{TE}} = 6^\circ$, following G\"ulich~\cite{Gulich2010}. A built-in TE angle of $4^\circ$-$6^\circ$ compensates for cascade deviation; a larger correction promotes suction-side separation. The screening then simulates 18 GV configurations in the full RDT-GV-draft-tube domain. The matrix combines two chord-control strategies (constant chord and constant solidity at the shroud), six shroud-chord levels and three vane counts. A nineteenth simulation, denoted \texttt{NoGV}, replaces the GV region with an empty pipe and provides the reference for the swirl-reduction and head-loss metrics. The third gap (coupling with the RPT) is left as future work. Dokset~\cite{Dokset2025} carries the parallel responsibility for the RPT side, and a coupled RDT-GV-RPT campaign exceeds the available computational budget.
 
 \section{Goal and research questions}
 \label{sec:goal_research_q}
@@ -47,13 +53,13 @@ The main goal of this thesis is
 
 \medskip
 \begin{quote}
-\textit{To develop a systematic CFD screening methodology for swirl-recovery guide vanes downstream of the rim-driven thruster in the Store2Hydro booster--RPT concept. The methodology is then used to identify how the main design variables govern the trade-off between swirl reduction and hydraulic loss, and how the residual swirl develops through the conical section, the $90^\circ$ bend, and the final inlet section before the RPT.}
+\textit{To develop a systematic CFD screening methodology for swirl-recovery guide vanes downstream of the rim-driven thruster in the Store2Hydro booster-RPT concept. The methodology is then used to identify how the main design variables govern the trade-off between swirl reduction and hydraulic loss, and how the residual swirl develops through the conical section, the $90^\circ$ bend, and the final inlet section before the RPT.}
 \end{quote}
 \medskip
 
 This goal is broken down into four research questions:
 \begin{enumerate}
-  \item How do GV design parameters --- vane count $Z_s$, chord-control strategy (CC vs CS), and shroud-chord magnitude --- influence swirl reduction, residual swirl distribution and total-pressure loss in the integrated RDT--GV--draft-tube system?
+  \item How do GV design parameters - vane count $Z_s$, chord-control strategy (CC vs CS), and shroud-chord magnitude - influence swirl reduction, residual swirl distribution and total-pressure loss in the integrated RDT-GV-draft-tube system?
   \item Which spanwise and plane-averaged metrics best discriminate between GV designs that condition the inflow well for the RPT and designs that do not?
   \item Is the design with the lowest residual tangential velocity directly downstream of the GVs also the best design at the bend exit, or does the bend redistribute residual swirl and change the ranking?
   \item How robust is the design ranking when evaluated across several axial planes between the GVs and the RPT inlet, and what mechanism limits the achievable swirl reduction in this geometry?
@@ -66,11 +72,10 @@ A working hypothesis is formulated for each question. Increasing solidity, eithe
 
 The scope is set by previous work and by available computational resources. Three choices define it.
 
-\paragraph{Decoupling from the RPT.} The simulation domain starts at the RDT inlet and ends in a straight pipe of about $1.0$~m towards the RPT. Between these, the flow passes through the RDT, the GV row, a conical contraction from $D = 0.5$~m to $D = 0.4$~m, and a $90^\circ$ bend. The RPT itself is not modelled. The final straight pipe acts as a buffer between the bend and the outlet boundary condition. A coupled RDT--GV--RPT screening would require about $3$--$4$ times longer per case than the present setup; over 18 cases this exceeds the available time-frame by an order of magnitude. The decision is justified in detail in Section~\ref{sec:rpt-decoupling-justification}.
-
+\paragraph{Decoupling from the RPT.} The simulation domain starts at the RDT inlet and ends in a straight pipe of about $1.0$~m towards the RPT. Between these, the flow passes through the RDT, the GV row, a conical contraction from $D = 0.5$~m to $D = 0.4$~m, and a $90^\circ$ bend. The RPT itself is not modelled. The final straight pipe acts as a buffer between the bend and the outlet boundary condition. Simulating all 18 GV configurations in a coupled RDT-GV-RPT setup would require approximately three times more CPU hours than the present RDT-GV-draft-tube setup. The RPT is therefore replaced by an extended straight outlet pipe in the screening campaign. This keeps the comparison computationally feasible while preserving the same upstream RDT wake and downstream draft-tube geometry for all GV designs. A coupled RDT-GV-RPT simulation of the selected candidate is left as future work. The decision is justified in detail in Section~\ref{sec:rpt-decoupling-justification}.
 \paragraph{Single operating point.} All 18 configurations and the \texttt{NoGV} reference are simulated at $\dot m = 290.3$~kg/s and $n = 650$~rpm. Off-design behaviour is not investigated. The goal is comparative ranking of GV geometries at one representative operating point.
 
-\paragraph{Steady RANS for the screening.} The 18 cases use steady RANS with the SST $k$--$\omega$ turbulence model. Two transient simulations of selected configurations cover the rotor--stator interaction analysis in Chapter~\ref{chap:results_discussion}. A full transient screening was not feasible.
+\paragraph{Steady RANS for the screening.} The 18 cases use steady RANS with the SST $k$-$\omega$ turbulence model. Two transient simulations of selected configurations cover the rotor-stator interaction analysis in Chapter~\ref{chap:results_discussion}. A full transient screening was not feasible.
 
 \medskip
 The following limitations from the project work are inherited:
@@ -81,11 +86,11 @@ The following limitations from the project work are inherited:
   \item the slip correction is fixed at $\delta_{\mathrm{TE}} = 6^\circ$ in all configurations.
 \end{itemize}
 
-The thesis is therefore a structured screening study. It reduces a large design space to a small number of candidates and quantifies the trade-off between swirl reduction and total-pressure loss. Coupled RDT--GV--RPT simulation, cavitation assessment, and experimental validation of the shortlisted design are left for future work (Chapter~\ref{chap:future_work}).
+The thesis is therefore a structured screening study. It reduces a large design space to a small number of candidates and quantifies the trade-off between swirl reduction and total-pressure loss. Coupled RDT-GV-RPT simulation, cavitation assessment, and experimental validation of the shortlisted design are left for future work (Chapter~\ref{chap:future_work}).
 
 \section{Thesis outline}
 \label{sec:thesis_outline}
 
-The thesis is organised as follows. Chapter~\ref{chap:litterature} reviews the literature on rim-driven thrusters, swirling pipe flow, GV design, slip correlations, swirl decay, and secondary flow in curved ducts. Chapter~\ref{chap:theory_method} presents the theoretical framework and the design methodology in two parts: governing equations, swirl metrics, cascade theory and rotor--stator theory in the first; the 18-case design matrix, the multi-domain CFX setup, the GCI study and the spectral methodology in the second. Chapter~\ref{chap:results_discussion} presents the simulation results and the unsteady analysis of the two transient runs. Chapter~\ref{chap:conclusion} concludes. Chapter~\ref{chap:future_work} lists recommended directions.
+The thesis is organised as follows. Chapter~\ref{chap:litterature} reviews the literature on rim-driven thrusters, swirling pipe flow, GV design, slip correlations, swirl decay, and secondary flow in curved ducts. Chapter~\ref{chap:theory_method} presents the theoretical framework and the design methodology in two parts: governing equations, swirl metrics, cascade theory and rotor-stator theory in the first; the 18-case design matrix, the multi-domain CFX setup, the GCI study and the spectral methodology in the second. Chapter~\ref{chap:results_discussion} presents the simulation results and the unsteady analysis of the two transient runs. Chapter~\ref{chap:conclusion} concludes. Chapter~\ref{chap:future_work} lists recommended directions.
 
 \clearpage

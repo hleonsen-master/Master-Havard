@@ -3,7 +3,7 @@
 
 \begin{center} % Abstract overview
 \singlespacing\parbox{12cm}{\textit{
-This chapter consolidates the theoretical framework and the methodological choices used in the present screening campaign. The first part establishes the governing equations, the cylindrical-coordinate description of the flow, the velocity triangles and the swirl metrics. It then develops the cascade theory used to design the guide vanes, the cavitation framework, the Dean-vortex theory of the $90^\circ$ bend, the turbulence-model assumptions and the rotor--stator interaction theory underlying the transient analyses. The second part applies this framework to the present geometry. It covers the parametric MATLAB tool from the project work~\cite{Leonsen2025}, the 18-case design matrix (two chord-control strategies, six shroud-chord levels, three vane counts), and the no-GV reference simulation. It then describes the multi-domain CFX setup, the mesh strategy, the Grid Convergence Index study, the solver settings, the analysis-plane definitions, and the spectral-analysis methodology used for the two transient simulations.
+This chapter consolidates the theoretical framework and the methodological choices used in the present screening campaign. The first part establishes the governing equations, the cylindrical-coordinate description of the flow, the velocity triangles and the swirl metrics. It then develops the cascade theory used to design the guide vanes, the cavitation framework, the Dean-vortex theory of the $90^\circ$ bend, the turbulence-model assumptions and the rotor-stator interaction theory underlying the transient analyses. The second part applies this framework to the present geometry. It covers the parametric MATLAB tool from the project work~\cite{Leonsen2025}, the 18-case design matrix (two chord-control strategies, six shroud-chord levels, three vane counts), and the no-GV reference simulation. It then describes the multi-domain CFX setup, the mesh strategy, the Grid Convergence Index study, the solver settings, the analysis-plane definitions, and the spectral-analysis methodology used for the two transient simulations.
 }}
 \end{center}
 
@@ -17,7 +17,7 @@ The contributions specific to the present thesis are:
   \item the multi-domain ANSYS~CFX setup;
   \item the Grid Convergence Index study on the unstructured draft-tube domain;
   \item the post-processing pipeline on a common array of analysis planes;
-  \item the two transient simulations (\texttt{CC\_450\_7} and \texttt{CC\_400\_6}) that test the Tyler--Sofrin prediction directly.
+  \item the two transient simulations (\texttt{CC\_450\_7} and \texttt{CC\_400\_6}) that test the Tyler-Sofrin prediction directly.
 \end{itemize}
 
 % =====================================================================
@@ -39,7 +39,7 @@ The flow between the rim-driven thruster (RDT) and the reversible pump-turbine (
 - \rho \nabla \cdot \overline{\mathbf{u}'\mathbf{u}'}.
 \label{eq:rans_momentum}
 \end{equation}
-Here, $\mathbf{u}$ is the mean velocity vector, $p$ is the mean static pressure, $\rho$ is the fluid density, $\mu$ is the dynamic viscosity, and $-\rho \overline{\mathbf{u}'\mathbf{u}'}$ is the Reynolds-stress tensor representing the effect of unresolved turbulent fluctuations. In a Reynolds-averaged Navier--Stokes framework these stresses must be closed through a turbulence model. This formulation suits the present study: the objective is to compare mean-flow quantities such as total-pressure loss, swirl reduction and downstream flow quality, not to resolve the full unsteady turbulent spectrum.
+Here, $\mathbf{u}$ is the mean velocity vector, $p$ is the mean static pressure, $\rho$ is the fluid density, $\mu$ is the dynamic viscosity, and $-\rho \overline{\mathbf{u}'\mathbf{u}'}$ is the Reynolds-stress tensor representing the effect of unresolved turbulent fluctuations. In a Reynolds-averaged Navier-Stokes framework these stresses must be closed through a turbulence model. This formulation suits the present study: the objective is to compare mean-flow quantities such as total-pressure loss, swirl reduction and downstream flow quality, not to resolve the full unsteady turbulent spectrum.
 
 A cylindrical coordinate system fits the present geometry because the duct, the RDT wake and the guide-vane annulus are all organised around a common centreline. The flow is therefore described in cylindrical coordinates $(r,\theta,z)$, where $z$ is the axial direction from the RDT towards the RPT, $r$ is the radial coordinate and $\theta$ the circumferential coordinate. The absolute velocity vector $\vec{C}$ is written as
 \begin{equation}
@@ -160,10 +160,10 @@ In a straight pipe with no swirl-conditioning element, the swirl decays through 
 S(z) \;\approx\; S(z_0)\,\exp\!\left[\,-\beta\,\frac{z - z_0}{D}\,\right],
 \label{eq:S_decay}
 \end{equation}
-where the decay constant $\beta$ depends weakly on swirl level and Reynolds number and typically takes values $\beta \approx 0.02$--$0.06$ for smooth-walled turbulent flow~\cite{Kitoh1991, Beaubert2016}. The implication is that, for a duct length of a few diameters between the RDT and the RPT, the natural decay alone reduces $S$ only modestly. The decay also adds wall friction, so even the apparent ``benefit'' of letting the swirl decay over a long distance is partly cancelled by additional pressure loss compared with a non-swirling flow at the same Reynolds number. This is why an active swirl-recovery element close to the RDT is preferred over a long downstream pipe as passive damper~\cite{Andersen2014, Nguyen2024}.
+where the decay constant $\beta$ depends weakly on swirl level and Reynolds number and typically takes values $\beta \approx 0.02$-$0.06$ for smooth-walled turbulent flow~\cite{Kitoh1991, Beaubert2016}. The implication is that, for a duct length of a few diameters between the RDT and the RPT, the natural decay alone reduces $S$ only modestly. The decay also adds wall friction, so even the apparent ``benefit'' of letting the swirl decay over a long distance is partly cancelled by additional pressure loss compared with a non-swirling flow at the same Reynolds number. This is why an active swirl-recovery element close to the RDT is preferred over a long downstream pipe as passive damper~\cite{Andersen2014, Nguyen2024}.
  
 \paragraph{Implication for the present geometry.}
-In the present geometry, the path from the guide-vane trailing-edge plane to the RPT inlet has three sections: about $0.50$~m of straight pipe (cone), a $90^\circ$ bend, and about $1.0$~m of straight pipe in the final inlet section. This is short compared to the decay length expected from Eq.~\ref{eq:S_decay} for the swirl numbers seen at the guide-vane trailing edge. The residual swirl at the RPT inlet is therefore controlled almost entirely by what the guide vanes deliver and not by free decay in the pipe sections. The post-processing in this thesis quantifies this directly by comparing $S$ at the guide-vane trailing edge with $S$ at the bend exit and at the final inlet plane.
+In the present geometry, the path from the guide-vane trailing-edge plane to the RPT inlet has three sections: a conical contraction of about $0.50$~m, a $90^\circ$ bend, and about $1.0$~m of straight pipe in the final inlet section. This is short compared to the decay length expected from Eq.~\ref{eq:S_decay} for the swirl numbers seen at the guide-vane trailing edge. The residual swirl at the RPT inlet is therefore controlled almost entirely by what the guide vanes deliver and not by free decay in the pipe sections. The post-processing in this thesis quantifies this directly by comparing $S$ at the guide-vane trailing edge with $S$ at the bend exit and at the final inlet plane.
  
 % ---------------------------------------------------------------------
 \section{Cavitation considerations}
@@ -190,9 +190,9 @@ where $p_{\mathrm{in}}$ is the absolute pressure at the machine inlet. For compa
 \end{equation}
 and high $\sigma$ corresponds to safe operation, while low $\sigma$ is associated with bubble growth, head loss, efficiency loss and possible erosion~\cite{Franc2007, Gulich2010}.
  
-For the NTNU RPT, Kerlefsen reports a required NPSH of approximately $1.3$--$1.4$~m for a net head $H_{\mathrm{net}} \approx 12$~m, giving $\mathrm{NPSH}_\mathrm{R}/H_{\mathrm{net}} \approx 0.11$--$0.12$, with a recommended margin of $20$--$25\,\%$ between available and required NPSH~\cite{Kerlefsen2025}. The Store2Hydro booster is intended to add approximately $H \approx 5$~m of head upstream of the RPT, which is comfortable as long as guide-vane losses are kept moderate. Any total-pressure loss in the screening therefore reduces the cavitation margin and is charged against the design.
+For the NTNU RPT, Kerlefsen reports a required NPSH of approximately $1.3$-$1.4$~m for a net head $H_{\mathrm{net}} \approx 12$~m, giving $\mathrm{NPSH}_\mathrm{R}/H_{\mathrm{net}} \approx 0.11$-$0.12$, with a recommended margin of $20$-$25\,\%$ between available and required NPSH~\cite{Kerlefsen2025}. The Store2Hydro booster is intended to add approximately $H \approx 5$~m of head upstream of the RPT, which is comfortable as long as guide-vane losses are kept moderate. Any total-pressure loss in the screening therefore reduces the cavitation margin and is charged against the design.
  
-In CFD, cavitation is commonly modelled as a homogeneous mixture of liquid water and water vapour, with mass-transfer rates determined by a Rayleigh--Plesset-based source term. In the present work no cavitation modelling is performed in the screening campaign; the static pressure field is examined for the absence of regions with $p < p_v$, but multiphase modelling is left as future work for the selected configuration.
+In CFD, cavitation is commonly modelled as a homogeneous mixture of liquid water and water vapour, with mass-transfer rates determined by a Rayleigh-Plesset-based source term. In the present work no cavitation modelling is performed in the screening campaign; the static pressure field is examined for the absence of regions with $p < p_v$, but multiphase modelling is left as future work for the selected configuration.
  
 % ---------------------------------------------------------------------
 \section{Design requirements for the guide vanes}
@@ -207,7 +207,7 @@ Figure~\ref{fig:rdt_streamlines} shows example streamlines downstream of the RDT
   \label{fig:rdt_streamlines}
 \end{figure}
  
-The simulation also indicates very large local flow angles in the outer part of the wake. At $r \approx 0.25$~m, the absolute angle between $C_m$ and $C_u$ approaches $80^\circ$--$89^\circ$, meaning the velocity is almost entirely tangential. The guide vanes must therefore be designed to handle extreme inflow angles while still providing controlled turning and acceptable losses.
+The simulation also indicates very large local flow angles in the outer part of the wake. At $r \approx 0.25$~m, the absolute angle between $C_m$ and $C_u$ approaches $80^\circ$-$89^\circ$, meaning the velocity is almost entirely tangential. The guide vanes must therefore be designed to handle extreme inflow angles while still providing controlled turning and acceptable losses.
  
 \subsection{Backflow region and the design span}
 \label{sec:theory_backflow_span}
@@ -293,7 +293,7 @@ with $V_{\mathrm{in}}$, $V_{\mathrm{out}}$ the inlet and outlet relative velocit
 \frac{V_{\mathrm{out}}}{V_{\mathrm{in}}} \;\geq\; 0.72,
 \label{eq:deHaller}
 \end{equation}
-which is independent of solidity but cruder than $D_f$. Both criteria are used in the post-processing as descriptive indicators rather than as binary go/no-go limits, because the present application requires turning angles up to $80^\circ$--$90^\circ$ that are well beyond the conventional axial-compressor regime.
+which is independent of solidity but cruder than $D_f$. Both criteria are used in the post-processing as descriptive indicators rather than as binary go/no-go limits, because the present application requires turning angles up to $80^\circ$-$90^\circ$ that are well beyond the conventional axial-compressor regime.
  
 \subsection{Incidence, deviation and effective turning}
 \label{sec:theory_incidence_deviation}
@@ -304,9 +304,9 @@ Section~\ref{sec:theory_kinematics} introduced the inlet and outlet flow angles 
   \item the deviation $\delta(r)$ determines how much of the geometric turning $\theta_1 - \theta_2$ actually appears as flow turning $\beta_1 - \beta_2$;
   \item the effective turning is therefore smaller than the geometric turning, especially for low solidity and high loading.
 \end{itemize}
-The deviation is treated as a fixed correction $\delta_{\mathrm{TE}} = 6^\circ$ added to the trailing-edge metal angle, following G\"ulich~\cite{Gulich2010}. The project-work response surface~\cite{Leonsen2025} predicts $10^\circ$--$20^\circ$ at the high turning required here. Adopting those values would aggressively over-camber the trailing edge, sharpen the suction-side pressure gradient, and promote separation. The fixed $6^\circ$ correction captures the bulk of the deviation effect without overloading the cascade.
+The deviation is treated as a fixed correction $\delta_{\mathrm{TE}} = 6^\circ$ added to the trailing-edge metal angle, following G\"ulich~\cite{Gulich2010}. The project-work response surface~\cite{Leonsen2025} predicts $10^\circ$-$20^\circ$ at the high turning required here. Adopting those values would aggressively over-camber the trailing edge, sharpen the suction-side pressure gradient, and promote separation. The fixed $6^\circ$ correction captures the bulk of the deviation effect without overloading the cascade.
 
-The cost of this choice is that the screening reports the swirl-reduction performance achievable with a conservative slip correction, not the maximum achievable performance. Section~\ref{sec:results-fft} returns to this point when the swirl reduction is compared to the project-work Case B reference.
+The cost of this choice is that the screening reports the swirl-reduction performance achievable with a conservative slip correction, not the maximum achievable performance. This choice is revisited in Chapter~\ref{chap:results_discussion} when the swirl-reduction results are interpreted.
  
 % ---------------------------------------------------------------------
 \section{Geometric construction of the guide vanes}
@@ -357,7 +357,7 @@ The stagger angle $\zeta(r)$ orients the chord line relative to the axial direct
 \subsection{Cylindrical or conical wrapping}
 \label{sec:theory_wrapping}
  
-The two-dimensional sections are stacked along the span and wrapped on either a cylindrical surface of radius $r$ or a conical surface with radius varying linearly with the axial coordinate~\cite{Leonsen2025}. The azimuthal coordinate of each section point is computed from the tangential coordinate and a global trailing-edge anchoring angle. The trailing edges of all sections can be anchored to a common azimuth, $\phi_{\mathrm{TE,global}}$, which produces a straight TE line in the axial--azimuthal plane and supports a clean axial through-flow when the residual swirl is small. In the present work, cylindrical wrapping is used because the guide-vane domain has constant duct diameter and there is no need to wrap on a cone. The TE-anchored option is enabled, which produces all sections aligned at the same azimuth at the trailing edge.
+The two-dimensional sections are stacked along the span and wrapped on either a cylindrical surface of radius $r$ or a conical surface with radius varying linearly with the axial coordinate~\cite{Leonsen2025}. The azimuthal coordinate of each section point is computed from the tangential coordinate and a global trailing-edge anchoring angle. The trailing edges of all sections can be anchored to a common azimuth, $\phi_{\mathrm{TE,global}}$, which produces a straight TE line in the axial-azimuthal plane and supports a clean axial through-flow when the residual swirl is small. In the present work, cylindrical wrapping is used because the guide-vane domain has constant duct diameter and there is no need to wrap on a cone. The TE-anchored option is enabled, which produces all sections aligned at the same azimuth at the trailing edge.
  
 \subsection{Constant chord versus constant solidity}
 \label{sec:theory_const_chord_const_sol}
@@ -404,16 +404,16 @@ The strength of the Dean vortices scales with the dimensionless Dean number
 \mathrm{De} \;=\; \mathrm{Re}\,\sqrt{\frac{D_h}{2\,R_c}},
 \label{eq:dean}
 \end{equation}
-where $D_h$ is the hydraulic diameter of the duct and $R_c$ is the radius of curvature of the bend centreline. For the present geometry the duct diameter at the bend is approximately $D = 0.4$~m and the bend curvature radius is on the order of $R_c \approx 0.3$--$0.4$~m. With Reynolds numbers around $\mathrm{Re} \sim 10^6$ in the duct, the Dean number is well into the turbulent regime where the Dean cells are fully developed and may further interact with the upstream-imposed swirl. Three regimes are commonly distinguished. For $\mathrm{De} \lesssim 100$, the bend secondary flow is laminar and weak. For intermediate Dean numbers, instabilities and additional secondary cells (D\"ottner cells) emerge. For high Reynolds numbers, the secondary motion is fully turbulent and is dominated by two large counter-rotating Dean cells, with additional small-scale features near the inner radius where separation is most likely.
+where $D_h$ is the hydraulic diameter of the duct and $R_c$ is the radius of curvature of the bend centreline. For the present geometry the duct diameter at the bend is approximately $D = 0.4$~m and the bend curvature radius is on the order of $R_c \approx 0.3$-$0.4$~m. With Reynolds numbers around $\mathrm{Re} \sim 10^6$ in the duct, the Dean number is well into the turbulent regime where the Dean cells are fully developed and may further interact with the upstream-imposed swirl. Three regimes are commonly distinguished. For $\mathrm{De} \lesssim 100$, the bend secondary flow is laminar and weak. For intermediate Dean numbers, instabilities and additional secondary cells (D\"ottner cells) emerge. For high Reynolds numbers, the secondary motion is fully turbulent and is dominated by two large counter-rotating Dean cells, with additional small-scale features near the inner radius where separation is most likely.
  
 \subsection{Interaction with upstream swirl}
 \label{sec:theory_swirl_bend_interaction}
  
-When the upstream flow already carries swirl, the Dean cells and the swirl interact, and the interaction depends on the sign of the swirl. If the upstream swirl rotates in the same sense as one of the two Dean cells, that cell is amplified and the opposite cell is suppressed; if the upstream swirl rotates in the opposite sense, the partition is reversed. The post-bend axial-velocity profile is therefore generally asymmetric in a way that depends on the \emph{sign} of the residual swirl, not only on its magnitude. Liu and Vanierschot~\cite{LiuVanierschot2021} review this regime and document that the asymmetry persists for several diameters downstream of the bend exit. Escue and Cui~\cite{EscueCui2010} demonstrate that the SST $k$--$\omega$ model captures the bulk structure of swirling pipe flow. The model tends to underpredict turbulence anisotropy under strong rotation, which is a recognised limitation when interpreting RANS results in this regime.
+When the upstream flow already carries swirl, the Dean cells and the swirl interact, and the interaction depends on the sign of the swirl. If the upstream swirl rotates in the same sense as one of the two Dean cells, that cell is amplified and the opposite cell is suppressed; if the upstream swirl rotates in the opposite sense, the partition is reversed. The post-bend axial-velocity profile is therefore generally asymmetric in a way that depends on the \emph{sign} of the residual swirl, not only on its magnitude. Liu and Vanierschot~\cite{LiuVanierschot2021} review this regime and document that the asymmetry persists for several diameters downstream of the bend exit. Escue and Cui~\cite{EscueCui2010} demonstrate that the SST $k$-$\omega$ model captures the bulk structure of swirling pipe flow. The model tends to underpredict turbulence anisotropy under strong rotation, which is a recognised limitation when interpreting RANS results in this regime.
  
 The implication for the present thesis is that:
 \begin{enumerate}
-  \item the guide-vane performance must be evaluated not only at the trailing-edge plane (where the design tool has direct geometric leverage) but also at planes downstream of the bend, because swirl--bend interaction changes the effective ranking;
+  \item the guide-vane performance must be evaluated not only at the trailing-edge plane (where the design tool has direct geometric leverage) but also at planes downstream of the bend, because swirl-bend interaction changes the effective ranking;
   \item the sign of the residual swirl is a relevant design parameter even if the screening matrix focuses primarily on chord-strategy and vane count;
   \item asymmetry of the axial-velocity profile at the RPT inlet plane, not just its mean magnitude, must be reported.
 \end{enumerate}
@@ -427,7 +427,7 @@ A further bend-related effect is separation on the inner radius of the bend, whe
 \section{Turbulence modelling and numerical limitations}
 \label{sec:theory_turbulence}
  
-The simulations in this thesis use a Reynolds-averaged formulation with the SST $k$--$\omega$ turbulence model of Menter~\cite{Menter1994}. The SST model blends the standard $k$--$\omega$ model in the near-wall region, where it is robust under adverse pressure gradients, with a $k$--$\varepsilon$ formulation in the outer flow. It is the de-facto standard for hydraulic turbomachinery in industrial CFD and has been validated extensively in pump, turbine and stator applications. The known limitations relevant to the present work are summarised here and revisited where the corresponding limitation is in play.
+The simulations in this thesis use a Reynolds-averaged formulation with the SST $k$-$\omega$ turbulence model of Menter~\cite{Menter1994}. The SST model blends the standard $k$-$\omega$ model in the near-wall region, where it is robust under adverse pressure gradients, with a $k$-$\varepsilon$ formulation in the outer flow. It is the de-facto standard for hydraulic turbomachinery in industrial CFD and has been validated extensively in pump, turbine and stator applications. The known limitations relevant to the present work are summarised here and revisited where the corresponding limitation is in play.
  
 \paragraph{Anisotropy under strong rotation.} Two-equation eddy-viscosity models assume an isotropic eddy viscosity and cannot represent the full Reynolds-stress anisotropy under strong rotation or strongly curved streamlines. In swirling pipe flow this leads to underprediction of secondary kinetic energy in the cross-stream plane and to a slightly diffused tangential-velocity profile compared with experimental data~\cite{EscueCui2010}.
  
@@ -435,13 +435,13 @@ The simulations in this thesis use a Reynolds-averaged formulation with the SST 
  
 \paragraph{Transition modelling.} Transition is not modelled in the SST formulation used here. The Reynolds numbers in the present application are large enough that the boundary layers on the guide vanes are turbulent everywhere. A small region close to the leading edge of the inner span, where the local chord-Reynolds number is lowest, may be the only exception. The expected effect of neglected transition is a small underestimation of leading-edge loss, which is the same direction for all configurations and therefore does not affect the comparative ranking.
  
-\paragraph{Steady RANS for the screening.} The 18-case screening uses steady RANS. The inherent unsteadiness from rotor--stator interaction, from vortex shedding at the guide-vane trailing edge, and from any precessing vortex core developing downstream is therefore not resolved. Two separate transient simulations of selected configurations are performed to address the rotor--stator interaction question (Sections~\ref{sec:rsi-thesis}--\ref{sec:spec-coherence}). Full transient screening of all 18 configurations is not feasible within the time-frame and is left as future work.
+\paragraph{Steady RANS for the screening.} The 18-case screening uses steady RANS. The inherent unsteadiness from rotor-stator interaction, from vortex shedding at the guide-vane trailing edge, and from any precessing vortex core developing downstream is therefore not resolved. Two separate transient simulations of selected configurations are performed to address the rotor-stator interaction question (Sections~\ref{sec:rsi-thesis}-\ref{sec:spec-coherence}). Full transient screening of all 18 configurations is not feasible within the time-frame and is left as future work.
 
 % ---------------------------------------------------------------------
-\section{Rotor--stator interaction and pressure pulsations}
+\section{Rotor-stator interaction and pressure pulsations}
 \label{sec:rsi}
  
-In the compact RDT--GV--duct configuration considered in this thesis, the rotating RDT blades and the stationary GV ring are separated by a relatively small axial distance. The flow through the GV is therefore not strictly steady, even at the nominal operating point. Two mechanisms produce unsteady loading on the GV and a corresponding pressure pulsation field in the duct~\cite{Brekke2015, Arndt1990}:
+In the compact RDT-GV-duct configuration considered in this thesis, the rotating RDT blades and the stationary GV ring are separated by a relatively small axial distance. The flow through the GV is therefore not strictly steady, even at the nominal operating point. Two mechanisms produce unsteady loading on the GV and a corresponding pressure pulsation field in the duct~\cite{Brekke2015, Arndt1990}:
 \begin{enumerate}
   \item \emph{Potential interaction.} The pressure field attached to each rotor blade convects past the stationary vanes. It produces a pressure fluctuation that decays exponentially with axial distance but can be significant when the axial gap is a fraction of a blade chord.
   \item \emph{Viscous (wake) interaction.} Each rotor blade sheds a velocity-deficit wake. When such a wake is chopped by a stationary vane, the local angle of attack changes momentarily and produces an impulsive change in vane loading.
@@ -451,14 +451,14 @@ Both mechanisms are periodic in the rotor reference frame at the rotor frequency
 \subsection{Axial spacing between the rotor and the stationary vane row}
 \label{sec:rsi-axial-spacing}
 
-Rotor--stator interaction strength scales with the axial distance between the rotor trailing edge and the stator leading edge. In compact axial-pump stages this clearance is non-dimensionalised by the impeller chord $L$ as $a/L$, with $a$ the axial gap. G\"ulich~\cite{Gulich2010} recommends a clearance in the range
+Rotor-stator interaction strength scales with the axial distance between the rotor trailing edge and the stator leading edge. In compact axial-pump stages this clearance is non-dimensionalised by the impeller chord $L$ as $a/L$, with $a$ the axial gap. G\"ulich~\cite{Gulich2010} recommends a clearance in the range
 \begin{equation}
-    \frac{a}{L} \;=\; 0.05\,\text{--}\,0.15
+    \frac{a}{L} \;=\; 0.05\,\text{-}\,0.15
     \label{eq:gulich_a_over_L}
 \end{equation}
-to limit dynamic vane loading and pressure pulsations from rotor--stator interaction. Bijukchhe and Trivedi~\cite{Bijukchhe2026} adopt the same range in their recent design study of axial booster pumps for retrofitted reversible pump-turbines. They add a further recommendation that the impeller-to-stator vane-count ratio satisfies $Z_r/Z_s \approx 0.7$--$0.9$, to weaken harmonic reinforcement at the rotor--stator interface. The ratios used in the screening matrix of this thesis are $Z_r/Z_s = 7/6 \approx 1.17$, $7/8 = 0.875$ and $7/9 \approx 0.78$. The $Z_s = 8$ and $Z_s = 9$ families fall inside or close to the recommended window. The $Z_s = 6$ family lies outside it.
+to limit dynamic vane loading and pressure pulsations from rotor-stator interaction. Bijukchhe and Trivedi~\cite{Bijukchhe2026} adopt the same range in their recent design study of axial booster pumps for retrofitted reversible pump-turbines. They add a further recommendation that the impeller-to-stator vane-count ratio satisfies $Z_r/Z_s \approx 0.7$-$0.9$, to weaken harmonic reinforcement at the rotor-stator interface. The ratios used in the screening matrix of this thesis are $Z_r/Z_s = 7/6 \approx 1.17$, $7/8 = 0.875$ and $7/9 \approx 0.78$. The $Z_s = 8$ and $Z_s = 9$ families fall inside or close to the recommended window. The $Z_s = 6$ family lies outside it.
 
-The recommendation~\eqref{eq:gulich_a_over_L} was developed for compact axial-pump stages, in which the diffuser vanes are placed immediately downstream of the impeller. The geometry studied in this thesis differs from this configuration. The hubless RDT discharges into a duct section that connects to the guide-vane row, and the stationary vanes are not placed at the rotor trailing edge. The bound~\eqref{eq:gulich_a_over_L} is therefore retained as a qualitative reference for why the axial spacing matters, rather than as a binding design constraint. The actual axial spacing in the present geometry is documented in Section~\ref{sec:methods_axial_spacing}, and the practical implications for the rotor--stator interaction analysis are discussed in Section~\ref{sec:rsi-thesis} and revisited in the spectral analysis of Chapter~\ref{chap:results_discussion}.
+The recommendation~\eqref{eq:gulich_a_over_L} was developed for compact axial-pump stages, in which the diffuser vanes are placed immediately downstream of the impeller. The geometry studied in this thesis differs from this configuration. The hubless RDT discharges into a duct section that connects to the guide-vane row, and the stationary vanes are not placed at the rotor trailing edge. The bound~\eqref{eq:gulich_a_over_L} is therefore retained as a qualitative reference for why the axial spacing matters, rather than as a binding design constraint. The actual axial spacing in the present geometry is documented in Section~\ref{sec:methods_axial_spacing}, and the practical implications for the rotor-stator interaction analysis are discussed in Section~\ref{sec:rsi-thesis} and revisited in the spectral analysis of Chapter~\ref{chap:results_discussion}.
 
 \subsection{Rotor frequency and blade passing frequency}
 \label{sec:rsi-bpf}
@@ -477,10 +477,10 @@ A single rotor blade sees $Z_s$ stationary vanes per rotor revolution and theref
 \end{equation}
 In the special case $Z_r = Z_s$ the two frequencies coincide, $f_{\mathrm{BPF}} = f_{\mathrm{VPF}}$. Higher harmonics $k f_{\mathrm{BPF}}$, $k=2,3,\dots$ are typically present because the actual pulse shape is not sinusoidal; their amplitude decreases with $k$ but can remain non-negligible for the second and third harmonic if the wake is narrow~\cite{Egusquiza2006,Rodriguez2007}.
  
-\subsection{Tyler--Sofrin modal decomposition}
+\subsection{Tyler-Sofrin modal decomposition}
 \label{sec:rsi-tyler}
  
-The classical analysis by Tyler and Sofrin~\cite{Tyler1962} for an annular rotor--stator stage shows that the unsteady pressure field downstream of the stator can be written as a sum of circumferential modes
+The classical analysis by Tyler and Sofrin~\cite{Tyler1962} for an annular rotor-stator stage shows that the unsteady pressure field downstream of the stator can be written as a sum of circumferential modes
 \begin{equation}
     p'(r,\theta,z,t) \;=\; \sum_{k=1}^{\infty}\sum_{j=-\infty}^{\infty}
       \hat{p}_{k,j}(r,z)\,
@@ -503,7 +503,7 @@ Three cases are of particular relevance:
 \begin{itemize}
   \item If $Z_r = Z_s$, Eq.~\eqref{eq:mmin} gives $m_{\min}=0$ with $k=j=1$. The lowest-order mode at $f_{\mathrm{BPF}}$ is the \emph{axisymmetric breathing mode}: all $Z_s$ vanes are loaded synchronously and in phase. The pressure field is a plane wave that propagates along the duct without a cut-off, and the integrated axial force on the GV ring adds coherently at $f_{\mathrm{BPF}}$.
   \item If $\gcd(Z_r,Z_s)=1$ (coprime), the minimum mode order is at least $|Z_r - Z_s|$ and typically $m_{\min} \geq 1$. The net axial force on the ring approaches zero by cancellation around the circumference. The remaining loading appears as a rotating radial force on the rotor.
-  \item If $Z_r = Z_s = 7$, which corresponds to the configuration most directly inherited from the project work and which forms one of the two transient baselines analysed in this thesis, the breathing mode $m=0$ is unavoidable in principle. Whether it actually dominates the pulsation field in practice depends on how closely the true wake pattern of the RDT satisfies the $Z_r$-fold azimuthal symmetry that the Tyler--Sofrin argument assumes.
+  \item If $Z_r = Z_s = 7$, which corresponds to the configuration most directly inherited from the project work and which forms one of the two transient baselines analysed in this thesis, the breathing mode $m=0$ is unavoidable in principle. Whether it actually dominates the pulsation field in practice depends on how closely the true wake pattern of the RDT satisfies the $Z_r$-fold azimuthal symmetry that the Tyler-Sofrin argument assumes.
 \end{itemize}
 It is therefore an established design guideline in axial turbomachinery to choose $Z_r$ and $Z_s$ such that low-order spatial modes are avoided at the harmonics of concern, especially when structural or acoustic natural frequencies lie close to $f_{\mathrm{BPF}}$~\cite{Brekke2015,Egusquiza2006,Tanaka2011}. For reversible pump-turbines in particular, reference~\cite{Nduwayezu2021} reports that the vaneless-space pressure pulsation amplitude depends explicitly on the runner blade number, which supports treating $Z_s$ as a system-level design variable and not only as a hydraulic one.
  
@@ -514,7 +514,7 @@ Unsteady blade forcing becomes critical when an excitation frequency in Eq.~\eqr
  
 \paragraph{Structural resonance.} The GV blade, the GV ring, the RDT blades and the supporting structure each possess a discrete set of natural frequencies $\{f_k^s\}$. A resonance condition occurs when an excitation frequency $k\,f_{\mathrm{BPF}}$ or $k\,f_{\mathrm{VPF}}$ matches one of the $f_k^s$, \emph{and} the spatial mode order of the excitation is compatible with the deformation mode shape. A breathing ($m=0$) pressure pulsation will efficiently excite axial bending or piston-like modes, while a spinning ($m\geq 1$) pulsation will efficiently excite diametrical modes with the matching nodal diameter count.
  
-The GV blade operates in water and therefore has a strong added-mass effect. Wet natural frequencies are generally 25--40\,\% lower than the corresponding dry values~\cite{Tanaka2011}. For a compact hydraulic GV of the dimensions considered here, the lowest wet bending mode is expected to lie well above 100~Hz, but this should be verified by a separate modal analysis before a final GV design is committed to~\cite{Valentin2015}.
+The GV blade operates in water and therefore has a strong added-mass effect. Wet natural frequencies are generally 25-40\,\% lower than the corresponding dry values~\cite{Tanaka2011}. For a compact hydraulic GV of the dimensions considered here, the lowest wet bending mode is expected to lie well above 100~Hz, but this should be verified by a separate modal analysis before a final GV design is committed to~\cite{Valentin2015}.
  
 \paragraph{Acoustic resonance.} In confined liquid systems, standing pressure waves can build up if an excitation frequency coincides with an acoustic mode of the duct. Acoustic resonance is most commonly associated with the $m=0$ component of $f_{\mathrm{BPF}}$ because the plane-wave mode propagates without cut-off~\cite{Nicolet2007}.
  
@@ -524,8 +524,8 @@ The GV blade operates in water and therefore has a strong added-mass effect. Wet
 Whether an unsteady loading constitutes a practical design concern is decided by the \emph{amplitude} of the pulsation relative to the mean loading, not by its spectral location alone. Brekke's monograph on hydraulic turbines~\cite{Brekke2015,Brekke2010} and the IEC~60193 standard provide the following order-of-magnitude guidelines:
 \begin{itemize}
   \item Normalised pressure pulsation amplitudes $\tilde{p}_{E} = A_p / (\rho g H)$ below approximately $1\,\%$ at the blade passing frequency are generally acceptable for continuous operation.
-  \item Values in the range $1$--$3\,\%$ indicate significant rotor-stator interaction and warrant careful design review and structural fatigue assessment.
-  \item Values above $3$--$5\,\%$ are indicative of resonance or of operation close to a hydraulic instability, and usually require design modification.
+  \item Values in the range $1$-$3\,\%$ indicate significant rotor-stator interaction and warrant careful design review and structural fatigue assessment.
+  \item Values above $3$-$5\,\%$ are indicative of resonance or of operation close to a hydraulic instability, and usually require design modification.
 \end{itemize}
 Equivalent thresholds for the cyclic force amplitude on a single vane are not uniformly tabulated. Reported case studies on Francis-type machines show that fluctuation amplitudes below $0.5\,\%$ of the mean vane load at $f_{\mathrm{BPF}}$ are typical in safely operating units~\cite{Egusquiza2006}. These reference values are used as diagnostic thresholds in the interpretation of the CFD results in Chapter~\ref{chap:results_discussion}.
  
@@ -534,13 +534,13 @@ Equivalent thresholds for the cyclic force amplitude on a single vane are not un
  
 The choice $Z_r = Z_s = 7$ that corresponds to the project-work baseline places the fundamental spatial mode at $m_{\min} = 0$ at the frequency $f_{\mathrm{BPF}} = 7\,f_n$. The theoretical expectation is that this configuration is \emph{a priori} unfavourable compared with configurations using $Z_s \in \{6,8,9\}$, for which $m_{\min} \geq 1$ and the net axial force on the GV ring at $f_{\mathrm{BPF}}$ would cancel to leading order.
  
-The present screening matrix uses $Z_s \in \{6,8,9\}$ and therefore avoids $m_{\min}=0$ throughout. Two transient simulations are run in addition to the steady screening campaign to test the Tyler--Sofrin argument directly in the present compact RDT--GV geometry. The first uses the original project-work configuration $Z_s = 7$ (case \texttt{CC\_450\_7}, the $m_{\min}=0$ reference). The second uses $Z_s = 6$ (case \texttt{CC\_400\_6}, a representative member of the screening matrix with $m_{\min} \geq 1$). The pair therefore brackets the Tyler--Sofrin distinction between the synchronous breathing mode ($Z_r=Z_s$) and the leading spinning mode ($Z_r\neq Z_s$). A diagnostic for the effective weight of the $m=0$ mode in the computed pulsation field is introduced in Section~\ref{sec:spec-coherence}.
+The present screening matrix uses $Z_s \in \{6,8,9\}$ and therefore avoids $m_{\min}=0$ throughout. Two transient simulations are run in addition to the steady screening campaign to test the Tyler-Sofrin argument directly in the present compact RDT-GV geometry. The first uses the original project-work configuration $Z_s = 7$ (case \texttt{CC\_450\_7}, the $m_{\min}=0$ reference). The second uses $Z_s = 6$ (case \texttt{CC\_400\_6}, a representative member of the screening matrix with $m_{\min} \geq 1$). The pair therefore brackets the Tyler-Sofrin distinction between the synchronous breathing mode ($Z_r=Z_s$) and the leading spinning mode ($Z_r\neq Z_s$). A diagnostic for the effective weight of the $m=0$ mode in the computed pulsation field is introduced in Section~\ref{sec:spec-coherence}.
 
 \paragraph{Selection of the $m_{\min}\geq 1$ counterpart.}
-The closest geometric counterpart to \texttt{CC\_450\_7} would be a constant-chord case with the same shroud chord and a vane count that puts $m_{\min}\geq 1$, e.g.\ \texttt{CC\_450\_6}. The configuration actually run is \texttt{CC\_400\_6}, which is one shroud-chord step shorter ($c=400$~mm rather than $c=450$~mm) but otherwise identical. The reason is hydraulic. The Tyler--Sofrin spatial mode order depends only on $Z_r$ and $Z_s$. The shroud chord is therefore a weak parameter for this comparison, while $Z_s$ is what the comparison is constructed to vary. A $50$~mm difference in shroud chord changes the local solidity at the shroud by approximately $11\,\%$ in the constant-chord family. This is small compared with the difference between $Z_s=6$ and $Z_s=7$ in the same family ($\sim 17\,\%$ in $\sigma$ at the shroud). The shroud-chord step from $400$ to $450$~mm therefore does not change the qualitative interpretation of the FFT comparison and \texttt{CC\_400\_6} remains a valid representative of the $Z_s=6$ family for the rotor--stator interaction analysis. Choosing \texttt{CC\_400\_6} has a secondary advantage. It sits closer to the centre of the screening matrix in solidity space. The transient diagnostic is therefore performed on a configuration that is informative about the bulk of the steady screening campaign, not just about the high-loading edge.
+The closest geometric counterpart to \texttt{CC\_450\_7} would be a constant-chord case with the same shroud chord and a vane count that puts $m_{\min}\geq 1$, e.g.\ \texttt{CC\_450\_6}. The configuration actually run is \texttt{CC\_400\_6}, which is one shroud-chord step shorter ($c=400$~mm rather than $c=450$~mm) but otherwise identical. The reason is hydraulic. The Tyler-Sofrin spatial mode order depends only on $Z_r$ and $Z_s$. The shroud chord is therefore a weak parameter for this comparison, while $Z_s$ is what the comparison is constructed to vary. A $50$~mm difference in shroud chord changes the local solidity at the shroud by approximately $11\,\%$ in the constant-chord family. This is small compared with the difference between $Z_s=6$ and $Z_s=7$ in the same family ($\sim 17\,\%$ in $\sigma$ at the shroud). The shroud-chord step from $400$ to $450$~mm therefore does not change the qualitative interpretation of the FFT comparison and \texttt{CC\_400\_6} remains a valid representative of the $Z_s=6$ family for the rotor-stator interaction analysis. Choosing \texttt{CC\_400\_6} has a secondary advantage. It sits closer to the centre of the screening matrix in solidity space. The transient diagnostic is therefore performed on a configuration that is informative about the bulk of the steady screening campaign, not just about the high-loading edge.
 
 \paragraph{Effect of the large axial spacing.}
-A second factor moderates the comparison. The axial spacing between the RDT trailing edge and the GV leading edge is large compared with the compact axial-pump bound discussed in Section~\ref{sec:rsi-axial-spacing}. The present geometry has $a/\bar{L} \approx 1.13$, which is about $7.5$ times the upper bound of the G\"ulich window (Section~\ref{sec:methods_axial_spacing}). The potential-interaction component of the rotor--stator pulsation is therefore expected to be weak by the time the flow reaches the GV row. The $m=0$ breathing-mode signature anticipated for $Z_r = Z_s = 7$ is correspondingly attenuated relative to the compact-stage textbook case. The transient diagnostic in Chapter~\ref{chap:results_discussion} addresses both effects together. It tests whether the residual breathing-mode signature in \texttt{CC\_450\_7} is detectable above the spinning-mode background in \texttt{CC\_400\_6}. The compact-stage idealisation underlying the Tyler--Sofrin argument is only partly satisfied by the present geometry, and the diagnostic is interpreted in that context.
+A second factor moderates the comparison. The axial spacing between the RDT trailing edge and the GV leading edge is large compared with the compact axial-pump bound discussed in Section~\ref{sec:rsi-axial-spacing}. The present geometry has $a/\bar{L} \approx 1.13$, which is about $7.5$ times the upper bound of the G\"ulich window (Section~\ref{sec:methods_axial_spacing}). The potential-interaction component of the rotor-stator pulsation is therefore expected to be weak by the time the flow reaches the GV row. The $m=0$ breathing-mode signature anticipated for $Z_r = Z_s = 7$ is correspondingly attenuated relative to the compact-stage textbook case. The transient diagnostic in Chapter~\ref{chap:results_discussion} addresses both effects together. It tests whether the residual breathing-mode signature in \texttt{CC\_450\_7} is detectable above the spinning-mode background in \texttt{CC\_400\_6}. The compact-stage idealisation underlying the Tyler-Sofrin argument is only partly satisfied by the present geometry, and the diagnostic is interpreted in that context.
 
 % =====================================================================
 % PART II: METHODOLOGY
@@ -548,7 +548,7 @@ A second factor moderates the comparison. The axial spacing between the RDT trai
 \section{Overview of the methodology}
 \label{sec:methods_overview_master}
  
-The methodology combines four elements. The parametric MATLAB tool inherited from the project work~\cite{Leonsen2025} generates the 18 candidate guide-vane geometries of the screening matrix. A multi-domain ANSYS~CFX setup simulates each configuration in the full RDT--GV--draft-tube layout under identical operating conditions. A no-GV reference simulation provides the baseline against which the swirl reduction is normalised. A structured post-processing pipeline extracts a common set of metrics on a fixed array of analysis planes. Two configurations from the matrix (\texttt{CC\_450\_7} and \texttt{CC\_400\_6}) are additionally run in transient mode for the rotor--stator interaction analysis described in Section~\ref{sec:rsi-thesis}. The MATLAB tool is the same tool developed in the project work~\cite{Leonsen2025}; its operating principle is briefly recalled here and is not redeveloped from scratch. The CFX setup, in contrast, is specific to the present thesis. The draft-tube domain has been extended to include the conical contraction, the $90^\circ$ bend and a final straight inlet pipe. The boundary conditions reflect the full nominal operating point at $\dot m = 290.3$~kg/s and $n = 650$~rpm.
+The methodology combines four elements. The parametric MATLAB tool inherited from the project work~\cite{Leonsen2025} generates the 18 candidate guide-vane geometries of the screening matrix. A multi-domain ANSYS~CFX setup simulates each configuration in the full RDT-GV-draft-tube layout under identical operating conditions. A no-GV reference simulation provides the baseline against which the swirl reduction is normalised. A structured post-processing pipeline extracts a common set of metrics on a fixed array of analysis planes. Two configurations from the matrix (\texttt{CC\_450\_7} and \texttt{CC\_400\_6}) are additionally run in transient mode for the rotor-stator interaction analysis described in Section~\ref{sec:rsi-thesis}. The MATLAB tool is the same tool developed in the project work~\cite{Leonsen2025}; its operating principle is briefly recalled here and is not redeveloped from scratch. The CFX setup, in contrast, is specific to the present thesis. The draft-tube domain has been extended to include the conical contraction, the $90^\circ$ bend and a final straight inlet pipe. The boundary conditions reflect the full nominal operating point at $\dot m = 290.3$~kg/s and $n = 650$~rpm.
  
 Figure~\ref{fig:methodology_overview} summarises the workflow. Each branch of the design matrix (Section~\ref{sec:methods_design_matrix}) goes through the same pipeline. Sections are generated in MATLAB and converted into TurboGrid blade and hub/shroud curve files by an auxiliary MATLAB routine. Blade meshing is done in ANSYS TurboGrid. The blade mesh is then integrated with the structured RDT mesh and the unstructured downstream-duct mesh, simulated in ANSYS~CFX, and post-processed on the common plane array.
  
@@ -563,7 +563,7 @@ Figure~\ref{fig:methodology_overview} summarises the workflow. Each branch of th
 \section{Parametric guide-vane design tool}
 \label{sec:methods_matlab_tool}
  
-The guide-vane geometries are generated by the MATLAB tool \texttt{vanedesign\_loft\_export.m} that was developed in the project work~\cite{Leonsen2025}. The tool reads spanwise distributions $\{r,\,C_m(r),\,C_u(r)\}$ from the RDT wake. From these it computes the local inlet flow angle $\beta_1(r) = \arctan(C_u/C_m)$ and the local diameter-based Reynolds number $\mathrm{Re}_D(r)$. It then constructs the metal angles, the chord distribution, the two-dimensional camber and thickness, and the three-dimensional wrapped vane surface. The geometric construction is described in Section~\ref{sec:theory_geometric_construction}. The output of the tool is a set of section curves and an STL file. In the present thesis, these are converted directly into TurboGrid \texttt{Blades.curve}, \texttt{Hub.curve} and \texttt{Shroud.curve} input files by an auxiliary MATLAB routine. This replaces the Visual Studio and SolidWorks lofting pipeline used in the project work.
+The guide-vane geometries are generated by the MATLAB tool \texttt{vanedesign\_loft\_export.m} that was developed in the project work~\cite{Leonsen2025}. The tool reads spanwise distributions $\{r,\,C_m(r),\,C_u(r)\}$ from the RDT wake. From these it computes the local inlet flow angle $\alpha_1(r) = \arctan(C_u/C_m)$ and the local diameter-based Reynolds number $\mathrm{Re}_D(r)$. It then constructs the metal angles, the chord distribution, the two-dimensional camber and thickness, and the three-dimensional wrapped vane surface. The geometric construction is described in Section~\ref{sec:theory_geometric_construction}. The output of the tool is a set of section curves and an STL file. In the present thesis, these are converted directly into TurboGrid \texttt{Blades.curve}, \texttt{Hub.curve} and \texttt{Shroud.curve} input files by an auxiliary MATLAB routine. This replaces the Visual Studio and SolidWorks lofting pipeline used in the project work.
  
 The tool exposes a structured options list, of which the following are exercised in the screening campaign:
 \begin{itemize}
@@ -578,7 +578,7 @@ The tool exposes a structured options list, of which the following are exercised
 \end{itemize}
  
 \paragraph{Choice of slip-correction strategy.}
-The project work~\cite{Leonsen2025} developed a CFD-based slip database and a smooth response-surface model that predicts deviation as a function of inlet flow angle and Reynolds number. At the high turning angles required to recover the RDT swirl, this response surface predicts deviation values on the order of $10^\circ$--$20^\circ$. Adopting these large built-in trailing-edge angles aggressively over-cambers the section near the trailing edge, sharpens the suction-side adverse pressure gradient, and tends to promote separation. The classical recommendation by G\"ulich~\cite{Gulich2010} is more conservative: a small built-in angle of approximately $4^\circ$--$6^\circ$ is sufficient to compensate for cascade deviation in well-designed pump and stator vanes. The present screening campaign adopts the upper end of this range, $\delta_{\mathrm{TE}} = 6^\circ$, applied as a constant correction to the trailing-edge metal angle for every section across all 18 configurations. This choice reduces one degree of freedom in the screening campaign and isolates the chord-strategy and vane-count effects that the master thesis is designed to study. The trade-off between aggressive slip correction (response surface) and conservative slip correction (G\"ulich) is acknowledged as a question that could be revisited in a focused follow-up study using a small subset of the screening configurations.
+The project work~\cite{Leonsen2025} developed a CFD-based slip database and a smooth response-surface model that predicts deviation as a function of inlet flow angle and Reynolds number. At the high turning angles required to recover the RDT swirl, this response surface predicts deviation values on the order of $10^\circ$-$20^\circ$. Adopting these large built-in trailing-edge angles aggressively over-cambers the section near the trailing edge, sharpens the suction-side adverse pressure gradient, and tends to promote separation. The classical recommendation by G\"ulich~\cite{Gulich2010} is more conservative: a small built-in angle of approximately $4^\circ$-$6^\circ$ is sufficient to compensate for cascade deviation in well-designed pump and stator vanes. The present screening campaign adopts the upper end of this range, $\delta_{\mathrm{TE}} = 6^\circ$, applied as a constant correction to the trailing-edge metal angle for every section across all 18 configurations. This choice reduces one degree of freedom in the screening campaign and isolates the chord-strategy and vane-count effects that the master thesis is designed to study. The trade-off between aggressive slip correction (response surface) and conservative slip correction (G\"ulich) is acknowledged as a question that could be revisited in a focused follow-up study using a small subset of the screening configurations.
  
 \paragraph{Spanwise inlet data.}
 The spanwise distributions $\{r,\,C_m(r),\,C_u(r)\}$ used as the design input are taken from the RDT simulation of Djupesland and Trivedi~\cite{DjupeslandTrivedi2025}, evaluated at a plane $0.25$~m downstream of the rotor. The valid design span is restricted to radii with positive meridional velocity. As discussed in Section~\ref{sec:theory_backflow_span}, this corresponds approximately to $r \in [0.12, 0.25]$~m, which is the radial extent of all guide vanes used in the screening campaign.
@@ -587,7 +587,12 @@ The spanwise distributions $\{r,\,C_m(r),\,C_u(r)\}$ used as the design input ar
 \section{Design matrix: 18 configurations}
 \label{sec:methods_design_matrix}
  
-The design space is sampled on a structured matrix of 18 configurations that combines two chord-control strategies, six shroud-chord levels and three vane counts. The matrix is symmetric: every constant-chord (CC) configuration has a constant-solidity (CS) twin at the same shroud chord and vane count, which isolates the effect of the chord-control strategy from the effect of loading. A nineteenth simulation, denoted \texttt{NoGV}, replaces the guide-vane region with an empty straight pipe of equal length and serves as the swirl-reduction reference against which all 18 configurations are compared (Section~\ref{sec:methods_rdt_baseline}). The case-naming convention used throughout this thesis is
+The design space is sampled on a structured matrix of 18 configurations that combines two chord-control strategies, six shroud-chord levels and three vane counts. The matrix is symmetric: every constant-chord (CC) configuration has a constant-solidity (CS) twin at the same shroud chord and vane count, which isolates the effect of the chord-control strategy from the effect of loading. A nineteenth simulation, denoted \texttt{NoGV}, replaces the guide-vane region with an empty straight pipe of equal length and serves as the swirl-reduction reference against which all 18 configurations are compared (Section~\ref{sec:methods_rdt_baseline}).
+ 
+\paragraph{Choice of two chord-control strategies.}
+The two chord-control strategies are the simplest non-trivial laws for how the local chord scales with radius, and both are natively supported by the parametric tool of Leonsen~\cite{Leonsen2025}. Constant chord (CC) keeps $c(r)$ fixed across the span, so the local solidity $\sigma(r) = Z_s\, c(r) / (2\pi r)$ scales as $1/r$ and increases sharply near the hub. Constant solidity at the shroud (CS) instead lets $c(r)$ scale linearly with $r$, so $\sigma(r)$ stays at the shroud value across the span. Together with the three vane counts $Z_s \in \{6, 8, 9\}$, these two laws span the loading regimes reachable with a single hubless cascade family. More elaborate strategies (taper, sweep, lean) are excluded from the screening to keep the parameter space interpretable and the case count manageable.
+ 
+The case-naming convention used throughout this thesis is
  
 \medskip
 \centerline{\texttt{<strategy>\_<chord shroud in mm>\_<Z\_s>}}
@@ -626,7 +631,7 @@ where \texttt{strategy} is either \texttt{CC} (constant chord) or \texttt{CS} (c
     CS\_500\_6  & Constant solidity & 500 & 6 \\
     CS\_500\_8  & Constant solidity & 500 & 8 \\
     \midrule
-    \texttt{NoGV} & No guide vanes (reference) & --- & --- \\
+    \texttt{NoGV} & No guide vanes (reference) & - & - \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -638,15 +643,15 @@ The matrix covers the six shroud-chord levels $\{250, 300, 350, 400, 450, 500\}$
 All 18 configurations and the \texttt{NoGV} reference share the same constants, so that the only differences between the GV configurations are the design variables in Table~\ref{tab:design_matrix}. The constants are: thickness ratio $(t/c)_{\mathrm{rel}} = 0.075$; trailing-edge thickness $t_{\mathrm{TE}}/c = 0.005$; leading-edge roundness factor $\texttt{LE\_round} = 1.2$; slip correction $\delta_{\mathrm{TE}} = 6^\circ$; cylindrical wrapping; trailing-edge anchoring at a common azimuth; and design span $r \in [0.12, 0.25]$~m. Operating conditions are held fixed at $\dot m = 290.3$~kg/s, $n = 650$~rpm, water at $25^\circ$C.
 
 \paragraph{Two additional transient runs.}
-In addition to the 18 steady configurations of Table~\ref{tab:design_matrix} and the \texttt{NoGV} reference, two extra simulations are run in transient mode for the rotor--stator interaction analysis (Sections~\ref{sec:rsi-thesis} and~\ref{sec:monitor-setup}--\ref{sec:spec-coherence}). The first is \texttt{CC\_450\_7}, which corresponds to the project-work baseline geometry with $Z_r=Z_s=7$ and is the reference for the synchronous Tyler--Sofrin breathing mode ($m_{\min}=0$). The second is \texttt{CC\_400\_6}, used as the $m_{\min}\geq 1$ counterpart from the screening matrix; the choice of \texttt{CC\_400\_6} rather than \texttt{CC\_450\_6} is motivated in the closing paragraph of Section~\ref{sec:rsi-thesis}. Both transient runs use the same multi-domain CFX setup, mesh strategy and operating point as the steady screening campaign, with the rotor--stator interfaces switched from frozen rotor to transient rotor--stator (Section~\ref{sec:methods_bc}, Section~\ref{sec:monitor-setup}).
+In addition to the 18 steady configurations of Table~\ref{tab:design_matrix} and the \texttt{NoGV} reference, two extra simulations are run in transient mode for the rotor-stator interaction analysis (Sections~\ref{sec:rsi-thesis} and~\ref{sec:monitor-setup}-\ref{sec:spec-coherence}). The first is \texttt{CC\_450\_7}, which corresponds to the project-work baseline geometry with $Z_r=Z_s=7$ and is the reference for the synchronous Tyler-Sofrin breathing mode ($m_{\min}=0$). The second is \texttt{CC\_400\_6}, used as the $m_{\min}\geq 1$ counterpart from the screening matrix; the choice of \texttt{CC\_400\_6} rather than \texttt{CC\_450\_6} is motivated in the closing paragraph of Section~\ref{sec:rsi-thesis}. Both transient runs use the same multi-domain CFX setup, mesh strategy and operating point as the steady screening campaign, with the rotor-stator interfaces switched from frozen rotor to transient rotor-stator (Section~\ref{sec:methods_bc}, Section~\ref{sec:monitor-setup}).
 
 % ---------------------------------------------------------------------
 \section{Design-space visualisation}
 \label{sec:methods_design_space_viz}
 
-The design matrix in Table~\ref{tab:design_matrix} is summarised graphically in Figures~\ref{fig:design_space_overview}--\ref{fig:reference_card}. The four plots together show three things. They visualise where the 18 active configurations sit in the loading--chord plane. They show how the constant-chord and constant-solidity strategies differ in radial loading. They compare the cases against the recommended cascade-loading bound $\sigma \lesssim 1.6$, adopted as a soft design guideline in axial-pump and stator design~\cite{Gulich2010}.
+The design matrix in Table~\ref{tab:design_matrix} is summarised graphically in Figures~\ref{fig:design_space_overview}-\ref{fig:reference_card}. The four plots together show three things. They visualise where the 18 active configurations sit in the loading-chord plane. They show how the constant-chord and constant-solidity strategies differ in radial loading. They compare the cases against the recommended cascade-loading bound $\sigma \lesssim 1.6$, adopted as a soft design guideline in axial-pump and stator design~\cite{Gulich2010}.
 
-Figure~\ref{fig:design_space_overview} plots all configurations in the $(\sigma_{\mathrm{shroud}},\,c_{\mathrm{shroud}})$ plane. The 18 active configurations of the screening campaign are marked in colour. Greyed-out points show the corresponding $Z_s = 7$ designs, included for context only. These coincide with the original project-work baseline ($Z_r = Z_s = 7$) and are excluded from the screening on Tyler--Sofrin grounds (Section~\ref{sec:rsi-thesis}). The dashed vertical line at $\sigma_{\mathrm{shroud}} = 1.6$ separates the recommended-loading region from the over-loaded region. Only the smallest active configurations (\texttt{CC\_250\_9}, \texttt{CS\_250\_9}, \texttt{CC\_400\_6}, \texttt{CS\_400\_6}) sit close to or inside the recommended region at the shroud; the remainder of the matrix is loaded above this guideline at the shroud.
+Figure~\ref{fig:design_space_overview} plots all configurations in the $(\sigma_{\mathrm{shroud}},\,c_{\mathrm{shroud}})$ plane. The 18 active configurations of the screening campaign are marked in colour. Greyed-out points show the corresponding $Z_s = 7$ designs, included for context only. These coincide with the original project-work baseline ($Z_r = Z_s = 7$) and are excluded from the screening on Tyler-Sofrin grounds (Section~\ref{sec:rsi-thesis}). The dashed vertical line at $\sigma_{\mathrm{shroud}} = 1.6$ separates the recommended-loading region from the over-loaded region. Only the smallest active configurations (\texttt{CC\_250\_9}, \texttt{CS\_250\_9}, \texttt{CC\_400\_6}, \texttt{CS\_400\_6}) sit close to or inside the recommended region at the shroud; the remainder of the matrix is loaded above this guideline at the shroud.
 
 \begin{figure}[h!]
   \centering
@@ -689,7 +694,7 @@ The diffusion-factor and de Haller bounds are, in this geometry, indicative rath
 \section{Computational domain and boundary conditions}
 \label{sec:methods_domain}
  
-The computational domain reproduces the planned Store2Hydro layout from the RDT inlet down to the location where the RPT inlet would be. Six contiguous regions are connected through stationary--stationary or rotating--stationary interfaces. The overall layout is shown in Figure~\ref{fig:domain_layout}, and the regions are listed in Table~\ref{tab:domains}.
+The computational domain reproduces the planned Store2Hydro layout from the RDT inlet down to the location where the RPT inlet would be. Six contiguous regions are connected through stationary-stationary or rotating-stationary interfaces. The overall layout is shown in Figure~\ref{fig:domain_layout}, and the regions are listed in Table~\ref{tab:domains}.
 
 \begin{figure}[h!]
   \centering
@@ -718,7 +723,7 @@ The computational domain reproduces the planned Store2Hydro layout from the RDT 
 \end{table}
  
 \paragraph{Reasons for the extended draft-tube length.}
-The final straight pipe in region 6 is approximately $1.0$~m long and replaces the RPT in the present screening study. Two reasons motivate this choice. First, simulating the coupled RDT--GV--RPT system at the scale of 18 configurations was estimated to exceed the available computational budget by approximately a factor of three; the parallel project~\cite{Dokset2025} carries the responsibility for the RPT side. Second, an extended straight pipe creates a buffer between the bend exit and the imposed outlet boundary condition. Without this buffer, the imposed static-pressure outlet would project upstream and contaminate the post-bend flow field that is used to evaluate the residual swirl and the post-bend uniformity. With a $\sim 1.0$~m straight buffer, the flow has about $2.5$ duct diameters to redevelop after the bend before it reaches the outlet plane. Experience from comparable configurations indicates that this is sufficient to suppress upstream contamination of the analysis planes to within a few percent in the integral metrics~\cite{Xia1997}.
+The final straight pipe in region 6 is approximately $1.0$~m long and replaces the RPT in the present screening study. Two reasons motivate this choice. First, simulating the coupled RDT-GV-RPT system at the scale of 18 configurations was estimated to exceed the available computational budget by approximately a factor of three; the parallel project~\cite{Dokset2025} carries the responsibility for the RPT side. Second, an extended straight pipe creates a buffer between the bend exit and the imposed outlet boundary condition. Without this buffer, the imposed static-pressure outlet would project upstream and contaminate the post-bend flow field that is used to evaluate the residual swirl and the post-bend uniformity. With a $\sim 1.0$~m straight buffer, the flow has about $2.5$ duct diameters to redevelop after the bend before it reaches the outlet plane. Experience from comparable configurations indicates that this is sufficient to suppress upstream contamination of the analysis planes to within a few percent in the integral metrics~\cite{Xia1997}.
  
 \paragraph{Limitation: absence of the RPT suction effect.}
 The RPT in pump mode draws fluid through its runner, and the suction field of the runner influences the upstream draft-tube velocity profile. This suction effect is not represented in the present setup, where the RPT is replaced by an extended straight pipe. The present study therefore does not predict absolute RPT-side performance and cannot be compared directly with operating measurements of the full machine. What the study does predict, and what it is designed to predict, is the relative ranking between guide-vane configurations under identical upstream and downstream conditions. As long as the missing RPT suction acts approximately uniformly across all 18 cases, the relative ranking is preserved. The absolute numerical values reported here should therefore be read as comparative benchmarks, not as system-level predictions. A final coupled simulation of the selected configuration with the RPT included is identified as the next step in Chapter~\ref{chap:future_work}.
@@ -726,7 +731,7 @@ The RPT in pump mode draws fluid through its runner, and the suction field of th
 \subsection{Axial spacing between the RDT and the guide-vane leading edge}
 \label{sec:methods_axial_spacing}
 
-The axial position of the guide-vane leading edge relative to the RDT is set by the geometry inherited from the parallel RDT design~\cite{DjupeslandTrivedi2025} and from the existing draft-tube layout. The total axial distance from the RDT trailing edge to the GV leading edge is $a = 0.192$~m, illustrated in Figure~\ref{fig:rdt_gv_axial_spacing}. A small offset of approximately $30$~mm was introduced between the rotating RDT--GV interface and the GV leading edge. The reason is numerical, not hydraulic. A stationary GV leading edge placed exactly on the rotating--stationary interface generates poor mesh quality at the interface and an unphysical pressure spike on the GV leading edge in the steady frozen-rotor formulation. The offset moves the GV leading edge clear of the interface and removes both effects. The offset was held fixed across all 18 configurations and the \texttt{NoGV} reference, so any effect of $a$ is absorbed uniformly into the comparison and does not bias the relative ranking.
+The axial position of the guide-vane leading edge relative to the RDT is set by the geometry inherited from the parallel RDT design~\cite{DjupeslandTrivedi2025} and from the existing draft-tube layout. The total axial distance from the RDT trailing edge to the GV leading edge is $a = 0.192$~m, illustrated in Figure~\ref{fig:rdt_gv_axial_spacing}. A small offset of approximately $30$~mm was introduced between the rotating RDT-GV interface and the GV leading edge. The reason is numerical, not hydraulic. A stationary GV leading edge placed exactly on the rotating-stationary interface generates poor mesh quality at the interface and an unphysical pressure spike on the GV leading edge in the steady frozen-rotor formulation. The offset moves the GV leading edge clear of the interface and removes both effects. The offset was held fixed across all 18 configurations and the \texttt{NoGV} reference, so any effect of $a$ is absorbed uniformly into the comparison and does not bias the relative ranking.
 
 \begin{figure}[h!]
   \centering
@@ -741,13 +746,13 @@ The axial spacing is most informatively normalised by the impeller (rotor) chord
     \frac{a}{\bar{L}} \;=\; \frac{0.192}{0.170} \;=\; 1.13,
     \label{eq:my_a_over_L}
 \end{equation}
-which exceeds the upper bound of the G\"ulich window $a/L = 0.05$--$0.15$ by a factor of $7.5$. The conclusion is robust to the choice of representative chord: even using the largest chord at the shroud ($L_{\max} = 197.0$~mm) gives $a/L = 0.97$, still $6.5$ times the upper limit. The bound~\eqref{eq:gulich_a_over_L} is therefore a qualitative reference for the importance of rotor--stator spacing, not a numerical design constraint that the present geometry should satisfy. Two consequences for the analysis follow.
+which exceeds the upper bound of the G\"ulich window $a/L = 0.05$-$0.15$ by a factor of $7.5$. The conclusion is robust to the choice of representative chord: even using the largest chord at the shroud ($L_{\max} = 197.0$~mm) gives $a/L = 0.97$, still $6.5$ times the upper limit. The bound~\eqref{eq:gulich_a_over_L} is therefore a qualitative reference for the importance of rotor-stator spacing, not a numerical design constraint that the present geometry should satisfy. Two consequences for the analysis follow.
 
 \paragraph{Reduced potential interaction.}
-The pressure field attached to each rotor blade decays approximately exponentially with axial distance from the rotor trailing edge~\cite{Korakianitis1989,Hodson1989}. With $a/\bar{L} = 1.13$, the potential-interaction component of the rotor--stator pulsation field reaching the GV leading edge is expected to be significantly weaker than in a compact stage. Two studies quantify the scaling. Rodriguez et al.~\cite{Rodriguez2007} observed $40$--$50\,\%$ pulsation amplitude reduction in the vaneless space when the rotor--stator gap was increased in a comparable pump-turbine geometry. Liu et al.~\cite{Liu2022GapMatching} confirmed this trend for multiphase pumps. This is consistent with one of the design objectives of the Store2Hydro layout: the GV row is intended primarily as a swirl-recovery element, not as a tightly coupled stator stage of the RDT.
+The pressure field attached to each rotor blade decays approximately exponentially with axial distance from the rotor trailing edge~\cite{Korakianitis1989,Hodson1989}. With $a/\bar{L} = 1.13$, the potential-interaction component of the rotor-stator pulsation field reaching the GV leading edge is expected to be significantly weaker than in a compact stage. Two studies quantify the scaling. Rodriguez et al.~\cite{Rodriguez2007} observed $40$-$50\,\%$ pulsation amplitude reduction in the vaneless space when the rotor-stator gap was increased in a comparable pump-turbine geometry. Liu et al.~\cite{Liu2022GapMatching} confirmed this trend for multiphase pumps. This is consistent with one of the design objectives of the Store2Hydro layout: the GV row is intended primarily as a swirl-recovery element, not as a tightly coupled stator stage of the RDT.
 
 \paragraph{Persistent viscous interaction.}
-The viscous (wake) component is less attenuated by axial spacing. The RDT wake convects downstream through the gap, and the velocity-deficit and azimuthal-non-uniformity content reaches the GV leading edge largely intact~\cite{Korakianitis1989,Duan2019}. The transient simulations in Section~\ref{sec:monitor-setup} are interpreted in this light: the rotor--stator interaction signature in the spectra at $f_{\mathrm{BPF}}$ is expected to be dominated by viscous wake-chopping rather than potential interaction, with corresponding implications for the ring-coherence diagnostic in Section~\ref{sec:spec-coherence}.
+The viscous (wake) component is less attenuated by axial spacing. The RDT wake convects downstream through the gap, and the velocity-deficit and azimuthal-non-uniformity content reaches the GV leading edge largely intact~\cite{Korakianitis1989,Duan2019}. The transient simulations in Section~\ref{sec:monitor-setup} are interpreted in this light: the rotor-stator interaction signature in the spectra at $f_{\mathrm{BPF}}$ is expected to be dominated by viscous wake-chopping rather than potential interaction, with corresponding implications for the ring-coherence diagnostic in Section~\ref{sec:spec-coherence}.
 
 A focused follow-up study that varies $a$ explicitly is identified as future work in Chapter~\ref{chap:future_work}.
 
@@ -758,7 +763,7 @@ The boundary conditions used in all 18 configurations, in the \texttt{NoGV} refe
  
 \begin{table}[h!]
   \centering
-  \caption[Boundary conditions for the screening simulations]{Boundary conditions used in the 18-case screening campaign and the \texttt{NoGV} reference. The transient runs (\texttt{CC\_450\_7} and \texttt{CC\_400\_6}) use identical settings except that the rotor--stator interfaces are switched from frozen rotor to transient rotor--stator.}
+  \caption[Boundary conditions for the screening simulations]{Boundary conditions used in the 18-case screening campaign and the \texttt{NoGV} reference. The transient runs (\texttt{CC\_450\_7} and \texttt{CC\_400\_6}) use identical settings except that the rotor-stator interfaces are switched from frozen rotor to transient rotor-stator.}
   \label{tab:bc_master}
   \small
   \begin{tabular}{p{0.30\linewidth} p{0.62\linewidth}}
@@ -781,16 +786,16 @@ The boundary conditions used in all 18 configurations, in the \texttt{NoGV} refe
     \midrule
     \multicolumn{2}{c}{\textbf{Interfaces}} \\
     \midrule
-    Region 1 -- Region 2
-        & Stationary--rotating, frozen rotor (steady) or transient rotor--stator (transient run). \\
-    Region 2 -- Region 3
-        & Rotating--stationary, frozen rotor (steady) or transient rotor--stator (transient run). \\
-    Region 3 -- Region 4
-        & Stationary--stationary, GGI. \\
-    Region 4 -- Region 5
-        & Stationary--stationary, GGI. \\
-    Region 5 -- Region 6
-        & Stationary--stationary, GGI. \\
+    Region 1 - Region 2
+        & Stationary-rotating, frozen rotor (steady) or transient rotor-stator (transient run). \\
+    Region 2 - Region 3
+        & Rotating-stationary, frozen rotor (steady) or transient rotor-stator (transient run). \\
+    Region 3 - Region 4
+        & Stationary-stationary, GGI. \\
+    Region 4 - Region 5
+        & Stationary-stationary, GGI. \\
+    Region 5 - Region 6
+        & Stationary-stationary, GGI. \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -801,6 +806,9 @@ The inlet boundary condition is a total pressure rather than an imposed velocity
 \paragraph{Choice of mass-flow outlet.}
 The outlet specifies $\dot m = 290.3$~kg/s. Combined with the total-pressure inlet, this fixes the operating point uniquely while leaving the static pressure field free to develop. The chosen mass flow corresponds to the laboratory operating point that the Store2Hydro programme has adopted as the design point for the RDT booster~\cite{DjupeslandTrivedi2025, Fjuk2025}. Using a mass-flow outlet rather than a static-pressure outlet has the practical advantage that the operating point is enforced exactly across all 18 configurations, so that comparisons between cases are at strictly the same flow rate.
  
+\paragraph{Rotational speed.}
+The rotational speed $n = 650$~rpm is the design speed of the RDT booster in the parallel Store2Hydro work~\cite{DjupeslandTrivedi2025, Fjuk2025}. It gives the rotor frequency $f_n = 10.83$~Hz and the blade-passing frequency $f_{\mathrm{BPF}} = Z_r \cdot f_n = 75.83$~Hz used in the transient analysis (Section~\ref{sec:rsi-thesis}). All 18 steady configurations and the two transient runs are simulated at this speed. Off-design behaviour is not investigated and is identified as future work in Chapter~\ref{chap:future_work}.
+ 
 % ---------------------------------------------------------------------
 \section{Mesh strategy and grid convergence}
 \label{sec:methods_mesh}
@@ -810,13 +818,13 @@ The mesh strategy is region-specific. The rotating RDT mesh and the guide-vane m
 \subsection{Rotor and guide-vane meshes (TurboGrid)}
 \label{sec:turbogrid_quality}
 
-Each of the 18 guide-vane configurations in Table~\ref{tab:design_matrix} is meshed independently in TurboGrid because chord and solidity differ between cases. The RDT rotor mesh is generated by the same workflow, using curve files exported from the upstream RDT design~\cite{DjupeslandTrivedi2025}. Refinement at the inner-pipe-to-blade transition resolves the boundary layer across the rotating--stationary interface. The targets applied to both the RDT and GV meshes are
+Each of the 18 guide-vane configurations in Table~\ref{tab:design_matrix} is meshed independently in TurboGrid because chord and solidity differ between cases. The RDT rotor mesh is generated by the same workflow, using curve files exported from the upstream RDT design~\cite{DjupeslandTrivedi2025}. Refinement at the inner-pipe-to-blade transition resolves the boundary layer across the rotating-stationary interface. The targets applied to both the RDT and GV meshes are
 \begin{itemize}
-  \item $y^+ \approx 1$ on the vane surfaces (low-Reynolds wall treatment of SST $k$--$\omega$);
+  \item $y^+ \approx 1$ on the vane surfaces (low-Reynolds wall treatment of SST $k$-$\omega$);
   \item minimum face angle $\geq 20^\circ$;
   \item maximum element expansion ratio $\leq 1.4$;
   \item minimum determinant $\geq 0.4$;
-  \item element count per blade passage in the range $5\times 10^5$ -- $1.5\times 10^6$, depending on chord.
+  \item element count per blade passage in the range $5\times 10^5$ - $1.5\times 10^6$, depending on chord.
 \end{itemize}
 TurboGrid reports these metrics directly for every generated mesh. Figure~\ref{fig:turbogrid_mesh} shows the TurboGrid mesh for one representative CC configuration and one representative CS configuration. The structured hexahedral O-grid wraps each blade in the cylindrical reference frame, and the boundary-layer cells on the suction surface reach the targeted $y^+ \approx 1$ resolution.
 
@@ -858,14 +866,35 @@ TurboGrid reports these metrics directly for every generated mesh. Figure~\ref{f
 \end{figure}
 
 \paragraph{Local orthogonality excursions in CS configurations.}
-Some CS configurations produced local cells with orthogonality angles below the TurboGrid Min Limit of $20^\circ$, with the smallest values around $17^\circ$. The affected cells are localised in regions where the inlet-to-leading-edge distance varies along the span. This is intrinsic to the constant-solidity construction: the chord scales linearly with $r$, so the LE moves axially across the span and the upstream block becomes mildly skew. The fraction of affected cells is approximately $0.004\,\%$ of the global cell count, and the corresponding impact on the integral output quantities is negligible. The affected meshes are retained for the screening campaign on this basis. The remaining mesh-quality metrics (face angles, expansion ratio, determinant, skewness) satisfy the TurboGrid limits everywhere in the GV and RDT meshes.
+Some CS configurations produced local cells with orthogonality angles below the TurboGrid Min Limit of $20^\circ$, with the smallest values around $17^\circ$. The affected cells are localised in regions where the inlet-to-leading-edge distance varies along the span. This is intrinsic to the constant-solidity construction: the chord scales linearly with $r$, so the LE moves axially across the span and the upstream block becomes mildly skew. The fraction of affected cells is approximately $0.004\,\%$ of the global cell count. The expected impact on the integral output quantities is therefore negligible. The affected meshes are retained for the screening campaign on this basis. The remaining mesh-quality metrics (face angles, expansion ratio, determinant, skewness) satisfy the TurboGrid limits everywhere in the GV and RDT meshes.
 
-A separate triplet-based GCI study is not performed for each blade row in the screening campaign. The reason is partly methodological and partly practical. Each guide-vane configuration in the screening matrix has its own chord, solidity and twist distribution. TurboGrid generates a fresh structured topology for every case, so a single triplet of refinement levels does not transfer between configurations. A separate triplet study would have to be repeated 18 times. The methodological justification is that the SST $k$--$\omega$ model with $y^+ \approx 1$ has well-established mesh-independence properties on a structured hexahedral O-grid with bounded skewness and aspect ratio~\cite{Menter1994}. Once the bounds above are met, the integral output quantities of interest (head loss across the vane row, integrated tangential force, swirl-number reduction) are mesh-independent. The discretisation uncertainty in the rotor and stator blade meshes is therefore assessed indirectly through the bounded mesh-quality metrics rather than through a full GCI procedure.
+A separate triplet-based GCI study is not performed for each blade row in the screening campaign. The reason is partly methodological and partly practical. Each guide-vane configuration in the screening matrix has its own chord, solidity and twist distribution. TurboGrid generates a fresh structured topology for every case, so a single triplet of refinement levels does not transfer between configurations. A separate triplet study would have to be repeated 18 times. The methodological justification is that the SST $k$-$\omega$ model with $y^+ \approx 1$ has well-established mesh-independence properties on a structured hexahedral O-grid with bounded skewness and aspect ratio~\cite{Menter1994}. Once the bounds above are met, the integral output quantities of interest (head loss across the vane row, integrated tangential force, swirl-number reduction) are mesh-independent. The discretisation uncertainty in the rotor and stator blade meshes is therefore assessed indirectly through the bounded mesh-quality metrics rather than through a full GCI procedure.
 
 \subsection{Inflation layers and $y^+$ targets}
 \label{sec:methods_inflation}
 
-The inflation layers in the unstructured regions (inlet pipe, cone, bend, final pipe) target $30 \leq y^+ \leq 80$ on the pipe walls, consistent with the logarithmic-layer assumption of the SST automatic wall treatment. On the rotating RDT blades and on the guide-vane surfaces, the structured TurboGrid mesh targets $y^+ \leq 1$, so that the SST low-Reynolds branch is active near the wall. The number of inflation layers is set to 15 with a growth ratio of approximately $1.2$, which is sufficient to resolve the boundary layer at the design Reynolds number.
+The inflation layers in the unstructured regions (inlet pipe, cone, bend, final pipe) target $30 \leq y^+ \leq 80$ on the pipe walls, consistent with the logarithmic-layer assumption of the SST automatic wall treatment. On the rotating RDT blades and on the guide-vane surfaces, the structured TurboGrid mesh targets $y^+ \leq 1$, so that the SST low-Reynolds branch is active near the wall. The number of inflation layers is set to 15 with a growth ratio of approximately $1.2$, which is sufficient to resolve the boundary layer at the design Reynolds number. The mesh-quality targets and the discretisation-assessment method for the three regions are summarised in Table~\ref{tab:mesh_quality}.
+
+\begin{table}[h!]
+\centering
+\caption[Mesh-quality summary across the three computational regions]{Mesh-quality targets and assessment method for the three computational regions. The structured blade meshes are assessed through bounded mesh-quality metrics (this section). The unstructured draft-tube mesh is assessed through the triplet-based GCI procedure of Section~\ref{sec:gci_drafttube}.}
+\label{tab:mesh_quality}
+\small
+\begin{tabular}{l c c c}
+\toprule
+                            & RDT rotor       & GV row                                   & Draft tube \\
+                            & (TurboGrid)     & (TurboGrid)                              & (unstructured) \\
+\midrule
+Element type                & Hex (O-grid)    & Hex (O-grid)                             & Tet + prism \\
+$y^+$ on walls              & $\approx 1$    & $\approx 1$                              & $30$-$80$ \\
+Min face angle              & $\geq 20^\circ$ & $\geq 20^\circ$ (CS: $17^\circ$ locally) & - \\
+Max expansion ratio         & $\leq 1.4$     & $\leq 1.4$                               & - \\
+Min determinant             & $\geq 0.4$     & $\geq 0.4$                               & - \\
+Inflation layers            & -             & -                                      & 15, growth $\sim 1.2$ \\
+Discretisation assessment   & Bounded metrics & Bounded metrics                          & GCI (Sec.~\ref{sec:gci_drafttube}) \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Draft-tube mesh and the GCI procedure}
 \label{sec:gci_drafttube}
@@ -909,7 +938,7 @@ Three meshes were generated for the draft-tube domain by uniform refinement of a
     \midrule
     Coarse ($N_3$) & $2\,313\,100$            & $r_{32} = 1.289$ \\
     Medium ($N_2$) & $4\,956\,300$            & $r_{21} = 1.305$ \\
-    Fine   ($N_1$) & $11\,003\,000$           & --- \\
+    Fine   ($N_1$) & $11\,003\,000$           & - \\
     \bottomrule
   \end{tabular}
 \end{table}
@@ -941,16 +970,9 @@ Three meshes were generated for the draft-tube domain by uniform refinement of a
 \end{figure}
 
 \paragraph{Two reference configurations.}
-The GCI is evaluated for two configurations on the same draft-tube domain. The first is a \emph{straight-flow} verification case in which the RDT rotor is removed and a uniform axial velocity is prescribed at the inlet; this configuration has no physical swirl and serves as a numerical-noise reference. The second is the \emph{swirling-flow} operational case with the RDT active, which is the configuration relevant to the screening campaign. Running both configurations on the same triplet separates two distinct error sources. The first is numerical generation of spurious tangential motion in regions where the cross-stream cell density is insufficient to resolve the bend curvature, which is visible only in the straight-flow case because the underlying physical answer there is zero. The second is the finite-grid resolution of the genuine swirling-flow gradients, which is visible in the swirling-flow case. The post-processing planes are those defined in Table~\ref{tab:planes} and shown on the swirling-flow solution in Figure~\ref{fig:gci_planes}.
+The GCI is evaluated for two configurations on the same draft-tube domain. The first is a \emph{straight-flow} verification case in which the RDT rotor is removed and a uniform axial velocity is prescribed at the inlet; this configuration has no physical swirl and serves as a numerical-noise reference. The second is the \emph{swirling-flow} operational case with the RDT active, which is the configuration relevant to the screening campaign. Running both configurations on the same triplet separates two distinct error sources. The first is numerical generation of spurious tangential motion in regions where the cross-stream cell density is insufficient to resolve the bend curvature, which is visible only in the straight-flow case because the underlying physical answer there is zero. The second is the finite-grid resolution of the genuine swirling-flow gradients, which is visible in the swirling-flow case. The post-processing planes are those defined in Section~\ref{sec:methods_planes_metrics}; the same surface positions are evaluated in both configurations. The plane layout on the swirling-flow solution is shown in Figure~\ref{fig:planes_overview}.
 
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.85\textwidth]{Figures/Mesh/GCI_planes.png}
-  \caption[Post-processing planes used in the GCI study]{Post-processing planes for the GCI study on the swirling-flow simulation. The planes are GVStart, the GVEnd-series along the conical contraction, BendStart, BendEnd and ConeEnd, with normals aligned with the local duct centreline. Plane labels follow Table~\ref{tab:planes}.}
-  \label{fig:gci_planes}
-\end{figure}
-
-A total of seventy integral output quantities are extracted on these planes for both configurations: mass-flow-averaged total pressure $\overline{p_t}^{\,m}$ and total head $\Delta H_{\mathrm{tot}}$, area-averaged static pressure $\overline{p}^{\,a}$, mean flow angle $\overline{\alpha}^{\,m}$, area-averaged swirling strength, and the donut-restricted swirl number $S$ defined in Section~\ref{sec:methods_planes_metrics}.
+A total of seventy integral output quantities are extracted on these planes for both configurations: mass-flow-averaged total pressure $\overline{p_t}^{\,m}$ and total head $\Delta H_{\mathrm{tot}}$, area-averaged static pressure $\overline{p}^{\,a}$, mean flow angle $\overline{\alpha}^{\,m}$, area-averaged swirling strength, and the design-span-restricted swirl number $S$ defined in Section~\ref{sec:methods_planes_metrics}.
 
 \subsection{Straight-flow configuration: spurious-swirl signature}
 \label{sec:gci_straight}
@@ -959,7 +981,7 @@ The most informative quantity in the straight-flow configuration is the mean flo
 
 \begin{table}[h!]
   \centering
-  \caption[GCI -- straight-flow configuration]{Selected GCI results for the straight-flow configuration (RDT removed, uniform axial inlet). Spurious tangential motion is the dominant numerical artefact and is largest on the coarse mesh. Pressure and total-head quantities are insensitive to it.}
+  \caption[GCI - straight-flow configuration]{Selected GCI results for the straight-flow configuration (RDT removed, uniform axial inlet). Spurious tangential motion is the dominant numerical artefact and is largest on the coarse mesh. Pressure and total-head quantities are insensitive to it.}
   \label{tab:gci_straight_keep}
   \small
   \begin{tabular}{l r r r r r}
@@ -983,11 +1005,11 @@ The coarse mesh produces a non-physical mean flow angle of $6.95^\circ$ at ConeE
 \subsection{Swirling-flow configuration: the two quantities that exceed the threshold}
 \label{sec:gci_swirl}
 
-In the swirling-flow configuration, 65 of the 70 monitored quantities meet the $\mathrm{GCI}_{12} \leq 2\,\%$ acceptance criterion on the medium mesh. The accepted set includes all primary ranking metrics for the screening campaign: total head $\Delta H_{\mathrm{tot}}$ and mass-flow-averaged total pressure on the GVEnd-series, BendStart and BendEnd planes; static pressure on the same planes; the mean flow angle at ConeEnd; and the donut-restricted swirl number $S$ at the GVEnd, GVEnd6 and BendEnd planes. The corresponding $\mathrm{GCI}_{12}$ values lie in the range $0.05\,\%$--$0.6\,\%$ across all primary ranking metrics. Rather than reproducing the full table for these well-converged quantities, the present subsection focuses on a small set of quantities. For these the medium mesh is converged with respect to the fine mesh, while the coarse mesh is \emph{not} converged with respect to the medium mesh. This is the direction of error that is most informative for the choice of working mesh and is reported in Table~\ref{tab:gci_swirl_keep}.
+In the swirling-flow configuration, 65 of the 70 monitored quantities meet the $\mathrm{GCI}_{12} \leq 2\,\%$ acceptance criterion on the medium mesh. The accepted set includes all primary ranking metrics for the screening campaign: total head $\Delta H_{\mathrm{tot}}$ and mass-flow-averaged total pressure on the GVEnd-series, BendStart and BendEnd planes; static pressure on the same planes; the mean flow angle at ConeEnd; and the donut-restricted swirl number $S$ at the GVEnd, GVEnd6 and BendEnd planes. The corresponding $\mathrm{GCI}_{12}$ values lie in the range $0.05\,\%$-$0.6\,\%$ across all primary ranking metrics. Rather than reproducing the full table for these well-converged quantities, the present subsection focuses on a small set of quantities. For these the medium mesh is converged with respect to the fine mesh, while the coarse mesh is \emph{not} converged with respect to the medium mesh. This is the direction of error that is most informative for the choice of working mesh and is reported in Table~\ref{tab:gci_swirl_keep}.
 
 \begin{table}[h!]
   \centering
-  \caption[GCI -- swirling-flow configuration: quantities exceeding the $2\,\%$ threshold]{The two integral quantities in the swirling-flow configuration that satisfy $\mathrm{GCI}_{12} < 2\,\%$ together with $\mathrm{GCI}_{23} > 2\,\%$. The medium mesh has reached the asymptotic range with respect to the fine mesh, while the coarse mesh has not reached the asymptotic range with respect to the medium mesh. The two quantities are the area-averaged swirling strength immediately upstream of the guide-vane row, and the donut-restricted swirl number on the first post-vane plane downstream of the row.}
+  \caption[GCI - swirling-flow configuration: quantities exceeding the $2\,\%$ threshold]{The two integral quantities in the swirling-flow configuration that satisfy $\mathrm{GCI}_{12} < 2\,\%$ together with $\mathrm{GCI}_{23} > 2\,\%$. The medium mesh has reached the asymptotic range with respect to the fine mesh, while the coarse mesh has not reached the asymptotic range with respect to the medium mesh. The two quantities are the area-averaged swirling strength immediately upstream of the guide-vane row, and the donut-restricted swirl number on the first post-vane plane downstream of the row.}
   \label{tab:gci_swirl_keep}
   \small
   \begin{tabular}{l r r r r r}
@@ -1012,7 +1034,7 @@ Three lines of evidence support the selection of the medium mesh as the working 
 
 The first is the spurious-swirl test in the straight-flow configuration. The coarse mesh produces a non-physical mean flow angle of $6.95^\circ$ at ConeEnd in a configuration that should yield zero by construction (Table~\ref{tab:gci_straight_keep}). The medium mesh reduces this artefact to within $0.22^\circ$ of the fine-mesh value. The screening campaign is built around the analysis of swirl-related quantities downstream of the guide vanes. A mesh that introduces about $7^\circ$ of artificial swirl in a swirl-free configuration cannot be trusted to represent the genuine swirl in the operational configuration. The coarse mesh is rejected on this test alone.
 
-The second is the convergence behaviour on the swirling-flow ranking metrics. Of the seventy monitored quantities in the swirling-flow configuration, sixty-five satisfy $\mathrm{GCI}_{12} \leq 2\,\%$ on the medium mesh, with most values in the range $0.1\,\%$--$0.6\,\%$. The two quantities that do not satisfy the criterion together with $\mathrm{GCI}_{23} \leq 2\,\%$ are the swirling strength upstream of the guide vanes and the swirl number on the first post-vane plane (Table~\ref{tab:gci_swirl_keep}). Both have $\mathrm{GCI}_{12} < 2\,\%$ on the medium mesh, and exceed the threshold only on the coarse mesh. The medium mesh therefore lies within the asymptotic range with respect to the fine mesh on every quantity used in the design ranking, while the coarse mesh does not reach the asymptotic range on the most sensitive swirl-related quantities. This is the direct quantitative argument for the medium mesh: the coarse mesh fails the convergence test where it matters most, and the medium mesh passes it.
+The second is the convergence behaviour on the swirling-flow ranking metrics. Of the seventy monitored quantities in the swirling-flow configuration, sixty-five satisfy $\mathrm{GCI}_{12} \leq 2\,\%$ on the medium mesh, with most values in the range $0.1\,\%$-$0.6\,\%$. The two quantities that do not satisfy the criterion together with $\mathrm{GCI}_{23} \leq 2\,\%$ are the swirling strength upstream of the guide vanes and the swirl number on the first post-vane plane (Table~\ref{tab:gci_swirl_keep}). Both have $\mathrm{GCI}_{12} < 2\,\%$ on the medium mesh, and exceed the threshold only on the coarse mesh. The medium mesh therefore lies within the asymptotic range with respect to the fine mesh on every quantity used in the design ranking, while the coarse mesh does not reach the asymptotic range on the most sensitive swirl-related quantities. This is the direct quantitative argument for the medium mesh: the coarse mesh fails the convergence test where it matters most, and the medium mesh passes it.
 
 The third is the cost ratio. The fine mesh has $2.22\times$ the cell count of the medium mesh and a corresponding increase in solve time. For an 18-case screening campaign, this cost is not justified by the additional accuracy on the ranking metrics. The medium-to-fine differences on $\Delta H_{\mathrm{tot}}$, total pressure and the swirl number lie below the design separation between the screening configurations. The screening ranking is therefore preserved when the medium mesh is used in place of the fine mesh. The same trade-off was made by Jenssen~\cite{Jenssen2020} on the related RPT domain, who selected the medium mesh on the grounds that the increase in computational cost from medium to fine was not worth the improvement in discretisation error.
 
@@ -1037,7 +1059,7 @@ ANSYS~CFX is used as the solver throughout. The numerical settings adopted for t
     \textbf{Setting} & \textbf{Value} \\
     \midrule
     Solver                       & ANSYS CFX, steady RANS, incompressible \\
-    Turbulence model             & SST $k$--$\omega$ \\
+    Turbulence model             & SST $k$-$\omega$ \\
     Advection scheme             & High Resolution \\
     Turbulence numerics          & First Order\\
     Timescale control            & Auto (physical timescale derived from rotor speed) \\
@@ -1078,12 +1100,19 @@ A common array of analysis planes is defined for every configuration so that all
     \bottomrule
   \end{tabular}
 \end{table}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.85\textwidth]{Figures/Mesh/GCI_planes.png}
+  \caption[Common array of analysis planes]{Common array of analysis planes used in the post-processing of all 18 configurations, the \texttt{NoGV} reference and the GCI study, shown on a swirling-flow solution. Plane labels follow Table~\ref{tab:planes}; the GVEnd-series (GVEnd2 to GVEnd6) is distributed along the conical contraction. Plane normals are aligned with the local duct centreline.}
+  \label{fig:planes_overview}
+\end{figure}
  
 On each plane, the following metrics are extracted using mass-flow-averaged or area-averaged operators in CFX-Post:
 \begin{itemize}
   \item static and total pressure $\overline{p}$, $\overline{p_t}$, both mass-flow-averaged and area-averaged;
   \item total head $H = \overline{p_t}/(\rho g)$;
-  \item swirl number $S$ (Eq.~\ref{eq:S_def}) and its donut-restricted version $S_{\mathrm{donut}}$ over the design span $r \in [0.12, 0.25]$;
+  \item swirl number $S$ (Eq.~\ref{eq:S_def}) and its design-span-restricted version $S_{\mathrm{span}}$ over the design span $r \in [0.12, 0.25]$;
   \item area-averaged swirling strength $\overline{\lambda_{ci}}$;
   \item turbulent kinetic energy $\overline{\mathrm{TKE}}$ and its plane maximum;
   \item mass-flow-averaged flow angle $\overline{\alpha}^{m}$.
@@ -1115,11 +1144,11 @@ The \texttt{NoGV} reference is also used to verify that the RDT model produces t
  
 The decision to replace the RPT by a $\sim 1.0$~m extended straight pipe is the most consequential simplification in the present setup. It is justified by three considerations, all of which are specific to the master-thesis context.
  
-\paragraph{Computational budget.} A coupled RDT--GV--RPT simulation in CFX requires about $3$--$4$ times more wall-clock time per case than the present RDT--GV--draft-tube simulation. Three factors drive this. The RPT runner adds a rotating-mesh region. The runner blades require smaller blade-passage cell sizes. The rotor--stator interfaces require stricter timescale control for stable convergence. With 18 configurations to simulate, the available computational allocation does not accommodate this scaling.
+\paragraph{Computational budget.} A coupled RDT-GV-RPT simulation in CFX requires about $3$-$4$ times more wall-clock time per case than the present RDT-GV-draft-tube simulation. Three factors drive this. The RPT runner adds a rotating-mesh region. The runner blades require smaller blade-passage cell sizes. The rotor-stator interfaces require stricter timescale control for stable convergence. With 18 configurations to simulate, the available computational allocation does not accommodate this scaling.
  
 \paragraph{Division of work in the Store2Hydro programme.} The parallel master thesis by Dokset~\cite{Dokset2025} is dedicated to the RPT-side analysis and to the cavitation behaviour of the runner under various pre-rotation conditions imposed at the runner inlet. The work is therefore divided between the two theses. The present thesis screens the guide-vane design space and identifies a small number of candidate configurations that produce favourable inflow conditions at the bend exit. Dokset's thesis takes selected inflow profiles, including those produced by the present screening, and assesses the resulting pump-mode performance and cavitation margin in the RPT. A coupled simulation by either side would duplicate the other side's responsibility.
  
-\paragraph{Comparability of the relative ranking.} The screening question is a relative one: which of the 18 configurations is most favourable on the recovery--loss trade-off? The relative ranking is preserved when the missing RPT suction field acts approximately uniformly across the cases, to first order in the differences between them. The cases share downstream geometry and operating point, so this holds. Absolute values of head loss and residual swirl will shift when the RPT is reintroduced; the ranking will not.
+\paragraph{Comparability of the relative ranking.} The screening question is a relative one: which of the 18 configurations is most favourable on the recovery-loss trade-off? The relative ranking is preserved when the missing RPT suction field acts approximately uniformly across the cases, to first order in the differences between them. The cases share downstream geometry and operating point, so this holds. Absolute values of head loss and residual swirl will shift when the RPT is reintroduced; the ranking is expected to be less sensitive.
  
 A coupled simulation of the selected configuration (the case identified by the Pareto analysis as the recommended candidate) with the RPT included is identified in Chapter~\ref{chap:future_work} as the natural follow-up to this work and is left as future work.
  
@@ -1131,7 +1160,7 @@ Even within the well-defined screening scope of this thesis, several limitations
 \begin{itemize}
   \item \textbf{Single inlet wake.} All 18 configurations are designed against the same RDT wake. The screening therefore reflects the relative behaviour of the configurations under the specific inflow used, and the ranking may shift with a different RDT design or operating point.
   \item \textbf{Single operating point.} Only the nominal $\dot m = 290.3$~kg/s, $n = 650$~rpm condition is simulated. Off-design behaviour is not investigated.
-  \item \textbf{Steady RANS.} Steady RANS is used for the screening. Two separate transient simulations (\texttt{CC\_450\_7} and \texttt{CC\_400\_6}) are performed for the rotor--stator interaction analysis but are not part of the main screening ranking.
+  \item \textbf{Steady RANS.} Steady RANS is used for the screening. Two separate transient simulations (\texttt{CC\_450\_7} and \texttt{CC\_400\_6}) are performed for the rotor-stator interaction analysis but are not part of the main screening ranking.
   \item \textbf{No multiphase cavitation modelling.} Cavitation is treated indirectly through the static-pressure field; vapour-fraction modelling is not performed in the screening campaign.
   \item \textbf{No coupled RPT.} The RPT is replaced by an extended straight pipe, as discussed in Section~\ref{sec:rpt-decoupling-justification}.
   \item \textbf{No structural assessment.} Strength, fatigue and vibration of the guide vanes are not analysed in the screening campaign.
@@ -1142,25 +1171,25 @@ Even within the well-defined screening scope of this thesis, several limitations
 \section{Transient simulation setup and monitor points}
 \label{sec:monitor-setup}
  
-Two transient simulations are run in addition to the steady screening campaign. The first is \texttt{CC\_450\_7}, the project-work baseline with $Z_r=Z_s=7$ and the $m_{\min}=0$ reference. The second is \texttt{CC\_400\_6}, the $m_{\min}\geq 1$ counterpart from the screening matrix. The choice of \texttt{CC\_400\_6} rather than \texttt{CC\_450\_6} is motivated in Section~\ref{sec:rsi-thesis}. Both runs are performed in ANSYS~CFX at $n = 650$~rpm to assess the unsteady loading at the nominal operating point and to provide the time histories needed for the spectral analysis. The interface between the rotating RDT domain and the stationary GV domain is specified as a Transient Rotor--Stator (TRS) interface; all other solver settings follow those established for the steady screening campaign (Section~\ref{sec:methods_solver}).
+Two transient simulations are run in addition to the steady screening campaign. The first is \texttt{CC\_450\_7}, the project-work baseline with $Z_r=Z_s=7$ and the $m_{\min}=0$ reference. The second is \texttt{CC\_400\_6}, the $m_{\min}\geq 1$ counterpart from the screening matrix. The choice of \texttt{CC\_400\_6} rather than \texttt{CC\_450\_6} is motivated in Section~\ref{sec:rsi-thesis}. Both runs are performed in ANSYS~CFX at $n = 650$~rpm to assess the unsteady loading at the nominal operating point and to provide the time histories needed for the spectral analysis. The interface between the rotating RDT domain and the stationary GV domain is specified as a Transient Rotor-Stator (TRS) interface; all other solver settings follow those established for the steady screening campaign (Section~\ref{sec:methods_solver}).
  
 The time step is fixed at $\Delta t = T_{\mathrm{rev}}/360 = 2.564\times 10^{-4}$~s, corresponding to one degree of rotor rotation per time step. The total simulated physical time is $15\,T_{\mathrm{rev}} \approx 1.38$~s, allowing the initial transient to decay over approximately ten rotor revolutions before the last five revolutions are retained for Fourier analysis.
  
 \subsection{Coordinate system and reference positions}
 \label{sec:coord-system}
  
-The coordinate system used throughout the spectral analysis has its origin at the geometric centre of the RDT hub, with the positive $z$-axis pointing downstream towards the RPT. The RDT blade volume occupies $-0.185~\mathrm{m} \leq z \leq +0.185~\mathrm{m}$, so that the RDT--GV interface plane is located at
+The coordinate system used throughout the spectral analysis has its origin at the geometric centre of the RDT hub, with the positive $z$-axis pointing downstream towards the RPT. The RDT blade volume occupies $-0.185~\mathrm{m} \leq z \leq +0.185~\mathrm{m}$, so that the RDT-GV interface plane is located at
 \begin{equation}
     z_{\mathrm{ref}} \;=\; -0.185~\mathrm{m}. \label{eq:zref}
 \end{equation}
 The duct radius is $R = 0.25$~m, consistent with the baseline geometry established in~\cite{Leonsen2025}. Downstream of $z_{\mathrm{ref}}$ there is a short unloaded transition before the GV leading edge, and the GV domain extends to $z = -0.685$~m, giving a total GV domain length of 500~mm.
  
-Axial monitor positions are hereafter reported as the distance downstream of the RDT--GV interface,
+Axial monitor positions are hereafter reported as the distance downstream of the RDT-GV interface,
 \begin{equation}
     s \;=\; |z| - |z_{\mathrm{ref}}|,
     \qquad 0~\mathrm{mm} \leq s \leq 500~\mathrm{mm},
 \end{equation}
-which is more convenient for physical interpretation than absolute $z$-coordinates because $s$ counts from a physically meaningful plane (the rotor--stator interface) rather than from the RDT hub centre.
+which is more convenient for physical interpretation than absolute $z$-coordinates because $s$ counts from a physically meaningful plane (the rotor-stator interface) rather than from the RDT hub centre.
  
 \subsection{Monitor-signal indexing}
 \label{sec:monitor-index}
@@ -1170,22 +1199,22 @@ Seven monitor signals are exported from the CFX solver manager and used in the s
 \begin{table}[H]
 \centering
 \small
-\caption{Indexing of monitor signals used in the FFT analysis. The short label is used on all plots. Positions refer to the coordinate system defined in Section~\ref{sec:coord-system} ($s$ measured from the RDT--GV interface at $z_{\mathrm{ref}} = -0.185$~m).}
+\caption{Indexing of monitor signals used in the FFT analysis. The short label is used on all plots. Positions refer to the coordinate system defined in Section~\ref{sec:coord-system} ($s$ measured from the RDT-GV interface at $z_{\mathrm{ref}} = -0.185$~m).}
 \label{tab:monitor-index}
 \begin{tabular}{p{0.12\textwidth} p{0.20\textwidth} p{0.36\textwidth} p{0.24\textwidth}}
 \hline
 Label & Quantity & Location / averaging & CFX expression \\ \hline
-\multicolumn{4}{l}{\textit{Group A --- force on a single guide vane (GV1)}} \\
+\multicolumn{4}{l}{\textit{Group A - force on a single guide vane (GV1)}} \\
 $F_{\mathrm{res}}$ & Resultant force & Integrated on GV1 surface & \texttt{Fres GV1} \\[0.4em]
 
-\multicolumn{4}{l}{\textit{Group B --- torque on the rotor}} \\
+\multicolumn{4}{l}{\textit{Group B - torque on the rotor}} \\
 $M_{\mathrm{RDT}}$ & Torque about rotation axis & Integrated over full RDT & \texttt{torque\_z()@Entire BLADE} \\[0.4em]
 
-\multicolumn{4}{l}{\textit{Group C --- plane-averaged pressures}} \\
-$P_{\mathrm{in}}$ & Static pressure, mass-flow avg. & Plane at $s = 0$ mm (RDT--GV interface) & \texttt{massFlowAve(p)@RDT\_GV} \\
+\multicolumn{4}{l}{\textit{Group C - plane-averaged pressures}} \\
+$P_{\mathrm{in}}$ & Static pressure, mass-flow avg. & Plane at $s = 0$ mm (RDT-GV interface) & \texttt{massFlowAve(p)@RDT\_GV} \\
 $P_{\mathrm{out}}$ & Static pressure, mass-flow avg. & Plane at $s = 500$ mm (GV outlet) & \texttt{massFlowAve(p)@GV\_DT} \\[0.4em]
 
-\multicolumn{4}{l}{\textit{Group D --- wall-pressure probes at $r/R = 0.744$ along the GV passage}} \\
+\multicolumn{4}{l}{\textit{Group D - wall-pressure probes at $r/R = 0.744$ along the GV passage}} \\
 $P_0$ & Static pressure & $s = 0$ mm, $r/R = 0.744$ (near GV leading edge) & \texttt{Static Pressure point} \\
 $P_3$ & Static pressure & $s = 300$ mm, $r/R = 0.744$ (inside GV passage) & \texttt{Static Pressure point} \\
 $P_5$ & Static pressure & $s = 500$ mm, $r/R = 0.744$ (at GV outlet) & \texttt{Static Pressure point} \\ \hline
@@ -1195,10 +1224,10 @@ $P_5$ & Static pressure & $s = 500$ mm, $r/R = 0.744$ (at GV outlet) & \texttt{S
 \paragraph{Groups of purpose.}
 The signals fall into four functional groups:
 \begin{itemize}
-  \item \emph{Group A — Force on a single guide vane.} The resultant force $F_{\mathrm{res}}$ on a representative guide vane (GV1) is the principal diagnostic for cyclic structural loading.
-  \item \emph{Group B — Torque on the rotor.} $M_{\mathrm{RDT}}$ is the torque about the rotation axis integrated over the entire RDT blade set and captures periodic torque ripple from rotor--stator interaction.
-  \item \emph{Group C — Plane-averaged pressures.} Two mass-flow-averaged plane signals, $P_{\mathrm{in}}$ at the RDT--GV interface and $P_{\mathrm{out}}$ at the GV outlet, extract the axisymmetric $m=0$ component of the pulsation field. Comparison of $P_{\mathrm{in}}$ and $P_{\mathrm{out}}$ amplitudes quantifies how much of the coherent $m=0$ content is attenuated across the GV row.
-  \item \emph{Group D — Wall-pressure probes along the GV passage.} Three probes $P_0$, $P_3$, $P_5$ at the fixed radial position $r/R = 0.744$ along one azimuthal line sample the full pulsation field, including the spinning modes $|m|\geq 1$ that are washed out in the plane-averaged signals. In combination with $P_{\mathrm{out}}$ they permit the ring-coherence diagnostic defined in Eq.~\eqref{eq:coherence}.
+  \item \emph{Group A - Force on a single guide vane.} The resultant force $F_{\mathrm{res}}$ on a representative guide vane (GV1) is the principal diagnostic for cyclic structural loading.
+  \item \emph{Group B - Torque on the rotor.} $M_{\mathrm{RDT}}$ is the torque about the rotation axis integrated over the entire RDT blade set and captures periodic torque ripple from rotor-stator interaction.
+  \item \emph{Group C - Plane-averaged pressures.} Two mass-flow-averaged plane signals, $P_{\mathrm{in}}$ at the RDT-GV interface and $P_{\mathrm{out}}$ at the GV outlet, extract the axisymmetric $m=0$ component of the pulsation field. Comparison of $P_{\mathrm{in}}$ and $P_{\mathrm{out}}$ amplitudes quantifies how much of the coherent $m=0$ content is attenuated across the GV row.
+  \item \emph{Group D - Wall-pressure probes along the GV passage.} Three probes $P_0$, $P_3$, $P_5$ at the fixed radial position $r/R = 0.744$ along one azimuthal line sample the full pulsation field, including the spinning modes $|m|\geq 1$ that are washed out in the plane-averaged signals. In combination with $P_{\mathrm{out}}$ they permit the ring-coherence diagnostic defined in Eq.~\eqref{eq:coherence}.
 \end{itemize}
  
 \section{Spectral analysis methodology}
@@ -1257,7 +1286,7 @@ The Fourier amplitudes $A_k$ are only meaningful if the underlying signal is sta
 \subsection{Ring-coherence diagnostic}
 \label{sec:spec-coherence}
  
-The Tyler--Sofrin analysis in Section~\ref{sec:rsi-tyler} distinguishes between the axisymmetric $m=0$ mode and the spinning modes with $|m|\geq 1$. Only the $m=0$ component produces a net axial force on the GV ring and propagates as a plane wave, whereas the spinning modes cancel in circumferential integration.
+The Tyler-Sofrin analysis in Section~\ref{sec:rsi-tyler} distinguishes between the axisymmetric $m=0$ mode and the spinning modes with $|m|\geq 1$. Only the $m=0$ component produces a net axial force on the GV ring and propagates as a plane wave, whereas the spinning modes cancel in circumferential integration.
  
 To classify the dominant spatial mode of the computed pulsation field without a full modal decomposition, a scalar ring-coherence diagnostic is defined. Let $A_{\mathrm{loc}}(f)$ denote the Fourier amplitude of a local wall-pressure signal (one of $P_0 \ldots P_5$) and $A_{\mathrm{ring}}(f)$ the amplitude of the plane-averaged signal $P_{\mathrm{out}}$ on the downstream plane. Because mass-flow averaging extracts the $m=0$ component of the field, $A_{\mathrm{ring}}$ measures the axisymmetric plane-wave content alone. The ring-coherence ratio is defined as
 \begin{equation}
@@ -1293,7 +1322,7 @@ Third BPF harmonic        & $3f_{\mathrm{BPF}}$ & $3Z_r\,f_n$    & 227.50 & 227.
 \end{tabular}
 \end{table}
  
-A characteristic signature of rotor--stator interaction would be dominant peaks at $f_{\mathrm{BPF}}$ and its harmonics. Dominant energy at $f_n$ and its harmonics, in contrast, is typically associated with a once-per-revolution forcing such as a rotor imbalance, blade-to-blade variation in loading, or azimuthally non-uniform inflow into the RDT~\cite{Brekke2015,Bergan2018}. Both types of content are analysed in Chapter~\ref{chap:results_discussion}.
+A characteristic signature of rotor-stator interaction would be dominant peaks at $f_{\mathrm{BPF}}$ and its harmonics. Dominant energy at $f_n$ and its harmonics, in contrast, is typically associated with a once-per-revolution forcing such as a rotor imbalance, blade-to-blade variation in loading, or azimuthally non-uniform inflow into the RDT~\cite{Brekke2015,Bergan2018}. Both types of content are analysed in Chapter~\ref{chap:results_discussion}.
 
 % ---------------------------------------------------------------------
 \section{Velocity-triangle characterisation of the RDT wake}
@@ -1312,7 +1341,7 @@ U(r) \;=\; \omega\,r,
 which yields the relative tangential component $W_u = C_u - U$ and the magnitudes $|\vec{C}|=\sqrt{C_m^{2}+C_u^{2}}$ and $|\vec{W}|=\sqrt{C_m^{2}+W_u^{2}}$. The radial component $C_r$ is neglected at this stage in line with the design assumption of Section~\ref{sec:theory_kinematics}.
  
 \paragraph{Pressure-side and suction-side branches.}
-A blade-loading line traces the rotor blade contour and therefore contains, at every streamwise position $s$, two velocity values that bracket the local through-flow: a pressure-side (PS) branch and a suction-side (SS) branch. The streamwise coordinate is binned into 200 equal intervals across $[0,1]$. For each bin the highest and lowest values delineate the PS--SS spread, while the bin mean provides a single representative line. This procedure is robust to scatter in the raw point cloud and does not require manual selection of individual blade-passage points.
+A blade-loading line traces the rotor blade contour and therefore contains, at every streamwise position $s$, two velocity values that bracket the local through-flow: a pressure-side (PS) branch and a suction-side (SS) branch. The streamwise coordinate is binned into 200 equal intervals across $[0,1]$. For each bin the highest and lowest values delineate the PS-SS spread, while the bin mean provides a single representative line. This procedure is robust to scatter in the raw point cloud and does not require manual selection of individual blade-passage points.
  
 \paragraph{Sampling regions.}
 Two regions of the blade-loading line are post-processed and reported here. The trailing-edge region $s\in(0.90,\,1.00)$ is the most defensible proxy for the free-stream wake because the PS and SS branches converge towards a common value as the blade boundary layers merge into the wake. Values from this region are used as the spanwise design input $(\,r,\,C_m,\,C_u\,)$ passed to the guide-vane generator of Leonsen~\cite{Leonsen2025}. The near-leading-edge region $s\in[0.05,\,0.15]$ is reported as a complementary diagnostic of the local kinematics on the suction surface immediately downstream of the LE stagnation and suction-peak region. The near-LE values are not free-stream inlet velocities to the rotor, and they are not used as design input; they document the kinematic state of the flow on the blade surface in the high-incidence region near the LE.
@@ -1387,8 +1416,8 @@ Figure~\ref{fig:rdt_velocity_triangles_LE} presents the velocity triangles const
 \end{figure}
  
 \paragraph{Comparison of LE and TE regions.}
-Comparing Tables~\ref{tab:rdt_te_values} and~\ref{tab:rdt_le_values} and Figures~\ref{fig:rdt_velocity_triangles_TE}--\ref{fig:rdt_velocity_triangles_LE} provides physical insight into how the rotor blade does work on the flow as it traverses the chord. Three points are worth noting.
+Comparing Tables~\ref{tab:rdt_te_values} and~\ref{tab:rdt_le_values} and Figures~\ref{fig:rdt_velocity_triangles_TE}-\ref{fig:rdt_velocity_triangles_LE} provides physical insight into how the rotor blade does work on the flow as it traverses the chord. Three points are worth noting.
  
-First, the tangential component $C_u$ in the central span band ($r/R\in[0.40,\,0.80]$) is roughly $30$--$40\,\%$ smaller in the near-LE region than in the TE region. Examples: $4.88$~m/s vs.\ $6.76$~m/s at $r/R=0.40$, and $8.30$~m/s vs.\ $10.84$~m/s at $r/R=0.80$. This reflects the blade adding tangential momentum to the flow as it passes from LE to TE, consistent with the forced-vortex design intent of the upstream RDT~\cite{DjupeslandTrivedi2025}. The relative angle $\beta$ approaches $-90^\circ$ at the shroud in both regions, indicating that the relative flow there is nearly aligned with the negative tangential direction.
+First, the tangential component $C_u$ in the central span band ($r/R\in[0.40,\,0.80]$) is roughly $30$-$40\,\%$ smaller in the near-LE region than in the TE region. Examples: $4.88$~m/s vs.\ $6.76$~m/s at $r/R=0.40$, and $8.30$~m/s vs.\ $10.84$~m/s at $r/R=0.80$. This reflects the blade adding tangential momentum to the flow as it passes from LE to TE, consistent with the forced-vortex design intent of the upstream RDT~\cite{DjupeslandTrivedi2025}. The relative angle $\beta$ approaches $-90^\circ$ at the shroud in both regions, indicating that the relative flow there is nearly aligned with the negative tangential direction.
 
 \clearpage
