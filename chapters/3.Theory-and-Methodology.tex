@@ -1,26 +1,15 @@
 \chapter{Theory and methodology}
 \label{chap:theory_method}
 
-\begin{center} % Abstract overview
+\begin{center} % NEEDS TO BE WRITTEN AT THE END
 \singlespacing\parbox{12cm}{\textit{
-This chapter consolidates the theoretical framework and the methodological choices used in the present screening campaign. The first part establishes the governing equations, the cylindrical-coordinate description of the flow, the velocity triangles and the swirl metrics. It then develops the cascade theory used to design the guide vanes, the cavitation framework, the Dean-vortex theory of the $90^\circ$ bend, the turbulence-model assumptions and the rotor-stator interaction theory underlying the transient analyses. The second part applies this framework to the present geometry. It covers the parametric MATLAB tool from the project work~\cite{Leonsen2025}, the 18-case design matrix (two chord-control strategies, six shroud-chord levels, three vane counts), and the no-GV reference simulation. It then describes the multi-domain CFX setup, the mesh strategy, the Grid Convergence Index study, the solver settings, the analysis-plane definitions, and the spectral-analysis methodology used for the two transient simulations.
+This chapter consolidates the theoretical framework and the methodological choices used in the present CFD study work. The first part establishes the governing equations, the cylindrical-coordinate description of the flow, the velocity triangles and the swirl metrics. It then develops the cascade theory used to design the guide vanes, the turbulence-model assumptions and the rotor-stator interaction theory underlied by transient analyses. The second part applies this framework to the present geometry. It covers the parametric MATLAB tool from the project work~\cite{Leonsen2025}, the 18-case design matrix, and the no-GV reference simulation. It then describes the multi-domain CFX setup, the mesh strategy, the Grid Convergence Index study and the spectral-analysis methodology used for the two transient simulations.
 }}
 \end{center}
 
 \paragraph{Note on continuity with the project work.}
-This thesis builds directly on the project work~\cite{Leonsen2025}. The parametric MATLAB tool \texttt{vanedesign\_loft\_export}, the slip-correction framework and the NACA-based geometric construction (Sections~\ref{sec:theory_airfoil}, \ref{sec:theory_cascade}, \ref{sec:theory_geometric_construction}) are inherited and summarised here, not re-derived. The fixed parameters $(t/c)_{\mathrm{rel}} = 0.075$, $\texttt{LE\_round} = 1.2$ and $t_{\mathrm{TE}}/c = 0.005$ are also inherited.
+This thesis builds directly on the project work~\cite{Leonsen2025}. The parametric MATLAB tool \texttt{vanedesign\_loft\_export}, the slip-correction framework and the NACA-based geometric construction (Sections~\ref{sec:theory_airfoil}, \ref{sec:theory_cascade}, \ref{sec:theory_geometric_construction}) are inherited and summarised here, not re-derived.
 
-The contributions specific to the present thesis are:
-\begin{itemize}
-  \item the extension of the simulation domain to include the conical contraction, the $90^\circ$ bend and a final straight inlet pipe;
-  \item the 18-case design matrix and the no-GV reference;
-  \item the multi-domain ANSYS~CFX setup;
-  \item the Grid Convergence Index study on the unstructured draft-tube domain;
-  \item the post-processing pipeline on a common array of analysis planes;
-  \item the two transient simulations (\texttt{CC\_450\_7} and \texttt{CC\_400\_6}) that test the Tyler-Sofrin prediction directly.
-\end{itemize}
-
-% =====================================================================
 % PART I: THEORY
 % =====================================================================
 \section{Flow fundamentals and turbomachinery kinematics}
@@ -41,7 +30,7 @@ The flow between the rim-driven thruster (RDT) and the reversible pump-turbine (
 \end{equation}
 Here, $\mathbf{u}$ is the mean velocity vector, $p$ is the mean static pressure, $\rho$ is the fluid density, $\mu$ is the dynamic viscosity, and $-\rho \overline{\mathbf{u}'\mathbf{u}'}$ is the Reynolds-stress tensor representing the effect of unresolved turbulent fluctuations. In a Reynolds-averaged Navier-Stokes framework these stresses must be closed through a turbulence model. This formulation suits the present study: the objective is to compare mean-flow quantities such as total-pressure loss, swirl reduction and downstream flow quality, not to resolve the full unsteady turbulent spectrum.
 
-A cylindrical coordinate system fits the present geometry because the duct, the RDT wake and the guide-vane annulus are all organised around a common centreline. The flow is therefore described in cylindrical coordinates $(r,\theta,z)$, where $z$ is the axial direction from the RDT towards the RPT, $r$ is the radial coordinate and $\theta$ the circumferential coordinate. The absolute velocity vector $\vec{C}$ is written as
+A cylindrical coordinate system fits the geometry because the duct, the RDT wake and the guide-vane annulus are all organised around a common centreline. The flow is therefore described in cylindrical coordinates $(r,\theta,z)$, where $z$ is the axial direction from the RDT towards the RPT, $r$ is the radial coordinate and $\theta$ the circumferential coordinate. The absolute velocity vector $\vec{C}$ is written as
 \begin{equation}
 \vec{C}(r,\theta,z)
 =
@@ -63,7 +52,7 @@ C_u \equiv U_t \equiv C_\theta.
 \end{equation}
 Throughout this thesis the symbols $C_m$ and $C_u$ are used as the preferred notation for the mean axial and tangential velocity components. Software-specific labels such as \texttt{Velocity.Axial}, \texttt{Velocity.Circumferential}, $U_x$ and $U_t$ are only used when referring explicitly to CFD monitor expressions or post-processing variables.
 
-Downstream of the RDT the flow resembles a confined swirling pipe flow. Experimental and analytical studies of such flows show that the radial velocity is often small compared with the axial and tangential components, and that the swirl decays gradually downstream under the action of wall friction and turbulent transport~\cite{Kitoh1991}. For this reason many reduced descriptions of developed swirling pipe flow use a base state where the radial velocity is neglected. In the present work, the RDT outlet and the guide-vane design inlet are therefore described with the approximation
+Downstream of the RDT the flow resembles a confined swirling pipe flow. Experimental and analytical studies of such flows show that the radial velocity is often small compared with the axial and tangential components. The swirl also decays gradually downstream under the action of wall friction and turbulent transport~\cite{Kitoh1991}. For this reason, the RDT outlet and the guide-vane design inlet are therefore described with the approximation
 \begin{equation}
 C_r \approx 0,
 \label{eq:Cr_zero}
@@ -80,7 +69,7 @@ In turbomachinery it is convenient to describe the flow using velocity triangles
 \vec{W} = \vec{C} - \vec{u},
 \label{eq:relative_velocity}
 \end{equation}
-where the local blade speed at radius $r$ is $u(r) = \omega r$, with $\omega$ the angular velocity of the rotor. This distinction between absolute and relative velocity is fundamental in rotor rows such as the RDT or the RPT runner, where blade loading is naturally interpreted in the rotating frame. For the guide vanes considered in the present thesis the situation is simpler because the vane row is stationary, so the absolute and relative frames coincide for the guide-vane domain itself. The relative-velocity notation nevertheless remains useful because it provides a direct connection to classical cascade quantities such as inlet angle, outlet angle, metal angle, incidence and deviation. In rotating CFD domains, the solver typically uses a rotating frame and adds Coriolis and centrifugal source terms to the momentum equations. ANSYS CFX introduces these source terms automatically when a rotating frame is defined for the domain.
+where the local blade speed at radius $r$ is $u(r) = \omega r$, with $\omega$ the angular velocity of the rotor. This distinction between absolute and relative velocity is fundamental in rotor rows such as the RDT or the RPT runner, where blade loading is naturally interpreted in the rotating frame. For the guide vanes considered in the present thesis the situation is simpler because the vane row is stationary, so the absolute and relative frames coincide for the guide-vane domain itself. The relative-velocity notation nevertheless remains useful because it provides a direct connection to classical cascade quantities such as inlet angle, outlet angle, metal angle, incidence and deviation.
 
 The local kinematics of the flow are represented by velocity triangles. At each radius the incoming and outgoing velocities are decomposed into axial and tangential components, and the corresponding flow angles are defined relative to the axial direction. The absolute flow angle at the guide-vane inlet is
 \begin{equation}
@@ -92,9 +81,12 @@ The corresponding metal angles at the leading and trailing edges are denoted $\t
 i(r) = \beta_1(r) - \theta_1(r),
 \label{eq:incidence}
 \end{equation}
-and a central design requirement is to keep $i$ small in order to avoid leading-edge separation and the associated increase in loss.
+A design requirement is to keep $i$ small in order to avoid leading-edge separation and the associated increase in losses.
 
 \paragraph{Choice of flow angle for stationary guide-vane design.}
+The guide vanes are stationary, so $\vec{W}\equiv \vec{C}$ at the GV leading edge. The absolute angle $\alpha(r)$ from~\eqref{eq:alpha_definition} is therefore the relevant angle and is used to set the GV metal angles. The relative angle $\beta(r)=\arctan(W_u/C_m)$ is reported in Section~\ref{sec:methods_rdt_velocity_triangles} only as a kinematic descriptor of the upstream rotor wake; it is not used in the GV design. The upstream RDT design~\cite{DjupeslandTrivedi2025} is in the rotor-relative frame and uses $\beta$.
+
+
 A central distinction in the design of the present guide vanes is that they are stationary components. In the absolute frame, the relevant inflow direction at the leading edge is fully described by the absolute flow angle $\alpha(r)$ defined in~\eqref{eq:alpha_definition}. The local blade speed is zero on the stationary vane, so $\vec{W}\equiv \vec{C}$ and the absolute and relative frames coincide. The relative flow angle $\beta(r)=\arctan(W_u/C_m)$ is therefore not used to set the guide-vane metal angles in this thesis; it is reported in Section~\ref{sec:methods_rdt_velocity_triangles} only as a kinematic descriptor of the upstream rotor wake. In contrast, the design of the upstream RDT \cite{DjupeslandTrivedi2025} is formulated in the relative frame of the rotor blades and uses $\beta$. The guide-vane generator of Leonsen~\cite{Leonsen2025} expects spanwise $(C_m,\,C_u)$ profiles and computes the absolute angle internally as $\alpha = \arctan(C_u/C_m)$. The two angle conventions are consistent once the appropriate frame of reference is identified.
 
 The assumptions introduced in this section define the modelling scope used throughout the thesis. The upstream wake is reduced to spanwise distributions of meridional and tangential velocity at a selected plane downstream of the RDT. These profiles are then used to generate candidate guide-vane geometries through a blade-element type design procedure. The subsequent CFD simulations resolve the three-dimensional mean flow through the vane row and the connected duct sections. This provides a practical framework for screening guide-vane concepts while retaining the dominant physical mechanisms that govern swirl recovery, hydraulic loss and downstream inlet quality.
@@ -190,25 +182,20 @@ where $p_{\mathrm{in}}$ is the absolute pressure at the machine inlet. For compa
 \end{equation}
 and high $\sigma$ corresponds to safe operation, while low $\sigma$ is associated with bubble growth, head loss, efficiency loss and possible erosion~\cite{Franc2007, Gulich2010}.
  
-For the NTNU RPT, Kerlefsen reports a required NPSH of approximately $1.3$-$1.4$~m for a net head $H_{\mathrm{net}} \approx 12$~m, giving $\mathrm{NPSH}_\mathrm{R}/H_{\mathrm{net}} \approx 0.11$-$0.12$, with a recommended margin of $20$-$25\,\%$ between available and required NPSH~\cite{Kerlefsen2025}. The Store2Hydro booster is intended to add approximately $H \approx 5$~m of head upstream of the RPT, which is comfortable as long as guide-vane losses are kept moderate. Any total-pressure loss in the screening therefore reduces the cavitation margin and is charged against the design.
+For the NTNU RPT, Kerlefsen reports a required NPSH of approximately $1.3$-$1.4$~m for a net head $H_{\mathrm{net}} \approx 12$~m, giving $\mathrm{NPSH}_\mathrm{R}/H_{\mathrm{net}} \approx 0.11$-$0.12$, with a recommended margin of $20$-$25\,\%$ between available and required NPSH~\cite{Kerlefsen2025}. The Store2Hydro booster is intended to add approximately $H \approx 5$~m of head upstream of the RPT, which is comfortable as long as guide-vane losses are kept moderate. Any total-pressure loss in the simulations therefore reduces the cavitation margin and is charged against the design.
  
-In CFD, cavitation is commonly modelled as a homogeneous mixture of liquid water and water vapour, with mass-transfer rates determined by a Rayleigh-Plesset-based source term. In the present work no cavitation modelling is performed in the screening campaign; the static pressure field is examined for the absence of regions with $p < p_v$, but multiphase modelling is left as future work for the selected configuration.
+In CFD, cavitation is commonly modelled as a homogeneous mixture of liquid water and water vapour, with mass-transfer rates determined by a Rayleigh-Plesset-based source term. In the present work no cavitation modelling is performed in the simulations; the static pressure field is examined for the absence of regions with $p < p_v$, but multiphase modelling is left as future work for the selected configuration.
  
 % ---------------------------------------------------------------------
-\section{Design requirements for the guide vanes}
-\label{sec:theory_srv_requirements}
- 
-Figure~\ref{fig:rdt_streamlines} shows example streamlines downstream of the RDT from the design used in the present thesis. The design of the RDT is taken from Djupeslands work \cite{DjupeslandTrivedi2025}. The flow exhibits a strongly swirling wake with primary and secondary streamlines merging in vortex interactions across the cross-section.
- 
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.99\textwidth]{Figures/Theory/Streamlines_shubham_Ink.png}
-  \caption[Streamlines downstream of the RDT]{Streamlines downstream of the RDT from the design of Djupesland and Trivedi~\cite{DjupeslandTrivedi2025}. Primary and secondary streamlines merge in vortex interactions across the wake.}
-  \label{fig:rdt_streamlines}
-\end{figure}
- 
-The simulation also indicates very large local flow angles in the outer part of the wake. At $r \approx 0.25$~m, the absolute angle between $C_m$ and $C_u$ approaches $80^\circ$-$89^\circ$, meaning the velocity is almost entirely tangential. The guide vanes must therefore be designed to handle extreme inflow angles while still providing controlled turning and acceptable losses.
- 
+% \begin{figure}[h!]
+%   \centering
+%   \includegraphics[width=0.99\textwidth]{Figures/Theory/Streamlines_shubham_Ink.png}
+%   \caption[Streamlines downstream of the RDT]{Streamlines downstream of the RDT from the design of Djupesland and Trivedi~\cite{DjupeslandTrivedi2025}. Primary and secondary streamlines merge in vortex interactions across the wake.}
+%   \label{fig:rdt_streamlines}
+% \end{figure}
+
+
+ %DET HER 
 \subsection{Backflow region and the design span}
 \label{sec:theory_backflow_span}
  
@@ -216,15 +203,15 @@ The RDT wake has a low-momentum or back-flow region in the centre. Post-processi
  
 \begin{figure}[h!]
     \centering
-    \includesvg[width=0.75\textwidth]{Figures/SVG/Ux_Ut.svg}
-    \caption[Axial and tangential velocity profiles]{Axial and tangential velocity profiles versus radius, $0.25$~m downstream of the RDT~\cite{DjupeslandTrivedi2025}.}
+    \includegraphics[width=0.75\textwidth]{Figures/Methods/BaselinePlot1.png}
+    \caption[]{}
     \label{fig:UxUt}
 \end{figure}
 \begin{figure}[h!]
     \centering
-    \includesvg[width=0.75\textwidth]{Figures/SVG/Angle_radius.svg}
-    \caption[Flow-field angle]{Flow-field angle versus radius, $0.25$~m downstream of the RDT~\cite{DjupeslandTrivedi2025}.}
-    \label{fig:AngleRadius}
+    \includegraphics[width=0.75\textwidth]{Figures/Methods/BaselinePlot2.png}
+    \caption[]{}
+    \label{fig:UxUt}
 \end{figure}
  
 The assumption is that the central recirculation zone carries low momentum flux compared with the main flow at larger radii and will partially mix out downstream before reaching the RPT runner. This assumption is examined in Chapter~\ref{chap:results_discussion} by comparing the central-region velocity field at the guide-vane outlet plane and at the bend exit.
@@ -288,7 +275,7 @@ D_f \;=\; 1 - \frac{V_{\mathrm{out}}}{V_{\mathrm{in}}}
               {2\,\sigma\, V_{\mathrm{in}}},
 \label{eq:Df}
 \end{equation}
-with $V_{\mathrm{in}}$, $V_{\mathrm{out}}$ the inlet and outlet relative velocities, $V_{\theta,\mathrm{in}}$, $V_{\theta,\mathrm{out}}$ the corresponding tangential components, and $\sigma$ the local solidity. Lieblein recommends $D_f \lesssim 0.6$ to keep the suction-side boundary layer attached. A complementary screening criterion is the de Haller bound on the relative-velocity ratio,
+with $V_{\mathrm{in}}$, $V_{\mathrm{out}}$ the inlet and outlet relative velocities, $V_{\theta,\mathrm{in}}$, $V_{\theta,\mathrm{out}}$ the corresponding tangential components, and $\sigma$ the local solidity. Lieblein recommends $D_f \lesssim 0.6$ to keep the suction-side boundary layer attached. A complementary criterion is the de Haller bound on the relative-velocity ratio,
 \begin{equation}
 \frac{V_{\mathrm{out}}}{V_{\mathrm{in}}} \;\geq\; 0.72,
 \label{eq:deHaller}
@@ -306,7 +293,7 @@ Section~\ref{sec:theory_kinematics} introduced the inlet and outlet flow angles 
 \end{itemize}
 The deviation is treated as a fixed correction $\delta_{\mathrm{TE}} = 6^\circ$ added to the trailing-edge metal angle, following G\"ulich~\cite{Gulich2010}. The project-work response surface~\cite{Leonsen2025} predicts $10^\circ$-$20^\circ$ at the high turning required here. Adopting those values would aggressively over-camber the trailing edge, sharpen the suction-side pressure gradient, and promote separation. The fixed $6^\circ$ correction captures the bulk of the deviation effect without overloading the cascade.
 
-The cost of this choice is that the screening reports the swirl-reduction performance achievable with a conservative slip correction, not the maximum achievable performance. This choice is revisited in Chapter~\ref{chap:results_discussion} when the swirl-reduction results are interpreted.
+The cost of this choice is that the simulation reports the swirl-reduction performance achievable with a conservative slip correction, not the maximum achievable performance. This choice is revisited in Chapter~\ref{chap:results_discussion} when the swirl-reduction results are interpreted.
  
 % ---------------------------------------------------------------------
 \section{Geometric construction of the guide vanes}
@@ -352,7 +339,7 @@ which thickens the leading edge for $\texttt{LE\_round} > 1$ and thereby reduces
 \subsection{Stagger angle, lean and sweep}
 \label{sec:theory_stagger_lean_sweep}
  
-The stagger angle $\zeta(r)$ orients the chord line relative to the axial direction. It is determined by the choice of metal angles $\theta_1(r)$ and $\theta_2(r)$ together with the geometric definition that places the chord line at the average of the LE and TE positions in the rotated frame. In addition to the stagger, the design tool exposes two spanwise stacking parameters: \emph{lean} $\texttt{lean\_amp}$ tilts the section in the tangential direction along the span, and \emph{sweep} $\texttt{sweep\_amp}$ shifts the section in the axial direction along the span. Lean and sweep are used in modern axial design to control radial pressure gradients and mitigate secondary flows~\cite{Schnoes2018}. In the screening campaign of this thesis they are held at zero, so the chord and solidity factors can be isolated. Lean and sweep are listed as candidates for a second-stage refinement campaign in Chapter~\ref{chap:future_work}.
+The stagger angle $\zeta(r)$ orients the chord line relative to the axial direction. It is determined by the choice of metal angles $\theta_1(r)$ and $\theta_2(r)$ together with the geometric definition that places the chord line at the average of the LE and TE positions in the rotated frame. In addition to the stagger, the design tool exposes two spanwise stacking parameters: \emph{lean} $\texttt{lean\_amp}$ tilts the section in the tangential direction along the span, and \emph{sweep} $\texttt{sweep\_amp}$ shifts the section in the axial direction along the span. Lean and sweep are used in modern axial design to control radial pressure gradients and mitigate secondary flows~\cite{Schnoes2018}. In the work of this thesis they are held at zero, so the chord and solidity factors can be isolated. Lean and sweep are listed as candidates for a second-stage refinement campaign in Chapter~\ref{chap:future_work}.
  
 \subsection{Cylindrical or conical wrapping}
 \label{sec:theory_wrapping}
@@ -362,12 +349,12 @@ The two-dimensional sections are stacked along the span and wrapped on either a 
 \subsection{Constant chord versus constant solidity}
 \label{sec:theory_const_chord_const_sol}
  
-The two design strategies adopted in the screening campaign are exposed by the boolean flag \texttt{use\_sigma} in the design tool:
+The two design strategies adopted in this work are exposed by the boolean flag \texttt{use\_sigma} in the design tool:
 \begin{itemize}
   \item \textbf{Constant chord (CC).} The chord $c$ is a single constant value, identical at every radius. The solidity $\sigma(r) = c\,Z_s/(2\pi r)$ then decreases hyperbolically with radius, so the loading per pitch is concentrated near the inner span and decreases towards the shroud.
   \item \textbf{Constant solidity (CS).} The chord is set as $c(r) = \sigma_{\mathrm{target}}\,s(r)$ with $\sigma_{\mathrm{target}}$ fixed, so the solidity is uniform in radius and the chord scales linearly with $r$. The loading is more even radially, but the wetted surface and the friction loss are larger because the outer span receives the longest chord.
 \end{itemize}
-The two strategies are not equivalent, and the screening campaign is constructed precisely to compare them at matched levels of loading. The case-naming convention used throughout this thesis is \texttt{<strategy>\_<chord>\_<Zs>}. For example, \texttt{CC\_400\_8} denotes a constant-chord design with $c = 400$~mm and $Z_s = 8$. \texttt{CS\_400\_8} denotes a constant-solidity design with the same shroud chord, but with chord scaling linearly inwards.
+The two strategies are not equivalent, and the simulations is constructed precisely to compare them at matched levels of loading. The case-naming convention used throughout this thesis is \texttt{<strategy>\_<chord>\_<Zs>}. For example, \texttt{CC\_400\_8} denotes a constant-chord design with $c = 400$~mm and $Z_s = 8$. \texttt{CS\_400\_8} denotes a constant-solidity design with the same shroud chord, but with chord scaling linearly inwards.
 
 The geometric difference between the two strategies is illustrated in Figure~\ref{fig:cc_vs_cs_3d} for the matched pair \texttt{CC\_400\_8} and \texttt{CS\_400\_8}. Both designs share the same shroud chord ($c_{\mathrm{shroud}} = 400$~mm) and the same vane count ($Z_s = 8$). The CC vane keeps a constant chord all the way to the inner cut-out at $r = 0.12$~m. The CS vane tapers linearly inwards, so the chord at the hub is reduced to $c_{\mathrm{hub}} = \sigma_{\mathrm{shroud}}\,(2\pi r_{\mathrm{hub}}/Z_s) \approx 191$~mm. Three-dimensional renderings of all 18 active configurations are collected in Appendix~\ref{app:gv_3d_geometries}.
 
@@ -394,7 +381,7 @@ The geometric difference between the two strategies is illustrated in Figure~\re
 \section{Secondary flow and Dean vortices in 90$^\circ$ bends}
 \label{sec:theory_dean_bend}
  
-The geometry adopted for the screening campaign includes a $90^\circ$ bend between the cone and the final inlet section. This element is not passive. When fluid passes through a curved duct, the centripetal acceleration $V^2/R_c$ requires a radial pressure gradient across the cross-section. The velocity, however, is not uniform: it is reduced near the wall by the boundary layer and is largest in the core of the duct. The local centripetal acceleration is therefore not uniform across the section, and the cross-stream pressure gradient cannot balance it everywhere simultaneously. The fluid responds by establishing a pair of counter-rotating secondary cells in the cross-stream plane: the \emph{Dean vortices}~\cite{Dean1927}.
+The geometry adopted for the simulations includes a $90^\circ$ bend between the cone and the final inlet section. This element is not passive. When fluid passes through a curved duct, the centripetal acceleration $V^2/R_c$ requires a radial pressure gradient across the cross-section. The velocity, however, is not uniform: it is reduced near the wall by the boundary layer and is largest in the core of the duct. The local centripetal acceleration is therefore not uniform across the section, and the cross-stream pressure gradient cannot balance it everywhere simultaneously. The fluid responds by establishing a pair of counter-rotating secondary cells in the cross-stream plane: the \emph{Dean vortices}~\cite{Dean1927}.
  
 \subsection{The Dean number and bend regimes}
 \label{sec:theory_dean_number}
@@ -818,7 +805,7 @@ The mesh strategy is region-specific. The rotating RDT mesh and the guide-vane m
 \subsection{Rotor and guide-vane meshes (TurboGrid)}
 \label{sec:turbogrid_quality}
 
-Each of the 18 guide-vane configurations in Table~\ref{tab:design_matrix} is meshed independently in TurboGrid because chord and solidity differ between cases. The RDT rotor mesh is generated by the same workflow, using curve files exported from the upstream RDT design~\cite{DjupeslandTrivedi2025}. Refinement at the inner-pipe-to-blade transition resolves the boundary layer across the rotating-stationary interface. The targets applied to both the RDT and GV meshes are
+Each of the 18 guide-vane configurations in Table~\ref{tab:design_matrix} is meshed independently in TurboGrid because chord and solidity differ between cases. The RDT rotor mesh is generated by the same workflow, using curve files exported from the upstream RDT design~\cite{DjupeslandTrivedi2025}. (Den setningen her vet jeg ikke om stemmer. Jeg har lik størrelse på inflation layers på hub siden av Guide vanes mesh som på ytter inflation layers på innerpipe .Refinement at the inner-pipe-to-blade transition resolves the boundary layer across the rotating-stationary interface. The targets applied to both the RDT and GV meshes are
 \begin{itemize}
   \item $y^+ \approx 1$ on the vane surfaces (low-Reynolds wall treatment of SST $k$-$\omega$);
   \item minimum face angle $\geq 20^\circ$;
@@ -1353,7 +1340,8 @@ The TE values obtained from the procedure above are summarised in Table~\ref{tab
 \label{eq:alpha_definition}
 \end{equation}
 is the quantity that the design code internally evaluates as the inlet-flow angle and uses to set the leading-edge metal angle $\theta_1(r)=-\alpha(r)$, that is, zero incidence to the incoming absolute flow~\cite{Leonsen2025}. $\alpha(r)$ is the absolute flow angle relevant to a stationary vane row. The relative angle $\beta(r)=\arctan(W_u/C_m)$ is reported in the same table for completeness but is not used to design the stationary guide vanes.
- 
+
+%Det er viktig for deg å skjønne at alle disse velocity trianglene her er triangler som er tatt rett fra bladets trailing edge med pressure distribution osv etc. MEN det viktige her er at det er ikke disse vinklene som ble brukt som en Guide vane design input vinkel. Det har jeg 
 \begin{table}[H]
   \centering
   \caption[RDT trailing-edge velocity triangle at six spans]{Velocity triangle components at the RDT trailing edge ($s>0.90$) for the six selected spans, used as the spanwise design input for every configuration in the screening campaign. $\alpha$ is the absolute flow angle defined in \eqref{eq:alpha_definition} and is the quantity the guide-vane generator uses to set the LE metal angle. All values follow the sign convention of \eqref{eq:rdt_sign_convention}.}
