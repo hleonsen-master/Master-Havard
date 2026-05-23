@@ -1,0 +1,43 @@
+%==============================================================
+% Notater til Ch3 Methods — mesh / y+
+%==============================================================
+
+% - Nevn at TurboGrid brukes på blader (RDT, GV) og unstructured + inflation
+%   på rør/draft tube
+% - SST k-omega med automatic wall treatment over hele domenet
+% - Konsistent mesh-strategi på tvers av alle 18 case
+% - Rapporter y+ statistikk i tabell (gjennomsnitt over de 18 case):
+%     RDT-blader: mean y+ ~15-25, max ~30
+%     GV-blader:  mean y+ ~20-25, max ~70
+%     DT-vegg:    mean y+ ~170
+% - Forklar at blade-mesh ligger i buffer-sonen (5 < y+ < 30),
+%   ikke i resolved viscous sublayer
+% - Begrunn valget: y+ <= 1 ville krevd 2-3x flere celler per case
+%   --> ikke praktisk for 18-case screening
+% - Pek på konsistens med tidligere oppgaver på samme rig
+%   (Dokset, Andersen, Jensen) — alle i samme y+ range
+% - Konkluder: integral metrics (dH, swirl, ranking) er pålitelige
+%   til tross for buffer-sone
+
+
+%==============================================================
+% Notater til Ch6 / Future Work — mesh refinement
+%==============================================================
+
+% - Anbefal refinement til y+ <= 1 på blader for cavitation-fokus
+% - Begrunn hvorfor det er viktig: lokale trykk-minima på RDT-suge-side
+%   krever resolved viscous sublayer
+% - Praktisk anbefaling: gjør det kun for de mest lovende case
+%   fra screening, ikke alle 18
+% - Nevn at det er kostbart — ~2-3x cellecount per case
+% - Mulig kobling til transient/URANS hvis mesh refines uansett
+
+
+%==============================================================
+% Stikkord til selve skrivingen
+%==============================================================
+
+% - Hold det kort — y+ er ikke hovedtema
+% - Én tabell, ett avsnitt i Methods, én setning i Future Work holder
+% - Ikke unnskyld meshet — begrunn det med kost/nytte for 18-case screening
+% - Vis at du har sjekket det kvantitativt (tabellen viser det)
