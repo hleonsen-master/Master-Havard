@@ -1,0 +1,27 @@
+\chapter{Future work}
+\label{chap:chap7}
+
+The present thesis delivers a systematic CFD screening of 18 guide-vane configurations and a transient rotor--stator interaction diagnostic for two of them. Three directions extend that work naturally and are listed below in order of priority.
+
+\section*{Fully coupled RDT--GV--RPT simulation of the selected configuration}
+
+The screening campaign decouples the guide-vane domain from the downstream reversible pump-turbine by replacing the RPT with an extended straight pipe (Section~\ref{sec:rpt-decoupling-justification}). This is appropriate for a relative ranking under identical conditions but does not predict absolute RPT-side performance. A natural next step is to insert the highest-ranked configuration from the screening into a coupled domain that includes the RPT runner, repeat the simulation at the nominal operating point, and quantify how much of the swirl reduction and loss budget predicted by the screening survives the coupling. This would also enable evaluation of the cavitation margin at the RPT runner inlet, which is the original motivation for the booster concept.
+
+\section*{Structural verification of the selected guide vane}
+
+The CFD campaign treats the vanes as rigid walls and evaluates only hydraulic excitation. Whether the unsteady hydraulic loading reported in Chapter~\ref{chap:chap5} could excite a structural natural frequency of the vane is a separate question that requires modal finite-element analysis of the vane immersed in water. The wet natural frequency relates to the dry one through the standard added-mass relation,
+%
+\begin{equation}
+    f_{n,\mathrm{wet}}
+    \;=\;
+    \frac{f_{n,\mathrm{dry}}}{\sqrt{1 + C_a}},
+    \label{eq:ch6:added_mass}
+\end{equation}
+%
+where $C_a$ is an added-mass coefficient that depends on vane geometry and the confinement of the surrounding casing. Typical values for thin hydrofoil-type vanes in confined geometry are $C_a \approx 0.1$--$0.6$, corresponding to a 7--37\,\% reduction of the natural frequency relative to the dry case~\cite{Gulich2010}. The blade-passing frequency $f_{\mathrm{BPF}} = 75.83$~Hz and its first two harmonics ($151.67$~Hz and $227.50$~Hz) fall in the range where wet natural frequencies of slender axial vanes typically sit, so resonant amplification cannot be excluded from hydraulic data alone. A modal FEM analysis of the selected configuration, followed by a one-way fluid--structure coupling that uses the transient pressure field on the vane surface as the load history, is the appropriate next step. This would also enable a first fatigue assessment of the trailing edge.
+
+\section*{Off-design and transient operation}
+
+The screening is performed at one nominal operating point ($\dot m = 290.3$~kg/s, $n = 650$~rpm). The performance of a guide-vane configuration at part-load and overload conditions, and during start-up and shut-down transients, is not addressed. Off-design behaviour is particularly relevant for the Store2Hydro application because the booster pump must operate over the full RPT pump-mode range. A focused study that repeats the steady screening at two or three off-design flow rates, ideally on the three configurations that rank highest at the nominal point, would establish whether the ranking is robust to operating point or whether the optimum shifts with flow rate.
+
+\clearpage

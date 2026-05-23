@@ -1,0 +1,109 @@
+%==============================================================
+% Stikkord til kavitasjons-diskusjon (Ch5 Discussion)
+%==============================================================
+
+\subsection{Cavitation margin assessment}
+\label{sec:cav_discussion}
+
+%-- Setup-feil i simuleringen ---------------------------------
+\paragraph{Boundary condition offset (Methods context).}
+\begin{itemize}
+    \item Reference Pressure $P_\mathrm{ref} = \SI{1}{atm}$ combined with Inlet Static Pressure of \SI{1}{atm} (relative) gave an effective absolute inlet of $\sim\!\SI{2}{atm}$.
+    \item This corresponds to $\sim\!\SI{10.35}{m}$ of artificial suction head, while the intended physical setup has $\sim\!\SI{0.95}{m}$ tank height or, conservatively, \SI{0}{m} suction head.
+    \item Consequence for the main GV screening (head loss $\Delta H$, swirl, ranking across the 18 cases): \textbf{none} -- only absolute pressure values are shifted by a constant offset.
+    \item Consequence for cavitation: \textbf{must be re-evaluated} using absolute pressures or an equivalent zero-suction-head interpretation.
+\end{itemize}
+
+%-- Korrekt formel --------------------------------------------
+\paragraph{Cavitation margin formulation.}
+The physically correct margin is
+\begin{equation}
+    \mathrm{cavMargin}_H \;=\; \frac{p_\mathrm{min,abs} - p_\mathrm{vap}}{\rho g},
+    \label{eq:cavmargin}
+\end{equation}
+where $p_\mathrm{min,abs}$ is the minimum \emph{absolute} static pressure on the wetted surfaces and $p_\mathrm{vap} \approx \SI{3170}{Pa}$ at laboratory temperature.
+\begin{itemize}
+    \item The CFX CEL expression \texttt{(pMin - pVap)/($\rho$g)} uses pressure relative to $P_\mathrm{ref}$.
+    \item For $P_\mathrm{ref} = \SI{1}{atm}$, this CEL output corresponds directly to a \textbf{zero-suction-head} interpretation -- the worst-case installation assumption.
+    \item This is the assumption adopted for the cavitation analysis in this thesis.
+\end{itemize}
+
+%-- Resultater ------------------------------------------------
+\paragraph{Cavitation margins for case CC\_250\_9.}
+\begin{table}[h]
+\centering
+\begin{tabular}{lrr}
+\hline
+Location & $p_\mathrm{min}$ (relative) & $\mathrm{cavMargin}_H$ \\
+\hline
+GV passage & $+\SI{75.5}{kPa}$ & $+\SI{7.40}{m}$ (safe) \\
+RDT blades & $-\SI{19.0}{kPa}$ & $\boldsymbol{-\SI{2.27}{m}}$ \textbf{(cavitating)} \\
+\hline
+\end{tabular}
+\end{table}
+
+%-- Tolkning --------------------------------------------------
+\paragraph{Interpretation.}
+\begin{itemize}
+    \item A negative margin indicates that the local pressure on the RDT blade suction side drops below the vapour pressure -- vapour cavities are predicted to form.
+    \item This is consistent with the hubless rim-driven configuration, where high tip-region velocities produce local low-pressure zones not present in conventional hubbed designs.
+    \item The GV section retains a comfortable margin ($+\SI{7.4}{m}$); it is \textbf{not} the cavitation-limiting component.
+    \item The RDT is the cavitation-critical component in the system.
+\end{itemize}
+
+%-- Installasjons-dykk ----------------------------------------
+\paragraph{Required submergence for cavitation-neutral operation.}
+\begin{itemize}
+    \item Closing a margin gap of \SI{2.27}{m} requires \SI{2.27}{m} of additional suction head -- equivalent to submerging the RDT centerline \SI{2.27}{m} below the tank free surface (neglecting suction-line losses).
+    \item The general NPSH balance:
+    \begin{equation}
+        \mathrm{NPSH}_a \;=\; h_\mathrm{atm} + h_\mathrm{suction} - h_\mathrm{vap} - h_\mathrm{loss,suction}
+        \label{eq:npsh}
+    \end{equation}
+    with $h_\mathrm{atm} \approx \SI{10.35}{m}$, $h_\mathrm{vap} \approx \SI{0.32}{m}$.
+    \item Minimum submergence in this analysis is set by the most negative blade-surface pressure, not by the bulk inlet condition.
+\end{itemize}
+
+%-- Sikkerhetsmargin ------------------------------------------
+\paragraph{Safety margins.}
+\begin{itemize}
+    \item Recommended $25\text{--}50\%$ margin above the minimum to accommodate:
+    \begin{itemize}
+        \item Steady RANS underestimates local low-pressure peaks (transient, tip-vortex, and blade-passing fluctuations not captured).
+        \item Off-design operation: higher flow rates raise local velocities and lower $p_\mathrm{min}$.
+        \item Variations in $p_\mathrm{vap}$ with operating temperature.
+    \end{itemize}
+    \item $25\%$ margin: submergence $\approx \SI{2.84}{m}$.
+    \item $50\%$ margin: submergence $\approx \SI{3.4}{m}$.
+    \item Conservative recommendation for a prototype: $\gtrsim \SI{3}{m}$.
+\end{itemize}
+
+%-- Begrensninger ---------------------------------------------
+\paragraph{Limitations and caveats.}
+\begin{itemize}
+    \item The simulation does \textbf{not} model phase change -- predicted minima are indicative only; actual vapour formation would alter the local flow field.
+    \item Steady-state RANS typically underpredicts transient low-pressure events; the true cavitation onset may be more severe.
+    \item Hubless rim-driven configurations are particularly sensitive to tip-region cavitation.
+    \item The reported margin applies at a single operating point; off-design conditions are not assessed.
+\end{itemize}
+
+%-- Kobling til GV-screening ----------------------------------
+\paragraph{Coupling to GV design (link to main screening).}
+\begin{itemize}
+    \item RDT cavitation is governed primarily by RDT blade geometry, not by GV design.
+    \item However, GV designs with high passage loss reduce absolute pressure throughout the downstream section, which can influence the coupled RDT--GV--RPT NPSH balance.
+    \item Future ranking of the 18 GV cases may include $\mathrm{cavMargin}_\mathrm{RDT}$ as a fourth screening criterion alongside $\Delta H$, $S$, and outlet flow uniformity.
+\end{itemize}
+
+%-- Anbefalt formulering --------------------------------------
+\paragraph{Summary statement for the thesis.}
+The simulation boundary conditions correspond to $\sim\!\SI{2}{atm}$ absolute inlet ($\sim\!\SI{10.35}{m}$ suction head); for cavitation assessment, results are reinterpreted under a zero-suction-head assumption representing a worst-case installation. Under this assumption, the cavitation head margin at the RDT minimum-pressure location is $-\SI{2.27}{m}$, indicating onset of cavitation in the hubless tip region under atmospheric inlet conditions. The GV sections retain a margin of $+\SI{7.4}{m}$ and are not limiting. To achieve cavitation-neutral operation, the RDT centerline must be submerged at least \SI{2.27}{m} below the tank free surface; a conservative installation with a $25\text{--}50\%$ safety margin gives \SIrange{2.8}{3.4}{m}. The RDT is therefore identified as the cavitation-critical component, and cavitation-aware redesign or installation adjustment is recommended for prototype implementation.
+
+%-- Future Work -----------------------------------------------
+\paragraph{Future Work links.}
+\begin{itemize}
+    \item Re-simulate with correct boundary conditions: Inlet relative pressure set to $\rho g h_\mathrm{tank}$ for the chosen prototype submergence.
+    \item Transient / URANS to capture blade-passing pressure peaks.
+    \item Explicit cavitation modelling (Rayleigh--Plesset or Zwart--Gerber--Belamri) to resolve phase change and its effect on performance.
+    \item Experimental verification of cavitation inception across a range of suction heads.
+\end{itemize}
