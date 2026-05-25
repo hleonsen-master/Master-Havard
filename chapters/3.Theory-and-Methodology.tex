@@ -510,7 +510,49 @@ where \texttt{strategy} is either \texttt{CC} (constant chord) or \texttt{CS} (c
     \bottomrule
   \end{tabular}
 \end{table}
- 
+
+\paragraph{Mesh distribution across the 18 cases.}
+The mesh was kept identical in all non-GV domains across the 18 configurations. The only source of variation in total element count is the geometry-dependent TurboGrid mesh of the GV domain, which changes with chord length and vane count. Table~\ref{tab:mesh-elements-gv-cases} lists the element count per domain for each case. Total mesh size ranges from 25.4 to 31.4 million elements.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Number of mesh elements in each computational domain for the 18 guide-vane configurations. The mesh in the inlet pipe, inner pipe, RDT, InnerPipeGV and draft-tube/cone domains was kept identical for all cases, while the GV-domain mesh varied with the guide-vane geometry. Values are given in million elements.}
+\label{tab:mesh-elements-gv-cases}
+\begin{tabular}{lccccccc}
+\hline
+Case
+& GV
+& InnerPipeGV
+& Inner pipe
+& RDT
+& Inlet pipe
+& DT/cone
+& Total \\
+\hline
+CC\_250\_9 & 6.090 & 0.357 & 1.249 & 11.965 & 0.746 & 4.956 & 25.364 \\
+CC\_300\_9 & 7.024 & 0.357 & 1.249 & 11.965 & 0.746 & 4.956 & 26.297 \\
+CC\_350\_8 & 7.551 & 0.357 & 1.249 & 11.965 & 0.746 & 4.956 & 26.825 \\
+CC\_400\_6 & 10.347 & 0.357 & 1.249 & 11.965 & 0.746 & 4.956 & 29.621 \\
+CC\_400\_8 & 10.866 & 0.357 & 1.249 & 11.965 & 0.746 & 4.956 & 30.139 \\
+CC\_450\_6 & 8.640 & 0.357 & 1.249 & 11.965 & 0.746 & 4.956 & 27.914 \\
+CC\_450\_8 & 9.295 & 0.357 & 1.249 & 11.965 & 0.746 & 4.956 & 28.569 \\
+CC\_500\_6 & 11.978 & 0.357 & 1.249 & 11.965 & 0.746 & 4.956 & 31.252 \\
+CC\_500\_8 & 9.166 & 0.357 & 1.249 & 11.965 & 0.746 & 4.956 & 28.439 \\
+\hline
+CS\_250\_9 & 6.582 & 0.357 & 1.249 & 11.965 & 0.746 & 4.956 & 25.856 \\
+CS\_300\_9 & 6.971 & 0.357 & 1.249 & 11.965 & 0.746 & 4.956 & 26.245 \\
+CS\_350\_8 & 7.969 & 0.357 & 1.249 & 11.965 & 0.746 & 4.956 & 27.243 \\
+CS\_400\_6 & 9.315 & 0.357 & 1.249 & 11.965 & 0.746 & 4.956 & 28.589 \\
+CS\_400\_8 & 9.861 & 0.357 & 1.249 & 11.965 & 0.746 & 4.956 & 29.135 \\
+CS\_450\_6 & 10.292 & 0.357 & 1.249 & 11.965 & 0.746 & 4.956 & 29.566 \\
+CS\_450\_8 & 11.795 & 0.357 & 1.249 & 11.965 & 0.746 & 4.956 & 31.069 \\
+CS\_500\_6 & 10.644 & 0.357 & 1.249 & 11.965 & 0.746 & 4.956 & 29.918 \\
+CS\_500\_8 & 12.143 & 0.357 & 1.249 & 11.965 & 0.746 & 4.956 & 31.417 \\
+\hline
+\end{tabular}
+\end{table}
+
 \paragraph{Coverage and rationale.}
 The matrix covers the six shroud-chord levels $\{250, 300, 350, 400, 450, 500\}$~mm and the vane counts $\{6, 8, 9\}$. Vane count and chord are paired as follows. $Z_s = 9$ is paired with the smaller chords $\{250, 300\}$~mm. $Z_s = 8$ spans $\{350, 400, 450, 500\}$~mm. $Z_s = 6$ covers $\{400, 450, 500\}$~mm. Dense short-chord arrangements probe the high-blockage regime: per-vane loading is moderate but total wetted area is large. Sparse long-chord arrangements probe the opposite: per-vane loading is high, blockage is moderate. The symmetric pairing between the CC and CS branches isolates the effect of the chord-control strategy at fixed $(c_{\mathrm{shroud}}, Z_s)$. Configurations that would lie close to the boundaries of the trade-off, e.g.\ very low solidity at high $Z_s$ that would behave essentially as a high-loss screen, are deliberately excluded.
  
