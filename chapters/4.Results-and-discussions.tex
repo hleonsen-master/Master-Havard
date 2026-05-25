@@ -7,6 +7,111 @@
     }}
 \end{center}
 
+\section{RDT mesh interface overlap: discovery and impact assessment}
+\label{sec:rdt-mesh-overlap}
+
+The results in this chapter are grouped into two layers. The first layer is the screening matrix of $18$ guide-vane configurations simulated with the original RDT mesh. The second layer is a sub-sample of $7$ configurations rerun with a corrected RDT mesh after a setup error was identified during post-processing. This section documents the error, the discovery, and the validation strategy that ties the two layers together. It is placed first so that every subsequent quantitative claim can be interpreted against the same caveat.
+
+\subsection{Nature of the setup error}
+\label{sec:rdt-mesh-overlap-nature}
+
+The rotor domain and the hub-pipe domain of the RDT share a cylindrical interface at $r_\mathrm{hub} = 0.120$~m. The TurboGrid mesh on the rotor blades extends $0.0326$~mm radially beyond this interface and overlaps with the hub-pipe mesh on the hub-blade boundary. CFX resolved this overlap during preprocessing by treating the overlapping nodes as a no-slip wall. The result is an effective interior wall along the hub-blade interface of the RDT, separating the rotor-domain outer flow from the hub-pipe interior flow. The effect is local to the hub region and does not affect the GV passage or the cone-bend section directly.
+
+The consequence is that fluid which should have recirculated through the hub-pipe interior is blocked. Figure~\ref{fig:rdt-mesh-overlap-cc500} shows the original and corrected setup for configuration \texttt{CC\_500\_8}. In the original setup the pressure field shows discontinuous bands at the hub boundary (panel~a), and the velocity vectors stop at the artificial wall instead of crossing it (panel~b). In the corrected setup the pressure field is continuous across the hub boundary (panel~c), and the velocity vectors pass through the hub pipe as expected for a hubless rim-driven thruster (panel~d). The same difference appears in the swirl-only reference simulation (Figure~\ref{fig:rdt-mesh-overlap-swirl}). The downstream pressure level is lower and the radial pressure gradient at the hub is smoother in the corrected case.
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/RDT_mesh_error/CC_500_8_wrong_pressure.png}
+    \caption{Original (wrong) -- pressure}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/RDT_mesh_error/CC_500_8_correct_pressure.png}
+    \caption{Corrected -- pressure}
+\end{subfigure}
+
+\vspace{0.6em}
+
+\begin{subfigure}[t]{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/RDT_mesh_error/CC_500_8_wrong_velocity.png}
+    \caption{Original (wrong) -- velocity}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/RDT_mesh_error/CC_500_8_correct_velocity.png}
+    \caption{Corrected -- velocity}
+\end{subfigure}
+\caption{Configuration \texttt{CC\_500\_8}: pressure contours (top) and velocity vectors (bottom) on a $zy$-plane cutting through the RDT hub region. The original mesh imposes an artificial no-slip wall along the rotor--hub interface, visible as discontinuous pressure bands and velocity vectors that terminate at the boundary. The corrected mesh removes the $0.0326$~mm radial overlap and restores continuous flow through the hub pipe.}
+\label{fig:rdt-mesh-overlap-cc500}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[t]{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/RDT_mesh_error/Swirl_wrong_pressure_contour.png}
+    \caption{Original (wrong) RDT setup}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/RDT_mesh_error/Swirl_correct_pressure_contour.png}
+    \caption{Corrected RDT setup}
+\end{subfigure}
+\caption{NoGV swirl reference: full-length pressure field on a meridional plane. The corrected setup shows a smoother pressure distribution through the hub region and a different absolute pressure level downstream. The downstream cone--bend topology is identical in both cases.}
+\label{fig:rdt-mesh-overlap-swirl}
+\end{figure}
+
+\subsection{Why standard sanity checks did not flag the error}
+\label{sec:rdt-mesh-overlap-why-missed}
+
+Five routine checks were performed during the screening campaign. None of them flagged the interface overlap. Mass-flow conservation between inlet and outlet was satisfied to better than $0.1\%$ in all $18$ cases, because the displaced fluid was rerouted around the hub wall rather than lost. The $y^+$ distribution on the RDT blade and the draft-tube wall remained inside the intended log-law range, since the artificial wall added new boundary nodes but did not violate the wall-treatment assumption. The frozen-rotor pressure jump at the rotor--stator interface was within the magnitude seen in earlier work in the project and was interpreted as a normal interface transition. RMS residuals converged to below $10^{-5}$. Monitor values stabilised within the prescribed iteration window.
+
+The error was identified during post-processing of velocity vectors on a $zy$-plane through the RDT, when a visible row of stagnant vectors was observed along the hub-blade boundary. The hub-pipe interior also showed an unphysical near-stagnant region. A subsequent inspection of the TurboGrid blade mesh and the hub-pipe mesh confirmed the $0.0326$~mm radial overlap.
+
+\subsection{Validation strategy and corrected sub-sample}
+\label{sec:rdt-mesh-overlap-validation}
+
+A complete rerun of all $18$ configurations was not possible within the time available. Seven configurations were therefore selected as anchor points and rerun with the corrected RDT mesh: the NoGV swirl reference, three \texttt{CC} cases (\texttt{CC\_250\_9}, \texttt{CC\_450\_6}, \texttt{CC\_500\_8}), and four \texttt{CS} cases (\texttt{CS\_250\_9}, \texttt{CS\_450\_6}, \texttt{CS\_500\_6}, \texttt{CS\_500\_8}). The selection spans both families, both Pareto-front candidates (Section~\ref{sec:rdt-mesh-overlap-impact}), and the extreme corners of the design space.
+
+Table~\ref{tab:correctRDT-anchor} lists the relative change in system head increase $\Delta H_\mathrm{sys} = H_\mathrm{ConeEnd} - H_\mathrm{RDTStart}$ for each anchor case. The correction reduces $\Delta H_\mathrm{sys}$ by $7$ to $14\%$ across the seven configurations. The NoGV reference moves in the opposite direction, with a $+6.2\%$ change, because the no-guide-vane setup has no separate GV passage loss and the corrected hub flow recovers some pressure that the wall blockage had dissipated. The qualitative ordering between configurations is preserved: the four cases with the lowest uncorrected $\Delta H_\mathrm{sys}$ retain the four lowest corrected values, although the absolute ranking within the anchor group rearranges slightly.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Anchor sub-sample: change in system head increase $\Delta H_\mathrm{sys}$ between the original and the corrected RDT setup. The relative change $\Delta H_\mathrm{sys}^\mathrm{corr} / \Delta H_\mathrm{sys}^\mathrm{orig} - 1$ is given in percent. Values are read from \texttt{comparison\_correctRDT/summary\_all\_pairs.csv} in the post-processing repository.}
+\label{tab:correctRDT-anchor}
+\begin{tabular}{lccc}
+\hline
+Case           & $\Delta H_\mathrm{sys}^\mathrm{orig}$ (m) & $\Delta H_\mathrm{sys}^\mathrm{corr}$ (m) & Change (\%) \\ \hline
+NoGV swirl     & 3.96   & 4.21   & $+6.2$  \\
+\texttt{CC\_250\_9} & 3.70   & 3.43   & $-7.5$  \\
+\texttt{CC\_450\_6} & 3.74   & 3.29   & $-12.0$ \\
+\texttt{CC\_500\_8} & 3.74   & 3.33   & $-10.9$ \\
+\texttt{CS\_250\_9} & 3.60   & 3.12   & $-13.7$ \\
+\texttt{CS\_450\_6} & 3.49   & 3.19   & $-8.7$  \\
+\texttt{CS\_500\_6} & 3.32   & 3.09   & $-7.0$  \\
+\texttt{CS\_500\_8} & 3.23   & 2.91   & $-10.1$ \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{Impact on the screening results and reading guidance}
+\label{sec:rdt-mesh-overlap-impact}
+
+The interface overlap is deterministic and identical across all $18$ screening configurations, because the same RDT mesh was used as input for every case. The bias on absolute head and pressure values is therefore systematic. The relative ranking between configurations, which is the basis for all design conclusions in this chapter, is preserved. The seven anchor cases support this claim within the sub-sample: the qualitative trends in head loss, swirl number and flow angle in the corrected sub-sample reproduce the trends seen in the uncorrected $18$-case matrix.
+
+Three consequences follow for the rest of the chapter:
+
+\begin{enumerate}
+    \item Absolute values of $\Delta H_\mathrm{sys}$, head loss components and pressure recovery are reported as \emph{comparison values}, not as design predictions. The bias is $7$ to $14\%$ in absolute head loss, in the direction documented in Table~\ref{tab:correctRDT-anchor}.
+    \item Relative quantities (rankings, ratios between cases, the location of cases on the Pareto front) are treated as the principal output of the screening study.
+    \item Cavitation margins, axial forces and runner torque are reported as qualitative diagnostics. The CFX reference pressure used for cavitation evaluation was not set with the precision required for a quantitative cavitation prediction, and these quantities are not used in the design ranking.
+\end{enumerate}
+
+Results from the seven corrected anchor cases are reported alongside the uncorrected screening results where the comparison is informative, but the screening matrix remains the $18$ uncorrected cases. Re-running all $18$ configurations is identified as the principal item of future work and is discussed in Chapter~\ref{chap:future_work}.
+
 \section{FFT analysis of the transient RDT-GV simulations}
 \label{sec:results-fft}
  

@@ -1227,12 +1227,12 @@ The values in Table~\ref{tab:rdt_te_values} therefore describe the local kinemat
     span & $r$ & $U$ & $C_m$ & $C_u$ & $W_u$ & $|\vec{C}|$ & $\alpha$ & $\beta$ \\
          & [mm] & [m/s] & [m/s] & [m/s] & [m/s] & [m/s] & [$^\circ$] & [$^\circ$] \\
     \hline
-    0.01 &  55.9 &  3.81 & 0.67 &  3.57 & $-0.24$ &  3.63 & $+79.3$ & $-19.7$ \\
-    0.20 &  93.2 &  6.34 & 1.41 &  4.62 & $-1.72$ &  4.83 & $+73.0$ & $-50.6$ \\
-    0.40 & 132.4 &  9.01 & 1.31 &  6.76 & $-2.25$ &  6.88 & $+79.0$ & $-59.8$ \\
-    0.60 & 171.6 & 11.68 & 1.31 &  8.95 & $-2.73$ &  9.04 & $+81.7$ & $-64.4$ \\
-    0.80 & 210.8 & 14.35 & 1.39 & 10.84 & $-3.51$ & 10.93 & $+82.7$ & $-68.4$ \\
-    0.99 & 248.0 & 16.88 & 0.99 & 13.85 & $-3.03$ & 13.89 & $+85.9$ & $-72.0$ \\
+    0.01 &  55.9 &  3.81 & $-0.03$ &  4.22 & $+0.41$ &  4.22 & $+90.3$ & $+93.5$ \\
+    0.20 &  93.2 &  6.34 &  1.00 &  5.21 & $-1.13$ &  5.31 & $+79.1$ & $-48.3$ \\
+    0.40 & 132.4 &  9.01 &  1.44 &  6.63 & $-2.38$ &  6.78 & $+77.8$ & $-58.9$ \\
+    0.60 & 171.6 & 11.68 &  1.67 &  8.22 & $-3.46$ &  8.39 & $+78.5$ & $-64.2$ \\
+    0.80 & 210.8 & 14.35 &  1.67 &  9.98 & $-4.37$ & 10.12 & $+80.5$ & $-69.0$ \\
+    0.99 & 248.0 & 16.88 &  0.21 & 15.71 & $-1.17$ & 15.71 & $+89.2$ & $-79.8$ \\
     \hline
   \end{tabular}
 \end{table}
@@ -1240,12 +1240,12 @@ The values in Table~\ref{tab:rdt_te_values} therefore describe the local kinemat
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.99\linewidth]{Figures/RDT/RDT_velocity_triangles_TE.png}
-  \caption[Velocity triangles at the RDT trailing edge]{Velocity triangles at the RDT trailing edge ($s>0.90$) for the six radial spans. Blue: absolute velocity $\vec{C}$; green: peripheral velocity $\vec{U}=\omega r$; red: relative velocity $\vec{W}=\vec{C}-\vec{U}$. The three vectors close as $\vec{C}=\vec{U}+\vec{W}$ by construction. Operating point: $N=650$~rpm, $Z_r=7$.}
+  \caption[Velocity triangles at the RDT trailing edge]{Velocity triangles at the RDT trailing edge ($s>0.90$) for the six radial spans. Solid: peripheral velocity $\vec{U}=\omega r$; dashed: absolute velocity $\vec{C}$; dotted: relative velocity $\vec{W}=\vec{C}-\vec{U}$. The three vectors close as $\vec{C}=\vec{U}+\vec{W}$ by construction. Operating point: $N=650$~rpm, $Z_r=7$.}
   \label{fig:rdt_velocity_triangles_TE}
 \end{figure}
  
 \paragraph{Wake structure observed in the trailing-edge region.}
-Three observations from Table~\ref{tab:rdt_te_values} are relevant for the wake characterisation. First, the meridional component $C_m$ remains close to $1.3$~m/s in the central span band ($r/R\in[0.20,0.80]$); it drops to $0.67$~m/s near the hub and to $0.99$~m/s near the tip. This is consistent with the low-momentum hub region and the tip-vortex interaction expected in a hubless rim-driven thruster~\cite{DjupeslandTrivedi2025}. Second, the tangential component $C_u$ increases nearly linearly with radius, from $3.57$~m/s at the hub to $13.85$~m/s at the tip, qualitatively consistent with the forced-vortex distribution targeted in the upstream design~\cite{DjupeslandTrivedi2025}. Third, the absolute flow angle $\alpha$ exceeds $80^\circ$ over most of the design span and reaches $85.9^\circ$ at $r/R=0.99$. The wake on the blade trailing edge is therefore dominated by tangential motion, in line with what the guide vanes are designed to turn back towards the axial direction.
+The meridional component $C_m$ starts at $-0.03$~m/s at the hub and rises to a peak of $1.67$~m/s in the central span band $r/R\in[0.60,\,0.80]$. It then drops to $0.21$~m/s at the tip. This C-shaped profile is consistent with the low-momentum hub region and the tip-vortex interaction expected in a hubless rim-driven thruster~\cite{DjupeslandTrivedi2025}. The tangential component $C_u$ increases monotonically with radius from $4.22$~m/s at the hub to $15.71$~m/s at the tip, qualitatively consistent with the forced-vortex distribution targeted in the upstream design~\cite{DjupeslandTrivedi2025}. The absolute flow angle $\alpha$ stays between $78^\circ$ and $90^\circ$ across the design span. It is closest to purely tangential at the endpoints ($90.3^\circ$ at the hub and $89.2^\circ$ at the tip) and reaches its lowest value of $77.8^\circ$ at $r/R = 0.40$. The wake on the blade trailing edge is therefore dominated by tangential motion, which is what the guide vanes are designed to redirect towards the axial direction.
  
 \paragraph{Inner cut-out.}
 The values for $r/R\in\{0.01,0.20\}$ correspond to radii $r=55.9$~mm and $r=93.2$~mm, both of which lie inside the inner cut-out of the guide-vane span $r\in[120,250]$~mm fixed by the radial backflow boundary (Section~\ref{sec:methods_design_input_baseline}). They are reported here as a wake description; they are not used to set the local guide-vane geometry.
