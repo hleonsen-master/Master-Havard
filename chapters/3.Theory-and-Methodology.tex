@@ -119,6 +119,22 @@ The fundamental design objective of the guide vanes is to reduce $S(z)$ from the
  
 \paragraph{Alternative swirl-number definitions.}
 Equation~\ref{eq:S_def} is the form most often used in the combustion literature and is the form adopted as the primary metric in this thesis. The swirl number is not unique. Vignat et al.~\cite{Vignat2022} show that several formally equivalent definitions can give numerical values that differ by tens of percent on non-uniform velocity profiles. The local swirling-strength indicator $\lambda_{ci}$ is the field exported from CFX as \texttt{Velocity.Swirling Strength} and identifies vortex cores from the imaginary part of the eigenvalues of the local velocity-gradient tensor. $\lambda_{ci}$ complements $S$: the scalar swirl number measures the total angular-momentum content of the cross-section, while $\lambda_{ci}$ picks up discrete vortex structures such as tip vortices or precessing cores.
+
+\paragraph{Q-criterion for vortex identification.}
+A complementary identifier of coherent vortex cores is the second invariant of the velocity-gradient tensor. The tensor splits into a symmetric strain-rate part $\mathbf{S} = \tfrac{1}{2}(\nabla\vec{u} + \nabla\vec{u}^{T})$ and an antisymmetric vorticity part $\boldsymbol{\Omega} = \tfrac{1}{2}(\nabla\vec{u} - \nabla\vec{u}^{T})$. Hunt et al.~\cite{Hunt1988} define
+\begin{equation}
+Q \;=\; \tfrac{1}{2}\!\left(\|\boldsymbol{\Omega}\|^{2} - \|\mathbf{S}\|^{2}\right),
+\label{eq:Q_def}
+\end{equation}
+so that $Q > 0$ identifies a region where local rotation dominates local strain. For incompressible flow, Eq.~\ref{eq:Q_def} is equivalent to
+\begin{equation}
+Q \;=\; \tfrac{1}{4}\,|\nabla\times\vec{u}|^{2} \;-\; \tfrac{1}{4}\,\mathrm{SSR}^{2},
+\label{eq:Q_cfx}
+\end{equation}
+with $\mathrm{SSR} = \sqrt{2\,S_{ij}S_{ij}}$ as exported by CFX. Both terms carry the same prefactor. A pure shear flow gives $|\nabla\times\vec{u}|^{2} = \mathrm{SSR}^{2}$ and therefore $Q = 0$ identically, consistent with the underlying balance of rotation and strain.
+
+Two consequences follow for the post-processing. Vortex extraction uses a positive threshold $Q_{\mathrm{ref}} > 0$, since the discrete cores of interest sit at $Q > 0$. Wall-bounded regions show strongly negative $Q$ because the boundary layer is shear-dominated and $\|\mathbf{S}\|^{2}$ exceeds $\|\boldsymbol{\Omega}\|^{2}$ there. Negative $Q$ at walls is the expected signature of wall-bounded shear and is not a numerical artefact. The criterion complements $\lambda_{ci}$: both isolate vortex cores, but $Q$ measures the strain-rotation balance directly whereas $\lambda_{ci}$ uses the eigenvalue structure of $\nabla\vec{u}$.
+ 
  
 \paragraph{Critical swirl and vortex breakdown.}
 When the swirl ratio exceeds a critical value, swirling pipe flow can develop stagnation zones, wall separation and vortex breakdown~\cite{Rusak2014}. Critical $S$ values reported in the literature cluster around 0.6 for free swirling flows but depend on the specific definition and on the boundary conditions; in confined pipe flow with finite walls the threshold can be higher~\cite{Rusak2014}. Vortex breakdown is associated with large losses and strong unsteadiness, and it is the underlying mechanism behind the rotating vortex rope (RVR) in Francis-turbine draft tubes at off-design~\cite{Brekke2010}. A residual $S(z)$ at the RPT inlet plane large enough to support breakdown would be unacceptable. The post-processing therefore checks the residual $S$ values against this threshold.

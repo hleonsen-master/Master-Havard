@@ -23,12 +23,12 @@ The consequence is that fluid which should have recirculated through the hub-pip
 \centering
 \begin{subfigure}[t]{0.48\linewidth}
     \centering
-    \includegraphics[width=\linewidth]{Figures/RDT_mesh_error/CC_500_8_wrong_pressure.png}
+    \includegraphics[width=\linewidth]{Figures/Results/RDT_mesh_error/CC_500_8 wrong contour pressure.png}
     \caption{Original (wrong) -- pressure}
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.48\linewidth}
     \centering
-    \includegraphics[width=\linewidth]{Figures/RDT_mesh_error/CC_500_8_correct_pressure.png}
+    \includegraphics[width=\linewidth]{Figures/Results/RDT_mesh_error/CC_500_8 correct contour pressure.png}
     \caption{Corrected -- pressure}
 \end{subfigure}
 
@@ -36,12 +36,12 @@ The consequence is that fluid which should have recirculated through the hub-pip
 
 \begin{subfigure}[t]{0.48\linewidth}
     \centering
-    \includegraphics[width=\linewidth]{Figures/RDT_mesh_error/CC_500_8_wrong_velocity.png}
+    \includegraphics[width=\linewidth]{Figures/Results/RDT_mesh_error/CC_500_8 wrong velocity vector.png}
     \caption{Original (wrong) -- velocity}
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.48\linewidth}
     \centering
-    \includegraphics[width=\linewidth]{Figures/RDT_mesh_error/CC_500_8_correct_velocity.png}
+    \includegraphics[width=\linewidth]{Figures/Results/RDT_mesh_error/CC_500_8 correct velocity vector.png}
     \caption{Corrected -- velocity}
 \end{subfigure}
 \caption{Configuration \texttt{CC\_500\_8}: pressure contours (top) and velocity vectors (bottom) on a $zy$-plane cutting through the RDT hub region. The original mesh imposes an artificial no-slip wall along the rotor--hub interface, visible as discontinuous pressure bands and velocity vectors that terminate at the boundary. The corrected mesh removes the $0.0326$~mm radial overlap and restores continuous flow through the hub pipe.}
@@ -52,15 +52,15 @@ The consequence is that fluid which should have recirculated through the hub-pip
 \centering
 \begin{subfigure}[t]{0.48\linewidth}
     \centering
-    \includegraphics[width=\linewidth]{Figures/RDT_mesh_error/Swirl_wrong_pressure_contour.png}
+    \includegraphics[width=\linewidth]{Figures/Results/RDT_mesh_error/Swirl_wrong_pressure_contour.png}
     \caption{Original (wrong) RDT setup}
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.48\linewidth}
     \centering
-    \includegraphics[width=\linewidth]{Figures/RDT_mesh_error/Swirl_correct_pressure_contour.png}
+    \includegraphics[width=\linewidth]{Figures/Results/RDT_mesh_error/Swirl_correct_pressure_contour.png}
     \caption{Corrected RDT setup}
 \end{subfigure}
-\caption{NoGV swirl reference: full-length pressure field on a meridional plane. The corrected setup shows a smoother pressure distribution through the hub region and a different absolute pressure level downstream. The downstream cone--bend topology is identical in both cases.}
+\caption{NoGV swirl reference before and after correction of mesh interface. Corrected(on right) shows a higher pressure increase downstream in the Draft tube.}
 \label{fig:rdt-mesh-overlap-swirl}
 \end{figure}
 
@@ -195,26 +195,27 @@ The same logic applies to GV $y^+$. The GV wall mesh is consistent across all ei
 \label{tab:mass-and-yplus}
 \begin{tabular}{l r rr r r}
 \hline
-Case & $\varepsilon_{\dot m}$ (\%) & GV $y^+$ avg (max) & RDT $y^+$ avg & DT $y^+$ avg (max) \\ \hline
-\texttt{CS\_500\_8} & $-0.229$ & $5.6$ ($22.9$)  & $15.7$ & $166$ ($745$) \\
-\texttt{CS\_500\_6} & $+0.177$ & $5.9$ ($24.1$)  & $15.9$ & $166$ ($699$) \\
-\texttt{CS\_450\_8} & $+0.157$ & $18.6$ ($73.1$) & $16.1$ & $175$ ($686$) \\
-\texttt{CS\_450\_6} & $+0.025$ & $16.0$ ($53.4$) & $16.1$ & $187$ ($657$) \\
-\texttt{CS\_400\_8} & $-0.064$ & $19.8$ ($59.5$) & $16.3$ & $186$ ($589$) \\
-\texttt{CS\_400\_6} & $+0.077$ & $18.7$ ($57.9$) & $16.2$ & $194$ ($573$) \\
-\texttt{CS\_350\_8} & $+0.152$ & $21.5$ ($57.3$) & $16.3$ & $192$ ($572$) \\
-\texttt{CS\_300\_9} & $-0.017$ & $19.6$ ($54.3$) & $16.4$ & $202$ ($488$) \\
-\texttt{CS\_250\_9} & $+0.032$ & $14.9$ ($41.9$) & $16.4$ & $216$ ($533$) \\
-\texttt{CC\_500\_8} & $+0.025$ & $9.9$  ($30.5$) & $16.4$ & $162$ ($620$) \\
-\texttt{CC\_500\_6} & $+0.002$ & $5.8$  ($17.6$) & $16.5$ & $166$ ($520$) \\
-\texttt{CC\_450\_8} & $+0.022$ & $22.0$ ($68.5$) & $16.5$ & $172$ ($517$) \\
-\texttt{CC\_450\_6} & $-0.004$ & $23.7$ ($73.6$) & $16.4$ & $184$ ($519$) \\
-\texttt{CC\_400\_8} & $-0.049$ & $18.6$ ($57.8$) & $16.5$ & $178$ ($504$) \\
-\texttt{CC\_400\_6} & $+0.006$ & $18.5$ ($53.7$) & $16.4$ & $198$ ($575$) \\
-\texttt{CC\_350\_8} & $-0.035$ & $39.1$ ($116.8$) & $16.5$ & $183$ ($510$) \\
-\texttt{CC\_300\_9} & $-0.056$ & $35.2$ ($108.0$) & $16.4$ & $193$ ($544$) \\
-\texttt{CC\_250\_9} & $-0.036$ & $34.7$ ($110.6$) & $16.5$ & $209$ ($499$) \\
-NoGV swirl          & $-0.063$ & --              & $14.1$ & $396$ ($588$) \\
+Case & $\varepsilon_{\dot m}$ (\%) & GV $y^+$ avg (max) & RDT $y^+$ avg & DT $y^+$ avg (max) \\ 
+\hline
+\texttt{CS\_500\_8} & $-0.23$ & $5.60$ ($22.90$)  & $15.70$ & $166$ ($745$) \\
+\texttt{CS\_500\_6} & $+0.18$ & $5.90$ ($24.10$)  & $15.90$ & $166$ ($699$) \\
+\texttt{CS\_450\_8} & $+0.16$ & $18.60$ ($73.10$) & $16.10$ & $175$ ($686$) \\
+\texttt{CS\_450\_6} & $+0.03$ & $16$ ($53.40$) & $16.10$ & $187$ ($657$) \\
+\texttt{CS\_400\_8} & $-0.06$ & $19.80$ ($59.50$) & $16.30$ & $186$ ($589$) \\
+\texttt{CS\_400\_6} & $+0.08$ & $18.70$ ($57.90$) & $16.20$ & $194$ ($573$) \\
+\texttt{CS\_350\_8} & $+0.15$ & $21.50$ ($57.30$) & $16.30$ & $192$ ($572$) \\
+\texttt{CS\_300\_9} & $-0.02$ & $19.60$ ($54.30$) & $16.40$ & $202$ ($488$) \\
+\texttt{CS\_250\_9} & $+0.03$ & $14.90$ ($41.90$) & $16.40$ & $216$ ($533$) \\
+\texttt{CC\_500\_8} & $+0.03$ & $9.90$  ($30.50$) & $16.40$ & $162$ ($620$) \\
+\texttt{CC\_500\_6} & $+0.00$ & $5.80$  ($17.60$) & $16.50$ & $166$ ($520$) \\
+\texttt{CC\_450\_8} & $+0.02$ & $22$ ($68.50$) & $16.50$ & $172$ ($517$) \\
+\texttt{CC\_450\_6} & $-0.00$ & $23.70$ ($73.60$) & $16.40$ & $184$ ($519$) \\
+\texttt{CC\_400\_8} & $-0.05$ & $18.60$ ($57.80$) & $16.50$ & $178$ ($504$) \\
+\texttt{CC\_400\_6} & $+0.01$ & $18.50$ ($53.70$) & $16.40$ & $198$ ($575$) \\
+\texttt{CC\_350\_8} & $-0.04$ & $39.10$ ($116.80$) & $16.50$ & $183$ ($510$) \\
+\texttt{CC\_300\_9} & $-0.06$ & $35.20$ ($108$) & $16.40$ & $193$ ($544$) \\
+\texttt{CC\_250\_9} & $-0.04$ & $34.70$ ($110.60$) & $16.50$ & $209$ ($499$) \\
+NoGV swirl          & $-0.06$ & --                  & $14.10$ & $396$ ($588$) \\
 \hline
 \end{tabular}
 \end{table}
@@ -231,8 +232,8 @@ Figure~\ref{fig:hi-bar} shows $\Delta H_{\mathrm{sys}}$ for the $18$-case screen
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.95\linewidth]{Figures/Results/fig_4_3_HI_bar.png}
-\caption{System head increase $\Delta H_{\mathrm{sys}} = H_{\mathrm{ConeEnd}} - H_{\mathrm{RDTStart}}$ for the $18$-case screening matrix, sorted from highest to lowest. The dashed line marks the NoGV swirl reference at $3.96$~m. CC family is shown with solid grey fill; CS family is shown with diagonal hatching. Values are read from \texttt{Results\_correctRDT.csv}.}
+\fbox{\includegraphics[width=0.95\linewidth]{Figures/Results/fig_4_3_HI_bar.png}}
+\caption{System head increase $\Delta H_{\mathrm{sys}} = H_{\mathrm{ConeEnd}} - H_{\mathrm{RDTStart}}$ for the $18$-case screening matrix, sorted from highest to lowest. The dashed line marks the NoGV swirl reference at $4.21$~m. CC family is shown with solid grey fill; CS family is shown with diagonal hatching. Values are read from \texttt{Results\_correctRDT.csv}.}
 \label{fig:hi-bar}
 \end{figure}
 
@@ -253,8 +254,8 @@ Figure~\ref{fig:hl-stacked} shows the three components as a stacked bar for the 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.95\linewidth]{Figures/Results/fig_4_4_HL_stacked_bar.png}
-\caption{Head-loss decomposition into GV passage, cone section, and bend for the $18$-case screening matrix and the NoGV swirl reference. The dashed line marks the NoGV total head loss of $1.72$~m. Sub-section definitions follow Table~\ref{tab:hl-decomposition}.}
+\fbox{\includegraphics[width=0.95\linewidth]{Figures/Results/fig_4_4_HL_stacked_bar.png}}
+\caption{Head-loss decomposition into GV passage, cone section, and bend for the $18$-case screening matrix and the NoGV swirl reference. The dashed line marks the NoGV total head loss of $1.66$~m for the correctRDT simululation. Sub-section definitions follow Table~\ref{tab:hl-decomposition}.}
 \label{fig:hl-stacked}
 \end{figure}
 
@@ -265,30 +266,31 @@ The bend collapse is the most pronounced single effect in the loss decomposition
 \begin{table}[H]
 \centering
 \footnotesize
-\caption{Head-loss decomposition for the $18$-case screening matrix and the NoGV swirl reference. $\mathrm{HL_{GV}}$ is taken between \texttt{GVStart} and the fixed axial reference plane at $z = -0.680$~m. $\mathrm{HL_{cone}}$ is taken between this reference plane and \texttt{ConeEnd}. $\mathrm{HL_{bend}}$ is taken between \texttt{BendStart} and \texttt{BendEnd}. $\mathrm{HL_{total}}$ is the sum from \texttt{GVStart} to \texttt{BendEnd}. All values in metres. For the NoGV reference the $\mathrm{HL_{GV}}$ column reports the head loss in the same axial section without any guide vane present.}
+\caption{Head-loss decomposition for the $18$-case screening matrix and the NoGV swirl reference. $\mathrm{HL_{GV}}$ is taken between \texttt{GVStart} and the fixed axial reference plane at $z = -0.680$~m. $\mathrm{HL_{cone}}$ is taken between this reference plane and \texttt{ConeEnd}. $\mathrm{HL_{bend}}$ is taken between \texttt{BendStart} and \texttt{BendEnd}. $\mathrm{HL_{total}}$ is the sum from \texttt{GVStart} to \texttt{ConeEnd}. All values in metres. For the NoGV reference the $\mathrm{HL_{GV}}$ column reports the head loss in the same axial section without any guide vane present.}
 \label{tab:hl-decomposition}
 \begin{tabular}{l rrrr}
 \hline
-Case & $\mathrm{HL_{GV}}$ & $\mathrm{HL_{cone}}$ & $\mathrm{HL_{bend}}$ & $\mathrm{HL_{total}}$ \\ \hline
-\texttt{CS\_500\_8} & $1.211$ & $0.700$ & $0.014$ & $1.910$ \\
-\texttt{CS\_500\_6} & $0.980$ & $0.779$ & $0.022$ & $1.756$ \\
-\texttt{CS\_450\_8} & $1.064$ & $0.586$ & $0.036$ & $1.652$ \\
-\texttt{CS\_450\_6} & $1.140$ & $0.319$ & $0.022$ & $1.459$ \\
-\texttt{CS\_400\_8} & $1.146$ & $0.324$ & $0.026$ & $1.464$ \\
-\texttt{CS\_400\_6} & $1.179$ & $0.275$ & $0.036$ & $1.445$ \\
-\texttt{CS\_350\_8} & $1.113$ & $0.303$ & $0.025$ & $1.412$ \\
-\texttt{CS\_300\_9} & $1.197$ & $0.182$ & $0.029$ & $1.366$ \\
-\texttt{CS\_250\_9} & $1.211$ & $0.204$ & $0.050$ & $1.414$ \\
-\texttt{CC\_500\_8} & $0.811$ & $0.563$ & $0.022$ & $1.371$ \\
-\texttt{CC\_500\_6} & $0.921$ & $0.418$ & $0.016$ & $1.333$ \\
-\texttt{CC\_450\_8} & $1.042$ & $0.314$ & $0.016$ & $1.348$ \\
-\texttt{CC\_450\_6} & $0.981$ & $0.379$ & $0.016$ & $1.352$ \\
-\texttt{CC\_400\_8} & $1.074$ & $0.239$ & $0.016$ & $1.308$ \\
-\texttt{CC\_400\_6} & $1.135$ & $0.240$ & $0.058$ & $1.374$ \\
-\texttt{CC\_350\_8} & $1.199$ & $0.194$ & $0.021$ & $1.388$ \\
-\texttt{CC\_300\_9} & $1.242$ & $0.204$ & $0.043$ & $1.428$ \\
-\texttt{CC\_250\_9} & $1.191$ & $0.146$ & $0.045$ & $1.334$ \\
-NoGV swirl          & $0.528$ & $1.256$ & $0.393$ & $1.723$ \\
+Case & $\mathrm{HL_{GV}}$ & $\mathrm{HL_{cone}}$ & $\mathrm{HL_{bend}}$ & $\mathrm{HL_{total}}$ \\ 
+\hline
+\texttt{CS\_500\_8} & $1.21$ & $0.70$ & $0.01$ & $1.91$ \\
+\texttt{CS\_500\_6} & $0.98$ & $0.78$ & $0.02$ & $1.76$ \\
+\texttt{CS\_450\_8} & $1.06$ & $0.59$ & $0.04$ & $1.65$ \\
+\texttt{CS\_450\_6} & $1.14$ & $0.32$ & $0.02$ & $1.46$ \\
+\texttt{CS\_400\_8} & $1.15$ & $0.32$ & $0.03$ & $1.46$ \\
+\texttt{CS\_400\_6} & $1.18$ & $0.28$ & $0.04$ & $1.45$ \\
+\texttt{CS\_350\_8} & $1.11$ & $0.30$ & $0.03$ & $1.41$ \\
+\texttt{CS\_300\_9} & $1.20$ & $0.18$ & $0.03$ & $1.37$ \\
+\texttt{CS\_250\_9} & $1.21$ & $0.20$ & $0.05$ & $1.41$ \\
+\texttt{CC\_500\_8} & $0.81$ & $0.56$ & $0.02$ & $1.37$ \\
+\texttt{CC\_500\_6} & $0.92$ & $0.42$ & $0.02$ & $1.33$ \\
+\texttt{CC\_450\_8} & $1.04$ & $0.31$ & $0.02$ & $1.35$ \\
+\texttt{CC\_450\_6} & $0.98$ & $0.38$ & $0.02$ & $1.35$ \\
+\texttt{CC\_400\_8} & $1.07$ & $0.24$ & $0.02$ & $1.31$ \\
+\texttt{CC\_400\_6} & $1.14$ & $0.24$ & $0.06$ & $1.37$ \\
+\texttt{CC\_350\_8} & $1.20$ & $0.19$ & $0.02$ & $1.39$ \\
+\texttt{CC\_300\_9} & $1.24$ & $0.20$ & $0.04$ & $1.43$ \\
+\texttt{CC\_250\_9} & $1.19$ & $0.15$ & $0.05$ & $1.33$ \\
+NoGV swirl          & $0.38$ & $1.28$ & $0.37$ & $1.66$ \\
 \hline
 \end{tabular}
 \end{table}
@@ -349,28 +351,29 @@ The mesh-bias caveat from Section~\ref{sec:rdt-mesh-overlap-impact} applies. Wit
 \footnotesize
 \caption{Swirl-recovery metrics for the $18$-case screening matrix and the NoGV swirl reference. $|\alpha|_{\mathrm{ConeEnd}}$ is the mass-averaged absolute flow angle at the RPT inlet plane. $S_{\mathrm{GVStart}}$ and $S_{\mathrm{GVEnd6}}$ are donut-region swirl numbers (annular section between hub and shroud). $S_{\mathrm{ConeEnd}}$ and $S_{\mathrm{BendEnd}}$ are signed full-pipe swirl numbers: positive values indicate rotation in the same sense as the upstream RDT swirl, negative values indicate over-correction by the guide vanes.}
 \label{tab:swirl-recovery-metrics}
-\begin{tabular}{l r rrrr}
+\begin{tabular}{l r rr}
 \hline
-Case & $|\alpha|_{\mathrm{ConeEnd}}$ (deg) & $S_{\mathrm{GVStart}}$ & $S_{\mathrm{GVEnd6}}$ & $S_{\mathrm{ConeEnd}}$ & $S_{\mathrm{BendEnd}}$ \\ \hline
-\texttt{CS\_500\_8} & $9.1$  & $1.22$ & $0.15$ & $+0.17$ & $-0.11$ \\
-\texttt{CS\_500\_6} & $13.1$ & $1.24$ & $0.20$ & $+0.29$ & $-0.02$ \\
-\texttt{CS\_450\_8} & $16.7$ & $1.12$ & $0.37$ & $+0.22$ & $-0.23$ \\
-\texttt{CS\_450\_6} & $22.3$ & $1.01$ & $0.55$ & $-0.30$ & $-0.75$ \\
-\texttt{CS\_400\_8} & $22.2$ & $0.94$ & $0.52$ & $-0.23$ & $-0.78$ \\
-\texttt{CS\_400\_6} & $29.3$ & $0.94$ & $0.63$ & $-0.20$ & $-1.16$ \\
-\texttt{CS\_350\_8} & $28.1$ & $0.93$ & $0.65$ & $-0.45$ & $-1.43$ \\
-\texttt{CS\_300\_9} & $30.7$ & $0.90$ & $0.77$ & $-0.72$ & $-1.94$ \\
-\texttt{CS\_250\_9} & $35.1$ & $0.87$ & $0.94$ & $-1.15$ & $-2.31$ \\
-\texttt{CC\_500\_8} & $16.5$ & $0.96$ & $0.31$ & $+0.13$ & $-0.23$ \\
-\texttt{CC\_500\_6} & $17.3$ & $0.91$ & $0.38$ & $+0.11$ & $-0.24$ \\
-\texttt{CC\_450\_8} & $20.6$ & $0.84$ & $0.47$ & $-0.08$ & $-0.43$ \\
-\texttt{CC\_450\_6} & $25.5$ & $0.85$ & $0.59$ & $-0.24$ & $-0.89$ \\
-\texttt{CC\_400\_8} & $21.5$ & $0.88$ & $0.51$ & $-0.26$ & $-0.74$ \\
-\texttt{CC\_400\_6} & $28.2$ & $0.88$ & $0.74$ & $-0.86$ & $-1.04$ \\
-\texttt{CC\_350\_8} & $25.1$ & $0.87$ & $0.60$ & $-0.39$ & $-1.09$ \\
-\texttt{CC\_300\_9} & $21.4$ & $0.86$ & $0.69$ & $-0.42$ & $-1.32$ \\
-\texttt{CC\_250\_9} & $35.0$ & $0.82$ & $0.88$ & $-1.05$ & $-1.96$ \\
-NoGV swirl          & $53.6$ & $1.83$ & $2.18$ & $-0.92$ & $-6.62$ \\
+Case & $|\alpha|_{\mathrm{ConeEnd}}$ (deg) & $S_{\mathrm{GVStart}}$ & $S_{\mathrm{GVEnd6}}$ \\ 
+\hline
+\texttt{CS\_500\_8} & $9.1$  & $1.22$ & $0.15$ \\
+\texttt{CS\_500\_6} & $13.1$ & $1.24$ & $0.20$ \\
+\texttt{CS\_450\_8} & $16.7$ & $1.12$ & $0.37$ \\
+\texttt{CS\_450\_6} & $22.3$ & $1.01$ & $0.55$ \\
+\texttt{CS\_400\_8} & $22.2$ & $0.94$ & $0.52$ \\
+\texttt{CS\_400\_6} & $29.3$ & $0.94$ & $0.63$ \\
+\texttt{CS\_350\_8} & $28.1$ & $0.93$ & $0.65$ \\
+\texttt{CS\_300\_9} & $30.7$ & $0.90$ & $0.77$ \\
+\texttt{CS\_250\_9} & $35.1$ & $0.87$ & $0.94$ \\
+\texttt{CC\_500\_8} & $16.5$ & $0.96$ & $0.31$ \\
+\texttt{CC\_500\_6} & $17.3$ & $0.91$ & $0.38$ \\
+\texttt{CC\_450\_8} & $20.6$ & $0.84$ & $0.47$ \\
+\texttt{CC\_450\_6} & $25.5$ & $0.85$ & $0.59$ \\
+\texttt{CC\_400\_8} & $21.5$ & $0.88$ & $0.51$ \\
+\texttt{CC\_400\_6} & $28.2$ & $0.88$ & $0.74$ \\
+\texttt{CC\_350\_8} & $25.1$ & $0.87$ & $0.60$ \\
+\texttt{CC\_300\_9} & $21.4$ & $0.86$ & $0.69$ \\
+\texttt{CC\_250\_9} & $35.0$ & $0.82$ & $0.88$ \\
+NoGV swirl          & $63.72$ & $1.67$ & $2.38$ \\
 \hline
 \end{tabular}
 \end{table}
@@ -415,7 +418,7 @@ Figure~\ref{fig:pareto-map} shows the screening matrix on the $|\alpha|_{\mathrm
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.95\linewidth]{Figures/Results/fig_4_5_pareto_map.png}
+\fbox{\includegraphics[width=0.95\linewidth]{Figures/Results/fig_4_6_pareto.png}}
 \caption{Pareto map of the $18$-case screening matrix. Each point shows one configuration on the $|\alpha|_{\mathrm{ConeEnd}}$-versus-$\Delta H_{\mathrm{sys}}$ plane. CC family is shown with grey filled markers; CS family with open markers and diagonal hatching. The four Pareto-dominant configurations are connected by a solid line. The NoGV swirl reference (off-scale at $|\alpha| = 53.6^\circ$, $\Delta H_{\mathrm{sys}} = 3.96$~m) is indicated for context only and is not part of the GV Pareto front.}
 \label{fig:pareto-map}
 \end{figure}
@@ -427,11 +430,11 @@ Figure~\ref{fig:pareto-map} shows the screening matrix on the $|\alpha|_{\mathrm
 \label{tab:pareto-front}
 \begin{tabular}{l rrrr l}
 \hline
-Case & $\Delta H_{\mathrm{sys}}$ (m) & $|\alpha|_{\mathrm{ConeEnd}}$ (deg) & $\mathrm{HL_{total}}$ (m) & $S_{\mathrm{ConeEnd}}$ & Anchor status \\ \hline
-\texttt{CS\_500\_8} & $3.23$ & $9.1$  & $1.91$ & $+0.17$ & confirmed \\
-\texttt{CS\_500\_6} & $3.33$ & $13.1$ & $1.76$ & $+0.29$ & inconclusive \\
-\texttt{CC\_500\_8} & $3.74$ & $16.5$ & $1.37$ & $+0.13$ & confirmed \\
-\texttt{CC\_400\_8} & $3.75$ & $21.5$ & $1.31$ & $-0.26$ & not tested \\
+Case & $\Delta H_{\mathrm{sys}}$ (m) & $|\alpha|_{\mathrm{ConeEnd}}$ (deg) & $\mathrm{HL_{total}}$ (m) \\ \hline
+\texttt{CS\_500\_8} & $3.23$ & $9.1$  & $1.91$  \\
+\texttt{CS\_500\_6} & $3.33$ & $13.1$ & $1.76$  \\
+\texttt{CC\_500\_8} & $3.74$ & $16.5$ & $1.37$  \\
+\texttt{CC\_400\_8} & $3.75$ & $21.5$ & $1.31$  \\
 \hline
 \end{tabular}
 \end{table}
@@ -536,6 +539,34 @@ The GV configurations sit in an intermediate regime. \texttt{CS\_500\_8} produce
 The peak in-plane velocity ranking across the four cases tracks the residual angle ranking established in Section~\ref{sec:swirl-recovery}. The streamwise composite therefore provides visual confirmation of the bulk swirl-recovery metric: configurations that reduce $|\alpha|_{\mathrm{ConeEnd}}$ also reduce the peak in-plane velocity at \texttt{ConeEnd} through the non-additive interaction discussed above. Configurations that under-correct instead carry a coherent residual spiral all the way through the duct.
 
 The local result has system-level implications. A configuration in the non-additive interaction regime delivers two benefits at the same time: a low residual angle metric, good for RPT inlet quality, and a peak in-plane secondary-flow velocity below the straight-bend baseline. The Pareto-front configurations with PPR sign sit closest to this regime in the screening matrix. \texttt{CC\_400\_8} with NPR sign represents an untested case: over-correction means the imposed swirl rotates against the original RDT-swirl direction, and whether the same favourable interaction holds for NPR-sign cases or whether the interaction instead amplifies the secondary flow cannot be settled without a streamwise analysis of \texttt{CC\_400\_8} on the corrected mesh. The question adds analytical weight to the case for the corrected rerun flagged in Section~\ref{sec:pareto-anchor-check}.
+
+\subsection{Vortex-core identification via Q-criterion (placeholder)}
+\label{sec:q-criterion-analysis}
+
+% =====================================================================
+% TODO -- Q-criterion analysis. Held empty pending Ch4 length budget.
+%
+% Planned scope (4 cases, 2 planes):
+%   Cases : NoGV swirl, CS_500_8, CC_500_8, CC_250_9
+%   Planes: ConeEnd, BendEnd
+%
+% CFX-Post expression (verified factor 0.25 on BOTH terms;
+% see Section~\ref{sec:theory_swirl_metrics_def}, Q-criterion paragraph):
+%   Q = 0.25*(Velocity.Curl X^2 + Velocity.Curl Y^2 + Velocity.Curl Z^2)
+%     - 0.25*Shear Strain Rate^2
+%
+% Threshold for vortex extraction:
+%   Q_ref ~ (U_bulk/D)^2 ~ 20 s^-2 in downstream region.
+%
+% Planned outputs:
+%   1. One 2x4 contour figure (rows = ConeEnd / BendEnd, cols = 4 cases)
+%   2. Small table : Q_max, A(Q>Q_ref)/A_total, N_cores per panel
+%   3. 3-4 sentences linking to sec:dean-vortex and sec:s-streamwise
+%
+% Decision point: include only if total Ch4 length stays within budget.
+% If cut, remove this subsection. The theory paragraph in
+% sec:theory_swirl_metrics_def remains harmless as background.
+% =====================================================================
 
 \section{Radial flow quality at ConeEnd}
 \label{sec:radial-flow-quality}
