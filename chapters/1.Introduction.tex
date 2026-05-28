@@ -23,8 +23,10 @@ The booster has tight constraints. It must fit inside a draft tube of about $0.5
 %%% TODO: update \includegraphics path when figure file from Johannes is in place.
 \begin{figure}[h!]
   \centering
-  \fbox{\includegraphics[width=0.65\textwidth]{Figures/Litterature_review/RDT_motor_Johannes.png}}
-  \caption[The hubless rim-driven thruster motor]{The hubless rim-driven thruster (RDT). The electric motor is integrated in the duct rim and drives the blades through a rotating ring. The absence of a central hub leaves the duct centre open, which permits free passage in turbine-mode operation and accommodates the booster installation in the existing draft-tube layout. Figure adapted from~\cite{DjupeslandTrivedi2025}.}
+  \fbox{\includegraphics[width=0.47\textwidth]{Figures/Litterature_review/Johannes_RDT/Johannes RDT.PNG}}
+  \hfill
+  \fbox{\includegraphics[width=0.47\textwidth]{Figures/Litterature_review/Johannes_RDT/Johannes RDT2.PNG}}
+  \caption[The hubless rim-driven thruster motor]{The hubless rim-driven thruster (RDT). Figure adapted from Johannes Djupesland`s parallell work.}
   \label{fig:rdt_motor}
 \end{figure}
 
@@ -42,9 +44,35 @@ The RDT introduces a new problem. Without a stator, the rotor leaves a swirling 
 
 The present thesis is a direct continuation of the project work \emph{Parametric Hydraulic Design of Guide Vanes for a Rim-Driven Thruster in Pumped-Storage Hydropower}~\cite{Leonsen2025}. The project work produced three results: a parametric MATLAB tool, \texttt{vanedesign\_loft\_export}, that generates NACA-type GV sections and exports 3D geometries; a CFD-based slip database condensed into a response-surface model; and a first comparative CFD study of two GV geometries (Case~A and Case~B) in a short straight duct, which showed the trade-off between swirl reduction and total-pressure loss.
 
-Three gaps remain. First, only two 3D geometries were assessed with CFD. Two data points indicate a trade-off, but they do not map the design space. The project work explicitly lists this limited screening as a gap to close in further work~\cite{Leonsen2025}. Second, the project-work CFD domain was a straight pipe. It did not include the conical contraction, the $90^\circ$ bend, and the final inlet section present in the actual Store2Hydro layout. Third, the parallel RPT pump-mode simulations by Dokset~\cite{Dokset2025} used inlet profiles extracted \emph{downstream} of the GVs, so the reported RPT performance numbers exclude the GV passage drag. The design with the best RPT inflow may therefore not be the design with the best full-system behaviour.
+Three gaps remain. First, only two 3D geometries were assessed with CFD. Two data points indicate a trade-off, but they do not map the design space. The project work explicitly lists this limited screening as a gap to close in further work. The project-work CFD domain was a straight pipe. It did not include the conical contraction and the $90^\circ$ bend which is to be introduced in a new Draft tube to be implemented in the Test Rig at Waterpower Laboratory at NTNU. The parallel RPT pump-mode simulations by Dokset~\cite{Dokset2025} used inlet profiles extracted \emph{downstream} of the GVs, so the reported RPT performance numbers exclude the GV passage drag. The design with the best RPT inflow may therefore not be the design with the best full-system behaviour.
 
-The present thesis addresses the first two gaps directly. The slip-correction methodology from~\cite{Leonsen2025} is reused with a fixed value $\delta_{\mathrm{TE}} = 6^\circ$, following G\"ulich~\cite{Gulich2010}. A built-in TE angle of $4^\circ$-$6^\circ$ compensates for cascade deviation; a larger correction promotes suction-side separation. The screening then simulates 18 GV configurations in the full RDT-GV-draft-tube domain. The matrix combines two chord-control strategies (constant chord and constant solidity at the shroud), six shroud-chord levels and three vane counts. A nineteenth simulation, denoted \texttt{NoGV}, replaces the GV region with an empty pipe and provides the reference for the swirl-reduction and head-loss metrics. The third gap (coupling with the RPT) is left as future work. Dokset~\cite{Dokset2025} carries the parallel responsibility for the RPT side, and a coupled RDT-GV-RPT campaign exceeds the available computational budget.
+%LEGG INN BILDE AV GAMMEL SETUP AV DT OG NY SETUP
+\begin{figure}[h!]
+  \centering
+
+  \begin{subfigure}{0.85\textwidth}
+    \centering
+    \fbox{\includegraphics[width=\textwidth]{Figures/Litterature_review/Johannes_RDT/Setup_old.png}}
+    \caption{Old draft tube setup sketch from \cite{Eikebo2025}}
+    \label{fig:setup_old}
+  \end{subfigure}
+
+  \vspace{0.5cm}
+
+  \begin{subfigure}{0.85\textwidth}
+    \centering
+    \fbox{\includegraphics[width=\textwidth]{Figures/Litterature_review/Johannes_RDT/Setup_new.png}}
+    \caption{New draft tube setup sketch}
+    \label{fig:setup_new}
+  \end{subfigure}
+
+  \caption[Old and new draft tube setup]{Comparison of the old and new draft tube setup sketches.}
+  \label{fig:dt_setup_comparison}
+\end{figure}
+
+
+The present thesis addresses the first two gaps directly. The slip-correction methodology from the project work is reused with a fixed value $\delta_{\mathrm{TE}} = 6^\circ$, following G\"ulich~\cite{Gulich2010}. A built-in TE angle of $4^\circ$-$6^\circ$ compensates for cascade deviation; a larger correction promotes suction-side separation. The screening then simulates 18 GV configurations in the full RDT-GV-draft-tube domain. The matrix combines two chord-control strategies (constant chord and constant solidity at the shroud), six shroud-chord levels and three vane counts. A nineteenth simulation, denoted \texttt{NoGV}, replaces the GV region with an empty pipe and provides the reference for the swirl-reduction and head-loss metrics. The third gap (coupling with the RPT) is left as future work. Dokset~\cite{Dokset2025} carries the parallel responsibility for the RPT side, and a coupled RDT-GV-RPT campaign exceeds the available computational budget.
+
 
 \section{Goal and research questions}
 \label{sec:goal_research_q}

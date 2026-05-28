@@ -6,7 +6,7 @@
 This chapter sets out the theory and the methodological choices behind the CFD work of this thesis. The first part establishes the governing equations, the cylindrical-coordinate description of the flow, the velocity triangles and the swirl metrics. It then develops the cascade theory used for the guide vanes, the turbulence-model assumptions and the rotor-stator interaction framework that underlies the two transient analyses. The second part applies this framework to the present geometry. It documents how the design-input flow angle $\alpha_{\mathrm{base}}(r)$ is constructed from a stand-alone transient RDT-only simulation, summarises the parametric MATLAB tool from the project work~\cite{Leonsen2025}, the 18 steady simulations of the design matrix and the no-GV reference simulation. It then describes the multi-domain CFX setup, the mesh strategy, the Grid Convergence Index study and the spectral-analysis methodology used for the two transient runs.
 }}
 \end{center}
-
+%RETT: Ikke skrive noe slik direkte kobling mot prosjektarbeidet, fordi prosjektarbeidet ikke er publisert. skriv heller in the previous project work eller noe lignende som bygger på forrige semester
 \paragraph{Note on continuity with the project work.}
 This thesis builds directly on the project work~\cite{Leonsen2025}. The parametric MATLAB tool \texttt{vanedesign\_loft\_export}, the slip-correction framework and the NACA-based geometric construction (Sections~\ref{sec:theory_airfoil}, \ref{sec:theory_cascade}, \ref{sec:theory_geometric_construction}) are inherited and summarised here, not re-derived.
 
@@ -28,7 +28,7 @@ The flow between the rim-driven thruster (RDT) and the reversible pump-turbine (
 - \rho \nabla \cdot \overline{\mathbf{u}'\mathbf{u}'}.
 \label{eq:rans_momentum}
 \end{equation}
-Here, $\mathbf{u}$ is the mean velocity vector, $p$ is the mean static pressure, $\rho$ is the fluid density, $\mu$ is the dynamic viscosity, and $-\rho \overline{\mathbf{u}'\mathbf{u}'}$ is the Reynolds-stress tensor representing the effect of unresolved turbulent fluctuations. In a Reynolds-averaged Navier-Stokes framework these stresses must be closed through a turbulence model. This formulation suits the present study: the objective is to compare mean-flow quantities such as total-pressure loss, swirl reduction and downstream flow quality, not to resolve the full unsteady turbulent spectrum.
+Here, $\mathbf{u}$ is the mean velocity vector, $p$ is the mean static pressure, $\rho$ is the fluid density, $\mu$ is the dynamic viscosity, and $-\rho \overline{\mathbf{u}'\mathbf{u}'}$ is the Reynolds-stress tensor representing the effect of unresolved turbulent fluctuations. In a Reynolds-averaged Navier-Stokes framework these stresses must be closed through a turbulence model. This formulation is suitable for the present study, which focuses on mean-flow quantities rather than the full unsteady turbulent spectrum.
 
 A cylindrical coordinate system fits the geometry because the duct, the RDT wake and the guide-vane annulus are all organised around a common centreline. The flow is therefore described in cylindrical coordinates $(r,\theta,z)$, where $z$ is the axial direction from the RDT towards the RPT, $r$ is the radial coordinate and $\theta$ the circumferential coordinate. The absolute velocity vector $\vec{C}$ is written as
 \begin{equation}
@@ -50,7 +50,7 @@ C_m \equiv U_x \equiv C_z,
 C_u \equiv U_t \equiv C_\theta.
 \label{eq:notation_equivalence}
 \end{equation}
-Throughout this thesis the symbols $C_m$ and $C_u$ are used as the preferred notation for the mean axial and tangential velocity components. Software-specific labels such as \texttt{Velocity.Axial}, \texttt{Velocity.Circumferential}, $U_x$ and $U_t$ are only used when referring explicitly to CFD monitor expressions or post-processing variables.
+Throughout this thesis the symbols $C_m$ and $C_u$ are used as the preferred notation for the mean axial and tangential velocity components. Labels such as \texttt{Velocity.Axial}, \texttt{Velocity.Circumferential}, $U_x$ and $U_t$ are only used when referring explicitly to CFD monitor expressions or post-processing variables.
 
 Downstream of the RDT the flow resembles a confined swirling pipe flow. Experimental and analytical studies of such flows show that the radial velocity is often small compared with the axial and tangential components. The swirl also decays gradually downstream under the action of wall friction and turbulent transport~\cite{Kitoh1991}. For this reason, the RDT outlet and the guide-vane design inlet are therefore described with the approximation
 \begin{equation}
@@ -94,7 +94,7 @@ The guide vanes are built on NACA-type symmetric sections with a prescribed thic
  
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=0.8\linewidth]{Figures/Foil2d/Airfoil_basics.png}
+    \fbox{\includegraphics[width=0.8\linewidth]{Figures/Foil2d/Airfoil_basics.png}}
     \caption[NACA 00xx geometrical parameters]{NACA 00xx geometrical parameters used as the base for the guide-vane sections. Adapted from~\cite{Abbott1959}.}
     \label{fig:airfoil_geometry}
 \end{figure}
@@ -175,13 +175,13 @@ In a hubless cascade the inner end of each vane terminates in the open central r
  
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=0.40\textwidth]{Figures/Theory/Tip_vortex}
+  \fbox{\includegraphics[width=0.40\textwidth]{Figures/Theory/Tip_vortex}}
   \caption[Tip-leakage vortex mechanism]{Schematic of tip-leakage flow and the formation of a tip-clearance vortex on the inner end of a hubless vane, adapted from You et al.~\cite{You2007}.}
   \label{fig:Tip_vortex}
 \end{figure}
  
 % ---------------------------------------------------------------------
-\section{Cascade theory for guide vanes}
+\section{Cascade theory}
 \label{sec:theory_cascade}
  
 \subsection{Solidity and pitch}
@@ -226,13 +226,12 @@ Section~\ref{sec:theory_kinematics} introduced the inlet and outlet flow angles 
   \item the effective turning is therefore smaller than the geometric turning, especially for low solidity and high loading.
 \end{itemize}
 The deviation is treated as a fixed correction $\delta_{\mathrm{TE}} = 6^\circ$ added to the trailing-edge metal angle, following G\"ulich~\cite{Gulich2010}. The project-work response surface~\cite{Leonsen2025} predicts $10^\circ$-$20^\circ$ at the high turning required here. Adopting those values would aggressively over-camber the trailing edge, sharpen the suction-side pressure gradient, and promote separation. The fixed $6^\circ$ correction captures the bulk of the deviation effect without overloading the cascade.
-
-The cost of this choice is that the results report the swirl-reduction performance reachable with a conservative slip correction, not the maximum reachable performance. This is revisited in Chapter~\ref{chap:results_discussion} when the swirl-reduction results are interpreted.
+%ha med det bildet som jeg hadde i prosjektoppgaven med 2d foil og ulike vinkler
  
 % ---------------------------------------------------------------------
 \section{Geometric construction of the guide vanes}
 \label{sec:theory_geometric_construction}
- 
+%Ikke skrive det som om at det er laget i project work, siden projct work ikke er publisert. Jeg skal legge ved den matlab koden den henviser til, og derfor vil den ligge i appendix. så ikke noe slik sitering..
 The parametric MATLAB tool \texttt{vanedesign\_loft\_export} of the project work~\cite{Leonsen2025} produces each two-dimensional vane section in five steps. A non-dimensional chordwise coordinate $x^*=x/c\in[0,1]$ is generated with cosine clustering near the leading and trailing edges. A cubic camber line $y_c(x^*)/c = A x^{*3} + B x^{*2} + C x^*$ is fitted so that its end slopes match the LE and TE metal angles $\theta_1(r)$ and $\theta_2(r)$ in a frame aligned with the stagger angle $\zeta(r)$. A modified NACA 00xx symmetric thickness law~\cite{Abbott1959} is applied normal to the camber line, with a leading-edge roundness factor $\texttt{LE\_round}=1.2$ and a finite trailing-edge thickness ratio that gives a fixed relative maximum thickness $(t/c)_{\mathrm{rel}}=0.075$. The two-dimensional sections are then stacked along the span and wrapped on a cylindrical surface of radius $r$. The trailing edges of all sections are anchored to a common azimuth $\phi_{\mathrm{TE,global}}$, which produces a straight TE line in the axial-azimuthal plane and supports a clean axial through-flow when the residual swirl is small. The spanwise lean and sweep parameters exposed by the tool are held at zero in this work so that the chord and solidity factors are isolated; lean and sweep are listed as candidates for a second-stage refinement in Chapter~\ref{chap:future_work}. The detailed expressions and the implementation are documented in~\cite{Leonsen2025}.
  
 \subsection{Constant chord versus constant solidity}
