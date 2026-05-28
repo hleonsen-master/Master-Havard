@@ -16,6 +16,16 @@
 \usepackage{graphicx}
 \usepackage{svg}
 
+% Safe figure inclusion: if a figure file is not yet generated, a placeholder box
+% is shown so the document still compiles. The real figure appears automatically
+% once the PNG exists at the given path. Use \safeincludegraphics in place of
+% \includegraphics for figures that are still being produced.
+\newcommand{\safeincludegraphics}[2][]{%
+  \IfFileExists{#2}{\includegraphics[#1]{#2}}{%
+    \fbox{\parbox[c][0.30\textheight][c]{0.85\linewidth}{\centering Figure not yet generated:\\[4pt]\texttt{\detokenize{#2}}}}%
+  }%
+}
+
 \lstdefinelanguage{Matlab}{
   morekeywords={%
     break,case,catch,continue,else,elseif,end,for,function,global,if,otherwise, ...
@@ -27,7 +37,7 @@
   morestring=[m]'      % strenger i ' '
 }
 
-\lstset{
+\lstdefinestyle{matlabStyle}{
   language=Matlab,
   basicstyle=\ttfamily\small,                 % svart kode (monospace)
   keywordstyle=\color{MidnightBlue}\bfseries,    % blå keywords / funksjoner

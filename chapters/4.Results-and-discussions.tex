@@ -494,7 +494,7 @@ Figure~\ref{fig:s-streamwise} shows the streamwise evolution of $|S|$ from \text
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.95\linewidth]{Figures/Results/fig_4_6_S_streamwise.png}
+\safeincludegraphics[width=0.95\linewidth]{Figures/Results/fig_4_6_S_streamwise.png}
 \caption{Streamwise evolution of $|S|$ from \texttt{GVStart} to \texttt{BendEnd} for four representative configurations. Donut-region swirl number is used at \texttt{GVStart} and \texttt{GVEnd6} (annular section between hub and shroud). Full-pipe swirl number is used at \texttt{ConeEnd}, \texttt{BendStart}, and \texttt{BendEnd}. The plane-definition change between \texttt{GVEnd6} and \texttt{ConeEnd} means that the absolute magnitudes on those two planes are not directly comparable; the trends on either side of the transition carry the analytical content.}
 \label{fig:s-streamwise}
 \end{figure}
@@ -516,7 +516,7 @@ The straight validation in Section~\ref{sec:nogv-straight-validation} produces a
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.95\linewidth]{Figures/Results/fig_4_7_dean_vortex.png}
+\safeincludegraphics[width=0.95\linewidth]{Figures/Results/fig_4_7_dean_vortex.png}
 \caption{Dean-vortex structure at \texttt{ConeEnd} for the NoGV straight validation. Left: in-plane velocity vector field showing the symmetric counter-rotating pair. Right: swirling-strength contour with two compact regions of opposite sign separated by the bend symmetry plane. Peak in-plane velocity reaches $|V_{\mathrm{in\text{-}plane}}|/U_b = 0.51$. No external swirl source is present; the structure is generated entirely by the $90^\circ$ bend acting on an axial inlet flow.}
 \label{fig:dean-vortex}
 \end{figure}
@@ -527,7 +527,7 @@ The NoGV swirl reference does not display the same Dean structure. Figure~\ref{f
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.99\linewidth]{Figures/Results/fig_4_8_streamwise_composite.png}
+\safeincludegraphics[width=0.99\linewidth]{Figures/Results/fig_4_8_streamwise_composite.png}
 \caption{In-plane velocity vector fields at \texttt{ConeEnd} for the NoGV swirl reference and three guide-vane configurations. The NoGV case shows a coherent spiral driven by the upstream RDT swirl. \texttt{CS\_500\_8} and \texttt{CC\_500\_8} sit in a partial-cancellation regime where the residual GV-induced rotation reduces the peak in-plane velocity below the pure Dean value of $0.51$. \texttt{CC\_250\_9} retains a strong residual spiral closer in form to the NoGV pattern, with the bend-induced Dean structure suppressed by the larger imposed rotation.}
 \label{fig:streamwise-composite}
 \end{figure}
@@ -577,7 +577,7 @@ This section verifies that the Pareto-front configurations achieve their bulk ra
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.95\linewidth]{Figures/Results/fig_4_9_radial_profiles.png}
+\safeincludegraphics[width=0.95\linewidth]{Figures/Results/fig_4_9_radial_profiles.png}
 \caption{Radial profiles at \texttt{ConeEnd} for the NoGV swirl reference and four guide-vane configurations. Top: absolute flow angle $|\alpha|(r/R)$. Middle: tangential velocity $C_u(r/R)$. Bottom: meridional velocity $C_m(r/R)$. The radial coordinate is normalised by the local pipe radius $R$ at \texttt{ConeEnd}. Bulk $|\alpha|_{\mathrm{ConeEnd}}$ values for context: NoGV $63.7^\circ$ (corrected), \texttt{CS\_500\_8} $9.1^\circ$, \texttt{CC\_500\_8} $16.5^\circ$, \texttt{CC\_400\_8} $21.5^\circ$, \texttt{CC\_250\_9} $35.0^\circ$.}
 \label{fig:radial-profiles}
 \end{figure}
@@ -766,7 +766,7 @@ Seven anchor cases cover the corrected-mesh validation, not the full eighteen. T
 
 Section~\ref{sec:dean-vortex} identifies a non-additive interaction between residual swirl and the bend-induced Dean structure but does not decompose the secondary flow into rotational components. A targeted post-processing of the secondary-flow field on the corrected-mesh anchor cases would test whether the partial-cancellation mechanism specifically applies, and whether NPR-sign cases enter the same interaction regime as PPR-sign cases.
 
-Inherited modelling assumptions include the choice of steady RANS with the SST turbulence model, the geometric simplifications of the RDT hub and rim, and the imposed inlet flow conditions taken from the upstream domain. These assumptions are documented in Chapter~\ref{chap:methodology} and apply uniformly across all 18 configurations. They do not affect the relative ranking within the screening matrix but bound the absolute predictive value of the reported metrics.
+Inherited modelling assumptions include the choice of steady RANS with the SST turbulence model, the geometric simplifications of the RDT hub and rim, and the imposed inlet flow conditions taken from the upstream domain. These assumptions are documented in Chapter~\ref{chap:theory_method} and apply uniformly across all 18 configurations. They do not affect the relative ranking within the screening matrix but bound the absolute predictive value of the reported metrics.
 
 \clearpage % Keep this at the end of the chapter
 
