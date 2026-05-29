@@ -71,10 +71,10 @@ Three gaps remain. First, only two 3D geometries were assessed with CFD. Two dat
 \end{figure}
 
 
-The present thesis addresses the first two gaps directly. The slip-correction methodology from the project work is reused with a fixed value $\delta_{\mathrm{TE}} = 6^\circ$, following G\"ulich~\cite{Gulich2010}. A built-in TE angle of $4^\circ$-$6^\circ$ compensates for cascade deviation; a larger correction promotes suction-side separation. The screening then simulates 18 GV configurations in the full RDT-GV-draft-tube domain. The matrix combines two chord-control strategies (constant chord and constant solidity at the shroud), six shroud-chord levels and three vane counts. A nineteenth simulation, denoted \texttt{NoGV}, replaces the GV region with an empty pipe and provides the reference for the swirl-reduction and head-loss metrics. The third gap (coupling with the RPT) is left as future work. Dokset~\cite{Dokset2025} carries the parallel responsibility for the RPT side, and a coupled RDT-GV-RPT campaign exceeds the available computational budget.
+The present thesis addresses the first two gaps directly. The slip-correction methodology from the project work is reused with a fixed value $\delta_{\mathrm{TE}} = 6^\circ$, following G\"ulich~\cite{Gulich2010}. A built-in TE angle of $4^\circ$-$6^\circ$ compensates for cascade deviation; a larger correction promotes suction-side separation. The screening then simulates 18 GV configurations in the full RDT-GV-draft-tube domain. The matrix combines two chord-control strategies (constant chord and constant solidity at the shroud), six shroud-chord levels and three vane counts. A nineteenth simulation, denoted \texttt{NoGV}, replaces the GV region with an empty pipe and provides the reference for the swirl-reduction and head-loss metrics. the coupling with the RPT is left as future work. Dokset~\cite{Dokset2025} carries the parallel responsibility for the RPT side, and a coupled RDT-GV-RPT study furthermore.
 
 
-\section{Goal and research questions}
+\section{Goal and research questions} %se videre på dette 
 \label{sec:goal_research_q}
 
 The main goal of this thesis is
@@ -98,25 +98,24 @@ A working hypothesis is formulated for each question. Increasing solidity, eithe
 \section{Scope and limitations}
 \label{sec:scope_limitations}
 
-The scope is set by previous work and by available computational resources. Three choices define it.
+The scope is set by previous work and by available computational resources. The following points defines it;
 
-\paragraph{Decoupling from the RPT.} The simulation domain starts at the RDT inlet and ends in a straight pipe of about $1.0$~m towards the RPT. Between these, the flow passes through the RDT, the GV row, a conical contraction from $D = 0.5$~m to $D = 0.4$~m, and a $90^\circ$ bend. The RPT itself is not modelled. The final straight pipe acts as a buffer between the bend and the outlet boundary condition. Simulating all 18 GV configurations in a coupled RDT-GV-RPT setup would require approximately three times more CPU hours than the present RDT-GV-draft-tube setup. The RPT is therefore replaced by an extended straight outlet pipe in the screening campaign. This keeps the comparison computationally feasible while preserving the same upstream RDT wake and downstream draft-tube geometry for all GV designs. A coupled RDT-GV-RPT simulation of the selected candidate is left as future work. The decision is justified in detail in Section~\ref{sec:rpt-decoupling-justification}.
-\paragraph{Single operating point.} All 18 configurations and the \texttt{NoGV} reference are simulated at $\dot m = 290.3$~kg/s and $n = 650$~rpm. Off-design behaviour is not investigated. The goal is comparative ranking of GV geometries at one representative operating point.
+\paragraph{Decoupling from the RPT.} The domain starts at the RDT inlet and ends $1.0$~m past the RPT location in a straight pipe. The flow passes through the RDT, the GV section, a conical contraction from $D = 0.5$~m to $D = 0.4$~m over $1.5$~m, and a $90^\circ$ bend. The RPT is not modelled; it is replaced by the extended straight pipe, which also buffers the bend from the outlet boundary. A coupled RDT-GV-RPT setup would cost about 3 times the CPU hours of the present RDT-GV-draft-tube domain, so all 18 configurations are screened in the decoupled form under the same upstream wake. The coupled simulation of the selected candidate is left as future work. The decoupling is justified in Section~\ref{sec:rpt-decoupling-justification}.
 
-\paragraph{Steady RANS for the screening.} The 18 cases use steady RANS with the SST $k$-$\omega$ turbulence model. Two transient simulations of selected configurations cover the rotor-stator interaction analysis in Chapter~\ref{chap:results_discussion}. A full transient screening was not feasible.
+\paragraph{Steady RANS for the screening.} The 18 cases use steady RANS with the SST $k$-$\omega$ turbulence model. Two transient simulations of selected configurations cover the rotor-stator interaction analysis in Chapter~\ref{chap:results_discussion}. A full transient screening was not feasible due to computational costs.
 
 \medskip
 The following limitations from the project work are inherited:
 \begin{itemize}
-  \item the RDT wake used to design the GVs corresponds to a single RDT geometry and operating point, taken from the data sets \texttt{shubham\_blade6} and \texttt{shubham\_transient};
-  \item cavitation is not modelled in the screening campaign and is treated only indirectly through the static-pressure field;
+  \item the RDT wake used to design the GVs corresponds to a single RDT geometry and a single operating point;
+  \item cavitation is not modelled in the screening campaign, as this is focused in Aleksander Doksets parallell work %SITER MASTEREN HANS;
   \item structural strength, fatigue and vibration of the GVs are not analysed beyond the unsteady-loading diagnostics in Chapter~\ref{chap:results_discussion};
   \item the slip correction is fixed at $\delta_{\mathrm{TE}} = 6^\circ$ in all configurations.
 \end{itemize}
 
 The thesis is therefore a structured screening study. It reduces a large design space to a small number of candidates and quantifies the trade-off between swirl reduction and total-pressure loss. Coupled RDT-GV-RPT simulation, cavitation assessment, and experimental validation of the shortlisted design are left for future work (Chapter~\ref{chap:future_work}).
 
-\section{Thesis outline}
+\section{Thesis outline} %RETT: Skriv så denne stemmer til slutt
 \label{sec:thesis_outline}
 
 The thesis is organised as follows. Chapter~\ref{chap:litterature} reviews the literature on rim-driven thrusters, swirling pipe flow, GV design, slip correlations, swirl decay, and secondary flow in curved ducts. Chapter~\ref{chap:theory_method} presents the theoretical framework and the design methodology in two parts: governing equations, swirl metrics, cascade theory and rotor-stator theory in the first; the 18-case design matrix, the multi-domain CFX setup, the GCI study and the spectral methodology in the second. Chapter~\ref{chap:results_discussion} presents the simulation results and the unsteady analysis of the two transient runs. Chapter~\ref{chap:conclusion} concludes. Chapter~\ref{chap:future_work} lists recommended directions.

@@ -7,12 +7,12 @@ This chapter reviews the literature used to define the guide-vane design problem
 }}
 \end{center}
  
-\section{Booster-RPT systems: what previous studies leave open}
+\section{Booster-RPT systems: previous studies}
 \label{sec:lit_booster_open}
  
-The cavitation barrier on RPT retrofits has been recognised in the Norwegian hydropower research community for at least a decade~\cite{DagsvikThesis2024, Kerlefsen2025}. Previous studies support the use of a draft-tube booster pump as a possible way to improve the pump-mode cavitation margin. Valstad~\cite{Valstad2018} showed for the Roskrepp plant that a dedicated axial booster in series with the RPT can raise the pump-mode inlet pressure sufficiently to improve the cavitation margin. Follow-up studies on contra-rotating axial boosters by Hage~\cite{Hage2020} and Dahle~\cite{Dahle2019} confirmed that the necessary head increase is mechanically achievable. They also reported a more difficult finding: cavitation margin and global efficiency depend on \emph{how} the booster delivers the flow to the RPT, not only on how much head it adds. Strong residual swirl and radially non-uniform discharge profiles downstream of contra-rotating boosters were associated with low hydraulic efficiency~\cite{Dahle2019}. Similar observations appear in early Store2Hydro RDT studies~\cite{Fjuk2025, Ambjornsson2025}.
+The cavitation barrier on RPT retrofits has been recognised in the Norwegian hydropower research community~\cite{DagsvikThesis2024, Kerlefsen2025}. Previous studies support the use of a draft-tube booster pump as a possible way to improve the pump-mode cavitation margin. Valstad~\cite{Valstad2018} showed for the Roskrepp plant that a dedicated axial booster in series with the RPT can raise the pump-mode inlet pressure sufficiently to improve the cavitation margin. Follow-up studies on contra-rotating axial boosters by Hage~\cite{Hage2020} and Dahle~\cite{Dahle2019} confirmed that the necessary head increase is mechanically achievable. They also reported a more difficult finding: cavitation margin and global efficiency depend on \emph{how} the booster delivers the flow to the RPT, not only on how much head it adds. Strong residual swirl and radially non-uniform discharge profiles downstream of contra-rotating boosters were associated with low hydraulic efficiency~\cite{Dahle2019}. Similar observations appear in early Store2Hydro RDT studies~\cite{Fjuk2025, Ambjornsson2025}.
  
-Two limitations recur across these studies. First, the booster-RPT pair is treated as two machines in series, with no element between them to condition the flow. The flow leaving the booster is taken as it is, and the RPT receives it. Second, where individual designers have considered discharge quality, the analysis has been qualitative. ``improved discharge quality'' is recommended without a quantitative target. Earlier work by Leonsen~\cite{Leonsen2025} addressed the first limitation by introducing a guide-vane row between the RDT and the RPT. The second limitation persisted: only two example geometries were simulated. Two design points define a line through a trade-off; they do not map it.
+Two limitations recur across these studies. First, the booster--RPT pair is treated as two machines in series, with no element between them to condition the flow. The flow leaving the booster is taken as it is, and the RPT receives it. Second, where individual designers have considered discharge quality, the analysis has been qualitative. ``improved discharge quality'' is recommended without a quantitative target. The project work preceding this thesis addressed the first limitation by introducing a guide-vane row between the RDT and the RPT. The second limitation persisted: only two example geometries were simulated. Two design points define a line through a trade-off; they do not map it.
  
 The present thesis addresses this limitation by screening a broad set of GV configurations across the relevant design space. The design matrix includes short and long chord lengths, constant-chord and constant-solidity strategies, and several vane counts. The purpose is not to fine-optimise a single best geometry. Instead, the aim is to identify the main hydraulic trends and trade-offs that govern swirl recovery, total-pressure loss and downstream flow quality. The screening campaign described in Chapter~\ref{chap:theory_method} simulates 18 geometries under identical operating and boundary conditions. The results are interpreted as a sampled recovery-loss trade-off, not as a final optimisation of one geometry.
  
@@ -69,18 +69,31 @@ The sign-dependent response rules out a design objective based only on the magni
  
 The downstream geometry includes a $90^\circ$ bend between the GV section and the RPT inlet. This element is part of the design \emph{system}. Residual swirl from the vane row interacts with the bend before reaching the RPT. The pipe-flow community has covered this interaction extensively, but it has not entered the booster-RPT design discussion.
  
-In a plain bend the curvature imposes a radial pressure gradient that cannot be balanced uniformly. The flow develops a counter-rotating pair of secondary cells in the cross-stream plane: the Dean vortices, whose strength scales with the Dean number $\mathrm{De} = \mathrm{Re}\sqrt{D_h/2R_c}$~\cite{Dean1927}. Kim, Yadav and Kim~\cite{KimYadavKim2014} performed a benchmark CFD study of the secondary flow in a $90^\circ$ elbow. They showed that the post-bend swirl intensity depends strongly on the curvature ratio and only weakly on Reynolds number. The downstream dissipation is approximately exponential. Wang et al.~\cite{Wang2025DeanVortex} confirmed this picture for a turbulent bend at curvature ratio $1.25$.
+A bend cannot balance its own radial pressure gradient uniformly across the
+section. The flow develops a pair of counter-rotating cells in the cross-stream
+plane, the Dean vortices, whose strength scales with the Dean number
+\[
+  \mathrm{De} = \mathrm{Re}\sqrt{\frac{D_h}{2R_c}},
+\]
+with $\mathrm{Re}$ the Reynolds number, $D_h$ the hydraulic diameter and $R_c$
+the bend curvature radius~\cite{Dean1927}. Kim, Yadav and Kim~\cite{KimYadavKim2014}
+simulated this secondary flow in a $90^\circ$ elbow in OpenFOAM and benchmarked
+several turbulence models against experiment. Their finding is twofold: the
+post-bend swirl intensity is a strong function of the curvature ratio and a weak
+function of Reynolds number, and its downstream decay is close to exponential.
+Dutta et al.~\cite{Dutta2025DeanVortex} resolved the same vortex pair in a
+turbulent bend at curvature ratio $1.25$ with a $k$--$\varepsilon$ model.
  
 When the upstream flow already carries swirl, the picture is more complicated. Liu and Vanierschot~\cite{LiuVanierschot2021} review the literature on swirling flow through curved pipes. They report that the Dean cells and the upstream swirl interact in a sign-dependent way. Depending on whether the swirl rotates with or against one of the Dean cells, that cell is amplified or suppressed.
  
-Escue and Cui~\cite{EscueCui2010} show that turbulence-model choice is important in swirling pipe flow. At low swirl, eddy-viscosity models can reproduce parts of the mean flow. As swirl increases, Reynolds-stress models become more suitable. Both model classes still show limitations in the decay of turbulence quantities. RANS models tend to underpredict turbulence anisotropy under strong rotation, which is a known limit on accuracy in this regime. Within the Store2Hydro project, Jenssen~\cite{Jenssen2020} observed bend-induced separation and asymmetric cross-stream profiles in the original RPT draft-tube geometry.
+Within the Store2Hydro project, Jenssen~\cite{Jenssen2020} observed bend-induced separation and asymmetric cross-stream profiles in the original RPT draft-tube geometry. Turbulence-model limitations in this regime are treated separately in Section~\ref{sec:lit_cfd}.
  
 Two implications follow. First, the post-vane plane is not the only location at which the comparative ranking should be evaluated. Planes downstream of the bend must also be reported. Second, the sign of the residual swirl entering the bend is a relevant design variable. The discussion of the screening result in Chapter~\ref{chap:results_discussion} retains this distinction.
  
 \section{Swirl decay in straight pipes}
 \label{sec:lit_swirl_decay}
- 
-Between the GV trailing edge and the bend inlet, the residual swirl evolves through a straight pipe section. Kitoh~\cite{Kitoh1991} showed experimentally that the integrated swirl intensity in a straight circular pipe decays approximately exponentially with axial distance. The decay rate is not constant. It depends on the swirl intensity and Reynolds number. The implication for the present geometry is that the swirl immediately downstream of the GV row is not identical to the swirl at the bend inlet. Natural decay reduces the swirl number before the bend. This reduction is expected to be smaller than the reduction produced by the GV row itself. The GV ranking based on swirl reduction therefore remains meaningful but must be verified at planes downstream of the bend.
+
+Between the GV trailing edge and the bend inlet, the residual swirl evolves through a straight pipe section. Kitoh~\cite{Kitoh1991} showed experimentally that the integrated swirl intensity in a straight circular pipe decays approximately exponentially with axial distance, at a rate that depends on the swirl intensity and the Reynolds number. The swirl immediately downstream of the GV row is therefore not identical to the swirl at the bend inlet. Natural decay lowers the swirl number before the bend, but is expected to remove less than the GV row itself. The GV ranking based on swirl reduction therefore remains meaningful.
  
 \section{Cascade closure: solidity, diffusion limits and deviation}
 \label{sec:lit_cascade}
@@ -111,11 +124,10 @@ The original Store2Hydro baseline used $Z_r = Z_s = 7$. The Tyler-Sofrin analysi
  
 \section{Identified gap and how this thesis addresses it}
 \label{sec:lit_gap}
- 
-The literature reviewed here supports the following synthesis. The booster-RPT system is mechanically feasible. Earlier studies treat the booster and the RPT as two machines without a conditioning element between them. A GV row between the two machines is one direct way to address this gap. The existing CFD evidence covers only two example geometries~\cite{Leonsen2025} and only in a straight-pipe domain.
- 
-A multi-objective screening tradition exists in the wider turbomachinery community~\cite{Vasilopoulos2019}. It has recently been transferred to the marine rim-driven domain~\cite{GaggeroMartinelli2024, Yang2024RDTAppendage}, but not to the hydropower booster-RPT case. The hubless RDT wake imposes a hubless cascade as the only feasible vane geometry. The downstream RPT is sensitive to pre-rotation in a sign-dependent way~\cite{Larsen2019, Jenssen2020}. The design objective is therefore conditioned residual swirl, not minimum residual swirl.
- 
-The $90^\circ$ bend interacts measurably with residual swirl, and the interaction depends on the sign of the swirl~\cite{LiuVanierschot2021}. The comparative ranking cannot be evaluated only at the post-vane plane. The RDT-GV configuration produces unsteady loading whose spatial-mode structure is set by the Tyler-Sofrin combinatorics~\cite{Tyler1962}. The original $Z_r = Z_s = 7$ choice is a priori unfavourable.
- 
-The present thesis closes this gap with three elements. First, a structured screening over 18 GV configurations is evaluated as a sampled recovery-loss trade-off. Second, the CFD domain includes the $90^\circ$ bend and the extended draft-tube section, so residual swirl is reported both at the vane trailing edge and at the bend exit. Third, two transient simulations test the Tyler-Sofrin prediction directly. The theoretical apparatus and the methodology are developed in Chapter~\ref{chap:theory_method}.
+
+
+The reviewed literature converges on one gap. The booster--RPT system is mechanically feasible, but earlier studies place no conditioning element between the two machines, and the only CFD evidence for a guide-vane row covers two geometries, both in a straight-pipe domain, and comes from the project work preceding this thesis. The multi-objective optimisation tradition of the wider turbomachinery community~\cite{Vasilopoulos2019, Schnoes2018} has reached marine rim-driven stators~\cite{GaggeroMartinelli2024, Yang2024RDTAppendage} but not the hydropower booster--RPT case. The present thesis brings a discrete screening to that case rather than a gradient-based search.
+
+Three constraints set the design objective. The hubless RDT wake admits only a hubless cascade. The RPT responds to pre-rotation by its sign~\cite{Larsen2019, Jenssen2020}, so the target is conditioned residual swirl rather than its minimum. The downstream $90^\circ$ bend interacts with that swirl by its sign~\cite{LiuVanierschot2021}, so the ranking must hold beyond the post-vane plane. The Tyler-Sofrin combinatorics~\cite{Tyler1962} mark the baseline $Z_r = Z_s = 7$ as a priori unfavourable.
+
+The present thesis closes the gap with three elements. A structured screening of 18 GV configurations maps the recovery--loss trade-off. The CFD domain carries the flow through the $90^\circ$ bend and the extended draft-tube, so the ranking is checked downstream as well as at the vane. Two transient simulations test the Tyler-Sofrin prediction. The apparatus and methodology follow in Chapter~\ref{chap:theory_method}.
