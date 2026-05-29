@@ -521,24 +521,57 @@ The straight validation in Section~\ref{sec:nogv-straight-validation} produces a
 \label{fig:dean-vortex}
 \end{figure}
 
-The Dean pair is symmetric and counter-rotating. Peak in-plane velocity reaches $|V_{\mathrm{in\text{-}plane}}|/U_b = 0.51$ at the centres of the two vortices. The swirling-strength contour shows two compact regions of opposite sign separated by a line along the bend symmetry plane. No external rotational source drives this structure: the bend acting on an axial inlet flow produces the entire pattern.
+The straight validation is one end of a sequence. As the swirl arriving at the
+bend increases, the secondary-flow structure changes character.
+Figure~\ref{fig:dean-montage} shows the in-plane velocity field at \texttt{BendEnd}
+for the straight validation, the two loading levels in both families, and the NoGV
+swirl reference. Table~\ref{tab:dean-secondary} lists the net in-plane swirl number
+at \texttt{BendStart}, the peak in-plane velocity, and the bend head loss for the
+same cases on the corrected mesh.
 
-The NoGV swirl reference does not display the same Dean structure. Figure~\ref{fig:streamwise-composite} shows the in-plane velocity vector field at \texttt{ConeEnd} for the NoGV swirl reference alongside three GV configurations: \texttt{CS\_500\_8}, \texttt{CC\_500\_8}, and \texttt{CC\_250\_9}.
+The net in-plane swirl number at \texttt{BendStart} rises from near zero in the
+straight case to $0.13$-$0.14$ for the $500\_8$ pair, $0.52$-$0.55$ for the
+$250\_9$ pair, and $1.73$ for the NoGV reference. The structure follows. The
+straight case holds the symmetric counter-rotating Dean pair. The $500\_8$ cases
+carry a single offset cell on a weak Dean signature. The $250\_9$ cases show a
+central spiral. The NoGV reference is one dominant spiral with no trace of the
+Dean pair. This is the sign-dependent suppression described in
+Section~\ref{sec:theory_swirl_bend_interaction}: the imposed rotation reinforces
+one Dean cell and cancels the other, and once it is strong enough only one
+rotating structure survives. The peak in-plane velocity scales with the same
+sequence, from about $0.5$ in the straight and $500\_8$ cases to $1.1$ for
+$250\_9$ and $3.1$ for NoGV. Vane count sets the regime; the constant-chord and
+constant-solidity members of each pair fall in the same structural class and
+differ only in the streamwise detail of the decay. The net in-plane swirl number
+used here is a local cross-plane diagnostic, not the full-pipe swirl number $|S|$
+of Section~\ref{sec:s-streamwise}; the two are separate measures and are not
+compared directly.
 
-\begin{figure}[H]
-\centering
-\safeincludegraphics[width=0.99\linewidth]{Figures/Results/fig_4_8_streamwise_composite.png}
-\caption{In-plane velocity vector fields at \texttt{ConeEnd} for the NoGV swirl reference and three guide-vane configurations. The NoGV case shows a coherent spiral driven by the upstream RDT swirl. \texttt{CS\_500\_8} and \texttt{CC\_500\_8} sit in a partial-cancellation regime where the residual GV-induced rotation reduces the peak in-plane velocity below the pure Dean value of $0.51$. \texttt{CC\_250\_9} retains a strong residual spiral closer in form to the NoGV pattern, with the bend-induced Dean structure suppressed by the larger imposed rotation.}
-\label{fig:streamwise-composite}
-\end{figure}
+This sequence is the mechanism behind the binary bend-loss collapse of
+Section~\ref{sec:bend-hl-collapse}. The in-plane velocity entering the bend is the
+rotational kinetic energy the bend has to process, and that energy grows with the
+square of the velocity. The straight validation and all four guide-vane cases
+enter at or near the Dean level and leave bend losses between $0.005$ and
+$0.025$~m on the corrected mesh. These values differ by amounts within the
+numerical resolution of the screening and are not ranked against each other; the
+straight case even sits above one of them, because there the bend generates the
+Dean pair rather than receiving it. The NoGV reference enters with peak in-plane
+velocity about six times larger and loses $0.37$~m, two orders of magnitude more.
+The bend loss therefore splits into two groups, swirl-conditioned and not, rather
+than along a graded curve. The split holds on both the uncorrected and the
+corrected mesh, which is the form of the result that survives the mesh-bias
+caveat of Section~\ref{sec:rdt-mesh-overlap-impact}.
 
-The NoGV swirl pattern at \texttt{ConeEnd} is a single coherent spiral, not a counter-rotating pair. The upstream RDT swirl is strong enough that the bend-induced Dean structure cannot establish itself. The imposed rotation overwhelms the centrifugal-pressure imbalance that would otherwise drive Dean vortices. Peak in-plane velocity in the NoGV case is much larger than the straight-validation peak, but the structure carries no resemblance to the canonical Dean signature.
-
-The GV configurations sit in an intermediate regime. \texttt{CS\_500\_8} produces a peak $|V_{\mathrm{in\text{-}plane}}|/U_b = 0.35$ at \texttt{ConeEnd}, lower than both the NoGV swirl case and the pure Dean structure ($0.51$). The peak below the Dean value is the analytically interesting observation. If residual swirl and the bend-induced secondary flow added linearly, the GV case should produce a higher peak in-plane velocity than the straight validation, not a lower one. The reduction therefore indicates that the two secondary-flow components interact non-additively. A plausible mechanism is partial cancellation between the imposed swirl and one of the Dean vortices, but confirming the mechanism specifically would require a quantitative decomposition of the secondary-flow field that is outside the scope of the present screening. \texttt{CC\_500\_8} shows the same qualitative pattern at slightly higher peak magnitude. \texttt{CC\_250\_9} retains a stronger and more coherent residual spiral with the bend-induced Dean structure no longer visible; the pattern resembles the NoGV swirl regime but at smaller absolute magnitude.
-
-The peak in-plane velocity ranking across the four cases tracks the residual angle ranking established in Section~\ref{sec:swirl-recovery}. The streamwise composite therefore provides visual confirmation of the bulk swirl-recovery metric: configurations that reduce $|\alpha|_{\mathrm{ConeEnd}}$ also reduce the peak in-plane velocity at \texttt{ConeEnd} through the non-additive interaction discussed above. Configurations that under-correct instead carry a coherent residual spiral all the way through the duct.
-
-The local result has system-level implications. A configuration in the non-additive interaction regime delivers two benefits at the same time: a low residual angle metric, good for RPT inlet quality, and a peak in-plane secondary-flow velocity below the straight-bend baseline. The Pareto-front configurations with PPR sign sit closest to this regime in the screening matrix. \texttt{CC\_400\_8} with NPR sign represents an untested case: over-correction means the imposed swirl rotates against the original RDT-swirl direction, and whether the same favourable interaction holds for NPR-sign cases or whether the interaction instead amplifies the secondary flow cannot be settled without a streamwise analysis of \texttt{CC\_400\_8} on the corrected mesh. The question adds analytical weight to the case for the corrected rerun flagged in Section~\ref{sec:pareto-anchor-check}.
+The well-recovered cases also show that the residual swirl and the bend secondary
+flow do not simply add. \texttt{CC\_500\_8} reaches a peak in-plane velocity of
+$0.60$ inside the bend, above the pure-Dean value of $0.51$, yet leaves the bend
+below it. Linear superposition would keep the exit peak above the Dean value, not
+below. The reduction indicates a partial cancellation between the imposed rotation
+and one of the Dean cells. Confirming the specific mechanism would need a
+quantitative decomposition of the secondary-flow field, and the NPR-sign case
+\texttt{CC\_400\_8} is left for the corrected rerun flagged in
+Section~\ref{sec:pareto-anchor-check}. The per-case fields through the full bend
+are collected in Appendix~\ref{app:dean-panels}.
 
 \subsection{Vortex-core identification via Q-criterion (placeholder)}
 \label{sec:q-criterion-analysis}
