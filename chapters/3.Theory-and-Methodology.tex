@@ -6,7 +6,7 @@
 This chapter sets out the theory and the methodological choices behind the CFD work of this thesis. The first part establishes the governing equations, the cylindrical-coordinate description of the flow, the velocity triangles and the swirl metrics. It then develops the cascade theory used for the guide vanes, the turbulence-model assumptions and the rotor-stator interaction framework that underlies the two transient analyses. The second part applies this framework to the present geometry. It documents how the design-input flow angle $\alpha_{\mathrm{base}}(r)$ is constructed from a stand-alone transient RDT-only simulation, summarises the parametric MATLAB tool from the project work~\cite{Leonsen2025}, the 18 steady simulations of the design matrix and the no-GV reference simulation. It then describes the multi-domain CFX setup, the mesh strategy, the Grid Convergence Index study and the spectral-analysis methodology used for the two transient runs.
 }}
 \end{center}
-%RETT: Ikke skrive noe slik direkte kobling mot prosjektarbeidet, fordi prosjektarbeidet ikke er publisert. skriv heller in the previous project work eller noe lignende som bygger på forrige semester
+
 \paragraph{Note on continuity with the project work.}
 This thesis builds directly on the project work~\cite{Leonsen2025}. The parametric MATLAB tool \texttt{vanedesign\_loft\_export}, the slip-correction framework and the NACA-based geometric construction (Sections~\ref{sec:theory_airfoil}, \ref{sec:theory_cascade}, \ref{sec:theory_geometric_construction}) are inherited and summarised here, not re-derived.
 
@@ -28,7 +28,7 @@ The flow between the rim-driven thruster (RDT) and the reversible pump-turbine (
 - \rho \nabla \cdot \overline{\mathbf{u}'\mathbf{u}'}.
 \label{eq:rans_momentum}
 \end{equation}
-Here, $\mathbf{u}$ is the mean velocity vector, $p$ is the mean static pressure, $\rho$ is the fluid density, $\mu$ is the dynamic viscosity, and $-\rho \overline{\mathbf{u}'\mathbf{u}'}$ is the Reynolds-stress tensor representing the effect of unresolved turbulent fluctuations. In a Reynolds-averaged Navier-Stokes framework these stresses must be closed through a turbulence model. This formulation is suitable for the present study, which focuses on mean-flow quantities rather than the full unsteady turbulent spectrum.
+Here, $\mathbf{u}$ is the mean velocity vector, $p$ is the mean static pressure, $\rho$ is the fluid density, $\mu$ is the dynamic viscosity, and $-\rho \overline{\mathbf{u}'\mathbf{u}'}$ is the Reynolds-stress tensor representing the effect of unresolved turbulent fluctuations. In a Reynolds-averaged Navier-Stokes framework these stresses must be closed through a turbulence model. This formulation suits the present study: the objective is to compare mean-flow quantities such as total-pressure loss, swirl reduction and downstream flow quality, not to resolve the full unsteady turbulent spectrum.
 
 A cylindrical coordinate system fits the geometry because the duct, the RDT wake and the guide-vane annulus are all organised around a common centreline. The flow is therefore described in cylindrical coordinates $(r,\theta,z)$, where $z$ is the axial direction from the RDT towards the RPT, $r$ is the radial coordinate and $\theta$ the circumferential coordinate. The absolute velocity vector $\vec{C}$ is written as
 \begin{equation}
@@ -50,7 +50,7 @@ C_m \equiv U_x \equiv C_z,
 C_u \equiv U_t \equiv C_\theta.
 \label{eq:notation_equivalence}
 \end{equation}
-Throughout this thesis the symbols $C_m$ and $C_u$ are used as the preferred notation for the mean axial and tangential velocity components. Labels such as \texttt{Velocity.Axial}, \texttt{Velocity.Circumferential}, $U_x$ and $U_t$ are only used when referring explicitly to CFD monitor expressions or post-processing variables.
+Throughout this thesis the symbols $C_m$ and $C_u$ are used as the preferred notation for the mean axial and tangential velocity components. Software-specific labels such as \texttt{Velocity.Axial}, \texttt{Velocity.Circumferential}, $U_x$ and $U_t$ are only used when referring explicitly to CFD monitor expressions or post-processing variables.
 
 Downstream of the RDT the flow resembles a confined swirling pipe flow. Experimental and analytical studies of such flows show that the radial velocity is often small compared with the axial and tangential components. The swirl also decays gradually downstream under the action of wall friction and turbulent transport~\cite{Kitoh1991}. For this reason, the RDT outlet and the guide-vane design inlet are therefore described with the approximation
 \begin{equation}
@@ -94,7 +94,7 @@ The guide vanes are built on NACA-type symmetric sections with a prescribed thic
  
 \begin{figure}[h!]
     \centering
-    \fbox{\includegraphics[width=0.8\linewidth]{Figures/Foil2d/Airfoil_basics.png}}
+    \includegraphics[width=0.8\linewidth]{Figures/Foil2d/Airfoil_basics.png}
     \caption[NACA 00xx geometrical parameters]{NACA 00xx geometrical parameters used as the base for the guide-vane sections. Adapted from~\cite{Abbott1959}.}
     \label{fig:airfoil_geometry}
 \end{figure}
@@ -119,7 +119,7 @@ The fundamental design objective of the guide vanes is to reduce $S(z)$ from the
  
 \paragraph{Alternative swirl-number definitions.}
 Equation~\ref{eq:S_def} is the form most often used in the combustion literature and is the form adopted as the primary metric in this thesis. The swirl number is not unique. Vignat et al.~\cite{Vignat2022} show that several formally equivalent definitions can give numerical values that differ by tens of percent on non-uniform velocity profiles. The local swirling-strength indicator $\lambda_{ci}$ is the field exported from CFX as \texttt{Velocity.Swirling Strength} and identifies vortex cores from the imaginary part of the eigenvalues of the local velocity-gradient tensor. $\lambda_{ci}$ complements $S$: the scalar swirl number measures the total angular-momentum content of the cross-section, while $\lambda_{ci}$ picks up discrete vortex structures such as tip vortices or precessing cores.
-
+ 
 \paragraph{Q-criterion for vortex identification.}
 A complementary identifier of coherent vortex cores is the second invariant of the velocity-gradient tensor. The tensor splits into a symmetric strain-rate part $\mathbf{S} = \tfrac{1}{2}(\nabla\vec{u} + \nabla\vec{u}^{T})$ and an antisymmetric vorticity part $\boldsymbol{\Omega} = \tfrac{1}{2}(\nabla\vec{u} - \nabla\vec{u}^{T})$. Hunt et al.~\cite{Hunt1988} define
 \begin{equation}
@@ -134,7 +134,6 @@ Q \;=\; \tfrac{1}{4}\,|\nabla\times\vec{u}|^{2} \;-\; \tfrac{1}{4}\,\mathrm{SSR}
 with $\mathrm{SSR} = \sqrt{2\,S_{ij}S_{ij}}$ as exported by CFX. Both terms carry the same prefactor. A pure shear flow gives $|\nabla\times\vec{u}|^{2} = \mathrm{SSR}^{2}$ and therefore $Q = 0$ identically, consistent with the underlying balance of rotation and strain.
 
 Two consequences follow for the post-processing. Vortex extraction uses a positive threshold $Q_{\mathrm{ref}} > 0$, since the discrete cores of interest sit at $Q > 0$. Wall-bounded regions show strongly negative $Q$ because the boundary layer is shear-dominated and $\|\mathbf{S}\|^{2}$ exceeds $\|\boldsymbol{\Omega}\|^{2}$ there. Negative $Q$ at walls is the expected signature of wall-bounded shear and is not a numerical artefact. The criterion complements $\lambda_{ci}$: both isolate vortex cores, but $Q$ measures the strain-rotation balance directly whereas $\lambda_{ci}$ uses the eigenvalue structure of $\nabla\vec{u}$.
- 
  
 \paragraph{Critical swirl and vortex breakdown.}
 When the swirl ratio exceeds a critical value, swirling pipe flow can develop stagnation zones, wall separation and vortex breakdown~\cite{Rusak2014}. Critical $S$ values reported in the literature cluster around 0.6 for free swirling flows but depend on the specific definition and on the boundary conditions; in confined pipe flow with finite walls the threshold can be higher~\cite{Rusak2014}. Vortex breakdown is associated with large losses and strong unsteadiness, and it is the underlying mechanism behind the rotating vortex rope (RVR) in Francis-turbine draft tubes at off-design~\cite{Brekke2010}. A residual $S(z)$ at the RPT inlet plane large enough to support breakdown would be unacceptable. The post-processing therefore checks the residual $S$ values against this threshold.
@@ -175,13 +174,13 @@ In a hubless cascade the inner end of each vane terminates in the open central r
  
 \begin{figure}[h!]
   \centering
-  \fbox{\includegraphics[width=0.40\textwidth]{Figures/Theory/Tip_vortex}}
+  \includegraphics[width=0.40\textwidth]{Figures/Theory/Tip_vortex}
   \caption[Tip-leakage vortex mechanism]{Schematic of tip-leakage flow and the formation of a tip-clearance vortex on the inner end of a hubless vane, adapted from You et al.~\cite{You2007}.}
   \label{fig:Tip_vortex}
 \end{figure}
  
 % ---------------------------------------------------------------------
-\section{Cascade theory}
+\section{Cascade theory for guide vanes}
 \label{sec:theory_cascade}
  
 \subsection{Solidity and pitch}
@@ -226,12 +225,13 @@ Section~\ref{sec:theory_kinematics} introduced the inlet and outlet flow angles 
   \item the effective turning is therefore smaller than the geometric turning, especially for low solidity and high loading.
 \end{itemize}
 The deviation is treated as a fixed correction $\delta_{\mathrm{TE}} = 6^\circ$ added to the trailing-edge metal angle, following G\"ulich~\cite{Gulich2010}. The project-work response surface~\cite{Leonsen2025} predicts $10^\circ$-$20^\circ$ at the high turning required here. Adopting those values would aggressively over-camber the trailing edge, sharpen the suction-side pressure gradient, and promote separation. The fixed $6^\circ$ correction captures the bulk of the deviation effect without overloading the cascade.
-%ha med det bildet som jeg hadde i prosjektoppgaven med 2d foil og ulike vinkler
+
+The cost of this choice is that the results report the swirl-reduction performance reachable with a conservative slip correction, not the maximum reachable performance. This is revisited in Chapter~\ref{chap:results_discussion} when the swirl-reduction results are interpreted.
  
 % ---------------------------------------------------------------------
 \section{Geometric construction of the guide vanes}
 \label{sec:theory_geometric_construction}
-%Ikke skrive det som om at det er laget i project work, siden projct work ikke er publisert. Jeg skal legge ved den matlab koden den henviser til, og derfor vil den ligge i appendix. så ikke noe slik sitering..
+ 
 The parametric MATLAB tool \texttt{vanedesign\_loft\_export} of the project work~\cite{Leonsen2025} produces each two-dimensional vane section in five steps. A non-dimensional chordwise coordinate $x^*=x/c\in[0,1]$ is generated with cosine clustering near the leading and trailing edges. A cubic camber line $y_c(x^*)/c = A x^{*3} + B x^{*2} + C x^*$ is fitted so that its end slopes match the LE and TE metal angles $\theta_1(r)$ and $\theta_2(r)$ in a frame aligned with the stagger angle $\zeta(r)$. A modified NACA 00xx symmetric thickness law~\cite{Abbott1959} is applied normal to the camber line, with a leading-edge roundness factor $\texttt{LE\_round}=1.2$ and a finite trailing-edge thickness ratio that gives a fixed relative maximum thickness $(t/c)_{\mathrm{rel}}=0.075$. The two-dimensional sections are then stacked along the span and wrapped on a cylindrical surface of radius $r$. The trailing edges of all sections are anchored to a common azimuth $\phi_{\mathrm{TE,global}}$, which produces a straight TE line in the axial-azimuthal plane and supports a clean axial through-flow when the residual swirl is small. The spanwise lean and sweep parameters exposed by the tool are held at zero in this work so that the chord and solidity factors are isolated; lean and sweep are listed as candidates for a second-stage refinement in Chapter~\ref{chap:future_work}. The detailed expressions and the implementation are documented in~\cite{Leonsen2025}.
  
 \subsection{Constant chord versus constant solidity}
@@ -279,7 +279,7 @@ The strength of the Dean vortices scales with the dimensionless Dean number
 \mathrm{De} \;=\; \mathrm{Re}\,\sqrt{\frac{D_h}{2\,R_c}},
 \label{eq:dean}
 \end{equation}
-where $D_h$ is the hydraulic diameter of the duct and $R_c$ is the radius of curvature of the bend centreline. For the present geometry the duct diameter at the bend is $D = 0.4$~m and the bend centreline radius is $R_c \approx 0.50$~m, giving a curvature ratio $R_c/D = 1.24$. With Reynolds numbers around $\mathrm{Re} \sim 10^6$ in the duct, the Dean number is well into the turbulent regime where the Dean cells are fully developed and may further interact with the upstream-imposed swirl. Three regimes are commonly distinguished. For $\mathrm{De} \lesssim 100$, the bend secondary flow is laminar and weak. For intermediate Dean numbers, instabilities and additional secondary cells emerge. For high Reynolds numbers, the secondary motion is fully turbulent and is dominated by two large counter-rotating Dean cells, with additional small-scale features near the inner radius where separation is most likely.
+where $D_h$ is the hydraulic diameter of the duct and $R_c$ is the radius of curvature of the bend centreline. For the present geometry the duct diameter at the bend is approximately $D = 0.4$~m and the bend curvature radius is on the order of $R_c \approx 0.3$-$0.4$~m. With Reynolds numbers around $\mathrm{Re} \sim 10^6$ in the duct, the Dean number is well into the turbulent regime where the Dean cells are fully developed and may further interact with the upstream-imposed swirl. Three regimes are commonly distinguished. For $\mathrm{De} \lesssim 100$, the bend secondary flow is laminar and weak. For intermediate Dean numbers, instabilities and additional secondary cells (D\"ottner cells) emerge. For high Reynolds numbers, the secondary motion is fully turbulent and is dominated by two large counter-rotating Dean cells, with additional small-scale features near the inner radius where separation is most likely.
  
 \subsection{Interaction with upstream swirl}
 \label{sec:theory_swirl_bend_interaction}
@@ -627,7 +627,7 @@ The diffusion-factor and de Haller bounds are, in this geometry, indicative rath
 \label{sec:methods_domain}
  
 The computational domain reproduces the planned Store2Hydro layout from the RDT inlet down to the location where the RPT inlet would be. Six contiguous regions are connected through stationary-stationary or rotating-stationary interfaces. The overall layout is shown in Figure~\ref{fig:domain_layout}, and the regions are listed in Table~\ref{tab:domains}.
-%KOMMENTERE NOE PÅ CURVATURE PÅ BENDET
+
 \begin{figure}[h!]
   \centering
   \fbox{\includegraphics[width=0.95\textwidth]{Figures/2D_drawing/2d_drawing_full_domain.png}}
@@ -1252,7 +1252,7 @@ A characteristic signature of rotor-stator interaction would be dominant peaks a
 \section{Velocity-triangle characterisation of the RDT wake}
 \label{sec:methods_rdt_velocity_triangles}
  
-This section characterises the RDT wake through velocity triangles evaluated on the rotor blade trailing edge. These triangles describe the kinematic state of the flow on the blade surface in the TE region. They are reported for completeness and as a check on the upstream RDT design~\cite{DjupeslandTrivedi2025}. They are \emph{not} the input used by the parametric MATLAB tool to design the guide vanes; that input is the design-input flow angle $\alpha_{\mathrm{base}}(r)$ constructed in Section~\ref{sec:methods_design_input_baseline} from the stand-alone transient RDT simulation.
+This section characterises the RDT wake through velocity triangles evaluated on the rotor blade trailing edge. These triangles describe the kinematic state of the flow on the blade surface in the TE region. They are reported for completeness and as a check on the upstream RDT design~\cite{DjupeslandTrivedi2025}. They are \emph{not} the input used by the parametric MATLAB tool to design the guide vanes; that input is the design-input flow angle $\alpha_{\mathrm{base}}(r)$ constructed in Section~\ref{sec:methods_design_input_baseline} from the stand-alone transient RDT simulation. A complementary near-leading-edge diagnostic on the same blade-loading data is reported in Appendix~\ref{app:rdt_le_triangles}.
  
 \paragraph{Extraction procedure.}
 The absolute velocity components $C_m$ and $C_u$ are extracted from the converged \texttt{NoGV} steady solution at six radial spans, $r/R \in \{0.01,\,0.20,\,0.40,\,0.60,\,0.80,\,0.99\}$, with $R_{\mathrm{hub}}=53.95$~mm and $R_{\mathrm{shroud}}=250.0$~mm. The values are sampled along blade-loading lines on the rotor blade at constant span. The streamwise coordinate $s\in[0,1]$ runs from the leading edge ($s=0$) to the trailing edge ($s=1$), and the TE region used here is $s\in(0.90,\,1.00)$.
