@@ -1,6 +1,32 @@
-\chapter{Appendix C: Creating a figure}
-\label{app:appC}
+\chapter{Appendix C: Bend secondary-flow supplementary figures}
+\label{app:dean-panels}
 \fancyhead{}
 
+This appendix supplements Section~\ref{sec:dean-vortex}. It gives the streamwise
+development of the bend secondary flow for the six reference cases, and the
+in-plane velocity field at the bend inlet and one diameter downstream of the
+bend exit. The \texttt{BendEnd} plane is shown in the main text,
+Figure~\ref{fig:dean-montage}.
+
+\begin{figure}[H]
+\centering
+\safeincludegraphics[width=0.95\linewidth]{Figures/Results/fig_dean_streamwise.png}
+\caption{Streamwise development through the bend for the six reference cases. Left: peak in-plane velocity $|V_{\mathrm{in\text{-}plane}}|/U_b$. Right: net in-plane swirl number $S_\mathrm{net}$. The dotted line marks the bend exit; the stations to its right ($+1D$, $+2D$) are measured downstream of the exit, and the seven stations are not equally spaced in arclength, so the curves show qualitative development rather than a fitted decay. The straight case keeps $S_\mathrm{net} \approx 0$ throughout, the signature of the symmetric Dean pair, while the swirl cases carry a net rotation that decays slowly. $S_\mathrm{net}$ is a local in-plane diagnostic about the plane centre, distinct from the full-pipe $|S|$ of Section~\ref{sec:s-streamwise}.}
+\label{fig:dean-streamwise}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\safeincludegraphics[width=0.99\linewidth]{Figures/Results/fig_dean_montage_BendStart.png}
+\caption{In-plane velocity magnitude $|V_{\mathrm{in\text{-}plane}}|/U_b$ at \texttt{BendStart} (bend inlet) for the six reference cases. The colour scale and the annotations follow Figure~\ref{fig:dean-montage}. At the inlet the straight case is still near-axial and the Dean pair has not yet formed, while the swirl cases already carry their characteristic single-cell or spiral structure.}
+\label{fig:dean-montage-bendstart}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\safeincludegraphics[width=0.99\linewidth]{Figures/Results/fig_dean_montage_ConeEnd.png}
+\caption{In-plane velocity magnitude $|V_{\mathrm{in\text{-}plane}}|/U_b$ one diameter downstream of the bend exit for the six reference cases. The colour scale and the annotations follow Figure~\ref{fig:dean-montage}. The straight case shows the developed counter-rotating Dean pair, while the swirl cases retain a single decaying spiral.}
+\label{fig:dean-montage-coneend}
+\end{figure}
 
 \clearpage % Keep this at the end of the chapter
