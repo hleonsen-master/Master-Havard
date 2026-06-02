@@ -1,16 +1,23 @@
-\chapter{Appendix F: Results table from every GV configuration}
-\label{app:appF}
+\chapter{Q-criterion contour matrices at \texttt{ConeEnd}}
+\label{app:qcrit-contours}
 \fancyhead{}
 
-This appendix contains the complete numerical result table used for the
-Chapter~4 screening. The table is included as a rotated A4 PDF page to preserve
-the wide case matrix.
+This appendix shows the full \(Q\)-criterion contour matrices at \texttt{ConeEnd} for the constant-chord (CC) and constant-solidity (CS) guide-vane families. The figures support the discussion in Section~\ref{sec:q-criterion-analysis}. The contour fields are used for qualitative comparison of coherent vortex-core regions between the guide-vane configurations.
 
-\includepdf[
-    pages=-,
-    angle=90,
-    fitpaper=true,
-    pagecommand={}
-]{appendix/AppendixF_full_results_A4_ONEPAGE_FILLED.pdf}
+\begin{figure}[H]
+\centering
+\safeincludegraphics[width=0.82\linewidth]{Figures/Results/qcrit_contour_grid/fig_qcrit_grid_CC_coneend.png}
+\caption{\(Q\)-criterion field at \texttt{ConeEnd} for the nine CC configurations. The colour scale is shared within the figure. The iso-line marks \(Q=Q_{\mathrm{ref}}\), and the panel value below each contour gives \(Q_{\max}\).}
+\label{fig:app-qcrit-grid-cc}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\safeincludegraphics[width=0.82\linewidth]{Figures/Results/qcrit_contour_grid/fig_qcrit_grid_CS_coneend.png}
+\caption{\(Q\)-criterion field at \texttt{ConeEnd} for the nine CS configurations. The colour scale is shared within the figure. The iso-line marks \(Q=Q_{\mathrm{ref}}\), and the panel value below each contour gives \(Q_{\max}\).}
+\label{fig:app-qcrit-grid-cs}
+\end{figure}
+
+\FloatBarrier
 
 \clearpage

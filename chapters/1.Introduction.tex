@@ -26,7 +26,7 @@ The booster has tight constraints. It must fit inside a draft tube of about $0.5
   \fbox{\includegraphics[width=0.47\textwidth]{Figures/Litterature_review/Johannes_RDT/Johannes RDT.PNG}}
   \hfill
   \fbox{\includegraphics[width=0.47\textwidth]{Figures/Litterature_review/Johannes_RDT/Johannes RDT2.PNG}}
-  \caption[The hubless rim-driven thruster motor]{The hubless rim-driven thruster (RDT). Figure adapted from Johannes Djupesland`s parallell work.}
+  \caption{Concept sketch of the RDT, guide-vane and RPT layout used in the Store2Hydro booster configuration. Adapted from parallel work by Johannes Djupesland~\cite{DjupeslandTrivedi2025}.}
   \label{fig:rdt_motor}
 \end{figure}
 
@@ -71,7 +71,7 @@ Three gaps remain. First, only two 3D geometries were assessed with CFD. Two dat
 \end{figure}
 
 
-The present thesis addresses the first two gaps directly. The slip-correction methodology from the project work is reused with a fixed value $\delta_{\mathrm{TE}} = 6^\circ$, following G\"ulich~\cite{Gulich2010}. A built-in TE angle of $4^\circ$-$6^\circ$ compensates for cascade deviation; a larger correction promotes suction-side separation. The screening then simulates 18 GV configurations in the full RDT-GV-draft-tube domain. The matrix combines two chord-control strategies (constant chord and constant solidity at the shroud), six shroud-chord levels and three vane counts. A nineteenth simulation, denoted \texttt{NoGV}, replaces the GV region with an empty pipe and provides the reference for the swirl-reduction and head-loss metrics. the coupling with the RPT is left as future work. Dokset~\cite{Dokset2025} carries the parallel responsibility for the RPT side, and a coupled RDT-GV-RPT study furthermore.
+The present thesis addresses the first two gaps directly. The slip-correction methodology from the project work is reused with a fixed value $\delta_{\mathrm{TE}} = 6^\circ$, following G\"ulich~\cite{Gulich2010}. The screening then simulates 18 GV configurations in the full RDT-GV-draft-tube domain. The matrix combines two chord-control strategies (constant chord and constant solidity at the shroud), six shroud-chord levels and three vane counts. A nineteenth simulation, denoted \texttt{NoGV}, replaces the GV region with an empty pipe and provides the reference for the swirl-reduction and head-loss metrics. Coupling with the RPT is left as future work (Chapter~\ref{chap:future_work}); the parallel thesis by Dokset~\cite{Dokset2025} covers the RPT side.
 
 
 \section{Goal and research questions} %se videre på dette 
@@ -100,7 +100,7 @@ A working hypothesis is formulated for each question. Increasing solidity, eithe
 
 The scope is set by previous work and by available computational resources. The following points defines it;
 
-\paragraph{Decoupling from the RPT.} The domain starts at the RDT inlet and ends $1.0$~m past the RPT location in a straight pipe. The flow passes through the RDT, the GV section, a conical contraction from $D = 0.5$~m to $D = 0.4$~m over $1.5$~m, and a $90^\circ$ bend. The RPT is not modelled; it is replaced by the extended straight pipe, which also buffers the bend from the outlet boundary. A coupled RDT-GV-RPT setup would cost about 3 times the CPU hours of the present RDT-GV-draft-tube domain, so all 18 configurations are screened in the decoupled form under the same upstream wake. The coupled simulation of the selected candidate is left as future work. The decoupling is justified in Section~\ref{sec:rpt-decoupling-justification}.
+\paragraph{Decoupling from the RPT.} The domain starts at the RDT inlet and ends $1.0$~m past the RPT location in a straight pipe. The flow passes through the RDT, the GV section, a conical contraction from $D = 0.5$~m to $D = 0.4$~m over $1.5$~m, and a $90^\circ$ bend. The RPT is not modelled; it is replaced by the extended straight pipe, which also buffers the bend from the outlet boundary. All 18 configurations use this decoupled domain under the same upstream wake. The reasons for the decoupling and its effect on the results are set out in Section~\ref{sec:rpt-decoupling-justification}, and a coupled simulation of the selected candidate is left as future work (Chapter~\ref{chap:future_work}).
 
 \paragraph{Steady RANS for the screening.} The 18 cases use steady RANS with the SST $k$-$\omega$ turbulence model. Two transient simulations of selected configurations cover the rotor-stator interaction analysis in Chapter~\ref{chap:results_discussion}. A full transient screening was not feasible due to computational costs.
 

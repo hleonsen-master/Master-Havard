@@ -15,6 +15,7 @@
 \usepackage{acronym}
 \usepackage{graphicx}
 \usepackage{svg}
+\usepackage{float}
 
 % Safe figure inclusion: if a figure file is not yet generated, a placeholder box
 % is shown so the document still compiles. The real figure appears automatically
@@ -54,6 +55,7 @@
   columns=fullflexible
   % backgroundcolor=\color{gray!5}            % slå på hvis du vil ha lys bakgrunn
 }
+
 \lstdefinelanguage{CSharp}{
   morekeywords={%
     abstract,event,new,struct,as,explicit,null,switch,base,extern,object,this,
@@ -89,6 +91,18 @@
 
 % Sett MATLAB som default stil (kan overstyres per listing)
 \lstset{style=matlabStyle}
+
+% Automatically input appendix files named Appendix-A.tex, Appendix-B.tex, etc.
+% The order is fixed alphabetically from A to Z. Files that do not exist are skipped.
+\makeatletter
+\newcommand{\inputallappendices}{%
+  \@for\app:=A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z\do{%
+    \IfFileExists{appendix/Appendix-\app.tex}{%
+      \input{appendix/Appendix-\app}%
+    }{}%
+  }%
+}
+\makeatother
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
@@ -154,12 +168,13 @@
 
 \include{chapters/1.Introduction}                   % Introduction, mandatory.
 \include{chapters/2.Literature-review}              % Literature review, mandatory.
-%\include{chapters/3.Theory}             % Theory and methods, mandatory.
+%\include{chapters/3.Theory}                         % Theory and methods, mandatory.
 \include{chapters/3.Theory-and-Methodology}
-%\include{chapters/4.Methodology}        % Results and discussions, mandatory.
+%\include{chapters/4.Methodology}                    % Results and discussions, mandatory.
 \include{chapters/4.Results-and-discussions}                   
 \include{chapters/5.Conclusions}                    
 \include{chapters/6.Future-work}     
+
 %--------------------------List bibliography here------------------------------%
 \pagestyle{hfstyle-appendix}                        % Set different header and footer.
 \phantomsection
@@ -180,16 +195,11 @@
     	{1pt} 										% Separation between label and name
     	{\Large\bfseries\center} 		            % Name preamble
     	{}											% Name postamble
-    \input{appendix/Appendix-A}                     % Appendix, optional.
-    \input{appendix/Appendix-B}
-    \input{appendix/Appendix-C}
-    \input{appendix/Appendix-D}
-    \input{appendix/Appendix-E}
-    \input{appendix/Appendix-F}
-    \input{appendix/Appendix-G}
+
+    \inputallappendices
 \end{appendices}
 
-\backPage                                       % ntnu style cover page
+\backPage                                           % ntnu style cover page
 
 \end{document}
 

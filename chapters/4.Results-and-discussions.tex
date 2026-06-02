@@ -9,42 +9,42 @@
 
 \section{RDT mesh interface overlap: discovery and impact assessment}
 \label{sec:rdt-mesh-overlap}
+This chapter reports the results in two layers. The screening matrix of 18 guide-vane configurations on the original RDT mesh forms the primary layer. A smaller second layer of 7 reruns on a corrected RDT mesh was added after a setup error in the original was identified during post-processing. The error and how it was found are documented in this section.
 
-The results in this chapter are grouped into two layers. The first layer is the screening matrix of $18$ guide-vane configurations simulated with the original RDT mesh. The second layer is a sub-sample of $7$ configurations rerun with a corrected RDT mesh after a setup error was identified during post-processing. This section documents the error, the discovery, and the validation strategy that ties the two layers together. It is placed first so that every subsequent quantitative claim can be interpreted against the same caveat.
+The 18-case matrix remains the primary screening result because the relevant comparison is between configurations, not against an absolute reference. The same interface defect is present in all 18 original screening simulations, so the matrix can still be interpreted comparatively. However, the corrected anchor cases show that the bias is case-dependent. Family-level trends are therefore retained as primary findings, while same-family rankings at similar chord are treated as screening-level results unless they are anchor-confirmed. No experimental dataset for this geometry exists to validate against, which reinforces the comparative framing.
+
 
 \subsection{Nature of the setup error}
 \label{sec:rdt-mesh-overlap-nature}
 
-The rotor domain and the hub-pipe domain of the RDT share a cylindrical interface at $r_\mathrm{hub} = 0.120$~m. The TurboGrid mesh on the rotor blades extends $0.0326$~mm radially beyond this interface and overlaps with the hub-pipe mesh on the hub-blade boundary. CFX resolved this overlap during preprocessing by treating the overlapping nodes as a no-slip wall. The result is an effective interior wall along the hub-blade interface of the RDT, separating the rotor-domain outer flow from the hub-pipe interior flow. The effect is local to the hub region and does not affect the GV passage or the cone-bend section directly.
+The rotor domain and the hub-pipe domain of the RDT share a cylindrical interface at $r_\mathrm{hub} = 0.120$~m. The TurboGrid mesh on the rotor blades extends $0.0326$~mm radially beyond this interface, and CFX treated the overlapping nodes as a no-slip wall during preprocessing. This creates an artificial interior wall along the hub-blade interface that blocks the recirculation through the hub-pipe interior. The effect is local to the hub and does not touch the GV passage or the cone-bend section directly.
 
-The consequence is that fluid which should have recirculated through the hub-pipe interior is blocked. Figure~\ref{fig:rdt-mesh-overlap-cc500} shows the original and corrected setup for configuration \texttt{CC\_500\_8}. In the original setup the pressure field shows discontinuous bands at the hub boundary (panel~a), and the velocity vectors stop at the artificial wall instead of crossing it (panel~b). In the corrected setup the pressure field is continuous across the hub boundary (panel~c), and the velocity vectors pass through the hub pipe as expected for a hubless rim-driven thruster (panel~d). The same difference appears in the swirl-only reference simulation (Figure~\ref{fig:rdt-mesh-overlap-swirl}). The downstream pressure level is lower and the radial pressure gradient at the hub is smoother in the corrected case.
+Figure~\ref{fig:rdt-mesh-overlap-cc500} contrasts the original and corrected setup for \texttt{CC\_500\_8}. The original mesh shows discontinuous pressure bands at the hub boundary and velocity vectors that stop at the artificial wall. The corrected mesh restores continuous pressure and through-flow as expected for a hubless thruster. The swirl-only reference shows the same difference (Figure~\ref{fig:rdt-mesh-overlap-swirl}), with a lower downstream pressure level and a smoother radial gradient at the hub.
 
 \begin{figure}[H]
 \centering
 \begin{subfigure}[t]{0.48\linewidth}
     \centering
     \includegraphics[width=\linewidth]{Figures/Results/RDT_mesh_error/CC_500_8 wrong contour pressure.png}
-    \caption{Original (wrong) -- pressure}
+    \caption{Original -- pressure}
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.48\linewidth}
     \centering
     \includegraphics[width=\linewidth]{Figures/Results/RDT_mesh_error/CC_500_8 correct contour pressure.png}
     \caption{Corrected -- pressure}
 \end{subfigure}
-
 \vspace{0.6em}
-
 \begin{subfigure}[t]{0.48\linewidth}
     \centering
     \includegraphics[width=\linewidth]{Figures/Results/RDT_mesh_error/CC_500_8 wrong velocity vector.png}
-    \caption{Original (wrong) -- velocity}
+    \caption{Original -- velocity}
 \end{subfigure}\hfill
 \begin{subfigure}[t]{0.48\linewidth}
     \centering
     \includegraphics[width=\linewidth]{Figures/Results/RDT_mesh_error/CC_500_8 correct velocity vector.png}
     \caption{Corrected -- velocity}
 \end{subfigure}
-\caption{Configuration \texttt{CC\_500\_8}: pressure contours (top) and velocity vectors (bottom) on a $zy$-plane cutting through the RDT hub region. The original mesh imposes an artificial no-slip wall along the rotor--hub interface, visible as discontinuous pressure bands and velocity vectors that terminate at the boundary. The corrected mesh removes the $0.0326$~mm radial overlap and restores continuous flow through the hub pipe.}
+\caption{Configuration \texttt{CC\_500\_8} on a $zy$-plane through the RDT hub: pressure (top) and velocity (bottom), original versus corrected mesh. Removing the $0.0326$~mm radial overlap restores continuous flow through the hub pipe.}
 \label{fig:rdt-mesh-overlap-cc500}
 \end{figure}
 
@@ -60,34 +60,31 @@ The consequence is that fluid which should have recirculated through the hub-pip
     \includegraphics[width=\linewidth]{Figures/Results/RDT_mesh_error/Swirl_correct_pressure_contour.png}
     \caption{Corrected RDT setup}
 \end{subfigure}
-\caption{NoGV swirl reference before and after correction of mesh interface. Corrected(on right) shows a higher pressure increase downstream in the Draft tube.}
+\caption{NoGV swirl reference before and after correction of the RDT mesh interface. The corrected setup, shown on the right, gives a higher downstream pressure increase in the draft-tube section.}
 \label{fig:rdt-mesh-overlap-swirl}
 \end{figure}
 
-\subsection{Why standard sanity checks did not flag the error}
+\subsection{Undetected by routine checks}
 \label{sec:rdt-mesh-overlap-why-missed}
 
-Five routine checks were performed during the screening campaign. None of them flagged the interface overlap. Mass-flow conservation between inlet and outlet was satisfied to better than $0.1\%$ in all $18$ cases, because the displaced fluid was rerouted around the hub wall rather than lost. The $y^+$ distribution on the RDT blade and the draft-tube wall remained inside the intended log-law range, since the artificial wall added new boundary nodes but did not violate the wall-treatment assumption. The frozen-rotor pressure jump at the rotor--stator interface was within the magnitude seen in earlier work in the project and was interpreted as a normal interface transition. RMS residuals converged to below $10^{-5}$. Monitor values stabilised within the prescribed iteration window.
+Several routine checks passed without flagging the overlap. The global mass imbalance was small, RMS residuals converged below \(10^{-5}\), and monitored integral quantities stabilised within the iteration window. These checks did not expose the local interface blockage because the displaced fluid was rerouted around the hub wall rather than lost from the domain.
 
-The error was identified during post-processing of velocity vectors on a $zy$-plane through the RDT, when a visible row of stagnant vectors was observed along the hub-blade boundary. The hub-pipe interior also showed an unphysical near-stagnant region. A subsequent inspection of the TurboGrid blade mesh and the hub-pipe mesh confirmed the $0.0326$~mm radial overlap.
+The error surfaced during post-processing of velocity vectors on a $zy$-plane through the RDT. A row of stagnant vectors along the hub-blade boundary, together with a near-stagnant region inside the hub pipe, pointed to the wall. Inspection of the TurboGrid blade mesh and the hub-pipe mesh confirmed the $0.0326$~mm overlap. The RDT mesh came from parallel work in the Store2Hydro project and was combined with the meshes built for this thesis. The interface between the two was not checked closely enough before use.
+
 
 \subsection{Corrected sub-sample: seven anchor cases}
 \label{sec:rdt-mesh-overlap-validation}
 
-A complete rerun of all $18$ configurations was not feasible within the time available. Seven configurations were selected as anchor points and rerun with the corrected RDT mesh: the NoGV swirl reference, three \texttt{CC} cases (\texttt{CC\_250\_9}, \texttt{CC\_450\_6}, \texttt{CC\_500\_8}), and four \texttt{CS} cases (\texttt{CS\_250\_9}, \texttt{CS\_450\_6}, \texttt{CS\_500\_6}, \texttt{CS\_500\_8}). The selection spans both families, three chord levels, and the corners of the design space relevant to the Pareto analysis presented later in this chapter. Two of the four uncorrected Pareto-front cases, \texttt{CC\_500\_8} and \texttt{CS\_500\_6}, are included as anchors; the remaining two, \texttt{CC\_400\_8} and \texttt{CS\_500\_8}, are partially covered (\texttt{CS\_500\_8} is anchored, \texttt{CC\_400\_8} is not). The implication of the missing \texttt{CC\_400\_8} anchor is discussed in Section~\ref{sec:rdt-mesh-overlap-impact}.
+A full rerun of all 18 configurations was not feasible in the time available. The NoGV swirl reference and seven guide-vane anchors were rerun with the corrected RDT mesh: three \texttt{CC} cases (\texttt{CC\_250\_9}, \texttt{CC\_450\_6}, \texttt{CC\_500\_8}) and four \texttt{CS} cases (\texttt{CS\_250\_9}, \texttt{CS\_450\_6}, \texttt{CS\_500\_6}, \texttt{CS\_500\_8}). The set spans both families, three chord levels, and the Pareto-relevant corners of the matrix. Three of the four uncorrected Pareto-front cases are anchored (\texttt{CS\_500\_8}, \texttt{CS\_500\_6}, \texttt{CC\_500\_8}); only \texttt{CC\_400\_8} is not, and that gap is taken up in Section~\ref{sec:rdt-mesh-overlap-impact}.
 
-Table~\ref{tab:correctRDT-anchor} lists the original and corrected values of two principal metrics: the system head increase $\Delta H_\mathrm{sys} = H_\mathrm{ConeEnd} - H_\mathrm{RDTStart}$ and the mass-averaged absolute flow angle $|\alpha|$ at \texttt{ConeEnd}. The table guides three observations that shape the rest of the chapter.
+Table~\ref{tab:correctRDT-anchor} lists the system head increase $\Delta H_\mathrm{sys} = H_\mathrm{ConeEnd} - H_\mathrm{RDTStart}$ and the mass-averaged absolute flow angle $|\alpha|$ at \texttt{ConeEnd}, before and after correction.
 
-The NoGV reference and the GV cases move in opposite directions. The corrected NoGV reference shows higher $\Delta H_\mathrm{sys}$ ($+6.2\%$) and higher $|\alpha|$ ($+18.8\%$) than the original. Without guide vanes, removing the artificial hub wall allows a stronger and more developed swirling flow to leave the RDT, and both throughflow head and residual swirl increase. With guide vanes, $\Delta H_\mathrm{sys}$ drops by $7$ to $14\%$ and $|\alpha|$ drops by $2$ to $32\%$. The cleaner upstream inflow lets the vanes recover more swirl, so the residual angle falls. Some of the recovered momentum is lost as additional vane-passage head loss.
-
-The magnitudes of the changes vary substantially between cases. For $|\alpha|$ the corrected change ranges from $-1.7\%$ (\texttt{CS\_450\_6}) to $-31.5\%$ (\texttt{CC\_500\_8}), almost a factor of $20$. The corresponding spread for $\Delta H_\mathrm{sys}$ is narrower ($-7.0\%$ to $-13.7\%$) but still significant. The bias is therefore case-dependent in magnitude, not a uniform shift that could be cancelled by a single correction factor.
-
-Directional consistency holds for $\Delta H_\mathrm{sys}$ and $|\alpha|$ across the seven GV cases (both quantities decrease after correction) but not for every metric. The head loss in the guide-vane passage ($\mathrm{HL}_\mathrm{GVStart \to z680}$) decreases for five anchor cases (range $-0.4\%$ to $-12.8\%$) but increases for two: \texttt{CS\_450\_6} ($+8.6\%$) and \texttt{CS\_500\_6} ($+15.4\%$). The sign reversal is consistent with how each GV geometry interacts with the upstream wake structure that the artificial hub wall had distorted, but it shows that no single rule for the bias direction applies to every quantity.
+The NoGV reference and the GV cases move in opposite directions. Without vanes, removing the artificial hub wall lets a stronger swirl leave the RDT, so both $\Delta H_\mathrm{sys}$ and $|\alpha|$ rise ($+6.2\%$ and $+18.8\%$). With vanes, the cleaner inflow lets them recover more swirl: $\Delta H_\mathrm{sys}$ drops by $7$ to $14\%$ and $|\alpha|$ by $2$ to $32\%$. The size of the shift varies from case to case, so no single factor corrects it. The direction is the same for these two metrics, but not for every quantity. The vane-passage head loss falls for five anchors and rises for \texttt{CS\_450\_6} and \texttt{CS\_500\_6}. This sets the limit on how far the correction can be generalised.
 
 \begin{table}[H]
 \centering
 \small
-\caption{Anchor sub-sample: original and corrected values for system head increase $\Delta H_\mathrm{sys}$ and mass-averaged absolute flow angle $|\alpha|$ at \texttt{ConeEnd}. Relative change is $X^\mathrm{corr}/X^\mathrm{orig} - 1$ in percent. Values are read from \texttt{Results\_correctRDT.csv}.}
+\caption{Anchor sub-sample: original and corrected $\Delta H_\mathrm{sys}$ and mass-averaged $|\alpha|$ at \texttt{ConeEnd}. Relative change is $X^\mathrm{corr}/X^\mathrm{orig} - 1$ in percent.}
 \label{tab:correctRDT-anchor}
 \begin{tabular}{l rrr rrr}
 \hline
@@ -104,44 +101,40 @@ NoGV swirl          & 3.96 & 4.21 & $+6.2$   & 53.6 & 63.7 & $+18.8$ \\
 \end{tabular}
 \end{table}
 
-\subsection{What is preserved, what is biased, and how to read the rest of this chapter}
+\subsection{What survives the correction}
 \label{sec:rdt-mesh-overlap-impact}
 
-The sub-sample is too small to validate every individual ranking in the $18$-case matrix. It is large enough to identify which classes of claim survive the correction and which classes do not.
+The seven anchors are too few to revalidate every ranking in the 18-case matrix, but they are enough to separate the claims that survive the correction from those that do not.
 
-Three classes of claim survive the correction. Family-level trends (\texttt{CC} versus \texttt{CS}) are preserved in every comparison performed on the anchor data. The \texttt{CC} family has lower vane-passage head loss than \texttt{CS} in both setups, and the \texttt{CS} family has lower residual flow angle than \texttt{CC} in both setups. Within-family chord trends are also preserved. Longer chord gives lower residual angle in both \texttt{CC} and \texttt{CS} families, in both setups. The direction of the head-loss versus swirl-recovery trade-off is the same in both setups: configurations with stronger swirl recovery pay a higher head-loss penalty.
+In both setups, \texttt{CC} keeps the lower vane-passage head loss and \texttt{CS} the lower residual angle. Within each family, longer chord gives lower residual angle. The head-loss versus swirl-recovery trade-off keeps its direction, with stronger recovery costing more head. What does not survive is the ranking between two cases of the same family at similar chord. The non-uniform vane-passage bias from Section~\ref{sec:rdt-mesh-overlap-validation} can flip those, so where such a ranking matters the corrected anchor value is used and the limitation is named.
 
-One class of claim does not survive without qualification. Individual rankings between two cases of the same family and similar chord can change between the two setups. The non-uniform bias in vane-passage head loss documented in Section~\ref{sec:rdt-mesh-overlap-validation} is the direct cause. Where an individual ranking matters for a design recommendation, the value from the corrected anchor is preferred when available, and the limitation is stated explicitly.
-
-The Pareto-front membership is partially confirmed. Four cases are Pareto-dominant in the uncorrected $18$-case matrix: \texttt{CS\_500\_8}, \texttt{CS\_500\_6}, \texttt{CC\_500\_8} and \texttt{CC\_400\_8}. Three of these are present in the corrected anchor set (\texttt{CS\_500\_8}, \texttt{CS\_500\_6}, \texttt{CC\_500\_8}). Their detailed behaviour under correction, including a Pareto-status change for \texttt{CS\_500\_6} within the sub-sample, is examined in Section~\ref{sec:pareto-anchor-check}. \texttt{CC\_400\_8} was not rerun and its Pareto status cannot be verified. A fourth case, \texttt{CC\_250\_9}, appears on the Pareto front of the corrected sub-sample because it is the highest-$\Delta H_\mathrm{sys}$ case among the seven anchors. This is a sub-sample artefact rather than evidence of a new Pareto-dominant design, since the larger uncorrected matrix shows several \texttt{CC} cases with higher $\Delta H_\mathrm{sys}$ and lower $|\alpha|$ than \texttt{CC\_250\_9}. The final candidate selection in the synthesis section of this chapter therefore relies on the anchor-confirmed Pareto candidates and treats \texttt{CC\_400\_8} as an unverified candidate.
-
-Four reading rules follow from this analysis. They apply to every quantitative claim in the remainder of the chapter.
+Three of the four uncorrected Pareto cases are anchored (\texttt{CS\_500\_8}, \texttt{CS\_500\_6}, \texttt{CC\_500\_8}); \texttt{CC\_400\_8} is not. Section~\ref{sec:pareto-anchor-check} examines their behaviour under correction, including a Pareto-status change for \texttt{CS\_500\_6} within the sub-sample. \texttt{CC\_250\_9} appears on the corrected-anchor front only because it is the highest-$\Delta H_\mathrm{sys}$ case among seven sparse points, and several \texttt{CC} cases in the full matrix beat it on both metrics. It is a sub-sample artefact, not a new candidate.
 
 \begin{enumerate}
-    \item Family-level trends (\texttt{CC} vs \texttt{CS}) and within-family chord trends are stated as primary findings.
-    \item Individual rankings between two cases of the same family and similar chord are stated only where they are robust across both setups, or where the anchor value confirms them. When they are not robust, the limitation is named.
-    \item Absolute values of $\Delta H_\mathrm{sys}$, head-loss components and pressure recovery are reported as comparison values, not as design predictions. The bias on $\Delta H_\mathrm{sys}$ is $-7$ to $-14\%$ for the GV cases in Table~\ref{tab:correctRDT-anchor}.
-    \item Cavitation margins, axial forces and runner torque carry independent uncertainty -- the CFX reference pressure used for cavitation evaluation was not set with the precision required for quantitative cavitation prediction -- and are used as qualitative diagnostics only.
+    \item Family-level and within-family chord trends are stated as primary findings.
+    \item Rankings between two cases of the same family and similar chord are stated only where they hold across both setups or are anchor-confirmed. Otherwise the limitation is named.
+    \item Absolute $\Delta H_\mathrm{sys}$, head-loss components and pressure recovery are comparison values, not design predictions. The $\Delta H_\mathrm{sys}$ bias is $-7$ to $-14\%$ for the GV cases (Table~\ref{tab:correctRDT-anchor}).
+    \item Cavitation margins, axial forces and runner torque are qualitative diagnostics only, since the CFX reference pressure was not set for quantitative cavitation prediction.
 \end{enumerate}
 
-Results from the seven corrected anchor cases are reported alongside the uncorrected screening results where the comparison is informative. The screening matrix remains the $18$ uncorrected cases. Re-running all $18$ configurations with the corrected RDT mesh is identified as the principal item of future work and is discussed in Chapter~\ref{chap:future_work}.
+The 18 uncorrected cases remain the screening matrix, with corrected anchors reported alongside where the comparison is informative. A full corrected rerun of all 18 is the principal item of future work (Chapter~\ref{chap:future_work}).
 
 \section{Reference behaviour and validation}
 \label{sec:reference-and-validation}
 
-The screening matrix produces eighteen numbers per metric. Before interpreting them, two reference simulations anchor the meaning of those numbers. The NoGV swirl reference (RDT operating without guide vanes) sets the upper bound on residual swirl and on bend head loss, and defines the baseline that every guide-vane configuration is designed to improve. The NoGV straight validation (no RDT, axial inlet) tests whether the cone-bend domain itself introduces artificial swirl that could contaminate the comparison. Mass conservation and the wall-treatment strategy are then documented for the full $18$-case matrix.
+The screening matrix produces eighteen numbers per metric. Before interpreting them, two reference simulations anchor the meaning of those numbers. The NoGV swirl reference (RDT operating without guide vanes) sets the upper bound on residual swirl and on bend head loss, and defines the baseline that every guide-vane configuration is designed to improve. The NoGV straight validation (no RDT, axial inlet) tests whether the cone-bend domain itself introduces artificial swirl that could contaminate the comparison. Mass conservation and the wall-resolution scope are then documented for the full \(18\)-case matrix.
 
 \subsection{NoGV swirl reference}
 \label{sec:nogv-swirl-reference}
 
-The NoGV swirl reference simulates the corrected RDT with the same downstream domain (cone, $90^\circ$ bend, final pipe) but without any guide vanes in place. The flow leaves the RDT, expands into the cone, passes through the bend, and exits at \texttt{ConeEnd}. Without a swirl-recovery element, the tangential momentum imparted by the rotor is carried all the way through the duct.
+The NoGV swirl reference uses the corrected RDT with the full downstream domain but no guide vanes, so the rotor swirl is carried through the duct unrecovered. It sets the baseline every configuration is measured against.
 
-Table~\ref{tab:nogv-swirl-reference} lists the principal metrics in both the original and corrected setup. The mean flow angle at \texttt{ConeEnd} reaches $63.7^\circ$ in the corrected setup, with an absolute swirl number of $5.35$. The best guide-vane configuration in the screening matrix (\texttt{CS\_500\_8}) reduces $|\alpha|_{\mathrm{ConeEnd}}$ to $9.1^\circ$ uncorrected and to $7.9^\circ$ corrected. The screening matrix therefore covers roughly an eight-fold reduction in residual angle and a twenty-fold reduction in swirl-number magnitude relative to the no-GV reference. Configurations near the worst end of the matrix (\texttt{CS\_250\_9}, \texttt{CC\_250\_9}) still leave $|\alpha|_{\mathrm{ConeEnd}}$ above $30^\circ$; configurations near the best end approach $10^\circ$.
+Table~\ref{tab:nogv-swirl-reference} lists the principal metrics in both setups. The corrected reference reaches $|\alpha|_{\mathrm{ConeEnd}} = 63.7^\circ$ with $|S| = 5.35$. The best configuration, \texttt{CS\_500\_8}, brings $|\alpha|_{\mathrm{ConeEnd}}$ down to $7.9^\circ$ corrected, an eight-fold reduction in residual angle. The bend head loss of $0.37$~m collapses to below $0.06$~m once any vane is present, an order of magnitude lower; the mechanism is treated in Section~\ref{sec:bend-hl-collapse}.
 
 \begin{table}[H]
 \centering
 \small
-\caption{NoGV swirl reference: principal metrics in the original and corrected RDT setup. Mean flow angle and swirl number are taken on the listed planes. $\Delta H_{\mathrm{sys}}$ is $H_{\mathrm{ConeEnd}} - H_{\mathrm{RDTStart}}$. $\mathrm{HL_{Bend}}$ is the head loss between \texttt{BendStart} and \texttt{BendEnd}.}
+\caption{NoGV swirl reference: principal metrics in the original and corrected RDT setup. $\mathrm{HL_{Bend}}$ is the head loss between \texttt{BendStart} and \texttt{BendEnd}.}
 \label{tab:nogv-swirl-reference}
 \begin{tabular}{l rr}
 \hline
@@ -156,43 +149,31 @@ $\mathrm{HL_{Bend}}$ (m)              & $0.39$ & $0.37$ \\
 \end{tabular}
 \end{table}
 
-The head loss in the bend section is $0.37$~m in the corrected NoGV reference and $0.39$~m in the original. With any guide vane in place, $\mathrm{HL_{Bend}}$ drops to the range $0.014$ to $0.058$~m, an order-of-magnitude reduction. The mechanism behind this collapse is examined in Section~\ref{sec:bend-hl-collapse}. The relevant point in this section is that the bend acts very differently on a strongly swirling flow than on a near-axial flow, and the magnitude of the reduction sets the scale for the head-loss budget across the screening matrix.
-
-The NoGV $|S|$ values increase substantially after the mesh correction. The factor-of-six increase in $|S|$ at \texttt{ConeEnd} ($0.92 \to 5.35$) shows that the artificial hub wall in the original RDT mesh acted as an unintended friction dissipator for tangential momentum. The uncorrected NoGV reference was therefore weaker than the physically correct case. Guide-vane configurations in the uncorrected screening were rated against this weaker reference. The implication is that the guide vanes perform a larger swirl-recovery task than the uncorrected NoGV reference suggests, and that the relative ranking of GV configurations is the appropriate use of the screening data rather than the absolute residual values.
+The mesh correction raises $|S|$ at \texttt{ConeEnd} from $0.92$ to $5.35$. The artificial hub wall in the original mesh dissipated tangential momentum, so the uncorrected reference was weaker than the physical case. The guide vanes therefore face a stronger swirl input than the uncorrected reference shows, which means the swirl-recovery factors quoted against it are conservative. A $0.0326$~mm overlap shifting $|S|$ almost six-fold looks dramatic, but the change is physical, not numerical. The overlap placed a solid wall across the hub-pipe inlet that a hubless thruster does not have; removing it restores the continuous through-hub flow the geometry requires. The corrected case is therefore the representative baseline, and the size of the shift reflects how sensitive the confined hub backflow is to a spurious blockage rather than any fragility of the result.
 
 \subsection{NoGV straight validation}
 \label{sec:nogv-straight-validation}
 
-The straight-flow validation replaces the RDT with a uniform axial inlet at the bulk velocity $U_b = 2.32$~m/s. There is no rotor, no swirl source, and no rotor-stator interface. The cone-bend domain is otherwise identical to the screening cases. The simulation tests one specific question: does the cone-bend domain introduce in-plane velocity that could contaminate the swirl metrics used in the screening?
+The straight-flow validation replaces the RDT with a uniform axial inlet at $U_b = 2.32$~m/s. There is no rotor, no swirl source, and no rotor-stator interface; the cone-bend domain is otherwise identical to the screening cases. It answers one question: does the cone-bend geometry itself generate in-plane velocity that could contaminate the swirl metrics?
 
-The mean flow angle at \texttt{ConeEnd} is $6.8^\circ$. This is not zero, and the residual deserves explanation.
+The mean flow angle at \texttt{ConeEnd} is $6.8^\circ$, not zero. The residual comes from the $90^\circ$ bend, which drives a counter-rotating Dean-vortex pair that registers as a small mean angle on the sampling plane. This is a bend artefact, not a setup error; the mechanism is treated in Section~\ref{sec:dean-vortex}. Its scale is an order of magnitude below the rotor swirl: area-averaged swirling strength at \texttt{ConeEnd} is $2.40$~s$^{-1}$ here against $25.1$~s$^{-1}$ in the NoGV swirl reference. The domain does not produce swirl of the same order as the RDT, so the validation passes.
 
-A $90^\circ$ bend induces a counter-rotating Dean-vortex pair through the imbalance between the radial pressure gradient and centrifugal acceleration. The Dean vortices generate in-plane velocity that, when projected onto the cone-axis-normal sampling plane at \texttt{ConeEnd}, registers as a non-zero mean flow angle. The peak normalised in-plane velocity at \texttt{ConeEnd} is $|V_{\mathrm{in\text{-}plane}}|/U_b = 0.51$, and the vector field shows the symmetric counter-rotating pair characteristic of pure bend-induced secondary flow without any external swirl source. The bend secondary-flow structure is visualised in Section~\ref{sec:dean-vortex}, with additional diagnostic planes in
-Appendix~\ref{app:dean-panels}. The residual is a real bend artefact, not a setup error.
+The $6.8^\circ$ residual sets a floor on what the screening can resolve at \texttt{ConeEnd}. Only \texttt{CS\_500\_8} ($9.1^\circ$ uncorrected, $7.9^\circ$ corrected) approaches it, so differences in the single-digit range should not be read as physical superiority. Section~\ref{sec:swirl-recovery} treats the angle scale near and below $10^\circ$ accordingly.
 
-The magnitude of the artefact is small compared to the RDT-induced swirl. The area-averaged swirling strength at \texttt{ConeEnd} is $2.40$~s$^{-1}$ in the straight validation against $25.1$~s$^{-1}$ in the NoGV swirl reference. The validation passes: the cone-bend domain does not produce swirl of the same order as the upstream rotor.
-
-The practical implication is that the $6.8^\circ$ residual sets a floor on what the screening can resolve at \texttt{ConeEnd}. Configurations reporting $|\alpha|_{\mathrm{ConeEnd}}$ in the single-digit range are approaching this floor rather than the ideal axial flow. In the screening matrix, only \texttt{CS\_500\_8} (uncorrected $9.1^\circ$, corrected $7.9^\circ$) falls into this region. Differences between configurations in this range should not be over-interpreted as physical superiority. Section~\ref{sec:swirl-recovery} treats the angle scale near and below $10^\circ$ accordingly.
-
-\subsection{Mass conservation and wall-treatment sanity}
+\subsection{Mass conservation and wall-resolution scope}
 \label{sec:mass-and-yplus}
+\label{sec:mass-and-mesh-scope}
 
-Two routine checks are required before reporting screening results: mass conservation between domain inlet and outlet, and consistency of the wall treatment strategy across the eighteen cases. Both are documented in Table~\ref{tab:mass-and-yplus}.
+Two checks precede the screening results: mass conservation between inlet and outlet, and documentation of the wall-resolution level used in the screening mesh. Per-case values are listed in Table~\ref{tab:mass-and-yplus}.
 
-Mass conservation is satisfied to better than $0.5\%$ for every case in the screening matrix. The largest negative imbalance is $-0.229\%$ (\texttt{CS\_500\_8}); the largest positive imbalance is $+0.177\%$ (\texttt{CS\_500\_6}). The NoGV swirl reference shows $-0.063\%$. These values satisfy the $1\%$ tolerance applied throughout this study and confirm that the steady-state solutions are mass-conservative at the level needed for relative comparison between configurations.
+Mass conservation holds within a \(0.5\%\) acceptance threshold for every case. The extremes are \(-0.23\%\) for \texttt{CS\_500\_8} and \(+0.18\%\) for \texttt{CS\_500\_6}; the NoGV reference closes at \(-0.06\%\).
 
-The wall-treatment strategy follows a deliberate compromise. The simulation has three wall types: the guide-vane walls (GV), the RDT blade and hub walls (RDT), and the cone-bend draft-tube walls (DT). The mesh resolution near each wall was chosen with the wall function approach in mind, rather than direct resolution of the viscous sublayer. The SST $k$-$\omega$ turbulence model in CFX uses automatic near-wall treatment, which blends between low-Reynolds integration to the wall (valid for $y^+ < 5$) and wall functions (valid for $30 < y^+ < 300$). Mesh sizing in the present screening was tuned for the wall function regime to keep the total cell count tractable for an $18$-case campaign.
-
-The $y^+$ distribution reflects this choice. GV walls show area-averaged $y^+$ in the range $5$ to $39$ across the screening matrix, straddling the lower transition of the automatic wall treatment. RDT walls (uncorrected setup) show area-averaged $y^+$ in the narrow range $14$ to $16$, comfortably inside the low end of the log-law region. DT walls show the highest values: area-averaged $y^+$ in the range $162$ to $216$, and maximum local $y^+$ between $487$ and $745$.
-
-The DT values are deliberately high. Resolving the DT log-law region with a target maximum $y^+ \lesssim 100$ would have required mesh refinement that increases the cell count by roughly an order of magnitude. The screening matrix would not have been computationally tractable on the available hardware within the project time frame. The screening question is the relative ranking of eighteen GV designs under identical numerical treatment, not the absolute prediction of DT wall friction. The wall function approach handles $y^+$ up to several hundred in CFX automatic mode, and the same mesh strategy is applied to every case, so any DT wall friction bias is consistent across the screening matrix and does not affect relative ranking.
-
-The same logic applies to GV $y^+$. The GV wall mesh is consistent across all eighteen configurations: same boundary-layer extrusion, same first-cell height target, same growth ratio. The differences in $y^+$ between cases reflect differences in local velocity caused by the geometry, not differences in mesh quality. Where individual cases show GV $y^+$ values in the buffer region ($5 < y^+ < 30$) the automatic wall treatment blends both branches, which is its design purpose.
+The \(y^+\) values are reported to define the wall-resolution scope of the screening campaign. They are not used as ranking metrics. The mesh was selected to keep the full \(18\)-case matrix computationally feasible, not to resolve the viscous sublayer throughout the RDT, GV, cone, bend and downstream pipe. Local wall shear, separation onset and cavitation inception should therefore be assessed with a refined near-wall mesh for shortlisted candidates.
 
 \begin{table}[H]
 \centering
 \footnotesize
-\caption{Mass conservation and $y^+$ distribution for the $18$-case screening matrix and the NoGV swirl reference. $\varepsilon_{\dot m}$ is the inlet-to-outlet mass imbalance in percent. $y^+$ columns are area-averaged values; maximum local values are reported in parentheses for the GV and DT walls. The NoGV reference has no GV walls and the corresponding column is left blank.}
+\caption{Mass balance and observed \(y^+\) levels for the \(18\)-case screening matrix and the NoGV swirl reference. \(\varepsilon_{\dot m}\) is the inlet-to-outlet mass imbalance. \(y^+\) values are area-averaged, with local maxima in parentheses where reported. The \(y^+\) values document the wall-resolution scope and are not used as ranking metrics.}
 \label{tab:mass-and-yplus}
 \begin{tabular}{l r rr r r}
 \hline
@@ -229,14 +210,16 @@ The screening question on the pressure side is straightforward: how much head do
 \subsection{System head increase across the screening matrix}
 \label{sec:hi-across-matrix}
 
-Figure~\ref{fig:hi-bar} shows $\Delta H_{\mathrm{sys}}$ for the $18$-case screening matrix, sorted from highest to lowest. The NoGV swirl reference appears as a dashed horizontal line at $3.96$~m.
+Figure~\ref{fig:hi-bar} shows $\Delta H_{\mathrm{sys}}$ for the $18$-case screening matrix, sorted from highest to lowest. The dashed horizontal line marks the corrected NoGV swirl reference at $4.21$~m.
 
 \begin{figure}[H]
 \centering
 \fbox{\includegraphics[width=0.95\linewidth]{Figures/Results/fig_4_3_HI_bar.png}}
-\caption{System head increase $\Delta H_{\mathrm{sys}} = H_{\mathrm{ConeEnd}} - H_{\mathrm{RDTStart}}$ for the $18$-case screening matrix, sorted from highest to lowest. The dashed line marks the NoGV swirl reference at $4.21$~m. CC family is shown with solid grey fill; CS family is shown with diagonal hatching. Values are read from \texttt{Results\_correctRDT.csv}.}
+\caption{System head increase $\Delta H_{\mathrm{sys}}$ for the $18$-case matrix. Dashed line: corrected NoGV swirl reference ($4.21$~m). CC family solid grey fill, CS family diagonal hatching.}
 \label{fig:hi-bar}
 \end{figure}
+
+The GV bars represent the screening matrix, while the dashed reference line uses the corrected NoGV value from Table~\ref{tab:nogv-swirl-reference}. The corrected NoGV reference is used because it represents the current physical baseline without guide vanes.
 
 The highest $\Delta H_{\mathrm{sys}}$ in the GV matrix is \texttt{CC\_400\_8} at $3.75$~m, and the lowest is \texttt{CS\_500\_8} at $3.23$~m. The range across the matrix is $0.52$~m, about $16\%$ of the median.
 
@@ -249,32 +232,34 @@ The family separation is sharp across the matrix. The five highest-HI configurat
 \subsection{Head-loss decomposition}
 \label{sec:hl-decomposition}
 
-The total head loss between \texttt{GVStart} and \texttt{BendEnd} is decomposed into three sub-sections. The guide-vane passage loss $\mathrm{HL_{GV}}$ is taken between \texttt{GVStart} and the fixed axial reference plane $z = -0.680$~m (\texttt{GVEnd\_z680}), placed downstream of the longest vane trailing edge. The cone-section loss $\mathrm{HL_{cone}}$ is taken between \texttt{GVEnd\_z680} and \texttt{ConeEnd}. The bend loss $\mathrm{HL_{bend}}$ is taken between \texttt{BendStart} and \texttt{BendEnd}. The fixed $z680$ reference ensures that the GV-passage budget is comparable across configurations with different chord lengths.
+The head-loss budget is evaluated from \texttt{GVStart} to \texttt{ConeEnd}. The guide-vane passage loss \(\mathrm{HL_{GV}}\) is taken between \texttt{GVStart} and the fixed reference plane \texttt{GVEnd\_z680}. This plane is located at \(z_{\mathrm{loc}}=0.495~\mathrm{m}\) in Table~\ref{tab:planes}, corresponding to \(z_{\mathrm{global}}\approx-0.680~\mathrm{m}\) in the CFX coordinate system, downstream of the longest vane trailing edge.
 
-Figure~\ref{fig:hl-stacked} shows the three components as a stacked bar for the $18$ configurations and the NoGV reference, and Figure~\ref{fig:hl-streamwise} shows the same losses accumulating along the duct. Numerical values are listed in Table~\ref{tab:hl-decomposition}.
+The downstream loss \(\mathrm{HL_{cone}}\) is taken between \texttt{GVEnd\_z680} and \texttt{ConeEnd}. The bend loss \(\mathrm{HL_{bend}}\) is taken between \texttt{BendStart} and \texttt{BendEnd}. It is reported separately because it isolates the loss generated in the \(90^\circ\) bend. Since the bend interval lies inside the downstream interval, \(\mathrm{HL_{bend}}\) is a diagnostic sub-interval of \(\mathrm{HL_{cone}}\), not an additional contribution to be added on top of it.
+
+Figure~\ref{fig:hl-stacked} shows the additive head-loss budget as two stacked components: the GV-passage loss and the downstream draft-tube loss from \texttt{GVEnd\_z680} to \texttt{ConeEnd}. Figure~\ref{fig:hl-streamwise} shows the same losses accumulating along the duct. Numerical values, including the isolated bend loss, are listed in Table~\ref{tab:hl-decomposition}.
 
 \begin{figure}[H]
 \centering
 \fbox{\includegraphics[width=0.95\linewidth]{Figures/Results/fig_4_4_HL_stacked_bar.png}}
-\caption{Head-loss decomposition into GV passage, cone section, and bend for the $18$-case screening matrix and the NoGV swirl reference. The dashed line marks the NoGV total head loss of $1.66$~m for the correctRDT simululation. Sub-section definitions follow Table~\ref{tab:hl-decomposition}.}
+\caption{Stacked head-loss budget for the \(18\)-case screening matrix. The dark bars show the GV-passage loss from \texttt{GVStart} to \texttt{GVEnd\_z680}, and the light bars show the downstream draft-tube loss from \texttt{GVEnd\_z680} to \texttt{ConeEnd}. The dashed line marks the corrected NoGV total loss of \(1.66~\mathrm{m}\).}
 \label{fig:hl-stacked}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \fbox{\includegraphics[width=0.95\linewidth]{Figures/Results/fig_4_8_HL_streamwise.png}}
-\caption{Cumulative head loss $\Delta H = H_{\mathrm{GVStart}} - H(z)$ along the streamwise stations from \texttt{GVStart} to \texttt{ConeEnd}. The four Pareto cases, the two short-chord contrast cases, and the two NoGV references are highlighted; the remaining twelve configurations are faded. The vane passage accounts for most of the loss in every GV case, and the curves flatten from \texttt{GVEnd2} onward. The NoGV swirl reference accumulates loss through the cone and jumps through the bend, while the straight validation stays near zero.}
+\caption{Cumulative head loss $\Delta H = H_{\mathrm{GVStart}} - H(z)$ from \texttt{GVStart} to \texttt{ConeEnd}. Highlighted: the 4 Pareto cases, the 2 short-chord contrast cases and the 2 NoGV references; the remaining 12 configurations are faded.}
 \label{fig:hl-streamwise}
 \end{figure}
 
-The guide-vane passage dominates the loss budget for every GV configuration, accounting for $58\%$ to $87\%$ of the total. The cone-section loss is the second largest contributor and varies most strongly with design: from $0.146$~m (\texttt{CC\_250\_9}) to $0.779$~m (\texttt{CS\_500\_6}), a factor of more than five across the matrix. The bend loss is essentially negligible for any GV configuration, ranging from $0.014$ to $0.058$~m. The same bend section produces $0.393$~m of loss for the NoGV reference, an order of magnitude higher.
+The guide-vane passage dominates the loss budget for every GV configuration, accounting for $58\%$ to $87\%$ of the total. The downstream draft-tube loss is the second largest contributor and varies most strongly with design: from \(0.146~\mathrm{m}\) for \texttt{CC\_250\_9} to \(0.779~\mathrm{m}\) for \texttt{CS\_500\_6}, a factor of more than five across the matrix. The bend loss is essentially negligible for any GV configuration, ranging from $0.014$ to $0.058$~m. The same bend section produces $0.393$~m of loss for the NoGV reference, an order of magnitude higher.
 
-The bend collapse is the most pronounced single effect in the loss decomposition. As soon as any guide vane reduces the upstream swirl, the bend section essentially stops generating measurable head loss. The mechanism is examined in Section~\ref{sec:bend-hl-collapse}. The relevant observation for the screening interpretation is that the bend section is not where configurations differentiate. The differentiation happens in the trade-off between $\mathrm{HL_{GV}}$ and $\mathrm{HL_{cone}}$, which the family-level analysis examines next.
+The bend collapse is the most pronounced single effect in the loss decomposition. As soon as any guide vane reduces the upstream swirl, the bend section essentially stops generating measurable head loss. The mechanism is examined in Section~\ref{sec:bend-hl-collapse}. The relevant observation for the screening interpretation is that the bend section is not where configurations differentiate. The differentiation happens in the trade-off between \(\mathrm{HL_{GV}}\) and the downstream draft-tube loss \(\mathrm{HL_{cone}}\), which the family-level analysis examines next.
 
 \begin{table}[H]
 \centering
 \footnotesize
-\caption{Head-loss decomposition for the $18$-case screening matrix and the NoGV swirl reference. $\mathrm{HL_{GV}}$ is taken between \texttt{GVStart} and the fixed axial reference plane at $z = -0.680$~m. $\mathrm{HL_{cone}}$ is taken between this reference plane and \texttt{ConeEnd}. $\mathrm{HL_{bend}}$ is taken between \texttt{BendStart} and \texttt{BendEnd}. $\mathrm{HL_{total}}$ is the sum from \texttt{GVStart} to \texttt{ConeEnd}. All values in metres. For the NoGV reference the $\mathrm{HL_{GV}}$ column reports the head loss in the same axial section without any guide vane present.}
+\caption{Head-loss decomposition for the \(18\)-case matrix and the NoGV swirl reference. \(\mathrm{HL_{total}} = \mathrm{HL_{GV}} + \mathrm{HL_{cone}}\); \(\mathrm{HL_{bend}}\) is a diagnostic sub-interval of \(\mathrm{HL_{cone}}\), not added separately. All values in metres.}
 \label{tab:hl-decomposition}
 \begin{tabular}{l rrrr}
 \hline
@@ -359,7 +344,7 @@ The mesh-bias caveat from Section~\ref{sec:rdt-mesh-overlap-impact} applies. Wit
 \begin{table}[H]
 \centering
 \footnotesize
-\caption{Swirl-recovery metrics for the $18$-case screening matrix and the NoGV swirl reference. $|\alpha|_{\mathrm{ConeEnd}}$ is the mass-averaged absolute flow angle at the RPT inlet plane. $S_{\mathrm{GVStart}}$ and $S_{\mathrm{GVEnd6}}$ are donut-region swirl numbers (annular section between hub and shroud). $S_{\mathrm{ConeEnd}}$ and $S_{\mathrm{BendEnd}}$ are signed full-pipe swirl numbers: positive values indicate rotation in the same sense as the upstream RDT swirl, negative values indicate over-correction by the guide vanes. The NoGV row is reported from the corrected RDT setup; the uncorrected NoGV swirl number downstream of the bend is contaminated by the hub-interface mesh artefact (Section~\ref{sec:rdt-mesh-overlap-impact}).}
+\caption{Swirl-recovery metrics for the 18 configurations and the NoGV reference. $S_{\mathrm{GVStart}}$ and $S_{\mathrm{GVEnd6}}$ are donut-region swirl numbers (hub-to-shroud annulus); $S_{\mathrm{ConeEnd}}$ and $S_{\mathrm{BendEnd}}$ are signed full-pipe values, with the sign convention defined in Section~\ref{sec:sign-of-swirl}.}
 \label{tab:swirl-recovery-metrics}
 \begin{tabular}{l r rrrr}
 \hline
@@ -400,13 +385,13 @@ NoGV swirl          & $63.72$ & $1.67$ & $2.38$ & $5.35$  & $-7.08$ \\
 
 The angle metric reports a local quantity at one plane. The swirl number tracks angular-momentum flux through the duct and reveals how each configuration redistributes the tangential momentum left over from the guide vane.
 
-At \texttt{GVStart}, the donut-region swirl number ranges from $0.82$ (\texttt{CC\_250\_9}) to $1.24$ (\texttt{CS\_500\_6}) across the GV matrix. The NoGV reference shows $S_{\mathrm{GVStart}} = 1.67$, well above any GV case. The presence of the vanes alters the upstream swirl even at the leading edge plane through subsonic upstream feedback of the GV blockage on the RDT wake. The effect is small in absolute terms but consistent: longer-chord and lower-vane-count configurations push their influence slightly further upstream.
+At \texttt{GVStart}, the donut-region swirl number ranges from $0.82$ (\texttt{CC\_250\_9}) to $1.24$ (\texttt{CS\_500\_6}) across the GV matrix. The NoGV reference shows $S_{\mathrm{GVStart}} = 1.67$, well above any GV case. The presence of the vanes alters the upstream swirl even at the leading-edge plane through the elliptic upstream influence of GV blockage on the RDT wake. The effect is small in absolute terms but consistent: longer-chord and lower-vane-count configurations push their influence slightly further upstream.
 
 At the deepest GVEnd plane (\texttt{GVEnd6}), $S$ collapses by a factor of two to eight relative to \texttt{GVStart}. \texttt{CS\_500\_8} drops from $1.22$ to $0.15$, an eight-fold reduction. \texttt{CC\_250\_9} drops only from $0.82$ to $0.88$, essentially unchanged, because the short chord and high vane count produce a vane stack that under-turns and leaves the donut-region swirl close to its incoming value. The contrast between these two extremes is the screening result in one comparison.
 
 Between \texttt{GVEnd6} and \texttt{ConeEnd} the flow transitions from the annular GV region to the full pipe cross-section and undergoes contraction. The swirl number computed on the two planes is not directly comparable in magnitude, since the reference radius and area change. The sign is comparable, and the sign change between \texttt{GVEnd6} and \texttt{ConeEnd} carries information about the GV over-correction examined in the next subsection.
 
-The bend amplifies what enters it. For low-recovery configurations such as \texttt{CC\_250\_9} and \texttt{CS\_250\_9}, the absolute swirl number at \texttt{BendEnd} roughly doubles relative to \texttt{ConeEnd} in magnitude. The same comparison for the Pareto candidates shows almost no change: \texttt{CS\_500\_8} has $|S|$ of $0.17$ at \texttt{ConeEnd} and $0.11$ at \texttt{BendEnd}. The detailed mechanism appears in Section~\ref{sec:bend-hl-collapse}; the screening conclusion is that the bend penalises configurations with weak swirl recovery far more than it penalises strong-recovery configurations.
+The bend amplifies the swirl it receives, so weak-recovery configurations are penalised far more than strong-recovery ones: the absolute swirl number at \texttt{BendEnd} roughly doubles for low-recovery cases such as \texttt{CC\_250\_9} and \texttt{CS\_250\_9}, while the Pareto candidates barely change. The streamwise $|S|$ traces are given in Section~\ref{sec:s-streamwise} and the loss mechanism in Section~\ref{sec:bend-hl-collapse}. Across the bend the sampling plane reorients from $z$-normal upstream to $y$-normal at \texttt{BendEnd} and \texttt{ConeEnd}, so the post-bend swirl-number sign is referenced to a different axis and is not directly comparable with the upstream sign; the rise in $|S|$ through the bend is this amplification, not a breakdown of the metric.
 
 \subsection{Sign of residual swirl and pump-mode pre-rotation implications}
 \label{sec:sign-of-swirl}
@@ -431,7 +416,7 @@ Sections~\ref{sec:head-increase-and-hl} and \ref{sec:swirl-recovery} examined th
 
 A configuration is Pareto-dominant if no other configuration in the matrix has both higher $\Delta H_{\mathrm{sys}}$ and lower $|\alpha|_{\mathrm{ConeEnd}}$. The configurations that survive this filter form the Pareto front. Designs inside the front are dominated by at least one Pareto-front member and should be selected only for reasons not captured in the two-metric trade-off.
 
-Figure~\ref{fig:pareto-map} shows the screening matrix on the $|\alpha|_{\mathrm{ConeEnd}}$-versus-$\Delta H_{\mathrm{sys}}$ plane. The Pareto front in the uncorrected matrix contains four configurations: \texttt{CS\_500\_8}, \texttt{CS\_500\_6}, \texttt{CC\_500\_8}, and \texttt{CC\_400\_8}. All four belong to the long-chord part of the design space ($c \geq 400$~mm). Table~\ref{tab:pareto-front} lists the four cases together with their head-loss budget and residual swirl sign.
+Figure~\ref{fig:pareto-map} shows the screening matrix on the $|\alpha|_{\mathrm{ConeEnd}}$-versus-$\Delta H_{\mathrm{sys}}$ plane. The Pareto front in the uncorrected matrix contains four configurations: \texttt{CS\_500\_8}, \texttt{CS\_500\_6}, \texttt{CC\_500\_8}, and \texttt{CC\_400\_8}. All four belong to the long-chord part of the design space ($c \geq 400$~mm). Table~\ref{tab:final-decision} lists the four cases with their head-loss budget; the residual swirl sign of each is given in Table~\ref{tab:swirl-recovery-metrics}.
 
 \begin{figure}[H]
 \centering
@@ -440,21 +425,7 @@ Figure~\ref{fig:pareto-map} shows the screening matrix on the $|\alpha|_{\mathrm
 \label{fig:pareto-map}
 \end{figure}
 
-\begin{table}[H]
-\centering
-\small
-\caption{Pareto-dominant configurations in the uncorrected $18$-case screening matrix. $S_{\mathrm{ConeEnd}}$ uses the sign convention of Section~\ref{sec:sign-of-swirl}: positive means residual rotation in the same sense as the upstream RDT swirl (PPR direction), negative means over-correction by the guide vanes (NPR direction). Anchor status refers to availability and behaviour of the corresponding corrected-mesh anchor case, examined in Section~\ref{sec:pareto-anchor-check}.}
-\label{tab:pareto-front}
-\begin{tabular}{l rrrr l}
-\hline
-Case & $\Delta H_{\mathrm{sys}}$ (m) & $|\alpha|_{\mathrm{ConeEnd}}$ (deg) & $\mathrm{HL_{total}}$ (m) \\ \hline
-\texttt{CS\_500\_8} & $3.23$ & $9.1$  & $1.91$  \\
-\texttt{CS\_500\_6} & $3.33$ & $13.1$ & $1.76$  \\
-\texttt{CC\_500\_8} & $3.74$ & $16.5$ & $1.37$  \\
-\texttt{CC\_400\_8} & $3.75$ & $21.5$ & $1.31$  \\
-\hline
-\end{tabular}
-\end{table}
+The final hydraulic recommendation is based on the Pareto-front candidates listed in Table~\ref{tab:final-decision}. The table is not repeated here because the final decision uses the same recovery-loss trade-off and corrected-anchor status. The recommendation remains a screening-level decision, since \texttt{CC\_400\_8} has not yet been rerun with the corrected RDT mesh.
 
 The four cases span the trade-off cleanly. \texttt{CS\_500\_8} is the minimum-$|\alpha|$ extreme at $9.1^\circ$ but pays $0.52$~m more head loss than the head-corner case on the same front. \texttt{CC\_400\_8} is the maximum-$\Delta H_{\mathrm{sys}}$ extreme at $3.75$~m but leaves $21.5^\circ$ of residual angle. The two intermediate cases (\texttt{CS\_500\_6} and \texttt{CC\_500\_8}) interpolate between the extremes. The transition from CS to CC along the front occurs near the angle-head balance point at $|\alpha| \approx 16^\circ$.
 
@@ -537,17 +508,20 @@ RDT swirl, no GV & Swirl dominated & 1.735 & 3.273 & 0.370 \\
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.95\linewidth]{Figures/Results/dean_streamwise.png}
+\includegraphics[width=0.98\linewidth]{Figures/Results/dean_streamwise.png}
 \caption{Streamwise development of the bend secondary flow for the six reference cases. Left: peak in-plane velocity $|V_{\mathrm{ip}}|/U_b$. Right: net in-plane swirl $S_{\mathrm{net}}$. The dotted line marks the bend exit; the $+1D$ and $+2D$ stations lie downstream of it. The stations are not equally spaced in arclength, so the curves show qualitative development. $S_{\mathrm{net}}$ is a local in-plane diagnostic about the plane centre, distinct from the full-pipe $|S|$ in Section~\ref{sec:s-streamwise}.}
 \label{fig:dean-streamwise}
 \end{figure}
 
-Every guide vane delivers $|S|_{\mathrm{ConeEnd}} \leq 1.15$ to the bend, far below the NoGV value of $5.35$, so the bend stays in its low-swirl regime and the loss falls to the Dean-only floor for all of them. The collapse is binary: it follows from whether a guide vane is present, not from which one. The spread between guide-vane cases in the bend is small, so the bend is not used as a ranking metric; that role stays with $\Delta H_{\mathrm{sys}}$, $|\alpha|_{\mathrm{ConeEnd}}$ and $S_{\mathrm{ConeEnd}}$. Figure~\ref{fig:dean-streamwise} shows that the interaction is not strictly additive, with local peaks inside the bend even where the exit field is weak. The bend-inlet and one-diameter-downstream planes are given in Appendix~\ref{app:dean-panels}.
+Every guide vane keeps the swirl low through the bend: the residual at the RPT location is $|S|_{\mathrm{ConeEnd}} \leq 1.15$, against the NoGV value of $5.35$. The bend therefore stays in its low-swirl regime and its loss falls to the Dean-only floor for all of them. The collapse is binary: it follows from whether a guide vane is present, not from which one. The spread between guide-vane cases in the bend is small, so the bend is not used as a ranking metric; that role stays with $\Delta H_{\mathrm{sys}}$, $|\alpha|_{\mathrm{ConeEnd}}$ and $S_{\mathrm{ConeEnd}}$. Figure~\ref{fig:dean-streamwise} shows that the interaction is not strictly additive, with local peaks inside the bend even where the exit field is weak. The bend-inlet and one-diameter-downstream planes are given in Appendix~\ref{app:dean-panels}.
 
 \subsection{Streamwise evolution of the swirl number}
 \label{sec:s-streamwise}
 
 Figure~\ref{fig:s-streamwise} shows the evolution of $|S|$ from \texttt{GVStart} to \texttt{BendEnd} for four representative configurations: the NoGV swirl reference, \texttt{CS\_500\_8} (lowest residual angle), \texttt{CC\_500\_8} (anchor-confirmed head corner), and \texttt{CC\_250\_9} (worst residual angle).
+
+
+The four traces separate by incoming swirl. NoGV climbs through the cone to $|S| = 6.6$ at \texttt{BendEnd}: the bend amplifies a flow that already swirls strongly. \texttt{CS\_500\_8} drops from $1.22$ at \texttt{GVStart} to $0.15$ at \texttt{GVEnd6}, holds near $0.17$ at \texttt{ConeEnd}, and ends at $0.11$, so the bend slightly attenuates rather than amplifies. \texttt{CC\_500\_8} ends at $0.23$, roughly double its \texttt{ConeEnd} value of $0.13$. \texttt{CC\_250\_9} barely drops in the vane passage ($0.88$ at \texttt{GVEnd6}), grows to $1.05$ through the cone, and nearly doubles again to $1.96$ through the bend.
 
 \begin{figure}[H]
 \centering
@@ -556,116 +530,80 @@ Figure~\ref{fig:s-streamwise} shows the evolution of $|S|$ from \texttt{GVStart}
 \label{fig:s-streamwise}
 \end{figure}
 
-The four traces separate by incoming swirl. NoGV climbs through the cone to $|S| = 6.6$ at \texttt{BendEnd}: the bend amplifies a flow that already swirls strongly. \texttt{CS\_500\_8} drops from $1.22$ at \texttt{GVStart} to $0.15$ at \texttt{GVEnd6}, holds near $0.17$ at \texttt{ConeEnd}, and ends at $0.11$, so the bend slightly attenuates rather than amplifies. \texttt{CC\_500\_8} ends at $0.23$, roughly double its \texttt{ConeEnd} value of $0.13$. \texttt{CC\_250\_9} barely drops in the vane passage ($0.88$ at \texttt{GVEnd6}), grows to $1.05$ through the cone, and nearly doubles again to $1.96$ through the bend.
-
 The amplification scales with the incoming swirl magnitude. The \texttt{ConeEnd} metric therefore understates the swirl delivered to the downstream RPT for the weak-recovery cases: residual swirl is not only a local penalty at the inlet plane but a quantity that grows through the bend.
 
 
 \subsection{Vortex-core content from the Q-criterion}
 \label{sec:q-criterion-analysis}
 
-The swirl number and the flow angle measure the bulk rotation on a plane. They do not separate a few strong coherent vortices from a weak rotation spread across the whole section. The Q-criterion of Eq.~\eqref{eq:Q_def} adds that distinction. $Q>0$ marks rotation-dominated fluid and $Q<0$ marks strain-dominated fluid, so the positive-$Q$ field isolates the coherent vortex cores: the rolled-up vane wakes near the trailing edge and the Dean pair in the bend. The field exported from CFX is \texttt{Velocity.Invariant Q} in $\mathrm{s}^{-2}$, evaluated on the plane array of Section~\ref{sec:methods_planes_metrics} together with the resolved bend planes \texttt{Bend00} to \texttt{Bend90}.
+The swirl number and the flow angle measure bulk rotation on a plane. They do not separate strong coherent vortices from weak rotation spread across the section. The Q-criterion of Eq.~\eqref{eq:Q_def} adds that separation: \(Q>0\) marks rotation-dominated fluid, so the positive-\(Q\) field isolates the vane-wake cores and the Dean pair in the bend.
 
-Three positive-$Q$ metrics are reported per plane. The positive-$Q$ area fraction $f_{Q>0}$ is the share of the cross-section with $Q>0$. The mean positive value $\overline{Q}^{+}$ is the average of $Q$ over that region. The strong-core fraction $f_{Q>Q_{\mathrm{ref}}}$ uses the threshold of Eq.~\eqref{eq:Q_ref} to retain only cores that stand clearly above the bulk rotation. $Q$ is a scalar invariant, so the rotating plane normals through the bend need no sign handling. Near-wall cells carry large negative $Q$ from wall shear; the positive-$Q$ metrics exclude them by construction, so no wall mask is applied. The draft-tube and bend mesh is identical across the 18 configurations (Section~\ref{sec:methods_mesh}), so the node-count fractions are directly comparable between cases on every plane from \texttt{GVEnd2} downstream. The mesh-overlap bias of Section~\ref{sec:rdt-mesh-overlap-impact} acts on the velocity gradients that $Q$ is built from, so the corrected anchor cases serve as the cross-check rather than the uncorrected matrix.
+Three positive-\(Q\) metrics are used per plane: the area fraction \(f_{Q>0}\), the mean positive value \(\overline{Q}^{+}\), and the strong-core fraction \(f_{Q>Q_{\mathrm{ref}}}\) with the threshold of Eq.~\eqref{eq:Q_ref}. At \texttt{ConeEnd} the area fraction \(f_{Q>0}\) saturates between \(0.65\) and \(0.80\) for all cases, including the references, so it does not separate the designs. The strong-core fraction and the mean positive value do, and are used below.
 
-At \texttt{ConeEnd} the positive-$Q$ area fraction $f_{Q>0}$ lies in the range $0.65$ to $0.80$ for every guide-vane configuration and for the NoGV reference. Residual rotation and the bend-induced Dean pair leave $Q>0$ over most of the section in every case, so $f_{Q>0}$ saturates and discriminates poorly. The strong-core fraction $f_{Q>Q_{\mathrm{ref}}}$ and the mean positive value $\overline{Q}^{+}$ separate the configurations cleanly. The remainder of this section uses those two metrics.
-
-\begin{figure}[H]
+\begin{figure}[h!]
 \centering
 \safeincludegraphics[width=0.95\linewidth]{Figures/Results/qcrit/fig_qcrit_fstrong_coneend.png}
-\caption{Strong-core area fraction $f_{Q>Q_{\mathrm{ref}}}$ at \texttt{ConeEnd} for the 18 guide-vane configurations. CC family in warm red, CS family in deep blue. Dashed line: NoGV swirl reference on the corrected RDT mesh. Dash-dot line: straight-flow reference.}
+\caption{Strong-core area fraction \(f_{Q>Q_{\mathrm{ref}}}\) at \texttt{ConeEnd}. CC family red, CS family blue; corrected NoGV reference dashed, straight-flow reference dash-dot.}
 \label{fig:qcrit-fstrong-coneend}
 \end{figure}
 
-Figure~\ref{fig:qcrit-fstrong-coneend} ranks the design matrix by strong-core content at \texttt{ConeEnd}. The corrected NoGV swirl reference sits at $f_{Q>Q_{\mathrm{ref}}} = 0.545$ and the straight-flow reference at $0.204$. Three CS configurations lie clearly below the NoGV line: \texttt{CS\_500\_8} at $0.12$, \texttt{CS\_500\_6} at $0.29$ and \texttt{CS\_450\_8} at $0.48$. The matched CC configurations at the same chord-vane count remain above $0.46$. Only \texttt{CS\_500\_8} falls below the straight-flow Dean-only floor. The strong-core ranking matches the swirl-number ranking of Section~\ref{sec:swirl-recovery}, reached through an independent vortex-identification quantity: long chord combined with the CS strategy is the combination that compresses the coherent cores below the bend-only floor.
+The long-chord CS designs give the lowest strong-core content, with \texttt{CS\_500\_8} lowest, followed by \texttt{CS\_500\_6} and \texttt{CS\_450\_8} (Figure~\ref{fig:qcrit-fstrong-coneend}). Both fall below the NoGV reference at \(0.542\), and the two best fall below the straight-flow floor at \(0.172\). This matches the swirl-number ranking of Section~\ref{sec:swirl-recovery}: long chord with the CS strategy is most effective at suppressing the cores. The full contour fields are in Appendix~\ref{app:qcrit-contours}.
 
-\begin{figure}[H]
-\centering
-\safeincludegraphics[width=0.92\linewidth]{Figures/Results/qcrit_contour_grid/fig_qcrit_grid_CC_coneend.png}
-\caption{$Q$ field at \texttt{ConeEnd} for the nine CC configurations. Linear inferno scale, shared upper bound within the figure. Cyan iso-line marks $Q = Q_{\mathrm{ref}}$ and outlines the strong-core area of Figure~\ref{fig:qcrit-fstrong-coneend}. Red cross marks the section centre. The panel peak $Q_{\mathrm{max}}$ is listed below each panel.}
-\label{fig:qcrit-grid-cc}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\safeincludegraphics[width=0.92\linewidth]{Figures/Results/qcrit_contour_grid/fig_qcrit_grid_CS_coneend.png}
-\caption{$Q$ field at \texttt{ConeEnd} for the nine CS configurations. Scale and overlay conventions match Figure~\ref{fig:qcrit-grid-cc}.}
-\label{fig:qcrit-grid-cs}
-\end{figure}
-
-Figures~\ref{fig:qcrit-grid-cc} and~\ref{fig:qcrit-grid-cs} render the $Q$ field on \texttt{ConeEnd} for the full design matrix. Short-chord configurations (\texttt{CC\_250\_9}, \texttt{CC\_300\_9}, \texttt{CS\_250\_9}, \texttt{CS\_300\_9}) leave a near-full bright disk inside the cyan iso-line: most of the section sits above $Q_{\mathrm{ref}}$, consistent with the high strong-core fractions in Figure~\ref{fig:qcrit-fstrong-coneend}. Long-chord configurations reduce the strong-core region to a crescent or to small pockets near the wall. \texttt{CS\_500\_8} shows the cleanest section: the cyan iso-line is confined to a thin band on roughly $12\%$ of the area, and the panel peak $Q_{\mathrm{max}} = 87.3~\mathrm{s}^{-2}$ is the lowest in the matrix. \texttt{CS\_500\_6} and \texttt{CC\_500\_8} are next, with $Q_{\mathrm{max}}$ of $108.7~\mathrm{s}^{-2}$ and $56.6~\mathrm{s}^{-2}$ respectively. The CS family compresses the strong-core region faster with chord than the CC family at the same chord-vane combination, in line with the bar ranking.
-
-\begin{figure}[H]
+\begin{figure}[h!]
 \centering
 \safeincludegraphics[width=0.95\linewidth]{Figures/Results/qcrit/fig_qcrit_streamwise_meanqpos.png}
-\caption{Streamwise evolution of the mean positive value $\overline{Q}^{+}$ from \texttt{RDTStart} through the guide-vane passage, the conical contraction and the bend (shaded) to \texttt{ConeEnd}, for the four Pareto-front configurations, the short-chord contrast \texttt{CC\_250\_9}, the corrected NoGV swirl reference and the straight-flow reference. Logarithmic vertical axis.}
+\caption{Streamwise evolution of \(\overline{Q}^{+}\) from \texttt{RDTStart} to \texttt{ConeEnd}, bend section shaded.}
 \label{fig:qcrit-streamwise}
 \end{figure}
 
-Figure~\ref{fig:qcrit-streamwise} locates where the coherent rotation is created and removed. The largest $\overline{Q}^{+}$ sits at \texttt{GVStart} and \texttt{GVEnd1}, where the vane wakes are most concentrated: $\overline{Q}^{+}$ reaches $10^{3}$ to $10^{4}~\mathrm{s}^{-2}$ for the long-chord GV cases. Through the conical contraction \texttt{GVEnd2} to \texttt{GVEnd6} $\overline{Q}^{+}$ decays by roughly two orders of magnitude. The bend section adds a small rise as the Dean pair develops, then $\overline{Q}^{+}$ levels off through \texttt{BendEnd} and \texttt{ConeEnd}. The NoGV swirl reference enters the bend at $\overline{Q}^{+} \approx 1.1 \times 10^{3}~\mathrm{s}^{-2}$ and stays at that level throughout, because the rotation it carries dwarfs the Dean contribution. The straight-flow reference starts negligibly low through the GV section and rises to $\overline{Q}^{+} \approx 200~\mathrm{s}^{-2}$ at \texttt{BendStart}, fed only by the developing Dean pair, then settles to $\overline{Q}^{+} \approx 90~\mathrm{s}^{-2}$ at \texttt{ConeEnd}. The long-chord GV cases (\texttt{CS\_500\_8}, \texttt{CS\_500\_6}, \texttt{CC\_500\_8}) finish at \texttt{ConeEnd} below this Dean-only level, between $11$ and $25~\mathrm{s}^{-2}$. The weak residual swirl from a long-chord GV is partially counter-rotating to the Dean pair and suppresses it, which is consistent with the bend-section head-loss collapse reported in Section~\ref{sec:bend-hl-collapse}.
+The coherent rotation is created at the vane row and removed downstream (Figure~\ref{fig:qcrit-streamwise}). The GV cases peak at \(10^{3}\) to \(10^{4}~\mathrm{s}^{-2}\) near \texttt{GVStart}, then decay by two orders of magnitude through the contraction. The bend adds a small rise from the Dean pair before the level flattens to \texttt{ConeEnd}. The NoGV reference stays high throughout, since its residual rotation dominates the Dean contribution. The long-chord GV cases finish below the straight-flow level of about \(90~\mathrm{s}^{-2}\), so their weak residual swirl partly suppresses the bend secondary flow, consistent with the bend head-loss collapse in Section~\ref{sec:bend-hl-collapse}.
 
 \begin{figure}[H]
 \centering
-\safeincludegraphics[width=0.85\linewidth]{Figures/Results/qcrit_contour_grid/fig_qcrit_grid_NoGV_coneend.png}
-\caption{$Q$ field at \texttt{ConeEnd} for the NoGV swirl reference, original RDT mesh (left) and corrected RDT mesh (right). Shared linear scale within the figure. The mean positive value rises from $\overline{Q}^{+} = 516~\mathrm{s}^{-2}$ uncorrected to $1328~\mathrm{s}^{-2}$ corrected; the peak rises from $1151$ to $3475~\mathrm{s}^{-2}$.}
+\safeincludegraphics[width=0.7\linewidth]{Figures/Results/qcrit_contour_grid/fig_qcrit_grid_NoGV_coneend.png}
+\caption{\(Q\) at \texttt{ConeEnd} for the NoGV swirl reference, original (left) and corrected (right) RDT mesh.}
 \label{fig:qcrit-grid-nogv}
 \end{figure}
 
-The Q-criterion also makes the mesh-correction impact on the swirl reference itself visible. The uncorrected NoGV swirl reference shows a broad and relatively uniform $Q$ pattern at \texttt{ConeEnd}, with $\overline{Q}^{+} = 516~\mathrm{s}^{-2}$ and a peak of $1151~\mathrm{s}^{-2}$ (Figure~\ref{fig:qcrit-grid-nogv}, left). The corrected NoGV swirl shows a single concentrated core occupying most of the section, with $\overline{Q}^{+} = 1328~\mathrm{s}^{-2}$ and a peak of $3475~\mathrm{s}^{-2}$ (right). The ratio is $2.6$ on the mean and $3.0$ on the peak. The artificial hub wall in the original mesh dissipated tangential momentum that the physically correct setup retains, so the guide vanes face a stronger swirl input than the uncorrected reference indicates. The relative-ranking interpretation of Section~\ref{sec:rdt-mesh-overlap-impact} carries over to the uncorrected matrix; the absolute swirl-recovery factors quoted against the uncorrected NoGV reference are conservative.
+The mesh correction raises the NoGV reference from \(\overline{Q}^{+} = 516~\mathrm{s}^{-2}\) to \(1328~\mathrm{s}^{-2}\) (Figure~\ref{fig:qcrit-grid-nogv}). The vortex-core metric thus shows the same mesh effect as the swirl number: the corrected mesh retains rotational content that the artificial hub wall removed.
 
 \begin{figure}[H]
 \centering
-\begin{subfigure}[t]{0.97\linewidth}
+\begin{subfigure}[t]{0.85\linewidth}
     \centering
     \safeincludegraphics[width=\linewidth]{Figures/Results/qcrit/fig_qcrit_anchor_paired_meanqpos_coneend.png}
-    \caption{Mean positive $\overline{Q}^{+}$ at \texttt{ConeEnd} for each anchor case, uncorrected (faded) and corrected (full colour). Reference lines: NoGV corrected, straight-flow.}
+    \caption{Mean positive \(\overline{Q}^{+}\) per anchor case.}
     \label{fig:qcrit-anchor-paired-bars}
 \end{subfigure}
 
-\vspace{0.6em}
+\vspace{0.4em}
 
-\begin{subfigure}[t]{0.97\linewidth}
+\begin{subfigure}[t]{0.85\linewidth}
     \centering
     \safeincludegraphics[width=\linewidth]{Figures/Results/qcrit_contour_grid/fig_qcrit_grid_anchors_coneend.png}
-    \caption{Paired contour grid: each anchor case shown as uncorrected next to corrected. Shared linear scale within the figure (NoGV excluded). Cyan iso-line: $Q = Q_{\mathrm{ref}}$. Red cross: section centre.}
+    \caption{Paired \(Q\)-field contours per anchor case.}
     \label{fig:qcrit-anchor-paired-contour}
 \end{subfigure}
-\caption{Mesh-correction check at \texttt{ConeEnd} for the seven anchor cases.}
+\caption{Mesh-correction check at \texttt{ConeEnd} for the seven anchor cases, uncorrected versus corrected.}
 \label{fig:qcrit-anchor-paired}
 \end{figure}
 
-Figure~\ref{fig:qcrit-anchor-paired} compares the seven anchor cases between the uncorrected and corrected RDT mesh. The ranking of the anchors by $\overline{Q}^{+}$ is preserved under the correction: \texttt{CS\_250\_9} and \texttt{CC\_250\_9} stay at the top (around $130$ to $170~\mathrm{s}^{-2}$ corrected), \texttt{CC\_500\_8} and \texttt{CS\_500\_8} stay at the bottom (around $11$ to $14~\mathrm{s}^{-2}$ corrected), and the intermediate cases stay in between. The correction shifts every GV anchor downward, from near zero for \texttt{CS\_450\_6} to about $-40\%$ for \texttt{CC\_500\_8}. The paired contour grid in Figure~\ref{fig:qcrit-anchor-paired-contour} shows the same trend visually: the corrected panel of each case has a smaller and weaker strong-core region than its uncorrected pair, and the case-to-case ordering is unchanged. The Q-criterion therefore agrees with the swirl-number anchor check of Section~\ref{sec:rdt-mesh-overlap-impact}.
+The correction lowers every anchor but preserves their ranking (Figure~\ref{fig:qcrit-anchor-paired}): short-chord cases stay highest, long-chord cases lowest. The Q-criterion thus supports the swirl-number anchor check of Section~\ref{sec:rdt-mesh-overlap-impact}.
 
-The Q-criterion adds a structural reading to the swirl-number ranking rather than a new ranking axis. It confirms that the guide vanes act by suppressing the strength of the coherent cores, not by removing rotation from the whole section. It also shows that the long-chord CS configurations finish at \texttt{ConeEnd} with a strong-core content below the straight-flow Dean-only floor, indicating partial Dean-pair suppression by the residual counter-swirl that those vanes leave. The link from the vane-wake vortices at the trailing edge to the unsteady RSI excitation is taken up in Section~\ref{sec:rsi-thesis}.
-
-
+The Q-criterion adds a structural reading to the swirl-number ranking rather than a new ranking axis. The guide vanes suppress the strength of the coherent cores rather than removing rotation uniformly, and the long-chord CS designs reach \texttt{ConeEnd} below the straight-flow Dean floor through partial Dean-pair suppression by their residual counter-swirl.
 
 \section{Radial flow quality at ConeEnd}
 \label{sec:radial-flow-quality}
 
 Two screening metrics have carried the analysis so far: $|\alpha|_{\mathrm{ConeEnd}}$ and $S_{\mathrm{ConeEnd}}$. Both are bulk quantities averaged across the full cross-section. Mass-flow averaging weights each radial position by the local axial mass flux. In an annular flow the area element scales with $r$, and the axial velocity is typically larger at the outer radii. The bulk metric therefore weights the outer radii more heavily than the inner radii. A configuration with strong outer-band recovery and weak inner-band recovery can produce a low bulk $|\alpha|$ value while leaving a non-uniform radial profile. The cavitation behaviour of the downstream pump-turbine depends on the inner radii where static pressure is lowest, and the bulk metric carries little information about that band.
 
-This section verifies that the Pareto-front configurations achieve their bulk ranking through proportionate recovery across the radial span, rather than through outer-band recovery alone. Figure~\ref{fig:radial-profiles} shows the absolute flow angle $|\alpha|(r/R)$ at \texttt{ConeEnd} for the NoGV swirl reference and four guide-vane configurations: \texttt{CS\_500\_8}, \texttt{CC\_500\_8}, \texttt{CC\_400\_8}, and \texttt{CC\_250\_9}. Figure~\ref{fig:radial-velocity} shows the tangential velocity $C_u(r/R)$ and the meridional velocity $C_m(r/R)$ for the same cases.
+This section verifies that the Pareto-front configurations achieve their bulk ranking through proportionate recovery across the radial span, rather than through outer-band recovery alone. Figure~\ref{fig:radial-profiles} shows the absolute flow angle $|\alpha|(r/R)$ at \texttt{ConeEnd} for the NoGV swirl reference and four guide-vane configurations: \texttt{CS\_500\_8}, \texttt{CC\_500\_8}, \texttt{CC\_400\_8}, and \texttt{CC\_250\_9}.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.95\linewidth]{Figures/Results/fig_4_9_alpha_radial.png}
-\caption{Radial distribution of the absolute flow angle at \texttt{ConeEnd},
-\(|\alpha|(r/R)=\arctan(|V_{\mathrm{tangential}}|/V_{\mathrm{axial}})\). The
-figure compares the NoGV references, the Pareto candidates and two short-chord
-contrast cases, with all remaining configurations shown in grey. The
-long-chord Pareto candidates strongly reduce the outer-span angle relative to
-the untreated RDT wake, while the short-chord cases retain high residual
-angles over most of the radius.}
+\caption{Radial distribution of the absolute flow angle \(|\alpha|(r/R)=\arctan(|V_{\mathrm{tangential}}|/V_{\mathrm{axial}})\) at \texttt{ConeEnd}, for the NoGV reference, the Pareto candidates and two short-chord contrast cases, with the remaining configurations in grey. The tangential and axial velocity components are given in Appendix~\ref{app:appD}.}
 \label{fig:radial-profiles}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.49\linewidth]{Figures/Results/fig_4_10_Vtheta_radial.png}\hfill
-\includegraphics[width=0.49\linewidth]{Figures/Results/fig_4_11_Vaxial_radial.png}
-\caption{Radial velocity components at \texttt{ConeEnd}: tangential velocity $C_u(r/R)$ (left) and meridional velocity $C_m(r/R)$ (right), for the NoGV swirl reference, the Pareto candidates and the two short-chord contrast cases, with the remaining configurations faded. Same cases and colour scheme as Figure~\ref{fig:radial-profiles}.}
-\label{fig:radial-velocity}
 \end{figure}
 
 The NoGV reference shows the rim-driven wake structure carried through to \texttt{ConeEnd}. Tangential velocity peaks near the outer radii where the RDT injects most of the swirl, and the local flow angle follows the same pattern. The mass-flow weighting of the bulk metric amplifies the outer-band contribution, which is consistent with the bulk value of $63.7^\circ$ in the corrected setup. The inner radii carry lower angles but cover less mass flow and contribute less to the bulk average.
@@ -691,41 +629,24 @@ Two transient RDT-GV simulations were run at $n = 650$~rpm to test the Tyler-Sof
  
 The FFT uses the last $N_{\mathrm{rev}} = 5$ rotor revolutions ($N = 1800$, $\Delta f = 2.167$~Hz) with a Hanning window, following the methodology in Section~\ref{sec:spec}. Time histories, the phase-folded comparison and the window-robustness check are in Appendix~\ref{app:individual_spectra} (Sections A.1-A.2).
  
-Peak amplitudes at $f_n$ and $f_{\mathrm{BPF}}$ are listed in Tables~\ref{tab:peak_amplitudes_450_7} and~\ref{tab:peak_amplitudes_400_6}. The ratio $A(f_{\mathrm{BPF}})/A(f_n)$ indicates whether each signal is dominated by blade-passing content or by rotor-frequency content.
+Peak amplitudes at $f_n$ and $f_{\mathrm{BPF}}$ for both configurations are listed in Table~\ref{tab:peak_amplitudes}. The ratio $A(f_{\mathrm{BPF}})/A(f_n)$ indicates whether each signal is dominated by blade-passing content or by rotor-frequency content.
 
 \begin{table}[H]
 \centering
-\small
-\caption{Configuration \texttt{CC\_450\_7} ($Z_r = Z_s = 7$, $c = 450$~mm). Peak amplitudes at $f_n = 10.83$~Hz and $f_{\mathrm{BPF}} = 75.83$~Hz. Wall-pressure probes are at $r/R = 0.744$. Symbols are defined in Table~\ref{tab:monitor-index}.}
-\label{tab:peak_amplitudes_450_7}
-\begin{tabular}{lcccc}
+\footnotesize
+\caption{Peak amplitudes at $f_n = 10.83$~Hz and $f_{\mathrm{BPF}} = 75.83$~Hz for the two transient configurations. Wall-pressure probes are at $r/R = 0.744$; symbols are defined in Table~\ref{tab:monitor-index}. The ratio $A(f_{\mathrm{BPF}})/A(f_n)$ shows whether a signal is dominated by blade-passing or by rotor-frequency content.}
+\label{tab:peak_amplitudes}
+\begin{tabular}{llcccccc}
 \hline
-Signal & Unit & $A(f_n)$ & $A(f_{\mathrm{BPF}})$ & Ratio \\ \hline
-$F_{\mathrm{res}}$  & N    & 5.21  & 0.56  & 0.11 \\
-$M_{\mathrm{RDT}}$  & N\,m & 0.43  & 0.064 & 0.15 \\
-$P_{\mathrm{in}}$   & Pa   & 71.3  & 21.9  & 0.31 \\
-$P_{\mathrm{out}}$  & Pa   & 138   & 19.6  & 0.14 \\
-$P_0$               & Pa   & 625   & 80.6  & 0.13 \\
-$P_3$               & Pa   & 608   & 32.8  & 0.05 \\
-$P_5$               & Pa   & 431   & 20.0  & 0.05 \\ \hline
-\end{tabular}
-\end{table}
-
-\begin{table}[H]
-\centering
-\small
-\caption{Configuration \texttt{CC\_400\_6} ($Z_s = 6$, $c = 400$~mm). Peak amplitudes at $f_n = 10.83$~Hz and $f_{\mathrm{BPF}} = 75.83$~Hz.}
-\label{tab:peak_amplitudes_400_6}
-\begin{tabular}{lcccc}
-\hline
-Signal & Unit & $A(f_n)$ & $A(f_{\mathrm{BPF}})$ & Ratio \\ \hline
-$F_{\mathrm{res}}$  & N    & 2.96  & 1.71  & 0.58 \\
-$M_{\mathrm{RDT}}$  & N\,m & 0.25  & 0.20  & 0.79 \\
-$P_{\mathrm{in}}$   & Pa   & 87.7  & 28.1  & 0.32 \\
-$P_{\mathrm{out}}$  & Pa   & 110   & 33.9  & 0.31 \\
-$P_0$               & Pa   & 329   & 192   & 0.58 \\
-$P_3$               & Pa   & 831   & 24.5  & 0.03 \\
-$P_5$               & Pa   & 311   & 30.8  & 0.10 \\ \hline
+ & & \multicolumn{3}{c}{\texttt{CC\_450\_7} ($Z_r=Z_s=7$)} & \multicolumn{3}{c}{\texttt{CC\_400\_6} ($Z_s=6$)} \\
+Signal & Unit & $A(f_n)$ & $A(f_{\mathrm{BPF}})$ & Ratio & $A(f_n)$ & $A(f_{\mathrm{BPF}})$ & Ratio \\ \hline
+$F_{\mathrm{res}}$  & N    & 5.21 & 0.56  & 0.11 & 2.96 & 1.71 & 0.58 \\
+$M_{\mathrm{RDT}}$  & N\,m & 0.43 & 0.064 & 0.15 & 0.25 & 0.20 & 0.79 \\
+$P_{\mathrm{in}}$   & Pa   & 71.3 & 21.9  & 0.31 & 87.7 & 28.1 & 0.32 \\
+$P_{\mathrm{out}}$  & Pa   & 138  & 19.6  & 0.14 & 110  & 33.9 & 0.31 \\
+$P_0$               & Pa   & 625  & 80.6  & 0.13 & 329  & 192  & 0.58 \\
+$P_3$               & Pa   & 608  & 32.8  & 0.05 & 831  & 24.5 & 0.03 \\
+$P_5$               & Pa   & 431  & 20.0  & 0.05 & 311  & 30.8 & 0.10 \\ \hline
 \end{tabular}
 \end{table}
 
@@ -759,7 +680,7 @@ more than one order of magnitude below the $1\,\%$ threshold of~\cite{Brekke2015
 \subsection{Physical interpretation: large axial gap and non-uniform inflow}
 \label{sec:results-fft-physicalexpl}
 
-The absent breathing-mode signature is consistent with the large axial spacing documented in Section~\ref{sec:methods_axial_spacing}. The relevant compact-stage parameter is the rotor-stator spacing normalised by the RDT rotor chord, $a/L$, not by the duct diameter. Using the RDT chord at midspan, $L_{\mathrm{mid}} = 138.5$~mm, gives $a/L_{\mathrm{mid}} = 0.192/0.139 = 1.39$. This is about $9$ times the upper limit of the compact axial-pump guideline $a/L = 0.05$-$0.15$. The potential-interaction component of the rotor-stator pulsation is therefore strongly attenuated before the flow reaches the guide-vane row. The wake can mix and redistribute before reaching the vanes, which weakens the coherent $m = 0$ build-up predicted for a compact rotor-stator stage.
+The absent breathing-mode signature is consistent with the large axial spacing. The gap is $a/L_{\mathrm{mid}} \approx 1.39$, about $9$ times the compact axial-pump bound (Section~\ref{sec:methods_axial_spacing}), so the potential-interaction component is strongly attenuated before the flow reaches the guide-vane row and the rotor wake has room to mix before it meets the vanes. This weakens the coherent $m = 0$ build-up predicted for a compact rotor-stator stage.
 
 The velocity contour in Figure~\ref{fig:vel_contour_400_6} supports this interpretation. The flow is non-uniform between adjacent vane passages and shows regions of reduced velocity, consistent with recirculation in the annular space between the rim and the duct wall. The guide vanes are exposed to a mixed and asymmetric RDT wake rather than a clean $Z_r$-periodic rotor wake. A non-periodic inflow reduces the coherent build-up of the $m = 0$ component predicted by the Tyler-Sofrin framework, even when $Z_r = Z_s$.
 
@@ -772,14 +693,14 @@ The velocity contour in Figure~\ref{fig:vel_contour_400_6} supports this interpr
 
 This interpretation matches the dominant sub-rotor-frequency content in the monitor signals. Low-frequency fluctuations are the signature of slowly evolving recirculation, not deterministic blade-passing interaction.
 
-The same mechanism explains the higher relative blade-passing content in the single-vane force signal of \texttt{CC\_400\_6}. With non-uniform inflow, the synchronous $m=0$ build-up predicted by Tyler-Sofrin for $Z_r = Z_s = 7$ does not form coherently in \texttt{CC\_450\_7}; the vanes are loaded by an asymmetric wake field. In \texttt{CC\_400\_6}, the wake-vane mismatch ($Z_r = 7$, $Z_s = 6$) produces stronger local wake-vane interaction on a single vane while the ring-integrated coherent mode remains weak. The plane-averaged pressure signals support this. The $m=0$ component is of the same order in the two cases ($21.9$~Pa versus $28.1$~Pa at the inlet plane). The higher single-vane $f_{\mathrm{BPF}}$ content in \texttt{CC\_400\_6} reflects local wake-vane interaction, not a stronger coherent ring mode.
+The higher single-vane blade-passing content in \texttt{CC\_400\_6} fits the same mechanism. The plane-averaged inlet pressure carries a comparable $m=0$ component in both cases ($21.9$~Pa versus $28.1$~Pa), so the larger single-vane $f_{\mathrm{BPF}}$ amplitude in \texttt{CC\_400\_6} reflects local wake-vane interaction on one vane, not a stronger coherent ring mode.
 
 \subsection{Implications for blade-count selection}
 \label{sec:results-fft-implications}
 
 The transient analysis establishes two results. The unsteady loading produced by the RDT-GV setup is below industrial concern thresholds for both configurations at the nominal operating point. No clear resonance signature is present in either case. The low coherent ring loading is interpreted as a consequence of the large axial gap and the asymmetric inflow rather than as proof that the equal blade-count configuration is generally safe.
 
-The final guide-vane design is selected from the screening subset with $Z_s \neq Z_r$. The choice is conservative. The classical guideline~\cite{Brekke2015,Brekke2010,Tanaka2011,Nduwayezu2021} recommends avoiding equal rotor and stator counts when possible, especially when acoustic or structural resonance may interact with the spatial mode order. The transient runs do not indicate critical pulsation levels, but a full structural or acoustic assessment is still needed. The choice between the available options $Z_s \in \{6, 8, 9\}$ is therefore made on the basis of the hydraulic metrics presented in the next section. No modal analysis of the guide vane has been performed in this thesis. The fatigue-margin conclusion holds only if the lowest wet natural frequency is well separated from $f_{\mathrm{BPF}} = 75.83$~Hz. A finite-element modal analysis including added-mass effects is therefore recommended in Chapter~\ref{chap:future_work}.
+The final guide-vane design is therefore taken from the subset with $Z_s \neq Z_r$, a conservative choice in line with the classical guideline~\cite{Brekke2015,Brekke2010,Tanaka2011,Nduwayezu2021} of avoiding equal rotor and stator counts, especially where acoustic or structural resonance may interact with the spatial mode order. The selection among $Z_s \in \{6, 8, 9\}$ is then made on the hydraulic metrics in the next section. Because no modal analysis of the guide vane is performed here, the fatigue-margin conclusion holds only if the lowest wet natural frequency is well separated from $f_{\mathrm{BPF}} = 75.83$~Hz; a finite-element modal analysis with added-mass effects is recommended in Chapter~\ref{chap:future_work}.
 
 \section{Synthesis and design recommendation}
 \label{sec:synthesis}
@@ -872,7 +793,6 @@ Seven anchor cases cover the corrected-mesh validation, not the full eighteen. T
 
 Section~\ref{sec:dean-vortex} shows that the bend interaction is not strictly additive but does not decompose the secondary flow into rotational components. Post-processing the secondary-flow field on the corrected-mesh anchor cases would quantify the bend response per case and test whether NPR-sign and PPR-sign residuals develop the same way through the bend.
 
-Inherited modelling assumptions include the choice of steady RANS with the SST turbulence model, the geometric simplifications of the RDT hub and rim, and the imposed inlet flow conditions taken from the upstream domain. These assumptions are documented in Chapter~\ref{chap:theory_method} and apply uniformly across all 18 configurations. They do not affect the relative ranking within the screening matrix but bound the absolute predictive value of the reported metrics.
+Inherited modelling assumptions include the choice of steady RANS with the SST turbulence model, the geometric simplifications of the RDT hub and rim, and the imposed inlet flow conditions taken from the upstream domain. These assumptions are documented in Chapter~\ref{chap:theory_method} and apply uniformly across all \(18\) configurations. The corrected anchor cases show, however, that some same-family rankings can be case-sensitive. Family-level trends and large design separations are therefore retained as primary screening findings, while close rankings remain screening-level results unless they are anchor-confirmed.
 
 \clearpage % Keep this at the end of the chapter
-

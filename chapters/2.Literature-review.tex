@@ -28,9 +28,9 @@ Two implications follow. First, the screening output should be a Pareto-front ma
 \section{The hubless rim-driven thruster wake as the design input}
 \label{sec:lit_rdt_wake}
  
-The hubless rim-driven thruster (RDT) was originally developed in the marine community~\cite{Cao2012, Song2015}. Its key feature for the present application is the absence of a central hub. The hub-free centre keeps the duct centre open during reverse-flow operation in turbine mode. The hydrodynamic price is paid in the wake. A hubless rotor cannot impose a defined inner-radius condition on the flow. The inner region is dominated by tip vortices migrating inwards along the inner free end of each blade, together with a low-momentum or back-flow zone along the centreline~\cite{Gaggero2023, Verdijck2025}.
+The hubless rim-driven thruster (RDT) was originally developed in the marine community~\cite{Cao2012, Song2015}. Its key feature for the present application is the absence of a central hub. The hub-free centre keeps the duct centre open during reverse-flow operation in turbine mode. The hydrodynamic cost appears in the wake. Without a central hub, the rotor does not impose a solid inner-radius boundary on the flow. The inner region is therefore affected by vortical structures that migrate inwards from the free inner blade ends, together with a low-momentum or reverse-flow region near the centreline~\cite{Gaggero2023}.
  
-The consequence for this thesis is that the inflow to the GV row is not a clean axisymmetric profile. It cannot be matched by a smooth metal-angle distribution. Leonsen~\cite{Leonsen2025} reports RDT wake data from Sharma and Djupesland. These data were used directly as the inlet condition for the screening. They show local absolute flow angles of about $80^\circ$-$89^\circ$ near the outer radius and a back-flow region for $r < 0.144$~m. Any GV design that operates in this wake must therefore be a hubless cascade. The inner radius must be cut off outside the back-flow region.
+The consequence for this thesis is that the inflow to the GV row is not a clean axisymmetric profile. It cannot be matched by a smooth metal-angle distribution alone. Leonsen~\cite{Leonsen2025} reports preliminary RDT wake data from Sharma and Djupesland, where the back-flow radius was estimated as \(r < 0.144~\mathrm{m}\). The longer transient RDT-only simulation used as design input in the present thesis refined this estimate and showed that the reverse axial flow was confined to the inner hub-pipe region, approximately \(r \lesssim 0.120~\mathrm{m}\). The inlet field still contains local absolute flow angles of about \(80^\circ\)--\(89^\circ\) near the outer radius. Any GV design that operates in this wake must therefore be treated as a hubless annular cascade, with the inner design radius placed outside the reverse-flow region.
  
 Prior work on hubless cascades is limited. Andersen's hubless rim-driven waterjet pump~\cite{Andersen2014} is the closest precedent. It uses downstream stator vanes for swirl recovery, as shown in Figure~\ref{fig:rdt_wake_and_vanes}. Zhai et al.~\cite{Zhai2022} further show that the duct contour influences the wake structure that a downstream stator must accommodate.
  
@@ -72,16 +72,14 @@ The downstream geometry includes a $90^\circ$ bend between the GV section and th
 A bend cannot balance its own radial pressure gradient uniformly across the
 section. The flow develops a pair of counter-rotating cells in the cross-stream
 plane, the Dean vortices, whose strength scales with the Dean number
-\[
-  \mathrm{De} = \mathrm{Re}\sqrt{\frac{D_h}{2R_c}},
-\]
+\[\mathrm{De} = \mathrm{Re}\sqrt{\frac{D_h}{2R_c}},\]
 with $\mathrm{Re}$ the Reynolds number, $D_h$ the hydraulic diameter and $R_c$
 the bend curvature radius~\cite{Dean1927}. Kim, Yadav and Kim~\cite{KimYadavKim2014}
 simulated this secondary flow in a $90^\circ$ elbow in OpenFOAM and benchmarked
 several turbulence models against experiment. Their finding is twofold: the
 post-bend swirl intensity is a strong function of the curvature ratio and a weak
 function of Reynolds number, and its downstream decay is close to exponential.
-Dutta et al.~\cite{Dutta2025DeanVortex} resolved the same vortex pair in a
+Wang et al.~\cite{Wang2025DeanVortex} resolved the same vortex pair in a
 turbulent bend at curvature ratio $1.25$ with a $k$--$\varepsilon$ model.
  
 When the upstream flow already carries swirl, the picture is more complicated. Liu and Vanierschot~\cite{LiuVanierschot2021} review the literature on swirling flow through curved pipes. They report that the Dean cells and the upstream swirl interact in a sign-dependent way. Depending on whether the swirl rotates with or against one of the Dean cells, that cell is amplified or suppressed.
@@ -93,7 +91,7 @@ Two implications follow. First, the post-vane plane is not the only location at 
 \section{Swirl decay in straight pipes}
 \label{sec:lit_swirl_decay}
 
-Between the GV trailing edge and the bend inlet, the residual swirl evolves through a straight pipe section. Kitoh~\cite{Kitoh1991} showed experimentally that the integrated swirl intensity in a straight circular pipe decays approximately exponentially with axial distance, at a rate that depends on the swirl intensity and the Reynolds number. The swirl immediately downstream of the GV row is therefore not identical to the swirl at the bend inlet. Natural decay lowers the swirl number before the bend, but is expected to remove less than the GV row itself. The GV ranking based on swirl reduction therefore remains meaningful.
+Between the GV trailing edge and the bend, the residual swirl evolves through a short duct section. Kitoh~\cite{Kitoh1991} showed that swirl intensity in a straight pipe decays slowly and approximately exponentially with axial distance (the relation is given in Section~\ref{sec:theory_swirl_decay}), so natural decay removes far less swirl than the GV row itself and the GV ranking based on swirl reduction remains meaningful.
  
 \section{Cascade closure: solidity, diffusion limits and deviation}
 \label{sec:lit_cascade}
@@ -116,11 +114,9 @@ The discretisation uncertainty for the unstructured draft-tube domain is estimat
 \section{Rotor-stator interaction and pressure pulsations}
 \label{sec:lit_rsi}
  
-The closely placed RDT-GV configuration places the rotor and the stator within an axial distance of the same order as the chord. This is the regime in which rotor-stator interaction (RSI) becomes a primary source of unsteady loading. Brekke's monograph~\cite{Brekke2010, Brekke2015} reviews the historical record of RSI-related vibration and pressure-pulsation problems in Francis machines. He also provides order-of-magnitude thresholds for acceptable pulsation amplitudes. The classical theoretical framework is the Tyler-Sofrin analysis~\cite{Tyler1962}. It decomposes the unsteady pressure field around a rotor-stator stage into circumferential modes of order $m_{k,j} = k Z_r - j Z_s$. The lowest mode at the blade-passing frequency ($k=1$) is $m_{\min} = \min_j |Z_r - j Z_s|$.
+The closely placed RDT-GV configuration places the rotor and the stator within an axial distance of the same order as the chord. This is the regime in which rotor-stator interaction (RSI) becomes a primary source of unsteady loading. Brekke's monograph~\cite{Brekke2010, Brekke2015} reviews the historical record of RSI-related vibration and pressure-pulsation problems in Francis machines. He also provides order-of-magnitude thresholds for acceptable pulsation amplitudes. The classical theoretical framework is the Tyler-Sofrin analysis~\cite{Tyler1962}, which decomposes the unsteady pressure field around a rotor-stator stage into spinning circumferential modes set by the rotor and stator blade counts. Its central design consequence is that equal counts, $Z_r = Z_s$, place an axisymmetric breathing mode at the blade-passing frequency that loads all stator vanes in phase, whereas coprime counts cancel the net axial force on the ring by circumferential symmetry. The modal decomposition and the mode-order formula are derived in Section~\ref{sec:rsi-tyler}.
  
-Two regimes are relevant here. When $\gcd(Z_r, Z_s) = 1$, the lowest mode is at least $|Z_r - Z_s|$ and the net axial force on the stator ring approaches zero by circumferential cancellation. When $Z_r = Z_s$, $m_{\min} = 0$ and the lowest mode is the axisymmetric breathing mode. All stator vanes are then loaded synchronously at $f_{\mathrm{BPF}}$.
- 
-The original Store2Hydro baseline used $Z_r = Z_s = 7$. The Tyler-Sofrin analysis identifies this as an unfavourable choice on first principles. Whether the breathing mode actually dominates the pulsation field in practice depends on how closely the RDT wake satisfies $Z_r$-fold azimuthal symmetry. The unsteady analysis in Chapter~\ref{chap:results_discussion} tests this question directly. Two transient simulations (\texttt{CC\_450\_7} and \texttt{CC\_400\_6}) are used. The analysis combines an FFT-based spectral decomposition of the force, torque and pressure monitor signals~\cite{Bergan2018}. A ring-coherence diagnostic distinguishes the $m=0$ breathing mode from spinning modes $|m| \geq 1$. Reference amplitude thresholds from Egusquiza et al.~\cite{Egusquiza2006} and the wet-natural-frequency considerations of Tanaka and Valentin~\cite{Tanaka2011, Valentin2015} are used to interpret the magnitudes obtained.
+The original Store2Hydro baseline used $Z_r = Z_s = 7$, which the Tyler-Sofrin argument flags as unfavourable on first principles. Whether the breathing mode actually dominates depends on how closely the RDT wake satisfies $Z_r$-fold azimuthal symmetry. Chapter~\ref{chap:results_discussion} tests this directly with two transient simulations (\texttt{CC\_450\_7} and \texttt{CC\_400\_6}), interpreted against the amplitude thresholds of Egusquiza et al.~\cite{Egusquiza2006} and the wet-natural-frequency considerations of Tanaka and Valentin~\cite{Tanaka2011, Valentin2015}.
  
 \section{Identified gap and how this thesis addresses it}
 \label{sec:lit_gap}
