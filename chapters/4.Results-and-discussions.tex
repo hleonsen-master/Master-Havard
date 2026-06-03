@@ -215,7 +215,7 @@ Figure~\ref{fig:hi-bar} shows $\Delta H_{\mathrm{sys}}$ for the $18$-case screen
 \begin{figure}[H]
 \centering
 \fbox{\includegraphics[width=0.95\linewidth]{Figures/Results/fig_4_3_HI_bar.png}}
-\caption{System head increase $\Delta H_{\mathrm{sys}}$ for the $18$-case matrix. Dashed line: corrected NoGV swirl reference ($4.21$~m). CC family solid grey fill, CS family diagonal hatching.}
+\caption{System head increase $\Delta H_{\mathrm{sys}}$ for the $18$-case matrix. Dashed line: corrected NoGV swirl reference ($4.21$~m).}
 \label{fig:hi-bar}
 \end{figure}
 
@@ -241,7 +241,7 @@ Figure~\ref{fig:hl-stacked} shows the additive head-loss budget as two stacked c
 \begin{figure}[H]
 \centering
 \fbox{\includegraphics[width=0.95\linewidth]{Figures/Results/fig_4_4_HL_stacked_bar.png}}
-\caption{Stacked head-loss budget for the \(18\)-case screening matrix. The dark bars show the GV-passage loss from \texttt{GVStart} to \texttt{GVEnd\_z680}, and the light bars show the downstream draft-tube loss from \texttt{GVEnd\_z680} to \texttt{ConeEnd}. The dashed line marks the corrected NoGV total loss of \(1.66~\mathrm{m}\).}
+\caption{Stacked head-loss budget for the \(18\)-case screening matrix. The dark bars show the GV-passage loss from \texttt{GVStart} to \texttt{GVEnd\_z680}, and the light bars show the downstream draft-tube loss from \texttt{GVEnd\_z680} to \texttt{ConeEnd}.}
 \label{fig:hl-stacked}
 \end{figure}
 
@@ -379,6 +379,97 @@ NoGV swirl          & $63.72$ & $1.67$ & $2.38$ & $5.35$  & $-7.08$ \\
 \caption{$|\alpha|_{\mathrm{ConeEnd}}$ for the $18$-case screening matrix, grouped by chord (mm) and vane count $z$. CC family in red, CS family in blue. Dashed line: corrected NoGV swirl reference at $63.7^\circ$.}
 \label{fig:alpha-bar}
 \end{figure}
+
+
+
+%LEGG INN VEKTOR HER 
+To connect the residual-angle metric to the local guide-vane passage flow, velocity vectors were inspected for the two long-chord anchor cases. Figures~\ref{fig:cc-cs5008-vector-span} and~\ref{fig:cc-cs5008-vector-3d} compare \texttt{CC\_500\_8} and \texttt{CS\_500\_8} at three spanwise locations. The span coordinate is measured from the inner GV radius, $r=0.120$~m, to the outer radius, $r=0.250$~m.
+
+\begin{figure}[H]
+\centering
+
+\begin{subfigure}[t]{0.32\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/Results/vector/CC_500_8_velocity_vector_span0p15_correctRDT.png}
+    \caption{\texttt{CC\_500\_8}, span 0.15 ($r=0.1395$~m)}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.32\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/Results/vector/CC_500_8_velocity_vector_span0p5_correctRDT.png}
+    \caption{\texttt{CC\_500\_8}, span 0.50 ($r=0.1850$~m)}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.32\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/Results/vector/CC_500_8_velocity_vector_span0p85_correctRDT.png}
+    \caption{\texttt{CC\_500\_8}, span 0.85 ($r=0.2305$~m)}
+\end{subfigure}
+
+\vspace{0.4em}
+
+\begin{subfigure}[t]{0.32\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/Results/vector/CS_500_8_velocity_vector_span0p15_correctRDT.png}
+    \caption{\texttt{CS\_500\_8}, span 0.15 ($r=0.1395$~m)}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.32\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/Results/vector/CS_500_8_velocity_vector_span0p5_correctRDT.png}
+    \caption{\texttt{CS\_500\_8}, span 0.50 ($r=0.1850$~m)}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.32\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/Results/vector/CS_500_8_velocity_vector_span0p85_correctRDT.png}
+    \caption{\texttt{CS\_500\_8}, span 0.85 ($r=0.2305$~m)}
+\end{subfigure}
+
+\caption{Blade-to-blade velocity-vector fields for \texttt{CC\_500\_8} and \texttt{CS\_500\_8} at three spanwise locations. The plots show how the guide-vane passages turn the incoming RDT wake locally and how the passage flow varies from inner to outer span.}
+\label{fig:cc-cs5008-vector-span}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+
+\begin{subfigure}[t]{0.32\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/Results/vector/CC_500_8_velocity_vector_span0p15_correctRDT_3D.png}
+    \caption{\texttt{CC\_500\_8}, span 0.15 ($r=0.1395$~m)}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.32\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/Results/vector/CC_500_8_velocity_vector_span0p5_correctRDT_3D.png}
+    \caption{\texttt{CC\_500\_8}, span 0.50 ($r=0.1850$~m)}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.32\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/Results/vector/CC_500_8_velocity_vector_span0p85_correctRDT_3D.png}
+    \caption{\texttt{CC\_500\_8}, span 0.85 ($r=0.2305$~m)}
+\end{subfigure}
+
+\vspace{0.4em}
+
+\begin{subfigure}[t]{0.32\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/Results/vector/CS_500_8_velocity_vector_span0p15_correctRDT_3D.png}
+    \caption{\texttt{CS\_500\_8}, span 0.15 ($r=0.1395$~m)}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.32\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/Results/vector/CS_500_8_velocity_vector_span0p5_correctRDT_3D.png}
+    \caption{\texttt{CS\_500\_8}, span 0.50 ($r=0.1850$~m)}
+\end{subfigure}\hfill
+\begin{subfigure}[t]{0.32\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/Results/vector/CS_500_8_velocity_vector_span0p85_correctRDT_3D.png}
+    \caption{\texttt{CS\_500\_8}, span 0.85 ($r=0.2305$~m)}
+\end{subfigure}
+
+\caption{Downstream three-dimensional velocity-vector views for \texttt{CC\_500\_8} and \texttt{CS\_500\_8} at three spanwise locations. The comparison shows how the two long-chord anchor cases organise the RDT wake through the guide-vane row and how the vector field changes from inner to outer span.}
+\label{fig:cc-cs5008-vector-3d}
+\end{figure}
+
+The vector plots show that the lower residual angle of \texttt{CS\_500\_8} is obtained with a less uniform local passage flow than in \texttt{CC\_500\_8}. In the blade-to-blade views, the \texttt{CS} case shows stronger local recirculation and a more disturbed vector pattern, especially towards the mid and outer span. The downstream three-dimensional views support the same interpretation: \texttt{CS\_500\_8} removes more swirl, but the resulting vector field is more non-uniform around the guide-vane row. This agrees with the head-loss trend, where the stronger swirl recovery of the \texttt{CS} family comes with a larger hydraulic penalty.
+
 
 \subsection{Swirl number evolution through the duct}
 \label{sec:swirl-number-evolution}
@@ -661,8 +752,7 @@ A spectral comparison of the two configurations for the four most informative si
 
 The bar-chart amplitude comparison and the per-signal $f_n$-vs-$f_{\mathrm{BPF}}$ plots are in Appendix~\ref{app:individual_spectra} (Section A.3).
 
-\paragraph{Observation 1: blade-passing forcing is weak.}
-The cyclic force amplitude at $f_{\mathrm{BPF}}$ is $0.56$~N for \texttt{CC\_450\_7} and $1.71$~N for \texttt{CC\_400\_6}, corresponding to $0.07\,\%$ and $0.27\,\%$ of the mean vane loads. Both values are below the $0.5\,\%$ diagnostic threshold of~\cite{Egusquiza2006}. Low-frequency content dominates the unsteady vane loading; deterministic blade-passing forcing is below the diagnostic threshold.
+\paragraph{Observation 1: blade-passing forcing is weak.} At $f_{\mathrm{BPF}}$ the cyclic force on a single vane is $0.56$~N for \texttt{CC\_450\_7} and $1.71$~N for \texttt{CC\_400\_6}, which is $0.07\,\%$ and $0.27\,\%$ of the respective mean vane loads ($\approx 800$~N and $\approx 630$~N). Both lie below the $0.5\,\%$ level adopted here as a diagnostic cut-off for deterministic blade passing forcing, consistent with the RSI amplitude levels reported by Egusquiza et al.~\cite{Egusquiza2006}. The rotor-frequency content exceeds the blade-passing content in both cases(Table~\ref{tab:peak_amplitudes}), so the unsteady vane loading is not driven by deterministic blade passing.
 
 \paragraph{Observation 2: pressure pulsations are well below the RSI threshold.}
 The normalised pulsation at the RDT-GV interface is
@@ -672,7 +762,7 @@ The normalised pulsation at the RDT-GV interface is
     \approx 0.04\text{-}0.06\,\%,
     \label{eq:normalised-pulsation}
 \end{equation}
-more than one order of magnitude below the $1\,\%$ threshold of~\cite{Brekke2015,Brekke2010} for significant rotor-stator interaction.
+more than one order of magnitude below the $1\,\%$ threshold of~\cite{Brekke2001,Brekke2010} for significant rotor-stator interaction.
 
 \paragraph{Observation 3: the equal blade-count case does not show a stronger breathing-mode signature.}
 \texttt{CC\_400\_6} ($m_{\min} = 1$) shows higher relative blade-passing content than \texttt{CC\_450\_7} ($m_{\min} = 0$): the ratio $A(f_{\mathrm{BPF}})/A(f_n)$ for $F_{\mathrm{res}}$ is $0.58$ in \texttt{CC\_400\_6} and $0.11$ in \texttt{CC\_450\_7}. This is not the behaviour expected from the compact-stage Tyler-Sofrin argument, where the equal blade-count case is the main concern. The absolute amplitudes remain low in both cases, and the expected coherent breathing-mode signature is weak in the present geometry. A physical interpretation is given in Section~\ref{sec:results-fft-physicalexpl}.
@@ -700,7 +790,7 @@ The higher single-vane blade-passing content in \texttt{CC\_400\_6} fits the sam
 
 The transient analysis establishes two results. The unsteady loading produced by the RDT-GV setup is below industrial concern thresholds for both configurations at the nominal operating point. No clear resonance signature is present in either case. The low coherent ring loading is interpreted as a consequence of the large axial gap and the asymmetric inflow rather than as proof that the equal blade-count configuration is generally safe.
 
-The final guide-vane design is therefore taken from the subset with $Z_s \neq Z_r$, a conservative choice in line with the classical guideline~\cite{Brekke2015,Brekke2010,Tanaka2011,Nduwayezu2021} of avoiding equal rotor and stator counts, especially where acoustic or structural resonance may interact with the spatial mode order. The selection among $Z_s \in \{6, 8, 9\}$ is then made on the hydraulic metrics in the next section. Because no modal analysis of the guide vane is performed here, the fatigue-margin conclusion holds only if the lowest wet natural frequency is well separated from $f_{\mathrm{BPF}} = 75.83$~Hz; a finite-element modal analysis with added-mass effects is recommended in Chapter~\ref{chap:future_work}.
+The final guide-vane design is therefore taken from the subset with $Z_s \neq Z_r$, a conservative choice in line with the classical guideline~\cite{Brekke2001,Brekke2010,Tanaka2011,Binama2021FlowInstability} of avoiding equal rotor and stator counts, especially where acoustic or structural resonance may interact with the spatial mode order. The selection among $Z_s \in \{6, 8, 9\}$ is then made on the hydraulic metrics in the next section. Because no modal analysis of the guide vane is performed here, the fatigue-margin conclusion holds only if the lowest wet natural frequency is well separated from $f_{\mathrm{BPF}} = 75.83$~Hz; a finite-element modal analysis with added-mass effects is recommended in Chapter~\ref{chap:future_work}.
 
 \section{Synthesis and design recommendation}
 \label{sec:synthesis}
@@ -761,7 +851,7 @@ For head preservation, the primary candidate is \texttt{CC\_500\_8}. The configu
 
 \texttt{CC\_400\_8} is the principal follow-up case. The uncorrected screening places this configuration at the head corner of the Pareto front, with NPR-direction residual swirl that is qualitatively favourable for the downstream RPT cavitation behaviour reported by Jenssen~\cite{Jenssen2020}. The case combines high $\Delta H_{\mathrm{sys}}$ with moderate $|\alpha|$ and NPR-sign residual swirl. The configuration is not anchor-confirmed, and the open question on its corrected-mesh Pareto status (Section~\ref{sec:pareto-anchor-check}) carries direct design implications. The corrected rerun of \texttt{CC\_400\_8} is the highest-priority simulation follow-up from the present thesis.
 
-A blade-count constraint applies to the final selection regardless of which configuration is taken forward. The FFT analysis in Section~\ref{sec:results-fft} demonstrated that the two diagnostic transient cases both produce hydraulic pulsation amplitudes well below the $1\%$ threshold of Brekke~\cite{Brekke2010,Brekke2015}. The screening result for blade-count selection is therefore not driven by FFT amplitudes but by the Tyler-Sofrin rotor-stator-interaction theory: $Z_s = 7$ produces a synchronous breathing mode that excites the whole vane stack in phase, which is undesirable from a structural and fatigue perspective even when hydraulic amplitudes are low. The recommendation is therefore to avoid $Z_s = Z_r$ in the final selection. \texttt{CS\_500\_8}, \texttt{CC\_500\_8}, and \texttt{CC\_400\_8} all use $Z_s = 8$, and the shortlist is consistent with the blade-count guidance.
+A blade-count constraint applies to the final selection regardless of which configuration is taken forward. The FFT analysis in Section~\ref{sec:results-fft} demonstrated that the two diagnostic transient cases both produce hydraulic pulsation amplitudes well below the $1\%$ threshold of Brekke~\cite{Brekke2010,Brekke2001}. The screening result for blade-count selection is therefore not driven by FFT amplitudes but by the Tyler-Sofrin rotor-stator-interaction theory: $Z_s = 7$ produces a synchronous breathing mode that excites the whole vane stack in phase, which is undesirable from a structural and fatigue perspective even when hydraulic amplitudes are low. The recommendation is therefore to avoid $Z_s = Z_r$ in the final selection. \texttt{CS\_500\_8}, \texttt{CC\_500\_8}, and \texttt{CC\_400\_8} all use $Z_s = 8$, and the shortlist is consistent with the blade-count guidance.
 
 \subsection{Contribution relative to previous Store2Hydro work}
 \label{sec:contribution}
