@@ -9,7 +9,7 @@
 
 \section{RDT mesh interface overlap: discovery and impact assessment}
 \label{sec:rdt-mesh-overlap}
-This chapter reports the results in two layers. The screening matrix of 18 guide-vane configurations on the original RDT mesh forms the primary layer. A smaller second layer of 7 reruns on a corrected RDT mesh was added after a setup error in the original was identified during post-processing. The error and how it was found are documented in this section.
+This chapter reports the results in two layers. The screening matrix of 18 guide-vane configurations on the original RDT mesh forms the primary layer. A smaller second layer of eight corrected-mesh reruns, the NoGV reference plus seven guide-vane anchors, was added after a setup error in the original was found during post-processing. The error and how it was found are documented in this section.
 
 The 18-case matrix remains the primary screening result because the relevant comparison is between configurations, not against an absolute reference. The same interface defect is present in all 18 original screening simulations, so the matrix can still be interpreted comparatively. However, the corrected anchor cases show that the bias is case-dependent. Family-level trends are therefore retained as primary findings, while same-family rankings at similar chord are treated as screening-level results unless they are anchor-confirmed. No experimental dataset for this geometry exists to validate against, which reinforces the comparative framing.
 
@@ -75,7 +75,7 @@ The error surfaced during post-processing of velocity vectors on a $zy$-plane th
 \subsection{Corrected sub-sample: seven anchor cases}
 \label{sec:rdt-mesh-overlap-validation}
 
-A full rerun of all 18 configurations was not feasible in the time available. The NoGV swirl reference and seven guide-vane anchors were rerun with the corrected RDT mesh: three \texttt{CC} cases (\texttt{CC\_250\_9}, \texttt{CC\_450\_6}, \texttt{CC\_500\_8}) and four \texttt{CS} cases (\texttt{CS\_250\_9}, \texttt{CS\_450\_6}, \texttt{CS\_500\_6}, \texttt{CS\_500\_8}). The set spans both families, three chord levels, and the Pareto-relevant corners of the matrix. Three of the four uncorrected Pareto-front cases are anchored (\texttt{CS\_500\_8}, \texttt{CS\_500\_6}, \texttt{CC\_500\_8}); only \texttt{CC\_400\_8} is not, and that gap is taken up in Section~\ref{sec:rdt-mesh-overlap-impact}.
+A full rerun of all 18 configurations was not feasible in the time available. The NoGV swirl reference and seven guide-vane anchors were rerun with the corrected RDT mesh: three \texttt{CC} cases (\texttt{CC\_250\_9}, \texttt{CC\_450\_6}, \texttt{CC\_500\_8}) and four \texttt{CS} cases (\texttt{CS\_250\_9}, \texttt{CS\_450\_6}, \texttt{CS\_500\_6}, \texttt{CS\_500\_8}). The set spans both families, three chord levels, and the corners of the matrix that the Pareto analysis later identifies (Section~\ref{sec:pareto-front}).
 
 Table~\ref{tab:correctRDT-anchor} lists the system head increase $\Delta H_\mathrm{sys} = H_\mathrm{ConeEnd} - H_\mathrm{RDTStart}$ and the mass-averaged absolute flow angle $|\alpha|$ at \texttt{ConeEnd}, before and after correction.
 
@@ -107,8 +107,6 @@ NoGV swirl          & 3.96 & 4.21 & $+6.2$   & 53.6 & 63.7 & $+18.8$ \\
 The seven anchors are too few to revalidate every ranking in the 18-case matrix, but they are enough to separate the claims that survive the correction from those that do not.
 
 In both setups, \texttt{CC} keeps the lower vane-passage head loss and \texttt{CS} the lower residual angle. Within each family, longer chord gives lower residual angle. The head-loss versus swirl-recovery trade-off keeps its direction, with stronger recovery costing more head. What does not survive is the ranking between two cases of the same family at similar chord. The non-uniform vane-passage bias from Section~\ref{sec:rdt-mesh-overlap-validation} can flip those, so where such a ranking matters the corrected anchor value is used and the limitation is named.
-
-Three of the four uncorrected Pareto cases are anchored (\texttt{CS\_500\_8}, \texttt{CS\_500\_6}, \texttt{CC\_500\_8}); \texttt{CC\_400\_8} is not. Section~\ref{sec:pareto-anchor-check} examines their behaviour under correction, including a Pareto-status change for \texttt{CS\_500\_6} within the sub-sample. \texttt{CC\_250\_9} appears on the corrected-anchor front only because it is the highest-$\Delta H_\mathrm{sys}$ case among seven sparse points, and several \texttt{CC} cases in the full matrix beat it on both metrics. It is a sub-sample artefact, not a new candidate.
 
 \begin{enumerate}
     \item Family-level and within-family chord trends are stated as primary findings.
@@ -792,6 +790,57 @@ The transient analysis establishes two results. The unsteady loading produced by
 
 The final guide-vane design is therefore taken from the subset with $Z_s \neq Z_r$, a conservative choice in line with the classical guideline~\cite{Brekke2001,Brekke2010,Tanaka2011,Binama2021FlowInstability} of avoiding equal rotor and stator counts, especially where acoustic or structural resonance may interact with the spatial mode order. The selection among $Z_s \in \{6, 8, 9\}$ is then made on the hydraulic metrics in the next section. Because no modal analysis of the guide vane is performed here, the fatigue-margin conclusion holds only if the lowest wet natural frequency is well separated from $f_{\mathrm{BPF}} = 75.83$~Hz; a finite-element modal analysis with added-mass effects is recommended in Chapter~\ref{chap:future_work}.
 
+\section{Static hydraulic load on a single vane}
+\label{sec:vane-load}
+
+The steady load on one vane sets the scale for any later structural check. The hydraulic force is integrated over one vane surface in CFX, giving the resultant $F_{\mathrm{res}} = \sqrt{F_x^2 + F_y^2 + F_z^2}$ and its angle $\theta_{\mathrm{ax}}$ to the axial direction, where $\theta_{\mathrm{ax}} = 90^\circ$ is a pure cross-plane load. Both are listed for the 18 configurations in Table~\ref{tab:vane-force}, with corrected anchors below their original case.
+
+The direction is the clear result. $\theta_{\mathrm{ax}}$ stays from about $73^\circ$ to $89^\circ$ throughout, so the vane carries a bending load rather than an axial one. Figure~\ref{fig:vane-force-cshroud} normalises $F_{\mathrm{res}}$ by the shroud chord; the intensity climbs with chord and runs higher for the CS family, matching the swirl-recovery ranking of Section~\ref{sec:swirl-recovery}: the cases that turn the flow hardest carry the most load. The corrected anchors (green) shift case by case.
+
+$\theta_{\mathrm{ax}}$ resolves only part of the direction. It separates the axial load from the cross-plane load, but not the cross-plane part into radial and circumferential. The vane load is essentially cascade lift, acting in the tangential-axial plane with a small radial part, so the large cross-plane load is read here as the circumferential reaction to swirl removal. A cylindrical force split ($F_r$, $F_\theta$, $F_z$) on the vane surface would confirm the small radial part, and the hub-to-shroud twist that rotates the chord-normal along the span makes the bending-relevant resolution part of the structural follow-up. These are steady single-vane loads from the uncorrected RANS setup, a load scale rather than a structural result; no modal or stress analysis is done here.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Resultant hydraulic force $F_{\mathrm{res}}$ on a single vane and its angle $\theta_{\mathrm{ax}}$ to the axial direction. Corrected anchor values are listed in italics below their original case. $\theta_{\mathrm{ax}} = 90^\circ$ is a pure cross-plane force.}
+\label{tab:vane-force}
+\begin{tabular}{l rr rr}
+\hline
+ & \multicolumn{2}{c}{Original RDT} & \multicolumn{2}{c}{Corrected RDT mesh} \\
+Case & $F_{\mathrm{res}}$ (N) & $\theta_{\mathrm{ax}}$ (deg) 
+     & $F_{\mathrm{res}}$ (N) & $\theta_{\mathrm{ax}}$ (deg) \\ 
+\hline
+\texttt{CC\_250\_9} & $309.5$  & $72.6$ & $257.9$  & $80.3$ \\
+\texttt{CC\_300\_9} & $375.2$  & $74.3$ & --       & --     \\
+\texttt{CC\_350\_8} & $461.4$  & $83.2$ & --       & --     \\
+\texttt{CC\_400\_6} & $708.7$  & $75.8$ & --       & --     \\
+\texttt{CC\_400\_8} & $602.3$  & $85.9$ & --       & --     \\
+\texttt{CC\_450\_6} & $762.8$  & $84.1$ & $751.8$  & $83.0$ \\
+\texttt{CC\_450\_8} & $739.4$  & $87.0$ & --       & --     \\
+\texttt{CC\_500\_6} & $961.7$  & $80.6$ & --       & --     \\
+\texttt{CC\_500\_8} & $940.0$  & $83.8$ & $953.2$  & $80.0$ \\
+\hline
+\texttt{CS\_250\_9} & $376.0$  & $78.7$ & $360.3$  & $83.1$ \\
+\texttt{CS\_300\_9} & $522.9$  & $84.9$ & --       & --     \\
+\texttt{CS\_350\_8} & $707.4$  & $85.6$ & --       & --     \\
+\texttt{CS\_400\_6} & $939.2$  & $86.9$ & --       & --     \\
+\texttt{CS\_400\_8} & $966.0$  & $89.0$ & --       & --     \\
+\texttt{CS\_450\_6} & $1172.2$ & $87.4$ & $1133.6$ & $87.2$ \\
+\texttt{CS\_450\_8} & $1241.7$ & $88.9$ & --       & --     \\
+\texttt{CS\_500\_6} & $1533.4$ & $88.9$ & $1412.2$ & $88.3$ \\
+\texttt{CS\_500\_8} & $1506.7$ & $89.4$ & $1511.8$ & $88.3$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\linewidth]{Figures/Results/Forces/fig_4_X_Fres_per_cshroud_correctRDT.png}
+\caption{Resultant vane force normalised by shroud chord, $F_{\mathrm{res}}/c_{\mathrm{shroud}}$, for the 18 configurations in design order. CC family solid grey, CS family hatched; corrected-anchor reruns are shown in green next to their original case.}
+\label{fig:vane-force-cshroud}
+\end{figure}
+
+
 \section{Synthesis and design recommendation}
 \label{sec:synthesis}
 
@@ -849,7 +898,7 @@ The primary flow-conditioning candidate is \texttt{CS\_500\_8}. The configuratio
 
 For head preservation, the primary candidate is \texttt{CC\_500\_8}. The configuration delivers the highest anchor-confirmed $\Delta H_{\mathrm{sys}}$ and accepts a moderate residual angle in exchange. The case is appropriate when the boosting function is the dominant design driver, when the downstream RPT is robust to moderate inlet swirl, or when total system efficiency over the operating range is the primary metric.
 
-\texttt{CC\_400\_8} is the principal follow-up case. The uncorrected screening places this configuration at the head corner of the Pareto front, with NPR-direction residual swirl that is qualitatively favourable for the downstream RPT cavitation behaviour reported by Jenssen~\cite{Jenssen2020}. The case combines high $\Delta H_{\mathrm{sys}}$ with moderate $|\alpha|$ and NPR-sign residual swirl. The configuration is not anchor-confirmed, and the open question on its corrected-mesh Pareto status (Section~\ref{sec:pareto-anchor-check}) carries direct design implications. The corrected rerun of \texttt{CC\_400\_8} is the highest-priority simulation follow-up from the present thesis.
+\texttt{CC\_400\_8} is the principal follow-up case. The uncorrected screening places this configuration at the head corner of the Pareto front, with NPR-direction residual swirl that is qualitatively favourable for the downstream RPT cavitation behaviour reported by Jenssen~\cite{Jenssen2020}. The case combines high $\Delta H_{\mathrm{sys}}$ with moderate $|\alpha|$ and NPR-sign residual swirl. The configuration is not anchor-confirmed, and the open question on its corrected-mesh Pareto status (Section~\ref{sec:pareto-anchor-check}) carries direct design implications.
 
 A blade-count constraint applies to the final selection regardless of which configuration is taken forward. The FFT analysis in Section~\ref{sec:results-fft} demonstrated that the two diagnostic transient cases both produce hydraulic pulsation amplitudes well below the $1\%$ threshold of Brekke~\cite{Brekke2010,Brekke2001}. The screening result for blade-count selection is therefore not driven by FFT amplitudes but by the Tyler-Sofrin rotor-stator-interaction theory: $Z_s = 7$ produces a synchronous breathing mode that excites the whole vane stack in phase, which is undesirable from a structural and fatigue perspective even when hydraulic amplitudes are low. The recommendation is therefore to avoid $Z_s = Z_r$ in the final selection. \texttt{CS\_500\_8}, \texttt{CC\_500\_8}, and \texttt{CC\_400\_8} all use $Z_s = 8$, and the shortlist is consistent with the blade-count guidance.
 
