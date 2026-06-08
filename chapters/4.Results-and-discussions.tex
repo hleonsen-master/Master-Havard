@@ -482,6 +482,38 @@ Between \texttt{GVEnd6} and \texttt{ConeEnd} the flow transitions from the annul
 
 The bend amplifies the swirl it receives, so weak-recovery configurations are penalised far more than strong-recovery ones: the absolute swirl number at \texttt{BendEnd} roughly doubles for low-recovery cases such as \texttt{CC\_250\_9} and \texttt{CS\_250\_9}, while the Pareto candidates barely change. The streamwise $|S|$ traces are given in Section~\ref{sec:s-streamwise} and the loss mechanism in Section~\ref{sec:bend-hl-collapse}. Across the bend the sampling plane reorients from $z$-normal upstream to $y$-normal at \texttt{BendEnd} and \texttt{ConeEnd}, so the post-bend swirl-number sign is referenced to a different axis and is not directly comparable with the upstream sign; the rise in $|S|$ through the bend is this amplification, not a breakdown of the metric.
 
+
+\begin{table}[h!]
+\centering\small
+\caption[Absolute swirl number, CC and CS]{Absolute swirl number $|S|$ at \texttt{GVStart}, \texttt{GVEnd6} and \texttt{ConeEnd} from eq~(S\_def). \texttt{Config}: shroud chord (mm) and vane count. Italic rows are corrected-mesh anchors; last row is the NoGV correctRDT reference.}
+\label{tab:swirl-wide}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{l ccc ccc}
+\hline
+ & \multicolumn{3}{c}{CC} & \multicolumn{3}{c}{CS} \\
+\cline{2-4}\cline{5-7}
+Config & GVStart & GVEnd6 & ConeEnd & GVStart & GVEnd6 & ConeEnd \\
+\hline
+250\_9 & 0.669 & 0.684 & 0.477 & 0.696 & 0.755 & 0.462 \\
+\quad\textit{correctRDT} & \textit{0.722} & \textit{0.633} & \textit{0.393} & \textit{0.747} & \textit{0.566} & \textit{0.436} \\
+300\_9 & 0.699 & 0.558 & 0.264 & 0.720 & 0.637 & 0.391 \\
+350\_8 & 0.702 & 0.455 & 0.328 & 0.742 & 0.487 & 0.357 \\
+400\_6 & 0.710 & 0.503 & 0.356 & 0.745 & 0.466 & 0.387 \\
+400\_8 & 0.710 & 0.399 & 0.272 & 0.744 & 0.406 & 0.281 \\
+450\_6 & 0.698 & 0.443 & 0.340 & 0.792 & 0.419 & 0.291 \\
+\quad\textit{correctRDT} & \textit{0.772} & \textit{0.358} & \textit{0.289} & \textit{0.773} & \textit{0.391} & \textit{0.291} \\
+450\_8 & 0.659 & 0.357 & 0.269 & 0.828 & 0.291 & 0.204 \\
+500\_6 & 0.731 & 0.266 & 0.217 & 0.911 & 0.150 & 0.163 \\
+\quad\textit{correctRDT} & \textit{--} & \textit{--} & \textit{--} & \textit{0.752} & \textit{0.201} & \textit{0.150} \\
+500\_8 & 0.769 & 0.226 & 0.203 & 0.919 & 0.123 & 0.114 \\
+\quad\textit{correctRDT} & \textit{0.797} & \textit{0.152} & \textit{0.140} & \textit{0.776} & \textit{0.126} & \textit{0.095} \\
+\hline
+NoGV correctRDT & 1.648 & 2.070 & 1.113 & 1.648 & 2.070 & 1.113 \\
+\hline
+\end{tabular}
+\end{table}
+
+
 \subsection{Sign of residual swirl and pump-mode pre-rotation implications}
 \label{sec:sign-of-swirl}
 
