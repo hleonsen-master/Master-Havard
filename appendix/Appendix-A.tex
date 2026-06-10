@@ -12,14 +12,14 @@ Figures~\ref{fig:app_timeseries_450_7} and~\ref{fig:app_timeseries_400_6} show t
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.99\linewidth]{Figures/FFT/450_7/01_timeseries_and_window.png}
-\caption{Time histories for configuration CC\_450\_7 ($Z_r = Z_s = 7$, $c = 450$~mm): resultant force on one guide vane $F_{\mathrm{res}}$, RDT torque $M_{\mathrm{RDT}}$, plane-probe pressure $P_3$ and mass-flow-averaged downstream pressure $P_{\mathrm{out}}$.}
+\caption[Time histories, CC\_450\_7]{Time histories for CC\_450\_7 ($Z_r = Z_s = 7$, $c = 450$~mm): vane force $F_{\mathrm{res}}$, RDT torque $M_{\mathrm{RDT}}$, plane-probe pressure $P_3$ and downstream pressure $P_{\mathrm{out}}$.}
 \label{fig:app_timeseries_450_7}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.99\linewidth]{Figures/FFT/400_6/01_timeseries_and_window.png}
-\caption{Time histories of the same four monitor signals for configuration CC\_400\_6 ($Z_s = 6$, $c = 400$~mm). Panel layout as in Fig.~\ref{fig:app_timeseries_450_7}.}
+\caption[Time histories, CC\_400\_6]{Time histories of the same four monitor signals for CC\_400\_6 ($Z_s = 6$, $c = 400$~mm). Panel layout as in Fig.~\ref{fig:app_timeseries_450_7}.}
 \label{fig:app_timeseries_400_6}
 \end{figure}
 
@@ -32,14 +32,14 @@ The five revolutions within the FFT window are overlaid on a common $0$--$360^{\
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.99\linewidth]{Figures/FFT/450_7/02_periodicity_phase_fold.png}
-\caption{Phase-folded time series for CC\_450\_7 over the five revolutions within the FFT window. The four panels show $F_{\mathrm{res}}$, $M_{\mathrm{RDT}}$, $P_3$ and $P_{\mathrm{out}}$. Each coloured curve represents one rotor revolution.}
+\caption[Phase-folded time series, CC\_450\_7]{Phase-folded time series for CC\_450\_7 over the five revolutions within the FFT window. The four panels show $F_{\mathrm{res}}$, $M_{\mathrm{RDT}}$, $P_3$ and $P_{\mathrm{out}}$. Each coloured curve is one rotor revolution.}
 \label{fig:app_phasefold_450_7}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.99\linewidth]{Figures/FFT/400_6/02_periodicity_phase_fold.png}
-\caption{Phase-folded time series for CC\_400\_6 over the five revolutions within the FFT window. Panel layout as in Fig.~\ref{fig:app_phasefold_450_7}.}
+\caption[Phase-folded time series, CC\_400\_6]{Phase-folded time series for CC\_400\_6 over the five revolutions within the FFT window. Panel layout as in Fig.~\ref{fig:app_phasefold_450_7}.}
 \label{fig:app_phasefold_400_6}
 \end{figure}
 
@@ -64,7 +64,7 @@ Figure~\ref{fig:app_robustness} overlays the spectra computed from the last five
 \includegraphics[width=\linewidth]{Figures/FFT/400_6/08_robustness_5_vs_6rev.png}
 \caption{CC\_400\_6}
 \end{subfigure}
-\caption{Robustness of the FFT peak amplitudes to the choice of analysis window. Spectra from five and six rotor revolutions are overlaid for $F_{\mathrm{res}}$ (top panel of each subfigure) and the wall-pressure probe $P_3$ (bottom panel) in both configurations.}
+\caption[FFT window robustness]{Robustness of the FFT peak amplitudes to the choice of analysis window. Spectra from five and six rotor revolutions are overlaid for $F_{\mathrm{res}}$ (top panel of each subfigure) and the wall-pressure probe $P_3$ (bottom panel) in both configurations.}
 \label{fig:app_robustness}
 \end{figure}
 
@@ -86,7 +86,7 @@ Figure~\ref{fig:app_fn_vs_fbpf} shows the peak amplitudes at $f_n$ and $f_{\math
 \includegraphics[width=\linewidth]{Figures/FFT/400_6/comparison_fn_vs_fBPF_all_signals.png}
 \subcaption{CC\_400\_6}
 \end{minipage}
-\caption{Peak amplitudes at $f_n$ (white bars) and $f_{\mathrm{BPF}}$ (black bars) for all monitor signals in both configurations. Amplitudes are plotted on a logarithmic axis in each signal's native unit.}
+\caption[Peak amplitudes per signal]{Peak amplitudes at $f_n$ (white bars) and $f_{\mathrm{BPF}}$ (black bars) for all monitor signals in both configurations. Amplitudes are on a logarithmic axis in each signal's native unit.}
 \label{fig:app_fn_vs_fbpf}
 \end{figure}
 
@@ -95,7 +95,7 @@ The same data are shown as a side-by-side bar comparison between the two configu
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.95\linewidth]{Figures/FFT/comparison/compare_amplitudes_bar.png}
-\caption{Side-by-side comparison of peak amplitudes at $f_{\mathrm{BPF}}$ (top) and $f_n$ (bottom) for the two configurations.}
+\caption[Side-by-side amplitude comparison]{Side-by-side comparison of peak amplitudes at $f_{\mathrm{BPF}}$ (top) and $f_n$ (bottom) for the two configurations.}
 \label{fig:app_compare_bar}
 \end{figure}
 
@@ -117,7 +117,7 @@ Figure~\ref{fig:app_ampvsdistance} shows how the wall-pressure pulsation amplitu
 \includegraphics[width=\linewidth]{Figures/FFT/400_6/amp_vs_distance_in_GV.png}
 \subcaption{CC\_400\_6}
 \end{minipage}
-\caption{Axial evolution of wall-pressure pulsation amplitudes along the GV passage at $r/R = 0.744$, plotted against distance $s$ downstream of the RDT--GV interface. Five frequency components are shown: $f_n$, $2f_n$, $f_{\mathrm{BPF}}$, $2f_{\mathrm{BPF}}$ and $3f_{\mathrm{BPF}}$.}
+\caption[Axial evolution of pulsation amplitudes]{Axial evolution of wall-pressure pulsation amplitudes along the GV passage at $r/R = 0.744$, against distance $s$ downstream of the RDT--GV interface. Five components are shown: $f_n$, $2f_n$, $f_{\mathrm{BPF}}$, $2f_{\mathrm{BPF}}$ and $3f_{\mathrm{BPF}}$.}
 \label{fig:app_ampvsdistance}
 \end{figure}
 
@@ -142,7 +142,7 @@ The ring-coherence diagnostic $\mathcal{R}_m(f)$ defined in Eq.~\eqref{eq:cohere
 \includegraphics[width=\linewidth]{Figures/FFT/400_6/10_coherence_check.png}
 \caption{CC\_400\_6 ($Z_s = 6$)}
 \end{subfigure}
-\caption{Ring-coherence diagnostic for both configurations. Upper panels show amplitude spectra of the local wall-pressure signals $P_3$ and $P_5$ compared with the plane-averaged $P_{\mathrm{out}}$. Lower panels show amplitudes at the characteristic frequencies as bar charts.}
+\caption[Ring-coherence diagnostic]{Ring-coherence diagnostic for both configurations. Upper panels: amplitude spectra of the local wall-pressure signals $P_3$ and $P_5$ compared with the plane-averaged $P_{\mathrm{out}}$. Lower panels: amplitudes at the characteristic frequencies as bar charts.}
 \label{fig:app_coherence}
 \end{figure}
 
@@ -170,74 +170,74 @@ Each figure below shows: (i) the raw time history with the FFT window highlighte
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.95\linewidth]{Figures/FFT/450_7/signal_Fres.png}
-\caption{$F_{\mathrm{res}}$ — Resultant force on one guide vane.}
+\caption[$F_{\mathrm{res}}$ spectrum, CC\_450\_7]{$F_{\mathrm{res}}$ — Resultant force on one guide vane.}
 \end{figure}
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.95\linewidth]{Figures/FFT/450_7/signal_M_RDT.png}
-\caption{$M_{\mathrm{RDT}}$ — Torque about the rotation axis of the RDT rotor.}
+\caption[$M_{\mathrm{RDT}}$ spectrum, CC\_450\_7]{$M_{\mathrm{RDT}}$ — Torque about the rotation axis of the RDT rotor.}
 \end{figure}
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.95\linewidth]{Figures/FFT/450_7/signal_P_in.png}
-\caption{$P_{\mathrm{in}}$ — Mass-flow-averaged pressure at the RDT--GV interface.}
+\caption[$P_{\mathrm{in}}$ spectrum, CC\_450\_7]{$P_{\mathrm{in}}$ — Mass-flow-averaged pressure at the RDT--GV interface.}
 \end{figure}
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.95\linewidth]{Figures/FFT/450_7/signal_P_out.png}
-\caption{$P_{\mathrm{out}}$ — Mass-flow-averaged pressure downstream of the GV row.}
+\caption[$P_{\mathrm{out}}$ spectrum, CC\_450\_7]{$P_{\mathrm{out}}$ — Mass-flow-averaged pressure downstream of the GV row.}
 \end{figure}
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.95\linewidth]{Figures/FFT/450_7/signal_P0.png}
-\caption{$P_0$ — Wall-pressure probe at $s = 0$~mm, $r/R = 0.744$.}
+\caption[$P_0$ spectrum, CC\_450\_7]{$P_0$ — Wall-pressure probe at $s = 0$~mm, $r/R = 0.744$.}
 \end{figure}
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.95\linewidth]{Figures/FFT/450_7/signal_P3.png}
-\caption{$P_3$ — Wall-pressure probe at $s = 300$~mm, $r/R = 0.744$.}
+\caption[$P_3$ spectrum, CC\_450\_7]{$P_3$ — Wall-pressure probe at $s = 300$~mm, $r/R = 0.744$.}
 \end{figure}
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.95\linewidth]{Figures/FFT/450_7/signal_P5.png}
-\caption{$P_5$ — Wall-pressure probe at $s = 500$~mm, $r/R = 0.744$.}
+\caption[$P_5$ spectrum, CC\_450\_7]{$P_5$ — Wall-pressure probe at $s = 500$~mm, $r/R = 0.744$.}
 \end{figure}
 
 \subsection*{Configuration CC\_400\_6 ($Z_s = 6$, $c = 400$~mm)}
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.95\linewidth]{Figures/FFT/400_6/signal_Fres.png}
-\caption{$F_{\mathrm{res}}$ — Resultant force on one guide vane.}
+\caption[$F_{\mathrm{res}}$ spectrum, CC\_400\_6]{$F_{\mathrm{res}}$ — Resultant force on one guide vane.}
 \end{figure}
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.95\linewidth]{Figures/FFT/400_6/signal_M_RDT.png}
-\caption{$M_{\mathrm{RDT}}$ — Torque about the rotation axis of the RDT rotor.}
+\caption[$M_{\mathrm{RDT}}$ spectrum, CC\_400\_6]{$M_{\mathrm{RDT}}$ — Torque about the rotation axis of the RDT rotor.}
 \end{figure}
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.95\linewidth]{Figures/FFT/400_6/signal_P_in.png}
-\caption{$P_{\mathrm{in}}$ — Mass-flow-averaged pressure at the RDT--GV interface.}
+\caption[$P_{\mathrm{in}}$ spectrum, CC\_400\_6]{$P_{\mathrm{in}}$ — Mass-flow-averaged pressure at the RDT--GV interface.}
 \end{figure}
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.95\linewidth]{Figures/FFT/400_6/signal_P_out.png}
-\caption{$P_{\mathrm{out}}$ — Mass-flow-averaged pressure downstream of the GV row.}
+\caption[$P_{\mathrm{out}}$ spectrum, CC\_400\_6]{$P_{\mathrm{out}}$ — Mass-flow-averaged pressure downstream of the GV row.}
 \end{figure}
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.95\linewidth]{Figures/FFT/400_6/signal_P0.png}
-\caption{$P_0$ — Wall-pressure probe at $s = 0$~mm, $r/R = 0.744$.}
+\caption[$P_0$ spectrum, CC\_400\_6]{$P_0$ — Wall-pressure probe at $s = 0$~mm, $r/R = 0.744$.}
 \end{figure}
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.95\linewidth]{Figures/FFT/400_6/signal_P3.png}
-\caption{$P_3$ — Wall-pressure probe at $s = 300$~mm, $r/R = 0.744$.}
+\caption[$P_3$ spectrum, CC\_400\_6]{$P_3$ — Wall-pressure probe at $s = 300$~mm, $r/R = 0.744$.}
 \end{figure}
 
 \begin{figure}[H]\centering
 \includegraphics[width=0.95\linewidth]{Figures/FFT/400_6/signal_P5.png}
-\caption{$P_5$ — Wall-pressure probe at $s = 500$~mm, $r/R = 0.744$.}
+\caption[$P_5$ spectrum, CC\_400\_6]{$P_5$ — Wall-pressure probe at $s = 500$~mm, $r/R = 0.744$.}
 \end{figure}
 
 \clearpage % Keep this at the end of the chapter

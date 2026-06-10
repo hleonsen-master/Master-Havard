@@ -3,4 +3,50 @@
 
 This chapter is optional. It is completely fine if you do not have anything to suggest as future work. The future work section is a place for you to explain where, in your opinion, the results can lead and potential extension of the work. What do you think are the next steps to take? What other questions do your results raise? Do you think certain paths seem to be more promising than others? Another way to look at the future work section, is a way to sort of ``claim” an area of research. This is not to say that others can’t research the same things, but if your thesis gets published, it’s out there that you had the idea. This lets people know what you’re thinking of doing next and they may ask to collaborate if your future research area crosses over theirs.Limit future work to 2-3 paragraphs.
 
+
+
+
+
+
+
+
+
+
+%NOTATER
+\section{Turbine-mode operation with transient coupling}
+\label{sec:fw-turbine-mode}
+
+The master agreement identifies turbine-mode operation as a point of interest,
+and the present work establishes the guide-vane screening that a turbine-mode
+study would build on. A meaningful assessment in the reverse-flow direction was
+found to require a transient rotor-stator treatment rather than the steady
+frozen-rotor setup used for the screening matrix
+(Section~\ref{sec:methods-turbine-mode-ref}). In turbine mode the flow enters
+from the draft-tube side and passes through the RDT rotor, so the rotor inflow
+is shaped by the bend and cone upstream, and the unsteady rotor-stator
+interaction is no longer a small correction to a mean field. The recommended
+setup is therefore a transient simulation with a transient rotor-stator
+interface at the RDT, initialised from a converged field and run over several
+rotor revolutions, following the same spectral-analysis methodology already
+used for the pump-mode transient runs (Section~\ref{sec:spec}).
+
+The operating range should be centred on the reverse-rotation condition that
+Dokset~\cite{Dokset2026} reports as <PLASSHOLDER: presist hva Dokset fant, f.eks.
+"the lowest-head-loss reverse condition for this runner, near 360~rpm">. A
+short sweep of rotor speeds around this point would establish how the guide-vane
+passage loss and the load distribution between the guide vanes and the RDT
+respond to reverse-rotation speed. The same matched constant-chord and
+constant-solidity pairs used in the pump-mode screening provide a natural
+starting set, so that the chord-strategy contrast can be carried across into
+turbine mode.
+
+A full turbine-mode campaign would couple the RDT-GV stage to the RPT runner
+with a physical runner-exit inflow rather than the uniform axial inlet used in
+the present pump-mode screening, since the runner-exit swirl is part of the
+turbine-mode boundary condition. This is a separate study in its own right: it
+reintroduces the rotating RPT domain, the runner-passage mesh and the stricter
+transient timescale control that Section~\ref{sec:rpt-decoupling-justification}
+sets out as the reasons the RPT was decoupled in this thesis. It is the natural
+continuation of both the present guide-vane screening and the RPT-side work of
+Dokset~\cite{Dokset2026}.
 \clearpage % Keep this at the end of the chapter
