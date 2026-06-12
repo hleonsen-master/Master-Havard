@@ -304,12 +304,13 @@ The two strategies are not equivalent, and the design matrix is constructed prec
 
 \begin{figure}[h!]
     \centering
-    \fbox{\includegraphics[width=0.95\textwidth]{Figures/Methods/compare_CC_CS.png}}
+    \fbox{\includegraphics[width=0.95\textwidth]{Figures/Methods/CC_vs_CS_point_cloud.png}}
+%DEAR HÅVARD 12.10 (figur, byttet ut - F4 LOEST): Figuren er erstattet med CC_vs_CS_point_cloud.png (fra TIL RESULTS). Bekreftet ved aa aapne bildet: samme innhold (CC500 venstre med overlappende konstant-korde-seksjoner, CS500 hoyre med viftende seksjoner, farge = radius), men aksene og colorbar bruker naa RUNDE parenteser (m) i stedet for [m]. F4-enhetsavviket er dermed lukket for denne figuren. MERK: selve PNG-en maa kopieres inn i Figures/Methods/ (jeg har ikke et binaer-kopi-verktoey mellom diskene i denne oekten); includegraphics peker naa paa CC_vs_CS_point_cloud.png.
     \caption[Point cloud CC vs CS design]{Unwrapped STL point-cloud representation of the CC500 and CS500 guide-vane geometries. The colour indicates the local radius \(r\).}
     \label{fig:compare_cc_cs}
 \end{figure}
 
-The geometric difference between the two strategies is illustrated in Figure~\ref{fig:cc_vs_cs_3d} for the matched pair \texttt{CC\_400\_8} and \texttt{CS\_400\_8}. Both designs share the same shroud chord ($c_{\mathrm{shroud}} = 400$~mm) and the same vane count ($Z_s = 8$). The CC vane keeps a constant chord all the way to the inner cut-out at $r = 0.12$~m. The CS vane tapers linearly inwards, so the chord at the hub is reduced to $c_{\mathrm{hub}} = \sigma_{\mathrm{shroud}}\,(2\pi r_{\mathrm{hub}}/Z_s) \approx 191$~mm. Three-dimensional renderings of all 18 active configurations are collected in Appendix~\ref{app:gv_3d_geometries}.
+The geometric difference between the two strategies is illustrated in Figure~\ref{fig:cc_vs_cs_3d} for the matched pair \texttt{CC\_400\_8} and \texttt{CS\_400\_8}. Both designs share the same shroud chord ($c_{\mathrm{shroud}} = 400$~mm) and the same vane count ($Z_s = 8$). The CC vane keeps a constant chord all the way to the inner cut-out at $r = 0.12$~m. The CS vane tapers linearly inwards, so the chord at the hub is reduced to $c_{\mathrm{hub}} = \sigma_{\mathrm{shroud}}\,(2\pi r_{\mathrm{hub}}/Z_s) \approx 191$~mm. Three-dimensional renderings of all 18 active configurations are collected in Appendix~\ref{app:gv_3d_geometries}, and the corresponding two-dimensional section stacks in Appendix~\ref{app:gv_2d_sections}.
 
 \begin{figure}[h!]
   \centering
@@ -496,6 +497,7 @@ Figure~\ref{fig:methodology_overview} summarises the workflow. Each branch of th
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.7\textwidth]{Figures/FlowChart/Master_full_workflow.png}
+%DEAR HÅVARD 12.10 (figur, tall-avvik): Flytskjemaet (Stage 1) skriver "Spanwise wake at 0.25 m downstream". Men prosaen i sec:methods_design_input_baseline sier at vaken samples paa et plan 0.20 m nedstroms RDT-TE, og bildetekstene til fig:alpha_full_radial og fig:alpha_baseline sier ogsaa 0.20 m. Den interne logikken i teksten (0.20 m sampling, GV-LE ved 0.192 m, 8 mm gap mellom dem) er selvkonsistent paa 0.20 m, saa 0.25 i flytskjemaet ser ut som feilen (muligens forvekslet med shroud-radius 0.25 m). Reconciler: regenerer flytskjemaet med "0.20 m downstream" (eller bekreft hvilket tall som er riktig og rett det andre stedet). Jeg kan ikke redigere PNG-en. Resten av flytskjemaet stemmer med den beskrevne pipelinen.
   \caption[Methodology overview]{Methodology overview for the 18 steady simulations and the two transient diagnostic runs. Each configuration follows the same pipeline from MATLAB section generation to CFX simulation and post-processing.}
   \label{fig:methodology_overview}
 \end{figure}
@@ -516,6 +518,7 @@ The RDT wake has a low-momentum and reversed-flow region in the centre. Figure~\
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.80\textwidth]{Figures/Methods/BaselinePlot1.png}
+%DEAR HÅVARD 12.10 (figur, kvantitet-avvik - VIKTIG): Bildeteksten (kort: "Baseline radial velocity profiles") og prosaen rett over sier at figuren plotter "the time-averaged axial and tangential velocity components U_x(r) and U_t(r)", og teksten hevder "the axial component is negative for r <= 0.12 m". Men det faktiske bildet (BaselinePlot1.png) plotter FLYT-VINKELEN alpha = atan2(|C_u|,|C_m|) i grader (alltid positiv, 0-100 grader) over full radius, med backflow-skygge og stiplede "backflow-dominant rings". Det viser IKKE hastighetskomponentene, og den negative aksialhastigheten (paastanden i teksten) er ikke synlig i et vinkelplott. Dette er baade et figur-tekst-avvik OG en claim-linkage-svakhet (paastanden om negativ U_x mangler stoette i den refererte figuren). To valg: (a) bytt BaselinePlot1.png til et faktisk U_x(r)/U_t(r)-plott som viser U_x < 0 innenfor r<0.12; eller (b) behold vinkelplottet, men skriv om bildeteksten og prosaen til aa beskrive alpha(r) og begrunn cut-out via de stiplede backflow-ringene i stedet for via "negativ U_x". TILLEGG: aksene bruker klammeparenteser [deg] og [m] - skal vaere runde (deg) og (m), samme avvik som fig:compare_cc_cs. Jeg kan ikke redigere PNG-en.
     \caption[Baseline radial velocity profiles]{Radial profiles of the time-averaged axial and tangential velocity components, $U_x(r)$ and $U_t(r)$, sampled $0.20$~m downstream of the RDT trailing edge.}
     \label{fig:alpha_full_radial}
 \end{figure}
@@ -920,10 +923,8 @@ A separate GCI triplet is not run for each blade row. TurboGrid generates a fres
 \subsection{Inflation layers and \texorpdfstring{$y^+$}{y+} targets}
 \label{sec:methods_inflation}
 
-The unstructured regions use 15 inflation layers with a growth ratio of about $1.2$. A fixed $y^+$ target was not enforced anywhere in the domain. Resolving the viscous sublayer on every RDT, GV, cone, bend and pipe wall across all 18 configurations would push the element count beyond the computational budget available for the campaign. The SST formulation uses automatic wall treatment, which blends between low-Reynolds resolution and a wall function with the local near-wall spacing, so the solver remains usable across the range of $y^+$ values that the screening mesh produces. The near-wall spacing is therefore treated as a modelling limitation rather than a quality target, and a wall-resolved study of the shortlisted candidates with documented $y^+$ is identified as future work in Chapter~\ref{chap:future_work}. Mesh-quality targets and assessment methods are summarised in Table~\ref{tab:mesh_quality}.
-% Y+-FLAGG: Ch4 rapporterer oppnadd y+ pa 14-16 (RDT), 5-39 (GV) og 162-216 (sugeror).
-% Dette star i strid med "y+ <= 1" og "30-80" her. Ma reconciles: enten oppgi oppnadde verdier
-% og forsvar via SST automatic wall treatment, eller endre targets til oppnadd omrade. Gjelder ogsa tab:mesh_quality.
+The unstructured regions use 15 inflation layers with a growth ratio of about $1.2$. A fixed $y^+$ target was not enforced anywhere in the domain. Full near-wall resolution, with a $y^+$ of order one on every RDT, GV, cone, bend and pipe wall across all 18 configurations, would push the element count beyond the computational budget available for the campaign. The SST formulation uses automatic wall treatment, which blends between low-Reynolds resolution and a wall function with the local near-wall spacing, so the solver remains usable across the range of $y^+$ values that the screening mesh produces. The near-wall spacing is therefore treated as a modelling limitation rather than a quality target, and a wall-resolved study of the shortlisted candidates with documented $y^+$ is identified as future work in Chapter~\ref{chap:future_work}. Mesh-quality targets and assessment methods are summarised in Table~\ref{tab:mesh_quality}.
+%DEAR HÅVARD 10.06: y+ nedtonet i tråd med Ch4. Denne prosaen sa allerede "no fixed y+ target" + automatic wall treatment, så ingen "<=1"/"30-80"-targets gjensto her; jeg la bare til "y+ of order one" for å si eksplisitt hva idealet ville vært, og fjernet det utdaterte Y+-FLAGG-notatet (motsetningen det advarte om var alt borte). tab:mesh_quality sier også "no fixed y+ target", så den står uendret.
 
 \begin{table}[h!]
 \centering

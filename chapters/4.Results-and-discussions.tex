@@ -3,9 +3,10 @@
 
 \begin{center} % Abstract overview
 \singlespacing\parbox{12cm}{\textit{
-    Write abstract overview of the chapter here. This will help examiner to see overall contents presented in this chapter. It is recommended to write overview after completing the chapter. The overview must be between 100 and 150 words. An abstract overview is optional if you are writing project report.
-    }}
+This chapter presents the results of the 18-case screening campaign and the two transient diagnostic runs. It opens with a mesh-interface error found at the RDT hub during post-processing, and sets out the two-layer reporting strategy that retains the 18 original cases for comparison and adds seven corrected anchors. Two reference simulations and the mass-conservation check come next. The chapter then reports the system head increase and the head-loss decomposition, the residual swirl and flow angle at the RPT-inlet plane, and the Pareto trade-off between the two. The downstream cone and bend, the radial flow quality, the rotor-stator interaction and the single-vane load follow. A synthesis closes the chapter with a shortlist of candidate guide vanes for coupled simulation and the limitations that bound the recommendation.
+}}
 \end{center}
+%DEAR HÅVARD 10.06: (new content) Fylte ut chapter-overview-boksen (var plassholder). 126 ord, innenfor 100-150-kravet. Ren navigasjons-oppsummering av kapittelinnholdet i rekkefølge; ingen tall utover 18 og 7 (begge matcher teksten), ingen nye påstander. VKL-stil: britisk staving, ingen em-dash, ingen overclaim (sier "shortlist of candidate guide vanes", ikke at en vinner er bevist).
 
 \section{RDT mesh interface overlap: discovery and impact assessment}
 \label{sec:rdt-mesh-overlap}
@@ -158,47 +159,37 @@ The mean flow angle at \texttt{ConeEnd} is $6.8^\circ$, not zero. The residual c
 
 The $6.8^\circ$ residual sets a floor on what the screening can resolve at \texttt{ConeEnd}. Only \texttt{CS\_500\_8} ($9.1^\circ$ uncorrected, $7.9^\circ$ corrected) approaches it, so differences in the single-digit range should not be read as physical superiority. Section~\ref{sec:swirl-recovery} treats the angle scale near and below $10^\circ$ accordingly.
 
-\subsection{Mass conservation and wall-resolution scope}
+\subsection{Mass conservation and near-wall resolution}
 \label{sec:mass-and-yplus}
 \label{sec:mass-and-mesh-scope}
 
-Two checks precede the screening results: mass conservation between inlet and outlet, and documentation of the wall-resolution level used in the screening mesh. Per-case values are listed in Table~\ref{tab:mass-and-yplus}.
+Mass conservation between inlet and outlet is checked first. It holds within a \(0.5\%\) acceptance threshold for every case. The extremes are \(-0.23\%\) for \texttt{CS\_500\_8} and \(+0.18\%\) for \texttt{CS\_500\_6}; the NoGV reference closes at \(-0.06\%\). Per-case values are listed in Table~\ref{tab:mass-and-yplus}.
 
-Mass conservation holds within a \(0.5\%\) acceptance threshold for every case. The extremes are \(-0.23\%\) for \texttt{CS\_500\_8} and \(+0.18\%\) for \texttt{CS\_500\_6}; the NoGV reference closes at \(-0.06\%\).
-
-The \(y^+\) values are reported to define the wall-resolution scope of the screening campaign. They are not used as ranking metrics. The mesh was selected to keep the full \(18\)-case matrix computationally feasible, not to resolve the viscous sublayer throughout the RDT, GV, cone, bend and downstream pipe. Local wall shear, separation onset and cavitation inception should therefore be assessed with a refined near-wall mesh for shortlisted candidates.
+Full near-wall resolution, with \(y^+\) of order one across the RDT, guide vanes, cone, bend and downstream pipe, would require a near-wall element count beyond what an \(18\)-case screening campaign allows. The mesh was therefore sized for feasibility, not for wall resolution. The area-averaged \(y^+\) is of order \(15\) at the RDT walls, between about \(5\) and \(40\) at the guide vanes, and between about \(160\) and \(220\) in the downstream pipe. These values document the wall-resolution scope only; they are not analysed further and are not used as ranking metrics. The SST model with automatic wall treatment spans this range, so the comparison between configurations stays consistent, while local wall shear, separation onset and cavitation inception should be reassessed on a refined near-wall mesh for the shortlisted candidates.
 
 \begin{table}[H]
 \centering
 \footnotesize
-\caption[Mass balance and $y^+$ scope]{Mass balance ($\varepsilon_{\dot m}$, inlet-to-outlet imbalance) and area-averaged $y^+$ for the $18$-case matrix and the NoGV reference, with local maxima in parentheses. The $y^+$ values document wall-resolution scope and are not ranking metrics.}
+\caption[Mass balance]{Mass balance ($\varepsilon_{\dot m}$, inlet-to-outlet imbalance) for the $18$-case matrix and the NoGV reference. Every case closes within the $0.5\%$ acceptance threshold.}
 \label{tab:mass-and-yplus}
-\begin{tabular}{l r rr r r}
+\begin{tabular}{l r l r}
 \hline
-Case & $\varepsilon_{\dot m}$ (\%) & GV $y^+$ avg (max) & RDT $y^+$ avg & DT $y^+$ avg (max) \\ 
+Case & $\varepsilon_{\dot m}$ (\%) & Case & $\varepsilon_{\dot m}$ (\%) \\
 \hline
-\texttt{CS\_500\_8} & $-0.23$ & $5.60$ ($22.90$)  & $15.70$ & $166$ ($745$) \\
-\texttt{CS\_500\_6} & $+0.18$ & $5.90$ ($24.10$)  & $15.90$ & $166$ ($699$) \\
-\texttt{CS\_450\_8} & $+0.16$ & $18.60$ ($73.10$) & $16.10$ & $175$ ($686$) \\
-\texttt{CS\_450\_6} & $+0.03$ & $16$ ($53.40$) & $16.10$ & $187$ ($657$) \\
-\texttt{CS\_400\_8} & $-0.06$ & $19.80$ ($59.50$) & $16.30$ & $186$ ($589$) \\
-\texttt{CS\_400\_6} & $+0.08$ & $18.70$ ($57.90$) & $16.20$ & $194$ ($573$) \\
-\texttt{CS\_350\_8} & $+0.15$ & $21.50$ ($57.30$) & $16.30$ & $192$ ($572$) \\
-\texttt{CS\_300\_9} & $-0.02$ & $19.60$ ($54.30$) & $16.40$ & $202$ ($488$) \\
-\texttt{CS\_250\_9} & $+0.03$ & $14.90$ ($41.90$) & $16.40$ & $216$ ($533$) \\
-\texttt{CC\_500\_8} & $+0.03$ & $9.90$  ($30.50$) & $16.40$ & $162$ ($620$) \\
-\texttt{CC\_500\_6} & $+0.00$ & $5.80$  ($17.60$) & $16.50$ & $166$ ($520$) \\
-\texttt{CC\_450\_8} & $+0.02$ & $22$ ($68.50$) & $16.50$ & $172$ ($517$) \\
-\texttt{CC\_450\_6} & $-0.00$ & $23.70$ ($73.60$) & $16.40$ & $184$ ($519$) \\
-\texttt{CC\_400\_8} & $-0.05$ & $18.60$ ($57.80$) & $16.50$ & $178$ ($504$) \\
-\texttt{CC\_400\_6} & $+0.01$ & $18.50$ ($53.70$) & $16.40$ & $198$ ($575$) \\
-\texttt{CC\_350\_8} & $-0.04$ & $39.10$ ($116.80$) & $16.50$ & $183$ ($510$) \\
-\texttt{CC\_300\_9} & $-0.06$ & $35.20$ ($108$) & $16.40$ & $193$ ($544$) \\
-\texttt{CC\_250\_9} & $-0.04$ & $34.70$ ($110.60$) & $16.50$ & $209$ ($499$) \\
-NoGV swirl          & $-0.06$ & --                  & $14.10$ & $396$ ($588$) \\
+\texttt{CS\_500\_8} & $-0.23$ & \texttt{CC\_500\_6} & $+0.00$ \\
+\texttt{CS\_500\_6} & $+0.18$ & \texttt{CC\_450\_8} & $+0.02$ \\
+\texttt{CS\_450\_8} & $+0.16$ & \texttt{CC\_450\_6} & $-0.00$ \\
+\texttt{CS\_450\_6} & $+0.03$ & \texttt{CC\_400\_8} & $-0.05$ \\
+\texttt{CS\_400\_8} & $-0.06$ & \texttt{CC\_400\_6} & $+0.01$ \\
+\texttt{CS\_400\_6} & $+0.08$ & \texttt{CC\_350\_8} & $-0.04$ \\
+\texttt{CS\_350\_8} & $+0.15$ & \texttt{CC\_300\_9} & $-0.06$ \\
+\texttt{CS\_300\_9} & $-0.02$ & \texttt{CC\_250\_9} & $-0.04$ \\
+\texttt{CS\_250\_9} & $+0.03$ & NoGV swirl          & $-0.06$ \\
+\texttt{CC\_500\_8} & $+0.03$ &                     &         \\
 \hline
 \end{tabular}
 \end{table}
+%DEAR HÅVARD 10.06: y+ er nedtonet etter din instruks. Fjernet y+-kolonnene fra tabellen (massebalanse beholdt) og kortet ned prosaen: nevner full y+~1-oppl\o sning ville krevd for mange elementer for en 18-case-screening, oppgir oppn\aa dde snittverdier (RDT ~15, GV ~5-40, DT ~160-220) og sl\aa r fast at de ikke analyseres videre. Setningen om SST automatic wall treatment er den som forsvarer mid-range y+ mot en sensor; stryk den hvis du vil ha en renere variant. Maks-verdiene vises ikke lenger. Samme nedtoning gj\o res i Ch3.
 
 \section{Head increase and head-loss decomposition}
 \label{sec:head-increase-and-hl}
@@ -333,6 +324,7 @@ Figure~\ref{fig:alpha-bar} shows $|\alpha|_{\mathrm{ConeEnd}}$ grouped by chord 
 
 The screening matrix spans $|\alpha|_{\mathrm{ConeEnd}}$ from $9.1^\circ$ (\texttt{CS\_500\_8}) to $35.1^\circ$ (\texttt{CS\_250\_9}). The factor of nearly four between best and worst is the largest relative spread of any screening metric. Both extremes are in the same family. The CS construction is the most powerful when chord is long and the least effective when chord is short.
 
+%DEAR HÅVARD 12.10 (sensor, CHANGE 2): RQ1 lister tre primaerparametre: skovltall Z_s, korde-strategi (CC/CS) og shroud-korde. Familie og korde behandles grundig her, men effekten av skovltall ALENE blir aldri isolert, selv om matrisen tillater det ved fast korde (Z=6 mot Z=8 ved 400/450/500 mm). Eksempel som allerede staar i tabellene: ved 500 mm i CS-familien gaar |alpha| fra 13.1 grader (Z=6) til 9.1 grader (Z=8). En sensor vil spoerre: "RQ1 nevner skovltall som primaerparameter, hvor skiller du effekten fra korde?". Konklusjonen (Ch5, foerste RQ-avsnitt) arver samme hull. To valg: (a) legg til en kort setning som isolerer Z_s-effekten ved fast korde med tall fra tabellene, eller (b) mykne RQ1 saa skovltall inngaar i soliditet i stedet for aa staa som egen akse. Se dear_havard_claim_linkage_report.tex, CHANGE 2.
 Long chord wins in both families. The three best configurations are \texttt{CS\_500\_8} ($9.1^\circ$), \texttt{CS\_500\_6} ($13.1^\circ$), and \texttt{CC\_500\_8} ($16.5^\circ$). The worst pair pairs near-identical angles from short-chord, high-vane-count cases: \texttt{CS\_250\_9} at $35.1^\circ$ and \texttt{CC\_250\_9} at $35.0^\circ$. The chord effect is not symmetric across families. Going from $250$ to $500$~mm drops the residual angle by $26^\circ$ in CS but only $19^\circ$ in CC. The CS family construction concentrates more turning at the outer span, where the dynamic head is highest. When the chord is long enough, that outer-span turning removes more angular momentum than the equivalent CC design and the family pulls ahead. When the chord is short, the CS family loses this advantage and the two families converge.
 
 The four corners of the design space organise the picture cleanly. Long chord with CS gives the lowest angle. Long chord with CC gives moderate angle and the highest $\Delta H_{\mathrm{sys}}$. Short chord with CS gives the worst angle. Short chord with CC gives near-equal angle to its CS counterpart at less head cost. Intermediate cases fall along smooth interpolations between these corners.
@@ -349,7 +341,6 @@ The mesh-bias caveat from Section~\ref{sec:rdt-mesh-overlap-impact} applies. Wit
 
 
 
-%LEGG INN VEKTOR HER 
 To connect the residual-angle metric to the local guide-vane passage flow, velocity vectors were inspected for the two long-chord anchor cases. Figures~\ref{fig:cc-cs5008-vector-span} and~\ref{fig:cc-cs5008-vector-3d} compare \texttt{CC\_500\_8} and \texttt{CS\_500\_8} at three spanwise locations. The span coordinate is measured from the inner GV radius, $r=0.120$~m, to the outer radius, $r=0.250$~m.
 
 \begin{figure}[H]
@@ -438,6 +429,7 @@ To connect the residual-angle metric to the local guide-vane passage flow, veloc
 The vector plots show that the lower residual angle of \texttt{CS\_500\_8} is obtained with a less uniform local passage flow than in \texttt{CC\_500\_8}. In the blade-to-blade views, the \texttt{CS} case shows stronger local recirculation and a more disturbed vector pattern, especially towards the mid and outer span. The downstream three-dimensional views support the same interpretation: \texttt{CS\_500\_8} removes more swirl, but the resulting vector field is more non-uniform around the guide-vane row. This agrees with the head-loss trend, where the stronger swirl recovery of the \texttt{CS} family comes with a larger hydraulic penalty.
 
 
+%DEAR HÅVARD 12.10 (sensor, CHANGE 3 - doed referanse, IKKE claim-linkage): \ref{sec:s-streamwise} brukes tre steder (to ganger i avsnittene under, og en gang i bildeteksten til fig:dean-streamwise lenger oppe), men det finnes ingen \label{sec:s-streamwise}. Denne underseksjonen, som inneholder de streamwise S-figurene, er merket sec:swirl-number-evolution. Resultat: tre "Section ??" i PDF-en. Jeg retter det ikke (vernereglene). To valg: (a) legg til \label{sec:s-streamwise} paa denne underseksjonen ved siden av den eksisterende, eller (b) endre de tre \ref{sec:s-streamwise} til \ref{sec:swirl-number-evolution}. Se dear_havard_claim_linkage_report.tex, CHANGE 3.
 \subsection{Swirl number evolution through the duct}
 \label{sec:swirl-number-evolution}
 
@@ -505,12 +497,13 @@ Sections~\ref{sec:head-increase-and-hl} and \ref{sec:swirl-recovery} examined th
 \label{sec:pareto-identification}
 A configuration is Pareto-dominant if no other configuration in the matrix has both higher $\Delta H_{\mathrm{sys}}$ and lower $|\alpha|_{\mathrm{ConeEnd}}$. The configurations that survive this filter form the Pareto front. Designs inside the front are dominated by at least one Pareto-front member and should be selected only for reasons not captured in the two-metric trade-off.
 
-Figure~\ref{fig:pareto-map} shows the screening matrix on the $|\alpha|_{\mathrm{ConeEnd}}$-versus-$\Delta H_{\mathrm{sys}}$ plane. The Pareto front in the uncorrected matrix contains four configurations: \texttt{CS\_500\_8}, \texttt{CS\_500\_6}, \texttt{CC\_500\_8}, and \texttt{CC\_400\_8}. All four belong to the long-chord part of the design space ($c \geq 400$~mm). The uncorrected NoGV swirl reference sits off-scale at $|\alpha| = 53.6^\circ$ and $\Delta H_{\mathrm{sys}} = 3.96$~m and is not part of the GV Pareto front. Table~\ref{tab:final-decision} lists the four cases with their head-loss budget.
+Figure~\ref{fig:pareto-map} shows the screening matrix on the $|\alpha|_{\mathrm{ConeEnd}}$-versus-$\Delta H_{\mathrm{sys}}$ plane. The Pareto front in the uncorrected matrix contains four configurations: \texttt{CS\_500\_8}, \texttt{CS\_500\_6}, \texttt{CC\_500\_8}, and \texttt{CC\_400\_8}. All four belong to the long-chord part of the design space ($c \geq 400$~mm). The uncorrected NoGV swirl reference sits high on the plot at $|\alpha| = 53.6^\circ$ and $\Delta H_{\mathrm{sys}} = 3.96$~m and is not part of the GV Pareto front. Table~\ref{tab:final-decision} lists the four cases with their head-loss budget.
 
+%DEAR HÅVARD 10.06: Pareto off-scale-avviket er rettet (etter din godkjenning): brødteksten over sier nå "sits high on the plot" i stedet for "sits off-scale", og captionen under har fått en setning som forklarer NoGV-diamanten og -stjernen. Tall uendret. Gjenstående verifikasjon: sjekk gjerne selv at "open hatched markers" i captionen stemmer med markørstilen du faktisk brukte for CS i plottet (i legenden ser de ut som åpne sirkler).
 \begin{figure}[H]
 \centering
 \fbox{\includegraphics[width=0.95\linewidth]{Figures/Results/fig_4_6_pareto.png}}
-\caption[Pareto map of the screening matrix]{Pareto map of the $18$-case matrix on the $|\alpha|_{\mathrm{ConeEnd}}$-versus-$\Delta H_{\mathrm{sys}}$ plane. CC family grey filled markers, CS family open hatched markers. The four Pareto-dominant cases are connected by a solid line.}
+\caption[Pareto map of the screening matrix]{Pareto map of the $18$-case matrix on the $|\alpha|_{\mathrm{ConeEnd}}$-versus-$\Delta H_{\mathrm{sys}}$ plane. CC family grey filled markers, CS family open hatched markers. The four Pareto-dominant cases are connected by a solid line. The two NoGV references (uncorrected: diamond; corrected: star) are shown for context and are not part of the GV Pareto front.}
 \label{fig:pareto-map}
 \end{figure}
 

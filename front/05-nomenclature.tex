@@ -17,6 +17,11 @@
 \nomenclature[As3]{SST}{Shear stress transport}
 \nomenclature[At]{TRS}{Transient rotor-stator}
 \nomenclature[Av]{VPF}{Vane passing frequency}
+\nomenclature[Acc]{CC}{Constant chord (guide-vane family)}
+\nomenclature[Acz]{CS}{Constant solidity (guide-vane family)}
+\nomenclature[Agg]{GGI}{Generalised grid interface}
+\nomenclature[An1]{NoGV}{No guide vanes (reference case)}
+\nomenclature[As4]{TKE}{Turbulent kinetic energy}
 
 % Latin symbols
 \nomenclature[Ba]{$A$}{Area (m\textsuperscript{2})}
@@ -31,17 +36,47 @@
 \nomenclature[Bp2]{$p$}{Pressure (Pa)}
 \nomenclature[Bt1]{$T$}{Torque (N m)}
 \nomenclature[Bt2]{$t$}{Time (s)}
+\nomenclature[Ba2]{$a$}{Axial spacing, RDT trailing edge to GV leading edge (m)}
+\nomenclature[Bca]{$c$}{Chord length (m)}
+\nomenclature[Bcm]{$C_m$}{Meridional velocity component (m s\textsuperscript{-1})}
+\nomenclature[Bcu]{$C_u$}{Tangential velocity component (m s\textsuperscript{-1})}
+\nomenclature[Bf3]{$F$}{Force, e.g. resultant vane force $F_{\mathrm{res}}$ (N)}
+\nomenclature[Bg]{$g$}{Gravitational acceleration (m s\textsuperscript{-2})}
+\nomenclature[Bh2]{$\mathrm{HL}$}{Head loss (m)}
+\nomenclature[Bl2]{$L$}{RDT blade chord, used in $a/L$ (m)}
+\nomenclature[Bm]{$m$}{Circumferential mode order (Tyler-Sofrin)}
+\nomenclature[Bm2]{$\dot{m}$}{Mass flow rate (kg s\textsuperscript{-1})}
+\nomenclature[Bn]{$n$}{Rotational speed (rpm)}
+\nomenclature[Bn2]{$N$}{Number of samples or mesh cells}
+\nomenclature[Bp3]{$p_t$}{Total pressure (Pa)}
+\nomenclature[Bq]{$Q$}{Q-criterion (s\textsuperscript{-2})}
+\nomenclature[Br]{$r$}{Radius, radial coordinate (m)}
+\nomenclature[Br2]{$R$}{Reference radius, duct radius (m)}
+\nomenclature[Bs]{$s$}{Streamwise coordinate along the GV passage (m)}
+\nomenclature[Bs2]{$S$}{Swirl number}
+\nomenclature[Bu]{$U_b$}{Bulk velocity (m s\textsuperscript{-1})}
+\nomenclature[Bv]{$V$}{Velocity component, e.g. $V_{\mathrm{ax}}$, $V_\theta$, $V_n$ (m s\textsuperscript{-1})}
+\nomenclature[Bx]{$x$}{Cartesian coordinate (m)}
+\nomenclature[By]{$y$}{Cartesian coordinate (m)}
+\nomenclature[Bz]{$z$}{Axial coordinate (m)}
+\nomenclature[Bz2]{$Z$}{Blade or vane count ($Z_r$ rotor, $Z_s$ stator)}
 
 % Dimensionless numbers
 \nomenclature[Ce]{Eu}{Euler number}
 \nomenclature[Cr]{Re}{Reynolds number}
+\nomenclature[Cy]{$y^+$}{Dimensionless wall distance}
 
 % Greek symbols
-\nomenclature[Da]{$\alpha$}{Guide vane angle ($^\circ$)}
+\nomenclature[Da]{$\alpha$}{Flow angle; guide-vane angle ($^\circ$)}
 \nomenclature[De1]{$\eta$}{Efficiency}
 \nomenclature[De2]{$\epsilon$}{Rate of dissipation of turbulent kinetic energy (m\textsuperscript{2} s\textsuperscript{-3})}
 \nomenclature[Dm]{$\mu$}{Dynamic viscosity (Pa s)}
 \nomenclature[Dr]{$\rho$}{Density (kg m\textsuperscript{-3})}
+\nomenclature[Db]{$\delta$}{Deviation (slip) angle, $\delta_{\mathrm{TE}}$ ($^\circ$)}
+\nomenclature[Dg]{$\theta$}{Azimuthal angle; force angle to axial $\theta_{\mathrm{ax}}$ ($^\circ$)}
+\nomenclature[Dl]{$\lambda_{ci}$}{Swirling strength (s\textsuperscript{-1})}
+\nomenclature[Ds]{$\sigma$}{Solidity}
+\nomenclature[Dw]{$\omega$}{Specific dissipation rate of turbulent kinetic energy (s\textsuperscript{-1})}
 
 % Superscripts and subscripts
 \nomenclature[Ea1]{1,2,\ldots}{Indices}
@@ -49,3 +84,8 @@
 \nomenclature[Em3]{max}{Maximum}
 \nomenclature[Em4]{min}{Minimum}
 \nomenclature[Er3]{rms}{Root-mean-square}
+\nomenclature[Ei]{in}{Inlet}
+\nomenclature[Eo]{out}{Outlet}
+\nomenclature[Es]{sys}{System}
+
+%DEAR HÅVARD 10.06: (new content) La til nomenklatur-oppføringer for symboler som faktisk brukes i oppgaven men manglet: forkortelser (CC, CS, GGI, NoGV, TKE); latinske (a, c, C_m, C_u, F, g, HL, L, m, mdot, n, N, p_t, Q, r, R, s, S, U_b, V, x, y, z, Z); gresk (delta, theta, lambda_ci, sigma, omega); dimensjonsløs (y+); sub/superskript (in, out, sys). Endret også alpha fra 'Guide vane angle' til 'Flow angle' siden |alpha| er hovedmetrikken i resultatene. Rekkefølgen styres av sorteringsnøklene [...], ikke av rekkefølgen i fila. To ting å sjekke selv: (1) Noen eksisterende oppføringer brukes kanskje ikke lenger (Eu, FSI, C_f, C_p, BEP) -- verifiser mot Ch1/Ch2/Ch5 og fjern dem som ikke er i bruk. (2) Både T og M_RDT brukes for moment (T generelt, M_RDT for rotormoment); jeg beholdt kun T -- legg til M hvis du vil ha begge.

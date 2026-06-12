@@ -9,10 +9,15 @@
 \begin{center}
 \parbox{12cm}{
 
-    WRITE NORWEGIAN ABSTRACT HERE..
-    
+Denne oppgaven utvikler en systematisk CFD-basert screeningmetodikk for swirl-reduserende ledeskovler (GV) nedstrøms en rim-drevet thruster (RDT) i Store2Hydro-konseptet, der en booster ettermonteres i reversible pumpeturbiner (RPT). Den navløse RDT-en etterlater en swirlende og radielt ujevn vake, og en stasjonær ledeskovlrad trengs derfor for å gjenvinne den gjenværende swirlen før strømmen når RPT-en. Atten GV-konfigurasjoner ble simulert i det integrerte RDT-GV-sugerørdomenet. Matrisen kombinerte to kordestrategier, konstant korde (CC) og konstant soliditet (CS), med seks shroud-kordelengder og tre skovltall. Et tilfelle uten skovler (NoGV) satte referansen for swirl-reduksjon og falltap. Simuleringene brukte stasjonær RANS med SST $k$-$\omega$-modellen, og to transiente kjøringer dekket rotor-stator-interaksjonen.
+
+CC-familien ga en høyere gjennomsnittlig økning i systemets løftehøyde (\SI{3.70}{\meter} mot \SI{3.49}{\meter}) og et lavere gjennomsnittlig totalt falltap, mens CS-familien nådde den laveste gjenværende strømningsvinkelen ved lang korde. Effektiv swirl-reduksjon krevde en shroud-korde på minst \SI{400}{\milli\meter}; ingen konfigurasjon med kort korde nådde Pareto-fronten. Ledeskovlpassasjen sto for 58 til \SI{87}{\percent} av falltapsbudsjettet, og tapet i \SI{90}{\degree}-bendet falt med en størrelsesorden så snart en skovl var til stede. En feil i nett-grensesnittet ved RDT-navet ble oppdaget under etterprosesseringen. Sju ankertilfeller ble kjørt på nytt med korrigert nett, noe som bekreftet trendene på familienivå og Pareto-statusen til \texttt{CS\_500\_8} og \texttt{CC\_500\_8}, samtidig som det viste at tette rangeringer innad i samme familie er følsomme for det enkelte tilfellet.
+
+To kandidater anbefales for koblede RDT-GV-RPT-simuleringer: \texttt{CS\_500\_8} der innløpskvaliteten til RPT-en er viktigst, og \texttt{CC\_500\_8} der levert løftehøyde er viktigst. Den transiente analysen indikerte hydrauliske pulsasjonsamplituder godt under én-prosent-terskelen for rotor-stator-interaksjon. Arbeidet er en komparativ studie ved ett driftspunkt; kavitasjon, koblingen til RPT-en og strukturell oppførsel er overlatt til videre arbeid.
+
 }
 \end{center}
+%DEAR HÅVARD 10.06: (new content) Norsk sammendrag = oversettelse av abstractet, speilet setning for setning. Tall, \SI-kommandoer og case-navn (\texttt{...}) er identiske med abstractet, så de holder seg synkronisert. Terminologi: 'swirl' beholdt som låneord (som i selve oppgaven), 'ledeskovler' for guide vanes, 'vake' for wake, 'løftehøyde' for head (pumpemodus), 'falltap' for head loss. Tre ting å vurdere: (1) 'screening' er brukt kun én gang (screeningmetodikk), ellers 'komparativ studie', i tråd med stilregelen din om å unngå 'screening' -- samme bør da gjelde abstractet for konsistens. (2) Desimaltegn er punktum (engelsk siunitx, som i resten av oppgaven); bytt til komma hvis du vil ha norsk konvensjon, men da avviker det fra brødteksten. (3) Hvis tallene i abstractet endrer seg etter korrigerte reruns, oppdater begge.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \let\thefootnote\relax\footnotetext{vkl-drm-temp-msc-v2025.1, \LaTeX}
