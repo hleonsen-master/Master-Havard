@@ -9,10 +9,15 @@
 \begin{center}
 \parbox{12cm}{
 
-    WRITE ABSTRACT HERE...Abstract is a short summary of your work in 200 -- 400 words.
-    
+This thesis develops a systematic CFD screening methodology for swirl-recovery guide vanes (GVs) downstream of a rim-driven thruster (RDT) in the Store2Hydro booster concept for reversible pump-turbine (RPT) retrofits. The hubless RDT leaves a swirling and radially non-uniform wake, so a stationary guide-vane row is needed to recover the residual swirl before the flow reaches the RPT. Eighteen GV configurations were simulated in the integrated RDT-GV-draft-tube domain. The matrix combined two chord-control strategies, constant chord (CC) and constant solidity (CS), with six shroud-chord levels and three vane counts. A no-vane case (NoGV) set the reference for swirl reduction and head loss. The screening used steady RANS with the SST $k$-$\omega$ model, and two transient runs covered the rotor-stator interaction.
+
+The CC family delivered a higher mean system head increase (\SI{3.70}{\meter} against \SI{3.49}{\meter}) and a lower mean total head loss, while the CS family reached the lowest residual flow angle at long chord. Useful swirl recovery required a shroud chord of at least \SI{400}{\milli\meter}; no short-chord configuration reached the Pareto front. The guide-vane passage accounted for 58 to \SI{87}{\percent} of the head-loss budget, and the \SI{90}{\degree} bend loss collapsed by an order of magnitude once any vane was present. A mesh-interface error at the RDT hub was found during post-processing. Seven anchor cases were rerun on the corrected mesh, which confirmed the family-level trends and the Pareto status of \texttt{CS\_500\_8} and \texttt{CC\_500\_8}, while showing that close same-family rankings are case-sensitive.
+
+Two candidates are recommended for coupled RDT-GV-RPT simulations: \texttt{CS\_500\_8} where RPT inlet quality dominates, and \texttt{CC\_500\_8} where head delivery dominates. The transient analysis indicated hydraulic pulsation amplitudes well below the one-percent rotor-stator-interaction threshold. The work remains a comparative screening at one operating point; cavitation, the RPT coupling and structural behaviour are left for future work.
+
 }
 \end{center}
+%DEAR HÅVARD 10.06: (new content + humanizer) Replaced the "WRITE ABSTRACT HERE" placeholder with a ~310-word abstract drafted from Ch.1 (scope, RQs) and Ch.4 (results, Pareto, mesh correction, recommendation). VKL voice: SI units, single-layer hedging ("indicated"), British spelling ("behaviour"), no em-dashes, "recommended/indicated" not "proved". Please check the numbers against your final Ch.4 tables and adjust if the corrected-matrix reruns change them.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \let\thefootnote\relax\footnotetext{vkl-drm-temp-msc-v2025.1, \LaTeX}

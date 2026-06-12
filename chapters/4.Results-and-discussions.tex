@@ -3,9 +3,10 @@
 
 \begin{center} % Abstract overview
 \singlespacing\parbox{12cm}{\textit{
-    Write abstract overview of the chapter here. This will help examiner to see overall contents presented in this chapter. It is recommended to write overview after completing the chapter. The overview must be between 100 and 150 words. An abstract overview is optional if you are writing project report.
-    }}
+This chapter presents the results of the 18-case screening campaign and the two transient diagnostic runs. It opens with a mesh-interface error found at the RDT hub during post-processing, and sets out the two-layer reporting strategy that retains the 18 original cases for comparison and adds seven corrected anchors. Two reference simulations and the mass-conservation check come next. The chapter then reports the system head increase and the head-loss decomposition, the residual swirl and flow angle at the RPT-inlet plane, and the Pareto trade-off between the two. The downstream cone and bend, the radial flow quality, the rotor-stator interaction and the single-vane load follow. A synthesis closes the chapter with a shortlist of candidate guide vanes for coupled simulation and the limitations that bound the recommendation.
+}}
 \end{center}
+%DEAR HÅVARD 10.06: (new content) Fylte ut chapter-overview-boksen (var plassholder). 126 ord, innenfor 100-150-kravet. Ren navigasjons-oppsummering av kapittelinnholdet i rekkefølge; ingen tall utover 18 og 7 (begge matcher teksten), ingen nye påstander. VKL-stil: britisk staving, ingen em-dash, ingen overclaim (sier "shortlist of candidate guide vanes", ikke at en vinner er bevist).
 
 \section{RDT mesh interface overlap: discovery and impact assessment}
 \label{sec:rdt-mesh-overlap}
@@ -505,12 +506,13 @@ Sections~\ref{sec:head-increase-and-hl} and \ref{sec:swirl-recovery} examined th
 \label{sec:pareto-identification}
 A configuration is Pareto-dominant if no other configuration in the matrix has both higher $\Delta H_{\mathrm{sys}}$ and lower $|\alpha|_{\mathrm{ConeEnd}}$. The configurations that survive this filter form the Pareto front. Designs inside the front are dominated by at least one Pareto-front member and should be selected only for reasons not captured in the two-metric trade-off.
 
-Figure~\ref{fig:pareto-map} shows the screening matrix on the $|\alpha|_{\mathrm{ConeEnd}}$-versus-$\Delta H_{\mathrm{sys}}$ plane. The Pareto front in the uncorrected matrix contains four configurations: \texttt{CS\_500\_8}, \texttt{CS\_500\_6}, \texttt{CC\_500\_8}, and \texttt{CC\_400\_8}. All four belong to the long-chord part of the design space ($c \geq 400$~mm). The uncorrected NoGV swirl reference sits off-scale at $|\alpha| = 53.6^\circ$ and $\Delta H_{\mathrm{sys}} = 3.96$~m and is not part of the GV Pareto front. Table~\ref{tab:final-decision} lists the four cases with their head-loss budget.
+Figure~\ref{fig:pareto-map} shows the screening matrix on the $|\alpha|_{\mathrm{ConeEnd}}$-versus-$\Delta H_{\mathrm{sys}}$ plane. The Pareto front in the uncorrected matrix contains four configurations: \texttt{CS\_500\_8}, \texttt{CS\_500\_6}, \texttt{CC\_500\_8}, and \texttt{CC\_400\_8}. All four belong to the long-chord part of the design space ($c \geq 400$~mm). The uncorrected NoGV swirl reference sits high on the plot at $|\alpha| = 53.6^\circ$ and $\Delta H_{\mathrm{sys}} = 3.96$~m and is not part of the GV Pareto front. Table~\ref{tab:final-decision} lists the four cases with their head-loss budget.
 
+%DEAR HÅVARD 10.06: Pareto off-scale-avviket er rettet (etter din godkjenning): brødteksten over sier nå "sits high on the plot" i stedet for "sits off-scale", og captionen under har fått en setning som forklarer NoGV-diamanten og -stjernen. Tall uendret. Gjenstående verifikasjon: sjekk gjerne selv at "open hatched markers" i captionen stemmer med markørstilen du faktisk brukte for CS i plottet (i legenden ser de ut som åpne sirkler).
 \begin{figure}[H]
 \centering
 \fbox{\includegraphics[width=0.95\linewidth]{Figures/Results/fig_4_6_pareto.png}}
-\caption[Pareto map of the screening matrix]{Pareto map of the $18$-case matrix on the $|\alpha|_{\mathrm{ConeEnd}}$-versus-$\Delta H_{\mathrm{sys}}$ plane. CC family grey filled markers, CS family open hatched markers. The four Pareto-dominant cases are connected by a solid line.}
+\caption[Pareto map of the screening matrix]{Pareto map of the $18$-case matrix on the $|\alpha|_{\mathrm{ConeEnd}}$-versus-$\Delta H_{\mathrm{sys}}$ plane. CC family grey filled markers, CS family open hatched markers. The four Pareto-dominant cases are connected by a solid line. The two NoGV references (uncorrected: diamond; corrected: star) are shown for context and are not part of the GV Pareto front.}
 \label{fig:pareto-map}
 \end{figure}
 
